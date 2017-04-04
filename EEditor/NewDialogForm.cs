@@ -259,19 +259,19 @@ namespace EEditor
                 {
                     if (MainForm.accs[MainForm.selectedAcc].loginMethod == 0 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                     {
-                        client = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                        client = PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
                     }
                     else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 1 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                     {
-                        client = PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, null, null);
+                        client = PlayerIO.QuickConnect.FacebookOAuthConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, null, null);
                     }
                     else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 2 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                     {
-                        client = PlayerIO.QuickConnect.KongregateConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                        client = PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
                     }
                     else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 3 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                     {
-                        client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
+                        client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
                     }
 
                     if (datas == 0)
@@ -521,7 +521,7 @@ namespace EEditor
             worldOwner = "Anonymous";
             if (uid != null)
             {
-                PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", "guest", "guest", null,
+                PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, "guest", "guest", null,
                     delegate (Client c)
                     {
                         c.BigDB.Load("PlayerObjects", uid,

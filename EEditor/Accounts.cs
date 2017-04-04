@@ -153,7 +153,7 @@ namespace EEditor
             {
                 if (accEverybodyEdits.Checked)
                 {
-                    PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, loginField2.Text, null, successLogin, failLogin);
+                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
                     accountOption = 0;
                 }
                 /* Facebook disabled
@@ -166,12 +166,12 @@ namespace EEditor
                 */
                 else if (accKongregate.Checked)
                 {
-                    PlayerIO.QuickConnect.KongregateConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, loginField2.Text, null, successLogin, failLogin);
+                    PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
                     accountOption = 2;
                 }
                 else if (accArmorGames.Checked)
                 {
-                    PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin, failLogin);
+                    PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin, failLogin);
                     accountOption = 3;
                 }
             }
@@ -191,7 +191,7 @@ namespace EEditor
             {
                 if (accEverybodyEdits.Checked)
                 {
-                    PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
+                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
                 }
                 /* Facebook disabled
                 else if (accFacebook.Checked)
@@ -201,11 +201,11 @@ namespace EEditor
                 */
                 else if (accKongregate.Checked)
                 {
-                    PlayerIO.QuickConnect.KongregateConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
+                    PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
                 }
                 else if (accArmorGames.Checked)
                 {
-                    PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin1, failLogin);
+                    PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin1, failLogin);
                 }
             }
         }

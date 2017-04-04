@@ -10,6 +10,7 @@ namespace EEditor
 {
     class bdata
     {
+        public static string gameID = "everybody-edits-su9rn58o40itdbnw69plyw";
         public static int[] goal = { 77, 83, 43, 165, 213, 214, 417, 418, 419, 420, 421, 422, 423, 1027, 1028, 113, 185, 184, 1011, 1012, 453, 461, 467, 1079, 1080 };
         //public static int[] effects = { 417, 418, 419, 420, 421, 422, 453 };
         public static int[] rotate = { 1001, 1002, 1003, 1004, 1027, 1028, 361, 385, 374, 1052, 1053, 1054, 1055, 1056, 1092};

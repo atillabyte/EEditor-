@@ -110,19 +110,19 @@ namespace EEditor
                         {
                             if (MainForm.accs[MainForm.selectedAcc].loginMethod == 0)
                             {
-                                client = PlayerIO.QuickConnect.SimpleConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                                client = PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
                             }
                             else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 1)
                             {
-                                client = PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, null, null);
+                                client = PlayerIO.QuickConnect.FacebookOAuthConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, null, null);
                             }
                             else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 2)
                             {
-                                client = PlayerIO.QuickConnect.KongregateConnect("everybody-edits-su9rn58o40itdbnw69plyw", MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                                client = PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
                             }
                             else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 3)
                             {
-                                client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
+                                client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
                             }
                             
                             conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level.StartsWith("OW") ? MainForm.userdata.level.Replace("-"," ") : MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
