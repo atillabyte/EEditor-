@@ -86,6 +86,7 @@ namespace EEditor
             locker.WaitOne();
             owner = false;
             Gcurrent1 = 0;
+            bool drawblocks = false;
             //var inca = 0;
             //if (frames.Count == 1) inca = 0;
             //else inca = 1;
@@ -99,7 +100,7 @@ namespace EEditor
             ModifyProgressBarColor.SetState(pb, 1);
             TaskbarProgress.SetState(afHandle, TaskbarProgress.TaskbarStates.Normal);
             var dt = System.DateTime.UtcNow;
-            if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Maximum = firstFrame.Count; }); 
+            if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Maximum = firstFrame.Count; });
             else pb.Maximum = firstFrame.Count;
             epochStartTime = dt;
 
@@ -138,279 +139,289 @@ namespace EEditor
                 {
                     x = Convert.ToInt32(cur[0]);
                     y = Convert.ToInt32(cur[1]);
-                    OnStatusChanged("", epochStartTime, false, firstFrame.Count, Gcurrent1);
-                    int type = Convert.ToInt32(cur[2]);
-                    int at = Convert.ToInt32(cur[3]);
-                    uploaded += 1;
-                    //Console.WriteLine(lastY + " " + y);
-                    if (at == 0)
+                    if (MainForm.userdata.openWorld && !MainForm.userdata.openCodeWorld)
                     {
-                        if (remoteFrame.Foreground[y, x] != type)
+                        if (y > 4) drawblocks = true;
+                        else drawblocks = false;
+                    }
+                    else { drawblocks = true; }
+                    if (drawblocks)
+                    {
+                        OnStatusChanged("", epochStartTime, false, firstFrame.Count, Gcurrent1);
+                        int type = Convert.ToInt32(cur[2]);
+                        int at = Convert.ToInt32(cur[3]);
+                        uploaded += 1;
+                        //Console.WriteLine(lastY + " " + y);
+                        if (at == 0)
                         {
-                            if (bdata.morphable.Contains(type))
+                            if (remoteFrame.Foreground[y, x] != type)
+                            {
+                                if (bdata.morphable.Contains(type))
+                                {
+                                    b = true;
+                                }
+                                else if (bdata.goal.Contains(type) && type != 83 && type != 77)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else if (bdata.rotate.Contains(type) && type != 385 && type != 374)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else if (type == 385)
+                                {
+                                    if (cur.Length == 6)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else if (type == 374)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else if (type == 83 || type == 77)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else if (bdata.portals.Contains(type))
+                                {
+                                    if (cur.Length == 7)
+                                    {
+                                        b = true;
+                                    }
+                                }
+                                else
+                                {
+                                    b = true;
+                                }
+                            }
+                            else if (remoteFrame.Foreground[y, x] == type)
+                            {
+                                if (bdata.morphable.Contains(type))
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (bdata.goal.Contains(type) && type != 83 && type != 77)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (bdata.rotate.Contains(type) && type != 385 && type != 374)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (type == 385)
+                                {
+                                    if (cur.Length == 6)
+                                    {
+                                        if (remoteFrame.BlockData3[y, x] != cur[5] || remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (type == 374)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        if (remoteFrame.BlockData3[y, x] != cur[5])
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (type == 83 || type == 77)
+                                {
+                                    if (cur.Length == 5)
+                                    {
+                                        if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                                else if (bdata.portals.Contains(type))
+                                {
+                                    if (cur.Length == 7)
+                                    {
+                                        if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]) || remoteFrame.BlockData1[y, x] != Convert.ToInt32(cur[5]) || remoteFrame.BlockData2[y, x] != Convert.ToInt32(cur[6]))
+                                        {
+                                            b = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (at == 1)
+                        {
+                            if (remoteFrame.Background[y, x] != type)
                             {
                                 b = true;
                             }
-                            else if (bdata.goal.Contains(type) && type != 83 && type != 77)
+                        }
+                        if (b)
+                        {
+                            if (bdata.morphable.Contains(type) && type != 385)
+                            {
+                                param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
+                            }
+                            else if (bdata.goal.Contains(type))
                             {
                                 if (cur.Length == 5)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
                                 }
                             }
                             else if (bdata.rotate.Contains(type) && type != 385 && type != 374)
                             {
                                 if (cur.Length == 5)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
                                 }
                             }
                             else if (type == 385)
                             {
                                 if (cur.Length == 6)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, cur[5], Convert.ToInt32(cur[4]) };
                                 }
+
                             }
                             else if (type == 374)
                             {
                                 if (cur.Length == 5)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, cur[4] };
                                 }
+
                             }
-                            else if (type == 83 || type == 77)
+                            else if (type == 77 || type == 83)
                             {
                                 if (cur.Length == 5)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, int.Parse(cur[4]) };
                                 }
+
                             }
                             else if (bdata.portals.Contains(type))
                             {
                                 if (cur.Length == 7)
                                 {
-                                    b = true;
+                                    param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]), Convert.ToInt32(cur[5]), Convert.ToInt32(cur[6]) };
                                 }
                             }
                             else
                             {
-                                b = true;
-                            }
-                        }
-                        else if (remoteFrame.Foreground[y, x] == type)
-                        {
-                            if (bdata.morphable.Contains(type))
-                            {
-                                if (cur.Length == 5)
+                                if (MainForm.userdata.level.StartsWith("OW") && MainForm.userdata.levelPass.Length > 0)
                                 {
-                                    if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
+                                    param = new object[] { at, x, y, type };
+                                }
+                                else if (MainForm.userdata.level.StartsWith("OW") && MainForm.userdata.levelPass.Length == 0)
+                                {
+                                    if (y > 4)
                                     {
-                                        b = true;
+                                        param = new object[] { at, x, y, type };
                                     }
                                 }
-                            }
-                            else if (bdata.goal.Contains(type) && type != 83 && type != 77)
-                            {
-                                if (cur.Length == 5)
-                                {
-                                    if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                            else if (bdata.rotate.Contains(type) && type != 385 && type != 374)
-                            {
-                                if (cur.Length == 5)
-                                {
-                                    if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                            else if (type == 385)
-                            {
-                                if (cur.Length == 6)
-                                {
-                                    if (remoteFrame.BlockData3[y, x] != cur[5] || remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                            else if (type == 374)
-                            {
-                                if (cur.Length == 5)
-                                {
-                                    if (remoteFrame.BlockData3[y, x] != cur[5])
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                            else if (type == 83 || type == 77)
-                            {
-                                if (cur.Length == 5)
-                                {
-                                    if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]))
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                            else if (bdata.portals.Contains(type))
-                            {
-                                if (cur.Length == 7)
-                                {
-                                    if (remoteFrame.BlockData[y, x] != Convert.ToInt32(cur[4]) || remoteFrame.BlockData1[y, x] != Convert.ToInt32(cur[5]) || remoteFrame.BlockData2[y, x] != Convert.ToInt32(cur[6]))
-                                    {
-                                        b = true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (at == 1)
-                    {
-                        if (remoteFrame.Background[y, x] != type)
-                        {
-                            b = true;
-                        }
-                    }
-                    if (b)
-                    {
-                        if (bdata.morphable.Contains(type) && type != 385)
-                        {
-                            param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
-                        }
-                        else if (bdata.goal.Contains(type))
-                        {
-                            if (cur.Length == 5)
-                            {
-                                param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
-                            }
-                        }
-                        else if (bdata.rotate.Contains(type) && type != 385 && type != 374)
-                        {
-                            if (cur.Length == 5)
-                            {
-                                param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]) };
-                            }
-                        }
-                        else if (type == 385)
-                        {
-                            if (cur.Length == 6)
-                            {
-                                param = new object[] { at, x, y, type, cur[5], Convert.ToInt32(cur[4]) };
-                            }
-
-                        }
-                        else if (type == 374)
-                        {
-                            if (cur.Length == 5)
-                            {
-                                param = new object[] { at, x, y, type, cur[4] };
-                            }
-
-                        }
-                        else if (type == 77 || type == 83)
-                        {
-                            if (cur.Length == 5)
-                            {
-                                param = new object[] { at, x, y, type, int.Parse(cur[4]) };
-                            }
-
-                        }
-                        else if (bdata.portals.Contains(type))
-                        {
-                            if (cur.Length == 7)
-                            {
-                                param = new object[] { at, x, y, type, Convert.ToInt32(cur[4]), Convert.ToInt32(cur[5]), Convert.ToInt32(cur[6]) };
-                            }
-                        }
-                        else
-                        {
-                            if (MainForm.userdata.level.StartsWith("OW") && MainForm.userdata.levelPass.Length > 0)
-                            {
-                                param = new object[] { at, x, y, type };
-                            }
-                            else if (MainForm.userdata.level.StartsWith("OW") && MainForm.userdata.levelPass.Length == 0)
-                            {
-                                if (y > 4)
+                                else
                                 {
                                     param = new object[] { at, x, y, type };
                                 }
                             }
+                            if (conn == null)
+                            {
+                                OnStatusChanged("Lost connection!", DateTime.MinValue, true, Gtotal, Gcurrent);
+                                return;
+                            }
+                            maxBlocks += 1;
+                            Max1000 += 1;
+                            if (MainForm.userdata.saveWorldCrew)
+                            {
+                                if (AnimateForm.saveRights)
+                                {
+                                    if (Max1000 == 1000 && Max1000 < Gtotal)
+                                    {
+
+                                        conn.Send("save");
+                                        Max1000 = 0;
+                                    }
+                                }
+
+                            }
+                            int progress = (int)Math.Round((double)(100 * Gcurrent) / Gtotal);
+                            if (progress == 50) goto stopit;
+                            else if (progress == 90) goto stopit;
+
+                            if (param != null) conn.Send("b", param);
+                            Thread.Sleep(MainForm.userdata.uploadDelay);
+
+
+
+
+                            if (Gcurrent1 >= firstFrame.Count)
+                            {
+                                break;
+                            }
                             else
                             {
-                                param = new object[] { at, x, y, type };
-                            }
-                        }
-                        if (conn == null)
-                        {
-                            OnStatusChanged("Lost connection!", DateTime.MinValue, true, Gtotal, Gcurrent);
-                            return;
-                        }
-                        maxBlocks += 1;
-                        Max1000 += 1;
-                        if (MainForm.userdata.saveWorldCrew)
-                        {
-                            if (AnimateForm.saveRights)
-                            {
-                                if (Max1000 == 1000 && Max1000 < Gtotal)
-                                {
 
-                                    conn.Send("save");
-                                    Max1000 = 0;
-                                }
+                                queue.Enqueue(cur);
+                                //if (bdata.morphable.Contains(type) || bdata.rotate.Contains(type)) Gcurrent++;
                             }
 
+                            //queue.Enqueue(cur);
                         }
-                        int progress = (int)Math.Round((double)(100 * Gcurrent) / Gtotal);
-                        if (progress == 50) goto stopit;
-                        else if (progress == 90) goto stopit;
-
-                        conn.Send("b", param);
-                        Thread.Sleep(MainForm.userdata.uploadDelay);
 
 
-
-
-                        if (Gcurrent1 >= firstFrame.Count)
-                        {
-                            break;
-                        }
                         else
                         {
-
-                            queue.Enqueue(cur);
-                            //if (bdata.morphable.Contains(type) || bdata.rotate.Contains(type)) Gcurrent++;
+                            if (Gcurrent1 >= firstFrame.Count)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                queue.Enqueue(cur);
+                            }
+                            OnStatusChanged("Uploading blocks to level. (Total: " + firstFrame.Count + "/" + Gcurrent + ")", epochStartTime, false, Gtotal, Gcurrent);
+                            if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Maximum = firstFrame.Count; });
+                            TaskbarProgress.SetValue(afHandle, Gcurrent, firstFrame.Count);
+                            blocks.Clear();
+                            break;
                         }
-
-                        //queue.Enqueue(cur);
                     }
-
                 }
-                else
-                {
-                    if (Gcurrent1 >= firstFrame.Count)
-                    {
-                        break;
-                    }
-                    else
-                    {
-                        queue.Enqueue(cur);
-                    }
-                    OnStatusChanged("Uploading blocks to level. (Total: " + firstFrame.Count + "/" + Gcurrent + ")", epochStartTime, false, Gtotal, Gcurrent);
-                    if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Maximum = firstFrame.Count; });
-                    TaskbarProgress.SetValue(afHandle, Gcurrent, firstFrame.Count);
-                    blocks.Clear();
-                    break;
-                }
-
             }
+
 
             //}
             //if (frames.Count > 1) goto restart;
@@ -561,12 +572,36 @@ namespace EEditor
                     owner = false;
                     if (MainForm.userdata.level.StartsWith("OW") && levelPassword.Length == 0)
                     {
-                        locker.Release();
+                        if (e.GetBoolean(14))
+                        {
+                            MainForm.userdata.openWorld = true;
+                            MainForm.userdata.openCodeWorld = false;
+                            locker.Release();
+                        }
+                        else
+                        {
+                            MainForm.userdata.openWorld = false;
+                            MainForm.userdata.openCodeWorld = false;
+                            OnStatusChanged("You need a password for this world", DateTime.MinValue, true, Gtotal, Gcurrent);
+                            return;
+                        }
                     }
-                    if (MainForm.userdata.level.StartsWith("OW") && levelPassword.Length > 0)
+                    else if (MainForm.userdata.level.StartsWith("OW") && levelPassword.Length > 0)
                     {
-                        conn.Send("access", levelPassword);
-                        passTimer = new System.Threading.Timer(x => OnStatusChanged("Wrong level code. Please enter the right one and retry.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 5000, Timeout.Infinite);
+                        if (!e.GetBoolean(14))
+                        {
+                            MainForm.userdata.openWorld = true;
+                            MainForm.userdata.openCodeWorld = true;
+                            conn.Send("access", levelPassword);
+                            passTimer = new System.Threading.Timer(x => OnStatusChanged("Wrong level code. Please enter the right one and retry.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 5000, Timeout.Infinite);
+                        }
+                        else
+                        {
+                            MainForm.userdata.openWorld = true;
+                            MainForm.userdata.openCodeWorld = false;
+                            OnStatusChanged("This world isn't password protected", DateTime.MinValue, true, Gtotal, Gcurrent);
+                            return;
+                        }
                     }
                     else if (e.GetBoolean(14))
                     {
@@ -619,7 +654,20 @@ namespace EEditor
             }
             else
             {
-                //locker.Release();
+                //Console.WriteLine(e.ToString());
+                switch (e.Type)
+                {
+                    case "info":
+                        switch (e[0].ToString())
+                        {
+                            case "Limit reached":
+                                MessageBox.Show(e.GetString(1), e.GetString(0), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                break;
+                        }
+                        break;
+                }
+
+
             }
         }
     }
