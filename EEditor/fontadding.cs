@@ -128,12 +128,19 @@ namespace EEditor
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult result = fontDialog1.ShowDialog();
-            if (result == DialogResult.OK)
+            try
             {
-                fontname = fontDialog1.Font.Name;
-                fontsize = (int)fontDialog1.Font.Size;
-                textBox1.Clear();
+                DialogResult result = fontDialog1.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    fontname = fontDialog1.Font.Name;
+                    fontsize = (int)fontDialog1.Font.Size;
+                    textBox1.Clear();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
