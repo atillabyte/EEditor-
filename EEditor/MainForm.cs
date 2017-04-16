@@ -3420,7 +3420,6 @@ namespace EEditor
             showDecorationsButton.Checked = false;
             showBackgroundsButton.Checked = false;
             unknownButton.Checked = true;
-            rebuildGUI(true);
 
         }
         // ---
@@ -3720,11 +3719,6 @@ namespace EEditor
 
         }
 
-        private void imageToBlocksButton_Click(object sender, EventArgs e)
-        {
-            Form frm = new ImageToBlocks();
-            frm.ShowDialog();
-        }
     }
     public class ownedBlocks
     {

@@ -141,73 +141,68 @@ namespace EEditor
 
         private void saveAccount_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(loginField1.Text) && accFacebook.Checked == false)
+            if (!string.IsNullOrWhiteSpace(loginField1.Text))
             {
-                MessageBox.Show(loginLabel1.Text.TrimEnd(':') + " is empty!", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!string.IsNullOrWhiteSpace(loginField2.Text))
+                {
+                    if (accEverybodyEdits.Checked)
+                    {
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
+                        accountOption = 0;
+                    }
+                    /* Facebook disabled
+                     * else if (accFacebook.Checked)
+                    {
+                        PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string>() { { "accessToken", loginField1.Text } }, null, successLogin, failLogin);
+                        //PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, null, null, successLogin, failLogin);
+                        accountOption = 1;
+                    }
+                    */
+                    else if (accKongregate.Checked)
+                    {
+                        PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
+                        accountOption = 2;
+                    }
+                    else if (accArmorGames.Checked)
+                    {
+                        PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin, failLogin);
+                        accountOption = 3;
+                    }
+                }
+                else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else if (string.IsNullOrWhiteSpace(loginField2.Text))
-            {
-                MessageBox.Show(loginLabel2.Text.TrimEnd(':') + " is empty!", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (accEverybodyEdits.Checked)
-                {
-                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
-                    accountOption = 0;
-                }
-                /* Facebook disabled
-                 * else if (accFacebook.Checked)
-                {
-                    PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "secure", new Dictionary<string, string>() { { "accessToken", loginField1.Text } }, null, successLogin, failLogin);
-                    //PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, null, null, successLogin, failLogin);
-                    accountOption = 1;
-                }
-                */
-                else if (accKongregate.Checked)
-                {
-                    PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
-                    accountOption = 2;
-                }
-                else if (accArmorGames.Checked)
-                {
-                    PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin, failLogin);
-                    accountOption = 3;
-                }
-            }
+            else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void reloadPacks_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(loginField1.Text) && accFacebook.Checked == false)
+            if (!string.IsNullOrWhiteSpace(loginField1.Text))
             {
-                MessageBox.Show(loginLabel1.Text.TrimEnd(':') + " is empty!", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!string.IsNullOrWhiteSpace(loginField2.Text))
+                {
+                    if (accEverybodyEdits.Checked)
+                    {
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
+                    }
+                    /* Facebook disabled
+                    else if (accFacebook.Checked)
+                    {
+                        PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, null, null, successLogin1, failLogin);
+                    }
+                    */
+                    else if (accKongregate.Checked)
+                    {
+                        PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
+                    }
+                    else if (accArmorGames.Checked)
+                    {
+                        PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin1, failLogin);
+                    }
+                }
+                else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else if (string.IsNullOrWhiteSpace(loginField2.Text))
-            {
-                MessageBox.Show(loginLabel2.Text.TrimEnd(':') + " is empty!", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                if (accEverybodyEdits.Checked)
-                {
-                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
-                }
-                /* Facebook disabled
-                else if (accFacebook.Checked)
-                {
-                    PlayerIO.QuickConnect.FacebookOAuthConnect("everybody-edits-su9rn58o40itdbnw69plyw", loginField1.Text, null, null, successLogin1, failLogin);
-                }
-                */
-                else if (accKongregate.Checked)
-                {
-                    PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
-                }
-                else if (accArmorGames.Checked)
-                {
-                    PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin1, failLogin);
-                }
-            }
+            else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+
         }
 
         private void failLogin(PlayerIOError error)
@@ -412,7 +407,7 @@ namespace EEditor
                 {
                     addAccount.Enabled = true;
                     removeAccount.Enabled = true;
-                    saveAccount.Enabled = false;
+                    saveAccount.Enabled = true;
                     reloadPacks.Enabled = true;
                     groupBox2.Enabled = true;
                 }

@@ -137,7 +137,7 @@
             this.saveAccount.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.saveAccount.Location = new System.Drawing.Point(6, 254);
             this.saveAccount.Name = "saveAccount";
-            this.saveAccount.Size = new System.Drawing.Size(90, 35);
+            this.saveAccount.Size = new System.Drawing.Size(85, 35);
             this.saveAccount.TabIndex = 9;
             this.saveAccount.Text = "Save";
             this.saveAccount.UseVisualStyleBackColor = true;

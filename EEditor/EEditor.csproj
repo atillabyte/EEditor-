@@ -133,12 +133,6 @@
     <Compile Include="History.Designer.cs">
       <DependentUpon>History.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageToBlocks.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImageToBlocks.Designer.cs">
-      <DependentUpon>ImageToBlocks.cs</DependentUpon>
-    </Compile>
     <Compile Include="InsertImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +140,7 @@
       <DependentUpon>InsertImageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IntParser.cs" />
+    <Compile Include="LockBits.cs" />
     <Compile Include="Minimap.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -263,9 +258,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImageToBlocks.resx">
-      <DependentUpon>ImageToBlocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsertImageForm.resx">
       <DependentUpon>InsertImageForm.cs</DependentUpon>

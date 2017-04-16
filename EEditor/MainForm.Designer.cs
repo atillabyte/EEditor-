@@ -77,7 +77,6 @@
             this.lineButton = new System.Windows.Forms.ToolStripMenuItem();
             this.insertDropButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.imageButton = new System.Windows.Forms.ToolStripMenuItem();
-            this.imageToBlocksButton = new System.Windows.Forms.ToolStripMenuItem();
             this.textButton = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.replaceButton = new System.Windows.Forms.ToolStripButton();
@@ -623,7 +622,6 @@
             this.insertDropButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.insertDropButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.imageButton,
-            this.imageToBlocksButton,
             this.textButton});
             this.insertDropButton.Image = global::EEditor.Properties.Resources.insert;
             this.insertDropButton.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -636,22 +634,15 @@
             // 
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
-            this.imageButton.Size = new System.Drawing.Size(158, 22);
+            this.imageButton.Size = new System.Drawing.Size(156, 26);
             this.imageButton.Text = "Image (Ctrl+I)";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
-            // 
-            // imageToBlocksButton
-            // 
-            this.imageToBlocksButton.Name = "imageToBlocksButton";
-            this.imageToBlocksButton.Size = new System.Drawing.Size(158, 22);
-            this.imageToBlocksButton.Text = "Image to blocks";
-            this.imageToBlocksButton.Click += new System.EventHandler(this.imageToBlocksButton_Click);
             // 
             // textButton
             // 
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
-            this.textButton.Size = new System.Drawing.Size(158, 22);
+            this.textButton.Size = new System.Drawing.Size(156, 26);
             this.textButton.Text = "Text (Ctrl+T)";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
@@ -1241,7 +1232,6 @@
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton2;
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton3;
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton4;
-        private System.Windows.Forms.ToolStripMenuItem imageToBlocksButton;
     }
 }
 
