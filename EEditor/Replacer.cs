@@ -552,6 +552,7 @@ namespace EEditor
 
                 }
             }
+            
             if ((numericUpDown1.Value < 500 || numericUpDown1.Value >= 1001) && (numericUpDown2.Value < 500 || numericUpDown2.Value >= 1001))
             {
                 for (int yy = 0; yy < MainForm.editArea.Frames[0].Height; yy++)
@@ -563,6 +564,13 @@ namespace EEditor
 
                             if (MainForm.editArea.Tool.IsPaintable(xx, yy, (int)numericUpDown2.Value, true) && MainForm.editArea.Tool.IsPaintable(xx, yy, (int)numericUpDown2.Value, false))
                             {
+                                if (numericUpDown1.Value == numericUpDown2.Value)
+                                {
+                                    if (MainForm.editArea.Frames[0].BlockData[yy, xx] == findRotate.Value)
+                                    {
+                                        MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                    }
+                                }
                                 //incfg += (int)rp.NU2.Value + ":" + editArea.CurFrame.Foreground[yy, xx] + ":" + xx + ":" + yy + ":";
                                 MainForm.editArea.Frames[0].Foreground[yy, xx] = (int)numericUpDown2.Value;
                                 Point p = new Point(xx * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.X), yy * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.Y));

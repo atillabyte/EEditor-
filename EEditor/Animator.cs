@@ -557,7 +557,26 @@ namespace EEditor
                     if (e.GetBoolean(14))
                     {
                         AnimateForm.crewEdit = true;
-                        if (e.GetBoolean(31)) AnimateForm.saveRights = true;
+                        if (e.GetBoolean(31))
+                        {
+                            AnimateForm.saveRights = true;
+                            if (MainForm.userdata.useColor)
+                            {
+                                if (MainForm.userdata.thisColor != Color.Transparent)
+                                {
+                                    var hex = ColorTranslator.ToHtml(MainForm.userdata.thisColor);
+                                    conn.Send("say", "/bgcolor " + hex);
+                                }
+                                else
+                                {
+                                    conn.Send("say", "/bgcolor none");
+                                }
+                            }
+                            else
+                            {
+                                conn.Send("say", "/bgcolor none");
+                            }
+                        }
                         locker.Release();
                     }
                     else
@@ -632,6 +651,7 @@ namespace EEditor
                     {
                         if (MainForm.userdata.thisColor != Color.Transparent)
                         {
+                            Console.WriteLine("derp");
                             var hex = ColorTranslator.ToHtml(MainForm.userdata.thisColor);
                             conn.Send("say", "/bgcolor " + hex);
                         }
@@ -639,6 +659,10 @@ namespace EEditor
                         {
                             conn.Send("say", "/bgcolor none");
                         }
+                    }
+                    else
+                    {
+                        conn.Send("say", "/bgcolor none");
                     }
                     AnimateForm.editRights = true;
                     AnimateForm.saveRights = true;

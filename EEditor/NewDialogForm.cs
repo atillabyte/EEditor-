@@ -21,6 +21,7 @@ namespace EEditor
         public bool notsaved { get; set; }
         public Connection Connection { get; set; }
         public MainForm MainForm { get; set; }
+        public MainForm mainform { get; set; }
         private Client client;
         private string worldOwner = "Anonymous";
         private string owner = null;
@@ -34,6 +35,7 @@ namespace EEditor
             levelTextBox.Text = MainForm.userdata.level ;
             //levelPassTextBox.Text = EEditor.Properties.Settings.Default.LevelPass;
             MainForm = mainForm;
+            mainform = mainForm;
             CheckForIllegalCrossThreadCalls = false;
             listBox1.SelectedIndex = 0;
             notsaved = false;
@@ -159,6 +161,7 @@ namespace EEditor
                 SizeWidth = 200;
                 SizeHeight = 200;
                 MainForm.userdata.openWorld = true;
+                MainForm.userdata.openCodeWorld = false;
                 // restrictions here
             }
             else if (listBox1.SelectedIndex == 14)
@@ -468,14 +471,29 @@ namespace EEditor
                 }
             
         }
-
-        void OnMessage(object sender, PlayerIOClient.Message e)
+        private Color UIntToColor(uint color)
+        {
+            byte a = (byte)(color >> 24);
+            byte r = (byte)(color >> 16);
+            byte g = (byte)(color >> 8);
+            byte b = (byte)(color >> 0);
+            return Color.FromArgb(a, r, g, b);
+        }
+        public void OnMessage(object sender, PlayerIOClient.Message e)
         {
             if (e.Type == "init")
             {
+                Console.WriteLine(e.ToString());
                 MapFrame = Frame.FromMessage(e, false);
                 if (MapFrame != null)
                 {
+                    if (e.GetUInt(21) == 0) { EEditor.MainForm.userdata.thisColor = Color.Transparent; }
+                    else
+                    {
+                        EEditor.MainForm.userdata.useColor = true;
+                        EEditor.MainForm.userdata.thisColor = UIntToColor(e.GetUInt(21));
+                    }
+                    
                     var owner = e.GetString(0) == "" ? "Unknown" : e.GetString(0);
                     MainForm.Text = e[1] + " by " + owner + " (" + e[18] + "x" + e[19] + ") - EEditor " + this.ProductVersion;
                     SizeWidth = MapFrame.Width;

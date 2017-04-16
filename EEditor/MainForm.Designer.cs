@@ -209,7 +209,7 @@
             this.toolStripSeparator1,
             this.hideBlocksButton,
             this.minimapButton});
-            this.viewToolStrip.Location = new System.Drawing.Point(381, 0);
+            this.viewToolStrip.Location = new System.Drawing.Point(350, 0);
             this.viewToolStrip.Name = "viewToolStrip";
             this.viewToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.viewToolStrip.Size = new System.Drawing.Size(180, 27);
@@ -931,7 +931,7 @@
             this.statusToolStrip.Location = new System.Drawing.Point(0, 0);
             this.statusToolStrip.Name = "statusToolStrip";
             this.statusToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.statusToolStrip.Size = new System.Drawing.Size(249, 25);
+            this.statusToolStrip.Size = new System.Drawing.Size(218, 25);
             this.statusToolStrip.TabIndex = 2;
             this.statusToolStrip.Text = "toolStrip1";
             // 
@@ -997,7 +997,7 @@
             this.findToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.filterTextBox,
             this.pickerButton});
-            this.findToolStrip.Location = new System.Drawing.Point(249, 0);
+            this.findToolStrip.Location = new System.Drawing.Point(218, 0);
             this.findToolStrip.Name = "findToolStrip";
             this.findToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.findToolStrip.Size = new System.Drawing.Size(132, 27);
@@ -1032,7 +1032,7 @@
             this.lastUsedBlockButton2,
             this.lastUsedBlockButton3,
             this.lastUsedBlockButton4});
-            this.lastUsedToolStrip.Location = new System.Drawing.Point(561, 0);
+            this.lastUsedToolStrip.Location = new System.Drawing.Point(530, 0);
             this.lastUsedToolStrip.Name = "lastUsedToolStrip";
             this.lastUsedToolStrip.Size = new System.Drawing.Size(118, 25);
             this.lastUsedToolStrip.TabIndex = 3;

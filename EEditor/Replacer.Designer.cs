@@ -35,6 +35,10 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rotateIcon2 = new System.Windows.Forms.PictureBox();
+            this.rotateIcon1 = new System.Windows.Forms.PictureBox();
+            this.replaceRotate = new System.Windows.Forms.NumericUpDown();
+            this.findRotate = new System.Windows.Forms.NumericUpDown();
             this.button9 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -64,15 +68,13 @@
             this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.findRotate = new System.Windows.Forms.NumericUpDown();
-            this.replaceRotate = new System.Windows.Forms.NumericUpDown();
-            this.rotateIcon2 = new System.Windows.Forms.PictureBox();
-            this.rotateIcon1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findRotate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -84,12 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.findRotate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).BeginInit();
             this.SuspendLayout();
             // 
             // BottomToolStripPanel
@@ -149,10 +146,56 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(270, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 166);
+            this.groupBox1.Size = new System.Drawing.Size(256, 208);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find && replace";
+            // 
+            // rotateIcon2
+            // 
+            this.rotateIcon2.Image = global::EEditor.Properties.Resources.rotate;
+            this.rotateIcon2.Location = new System.Drawing.Point(7, 132);
+            this.rotateIcon2.Name = "rotateIcon2";
+            this.rotateIcon2.Size = new System.Drawing.Size(16, 16);
+            this.rotateIcon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.rotateIcon2.TabIndex = 21;
+            this.rotateIcon2.TabStop = false;
+            // 
+            // rotateIcon1
+            // 
+            this.rotateIcon1.Image = global::EEditor.Properties.Resources.rotate;
+            this.rotateIcon1.Location = new System.Drawing.Point(7, 62);
+            this.rotateIcon1.Name = "rotateIcon1";
+            this.rotateIcon1.Size = new System.Drawing.Size(16, 16);
+            this.rotateIcon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.rotateIcon1.TabIndex = 20;
+            this.rotateIcon1.TabStop = false;
+            // 
+            // replaceRotate
+            // 
+            this.replaceRotate.Location = new System.Drawing.Point(26, 131);
+            this.replaceRotate.Margin = new System.Windows.Forms.Padding(2);
+            this.replaceRotate.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.replaceRotate.Name = "replaceRotate";
+            this.replaceRotate.Size = new System.Drawing.Size(40, 20);
+            this.replaceRotate.TabIndex = 19;
+            // 
+            // findRotate
+            // 
+            this.findRotate.Location = new System.Drawing.Point(26, 60);
+            this.findRotate.Margin = new System.Windows.Forms.Padding(2);
+            this.findRotate.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.findRotate.Name = "findRotate";
+            this.findRotate.Size = new System.Drawing.Size(40, 20);
+            this.findRotate.TabIndex = 18;
             // 
             // button9
             // 
@@ -457,25 +500,6 @@
             this.radioButton1.Text = "None";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.listView1);
-            this.groupBox4.Location = new System.Drawing.Point(270, 177);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(256, 135);
-            this.groupBox4.TabIndex = 15;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Search results";
-            this.groupBox4.Visible = false;
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(6, 19);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(244, 110);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.progressBar1);
@@ -494,59 +518,12 @@
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 9;
             // 
-            // findRotate
-            // 
-            this.findRotate.Location = new System.Drawing.Point(26, 60);
-            this.findRotate.Margin = new System.Windows.Forms.Padding(2);
-            this.findRotate.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.findRotate.Name = "findRotate";
-            this.findRotate.Size = new System.Drawing.Size(40, 20);
-            this.findRotate.TabIndex = 18;
-            // 
-            // replaceRotate
-            // 
-            this.replaceRotate.Location = new System.Drawing.Point(26, 131);
-            this.replaceRotate.Margin = new System.Windows.Forms.Padding(2);
-            this.replaceRotate.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.replaceRotate.Name = "replaceRotate";
-            this.replaceRotate.Size = new System.Drawing.Size(40, 20);
-            this.replaceRotate.TabIndex = 19;
-            // 
-            // rotateIcon2
-            // 
-            this.rotateIcon2.Image = global::EEditor.Properties.Resources.rotate;
-            this.rotateIcon2.Location = new System.Drawing.Point(7, 132);
-            this.rotateIcon2.Name = "rotateIcon2";
-            this.rotateIcon2.Size = new System.Drawing.Size(16, 16);
-            this.rotateIcon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.rotateIcon2.TabIndex = 21;
-            this.rotateIcon2.TabStop = false;
-            // 
-            // rotateIcon1
-            // 
-            this.rotateIcon1.Image = global::EEditor.Properties.Resources.rotate;
-            this.rotateIcon1.Location = new System.Drawing.Point(7, 62);
-            this.rotateIcon1.Name = "rotateIcon1";
-            this.rotateIcon1.Size = new System.Drawing.Size(16, 16);
-            this.rotateIcon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.rotateIcon1.TabIndex = 20;
-            this.rotateIcon1.TabStop = false;
-            // 
             // Replacer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 365);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -559,6 +536,10 @@
             this.Load += new System.EventHandler(this.Replacer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.findRotate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
@@ -574,13 +555,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.findRotate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,8 +593,6 @@
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.ToolStrip toolStrip1;

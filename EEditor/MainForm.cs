@@ -1147,8 +1147,6 @@ namespace EEditor
             //Action 1
 
             //Everyone have these
-            if (!userdata.openWorld)
-            {
                 AddToolStrip(foregroundBMD, 0, new int[] { 0 }, null, true, "Empty", 1, 0, true);
                 AddToolStrip(foregroundBMD, 0, new int[] { 1, 2, 3, 4, 233 }, null, false, "Gravity", 1, 0, true);
                 AddToolStrip(miscBMD, 1, new int[] { 70, 71, 72, 73, 222 }, null, false, "Invisible Gravity", 1, 0, true);
@@ -1235,20 +1233,11 @@ namespace EEditor
                 else { AddToolStrip(miscBMD, 1, new int[] { 12, 13 }, new uint[] { 0x281C00, 0xBA983B }, false, "Gold Membership", 1, 2, false); }
                 if (ihavethese.Contains("brickice2") || debug) { AddToolStrip(miscBMD, 1, new int[] { 251 }, new uint[] { 0x409EB1 }, false, "Ice", 1, 2, true); }
                 else { AddToolStrip(miscBMD, 1, new int[] { 251 }, new uint[] { 0x409EB1 }, false, "Ice", 1, 2, false); }
-            }
-            else
-            {
-                AddToolStrip(foregroundBMD, 0, new int[] { 0 }, null, true, "Empty", 1, 0, true);
-                AddToolStrip(foregroundBMD, 0, new int[] { 1, 2, 3, 4, }, null, false, "Gravity", 1, 0, true);
-                AddToolStrip(miscBMD, 1, new int[] { 70, 71, 72, 73, }, null, false, "Invisible Gravity", 1, 0, true);
-                AddToolStrip(foregroundBMD, 0, new int[] { 5 }, new uint[] { 0x43391F }, false, "Tools", 1, 0, true);
-            }
+            
             #endregion
 
             #region Background
             //Backgrounds
-            if (!userdata.openWorld)
-            {
                 AddToolStrip(backgroundBMD, 3, new int[] { 209, 0, 1, 2, 3, 4, 5, 6, 138, 139 }, new uint[] { 0x707070, 0x343434, 0x1A2955, 0x4A1751, 0x551A2A, 0x465217, 0x1E5218, 0x174F53, 0x6F370B, 0x050505 }, false, "Basic", 3, 0, true);
                 AddToolStrip(backgroundBMD, 3, new int[] { 210, 8, 9, 10, 11, 12, 140, 141, 142, 7 }, new uint[] { 0x5B5B5B, 0x113726, 0x251136, 0x214108, 0x371214, 0x372E12, 0x282828, 0x051132, 0x0F0F0F, 0x441D04 }, false, "Brick", 3, 0, true);
                 AddToolStrip(backgroundBMD, 3, new int[] { 212, 13, 14, 15, 16, 17, 18, 19, 143, 144 }, new uint[] { 0x6B6B6B, 0x3C3C3C, 0x1F365F, 0x552860, 0x5E0E23, 0x525A1D, 0x25591E, 0x236764, 0x834A1A, 0x191919 }, false, "Checker", 3, 0, true);
@@ -1325,7 +1314,7 @@ namespace EEditor
 
                 if (ihavethese.Contains("bricktiles") || debug) { AddToolStrip(backgroundBMD, 3, new int[] { 227, 228, 229, 230, 231, 232, 233, 234, 235, 236 }, new uint[] { 0x646049, 0x575448, 0x4B493A, 0x783E3E, 0x734530, 0x634E27, 0x455C3C, 0x3E6054, 0x445365, 0x534766 }, false, "Tiles", 3, 2, true); }
                 else { AddToolStrip(backgroundBMD, 3, new int[] { 227, 228, 229, 230, 231, 232, 233, 234, 235, 236 }, new uint[] { 0x646049, 0x575448, 0x4B493A, 0x783E3E, 0x734530, 0x634E27, 0x455C3C, 0x3E6054, 0x445365, 0x534766 }, false, "Tiles", 3, 2, false); }
-            }
+            
             #endregion
 
             if (userdata.newestBlocks.Count >= 1)
@@ -3648,6 +3637,7 @@ namespace EEditor
                 Thread thread = new Thread(delegate () { ab.checkVersion(true); });
                 thread.Start();
             }
+            SetPenTool();
 
         }
         private void MainForm_Activated(object sender, EventArgs e)
@@ -3679,7 +3669,7 @@ namespace EEditor
             }
             userdata.brickHotkeys = s;
             userdata.openWorld = false;
-
+            userdata.openCodeWorld = false;
             File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
             //Clear block rotations
             ToolPen.rotation.Clear();

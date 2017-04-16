@@ -160,8 +160,8 @@ namespace EEditor
             var chunks = EEditor.InitParse.Parse(e);
             if (MainForm.userdata.level.StartsWith("OW"))
             {
-                if (e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = true; }
-                else if (!e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = false; }
+                if (e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = false; }
+                else if (!e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = true; }
             }
             //int num2 = 0;
             foreach (var chunk in chunks)
