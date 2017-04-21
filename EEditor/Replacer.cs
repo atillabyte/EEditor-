@@ -44,7 +44,7 @@ namespace EEditor
             tp.SetToolTip(button1, "Finds all blocks with ID " + numericUpDown1.Value + "\nand replaces them with block ID " + numericUpDown2.Value);
             tp.SetToolTip(button8, "Removes all red rectangles around blocks");
             tp.SetToolTip(button9, "Finds all blocks you don't own and replaces them with block ID " + numericUpDown2.Value);
-            tp.SetToolTip(rotateIcon1, "Rotation value"); tp.SetToolTip(rotateIcon2, "Rotation value"); tp.SetToolTip(findRotate, "Rotation value"); tp.SetToolTip(replaceRotate, "Rotation value");
+            tp.SetToolTip(rotateIcon1, "Rotation or count"); tp.SetToolTip(rotateIcon2, "Rotation or count"); tp.SetToolTip(findRotate, "Rotation or count"); tp.SetToolTip(replaceRotate, "Rotation or count");
 
             tp.SetToolTip(toolStripContainer1.ContentPanel, "Left click: insert ID to find box\nRight click: insert ID to replace box"); // Would be more useful if the tooltip was added to single blocks
             this.Text = MainForm.debug ? "Find & replace - Debug Activated" : "Find & replace";
