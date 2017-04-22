@@ -1628,17 +1628,20 @@ namespace EEditor
                     ContextMenuStrip cm = new ContextMenuStrip();
                     cm.Name = cur.ID.ToString();
                     cm.Items.Add("Copy BlockID", Properties.Resources.copy);
-                    if (userdata.IgnoreBlocks.Contains(cur.ID))
+                    if (MainForm.decosBMI[cur.ID] == 0 && MainForm.miscBMI[cur.ID] == 0)
                     {
-                        cm.Items.Add("Remove", Properties.Resources.minus);
+                        if (userdata.IgnoreBlocks.Contains(cur.ID))
+                        {
+                            cm.Items.Add("Remove", Properties.Resources.minus);
+                        }
+                        else
+                        {
+                            cm.Items.Add("Add", Properties.Resources.plus);
+                        }
+                        (cm.Items[1] as ToolStripMenuItem).Click += BrickButton_Click;
                     }
-                    else
-                    {
-                        cm.Items.Add("Add", Properties.Resources.plus);
-                    }
-
                     (cm.Items[0] as ToolStripMenuItem).Click += BrickButton_Click;
-                    (cm.Items[1] as ToolStripMenuItem).Click += BrickButton_Click;
+                    
                     cm.Show(tps[bid.ToString()], cur.Bounds.Location);
                     if (bid == 423 || bid == 1027 || bid == 1028)
                     {

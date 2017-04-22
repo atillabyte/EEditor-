@@ -60,6 +60,7 @@ namespace EEditor
                 {
                     ListViewItem lvi = new ListViewItem();
                     lvi.Text = "BlockID: " + MainForm.userdata.IgnoreBlocks[i];
+                    lvi.Name = MainForm.userdata.IgnoreBlocks[i].ToString();
                     lvi.ImageIndex = (int)MainForm.userdata.IgnoreBlocks[i];
                     listView1.Items.Add(lvi);
                 }

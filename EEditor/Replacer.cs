@@ -904,7 +904,7 @@ namespace EEditor
                     {
                         if (MainForm.userdata.IgnoreBlocks != null)
                         {
-                            if (!MainForm.userdata.IgnoreBlocks.Contains(fid))
+                            if (!MainForm.userdata.IgnoreBlocks.Contains(fid) && MainForm.decosBMI[fid] == 0 && MainForm.miscBMI[fid] == 0)
                             {
                                 MainForm.editArea.Frames[0].Background[y, x] = 0;
                                 MainForm.editArea.Draw(x, y, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
