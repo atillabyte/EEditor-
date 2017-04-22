@@ -69,6 +69,7 @@
       <HintPath>..\files\PlayerIOClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -99,6 +100,12 @@
       <DependentUpon>AnimateForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Animator.cs" />
+    <Compile Include="BackgroundIgnore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackgroundIgnore.Designer.cs">
+      <DependentUpon>BackgroundIgnore.cs</DependentUpon>
+    </Compile>
     <Compile Include="bdata.cs" />
     <Compile Include="Brush.cs">
       <SubType>Form</SubType>
@@ -243,6 +250,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AnimateForm.resx">
       <DependentUpon>AnimateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BackgroundIgnore.resx">
+      <DependentUpon>BackgroundIgnore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Brush.resx">
       <DependentUpon>Brush.cs</DependentUpon>

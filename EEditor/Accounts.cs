@@ -14,7 +14,7 @@ namespace EEditor
 {
     public partial class Accounts : Form
     {
-        private int accountOption = 0; 
+        private int accountOption = 0;
         private string lastSelected = "guest";
         private string accss = "\\accounts.json";
         public static Dictionary<string, accounts> accs = new Dictionary<string, accounts>();
@@ -214,10 +214,6 @@ namespace EEditor
         {
             client.BigDB.LoadMyPlayerObject(delegate (DatabaseObject dbo)
             {
-                Console.WriteLine(dbo.ToString());
-                if (!MainForm.accs.ContainsKey(dbo["name"].ToString()))
-                {
-
                     client.PayVault.Refresh(delegate ()
                     {
                         List<JToken> pv = new List<JToken>();
@@ -242,10 +238,16 @@ namespace EEditor
                             this.Invoke((MethodInvoker)delegate
                             {
                                 MainForm.userdata.username = dbo["name"].ToString();
-                                MainForm.accs.Add(dbo["name"].ToString(), new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv });
-                                accountListBox.Items.Remove("(new account)");
-                                accountListBox.Items.Add(dbo["name"].ToString());
-
+                                if (!MainForm.accs.ContainsKey(dbo["name"].ToString()))
+                                {
+                                    MainForm.accs.Add(dbo["name"].ToString(), new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv });
+                                    accountListBox.Items.Remove("(new account)");
+                                    accountListBox.Items.Add(dbo["name"].ToString());
+                                }
+                                else if (MainForm.accs.ContainsKey(dbo["name"].ToString()))
+                                {
+                                    MainForm.accs[dbo["name"].ToString()] = new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv };
+                                }
                                 File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
                                 accountListBox.SelectedItem = dbo["name"].ToString();
                             });
@@ -272,7 +274,6 @@ namespace EEditor
                         //MessageBox.Show(error.Message, "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     });
 
-                }
 
             }, delegate (PlayerIOError error)
             {

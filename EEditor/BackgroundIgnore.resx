@@ -117,14 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutLabel.Text" xml:space="preserve">
-    <value>EEditor is an offline Everybody Edits level editor, made to simplify level
-creation and manipulation.
-
-Made by Cyph1e • Updated by Capasha/Doh • Tuned by Robotkoer
-Help from Tiken • Main icon by Koya • Tested by forum members
-
-Toolbar icons by Google and Material Design Icons contributors 
-Some tools made using Bresenham's Ellipse and Line algorithm</value>
-  </data>
 </root>

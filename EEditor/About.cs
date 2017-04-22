@@ -32,49 +32,49 @@ namespace EEditor
 
         private void About_Load(object sender, EventArgs e)
         {
-            label3.Text = "Using: " + this.ProductVersion;
+            UsingLabel.Text = "Using: " + this.ProductVersion;
 
-            richTextBox1.Text = "Click \"Check for updates\" to see the latest changelog here.";
-            button3.Enabled = true;
+            ChangelogRichTextBox.Text = "Click \"Check for updates\" to see the latest changelog here.";
+            UpdaterButton.Enabled = true;
 
         }
 
         #region Main links
         //Forum topic
-        private void button1_Click(object sender, EventArgs e)
+        private void Forum_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://forums.everybodyedits.com/viewtopic.php?id=32502");
         }
 
         //Wiki
-        private void button6_Click(object sender, EventArgs e)
+        private void Wiki_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Madis0/eeditor/wiki");
+            System.Diagnostics.Process.Start("https://github.com/capasha/eeditor/wiki");
         }
 
         //Bugs/features
-        private void button7_Click(object sender, EventArgs e)
+        private void BugsOrFeature_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://bitbucket.org/capasha/eeditor/issues?status=new&status=open");
         }
 
         //Homepage
-        private void button2_Click(object sender, EventArgs e)
+        private void HomePage_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Madis0/eeditor/");
+            System.Diagnostics.Process.Start("https://github.com/capasha/eeditor/");
         }
         #endregion
 
         #region Check version
         //Check for newer version
-        private void button3_Click(object sender, EventArgs e)
+        private void Updater_Click(object sender, EventArgs e)
         {
             thread = new Thread(delegate () { checkVersion(false); });
             thread.Start();
         }
 
         //Go to download page
-        private void button4_Click(object sender, EventArgs e)
+        private void Download_Click(object sender, EventArgs e)
         {
             if (downloadLink != null) System.Diagnostics.Process.Start(downloadLink);
         }
@@ -87,8 +87,8 @@ namespace EEditor
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        label3.Text = "Using: " + this.ProductVersion;
-                        button3.Enabled = false;
+                        UsingLabel.Text = "Using: " + this.ProductVersion;
+                        UpdaterButton.Enabled = false;
                     });
                 }
                 string text;
@@ -132,8 +132,8 @@ namespace EEditor
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    if (stuff1["body"] != null) richTextBox1.Text = stuff1["body"].ToString();
-                                    label4.Text = "Newest: " + newversion;
+                                    if (stuff1["body"] != null) ChangelogRichTextBox.Text = stuff1["body"].ToString();
+                                    NewestLabel.Text = "Newest: " + newversion;
                                 });
                             }
 
@@ -148,16 +148,16 @@ namespace EEditor
                             }*/
                             if (!button)
                             {
-                                if (button3.InvokeRequired)
+                                if (UpdaterButton.InvokeRequired)
                                 {
                                     this.Invoke((MethodInvoker)delegate
                                     {
-                                        button3.Enabled = true;
+                                        UpdaterButton.Enabled = true;
                                     });
                                 }
                                 else
                                 {
-                                    button3.Enabled = true;
+                                    UpdaterButton.Enabled = true;
                                 }
                             }
 
@@ -165,16 +165,16 @@ namespace EEditor
                             {
                                 if (!button)
                                 {
-                                    if (button3.InvokeRequired)
+                                    if (UpdaterButton.InvokeRequired)
                                     {
                                         this.Invoke((MethodInvoker)delegate
                                         {
-                                            button3.Enabled = true;
+                                            UpdaterButton.Enabled = true;
                                         });
                                     }
                                     else
                                     {
-                                        button3.Enabled = true;
+                                        UpdaterButton.Enabled = true;
                                     }
                                 }
                             }
@@ -184,16 +184,16 @@ namespace EEditor
                             if (!button)
                             {
                                 MessageBox.Show("Couldn't look after update.", "Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                if (button3.InvokeRequired)
+                                if (UpdaterButton.InvokeRequired)
                                 {
                                     this.Invoke((MethodInvoker)delegate
                                     {
-                                        button3.Enabled = true;
+                                        UpdaterButton.Enabled = true;
                                     });
                                 }
                                 else
                                 {
-                                    button3.Enabled = true;
+                                    UpdaterButton.Enabled = true;
                                 }
                             }
                         }
@@ -208,47 +208,47 @@ namespace EEditor
                         {
 
                             MessageBox.Show("Took too long time to load the information.", "Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            if (button3.InvokeRequired)
+                            if (UpdaterButton.InvokeRequired)
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    button3.Enabled = true;
+                                    UpdaterButton.Enabled = true;
                                 });
                             }
                             else
                             {
-                                button3.Enabled = true;
+                                UpdaterButton.Enabled = true;
                             }
 
                         }
                         else if (e.Status == WebExceptionStatus.ProtocolError)
                         {
                             MessageBox.Show("Error: " + ((HttpWebResponse)e.Response).StatusCode, "Updater", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            if (button3.InvokeRequired)
+                            if (UpdaterButton.InvokeRequired)
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    button3.Enabled = true;
+                                    UpdaterButton.Enabled = true;
                                 });
                             }
                             else
                             {
-                                button3.Enabled = true;
+                                UpdaterButton.Enabled = true;
                             }
                         }
                         else
                         {
                             MessageBox.Show("Error: " + e.Status, "Updater", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            if (button3.InvokeRequired)
+                            if (UpdaterButton.InvokeRequired)
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    button3.Enabled = true;
+                                    UpdaterButton.Enabled = true;
                                 });
                             }
                             else
                             {
-                                button3.Enabled = true;
+                                UpdaterButton.Enabled = true;
                             }
                         }
                     }
@@ -266,16 +266,16 @@ namespace EEditor
                     if (!button)
                     {
                         MessageBox.Show("Error: " + e.Message, "Updater", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        if (button3.InvokeRequired)
+                        if (UpdaterButton.InvokeRequired)
                         {
                             this.Invoke((MethodInvoker)delegate
                             {
-                                button3.Enabled = true;
+                                UpdaterButton.Enabled = true;
                             });
                         }
                         else
                         {
-                            button3.Enabled = true;
+                            UpdaterButton.Enabled = true;
                         }
                     }
                 }
@@ -287,6 +287,5 @@ namespace EEditor
         {
             if (thread != null) thread.Abort();
         }
-
     }
 }

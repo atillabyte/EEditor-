@@ -35,6 +35,7 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ClearBgsButton = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -45,8 +46,8 @@
             this.rotateIcon1 = new System.Windows.Forms.PictureBox();
             this.replaceRotate = new System.Windows.Forms.NumericUpDown();
             this.findRotate = new System.Windows.Forms.NumericUpDown();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.FindPictureBox = new System.Windows.Forms.PictureBox();
+            this.ReplacePictureBox = new System.Windows.Forms.PictureBox();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,9 +62,17 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ReplacePictureBox2 = new System.Windows.Forms.PictureBox();
+            this.RotationPictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -74,26 +83,21 @@
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.label14 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.radioButton7 = new System.Windows.Forms.RadioButton();
             this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.findRotate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FindPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -102,6 +106,8 @@
             this.groupBox5.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
@@ -151,12 +157,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ClearBgsButton);
             this.groupBox1.Location = new System.Drawing.Point(270, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 276);
+            this.groupBox1.Size = new System.Drawing.Size(278, 324);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find && replace";
+            // 
+            // ClearBgsButton
+            // 
+            this.ClearBgsButton.Location = new System.Drawing.Point(76, 264);
+            this.ClearBgsButton.Name = "ClearBgsButton";
+            this.ClearBgsButton.Size = new System.Drawing.Size(136, 40);
+            this.ClearBgsButton.TabIndex = 0;
+            this.ClearBgsButton.Text = "Clear bgs behind blocks";
+            this.ClearBgsButton.UseVisualStyleBackColor = true;
+            this.ClearBgsButton.Click += new System.EventHandler(this.ClearBgsButton_Click);
             // 
             // button9
             // 
@@ -222,7 +239,7 @@
             // rotateIcon2
             // 
             this.rotateIcon2.Image = global::EEditor.Properties.Resources.rotate;
-            this.rotateIcon2.Location = new System.Drawing.Point(140, 50);
+            this.rotateIcon2.Location = new System.Drawing.Point(141, 52);
             this.rotateIcon2.Name = "rotateIcon2";
             this.rotateIcon2.Size = new System.Drawing.Size(16, 16);
             this.rotateIcon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -264,22 +281,23 @@
             this.findRotate.Name = "findRotate";
             this.findRotate.Size = new System.Drawing.Size(40, 20);
             this.findRotate.TabIndex = 18;
+            this.findRotate.ValueChanged += new System.EventHandler(this.findRotate_ValueChanged);
             // 
-            // pictureBox1
+            // FindPictureBox
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(87, 29);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.FindPictureBox.Location = new System.Drawing.Point(87, 29);
+            this.FindPictureBox.Name = "FindPictureBox";
+            this.FindPictureBox.Size = new System.Drawing.Size(16, 16);
+            this.FindPictureBox.TabIndex = 7;
+            this.FindPictureBox.TabStop = false;
             // 
-            // pictureBox2
+            // ReplacePictureBox
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(211, 29);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox2.TabIndex = 6;
-            this.pictureBox2.TabStop = false;
+            this.ReplacePictureBox.Location = new System.Drawing.Point(211, 29);
+            this.ReplacePictureBox.Name = "ReplacePictureBox";
+            this.ReplacePictureBox.Size = new System.Drawing.Size(16, 16);
+            this.ReplacePictureBox.TabIndex = 6;
+            this.ReplacePictureBox.TabStop = false;
             // 
             // numericUpDown2
             // 
@@ -347,7 +365,7 @@
             this.groupBox2.Controls.Add(this.toolStripContainer1);
             this.groupBox2.Location = new System.Drawing.Point(12, 5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(252, 276);
+            this.groupBox2.Size = new System.Drawing.Size(252, 324);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Get block ID by pack";
@@ -378,12 +396,12 @@
             this.toolStripContainer1.ContentPanel.AutoScroll = true;
             this.toolStripContainer1.ContentPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.ContentPanel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(241, 216);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(241, 276);
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(5, 42);
             this.toolStripContainer1.Name = "toolStripContainer1";
             this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(241, 216);
+            this.toolStripContainer1.Size = new System.Drawing.Size(241, 276);
             this.toolStripContainer1.TabIndex = 11;
             this.toolStripContainer1.Text = "toolStripContainer1";
             this.toolStripContainer1.TopToolStripPanelVisible = false;
@@ -404,7 +422,7 @@
             // 
             this.groupBox5.Controls.Add(this.progressBar1);
             this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Location = new System.Drawing.Point(12, 287);
+            this.groupBox5.Location = new System.Drawing.Point(12, 335);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(536, 42);
             this.groupBox5.TabIndex = 16;
@@ -431,6 +449,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.ReplacePictureBox2);
+            this.tabPage1.Controls.Add(this.RotationPictureBox1);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.rotateIcon2);
@@ -438,11 +458,11 @@
             this.tabPage1.Controls.Add(this.replaceRotate);
             this.tabPage1.Controls.Add(this.rotateIcon1);
             this.tabPage1.Controls.Add(this.numericUpDown1);
-            this.tabPage1.Controls.Add(this.pictureBox1);
+            this.tabPage1.Controls.Add(this.FindPictureBox);
             this.tabPage1.Controls.Add(this.findRotate);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.numericUpDown2);
-            this.tabPage1.Controls.Add(this.pictureBox2);
+            this.tabPage1.Controls.Add(this.ReplacePictureBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -450,6 +470,31 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Normal";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ReplacePictureBox2
+            // 
+            this.ReplacePictureBox2.Location = new System.Drawing.Point(211, 55);
+            this.ReplacePictureBox2.Name = "ReplacePictureBox2";
+            this.ReplacePictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.ReplacePictureBox2.TabIndex = 25;
+            this.ReplacePictureBox2.TabStop = false;
+            // 
+            // RotationPictureBox1
+            // 
+            this.RotationPictureBox1.Location = new System.Drawing.Point(87, 55);
+            this.RotationPictureBox1.Name = "RotationPictureBox1";
+            this.RotationPictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.RotationPictureBox1.TabIndex = 24;
+            this.RotationPictureBox1.TabStop = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(139, 28);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(18, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "ID";
             // 
             // label5
             // 
@@ -486,14 +531,63 @@
             this.tabPage2.Text = "Portal";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // label14
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(139, 28);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(18, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "ID";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(9, 98);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.TabIndex = 41;
+            this.label14.Text = "Portal type:";
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(172, 96);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(63, 17);
+            this.radioButton6.TabIndex = 40;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Invisible";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(89, 96);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(55, 17);
+            this.radioButton2.TabIndex = 39;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Visible";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(9, 80);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(207, 13);
+            this.label13.TabIndex = 38;
+            this.label13.Text = "Click on the portal icon to change rotation.";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(139, 53);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(20, 13);
+            this.label12.TabIndex = 37;
+            this.label12.Text = "To";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(9, 53);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 13);
+            this.label11.TabIndex = 36;
+            this.label11.Text = "To";
             // 
             // label7
             // 
@@ -601,64 +695,6 @@
             this.pictureBox6.TabIndex = 28;
             this.pictureBox6.TabStop = false;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(9, 53);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 13);
-            this.label11.TabIndex = 36;
-            this.label11.Text = "To";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(139, 53);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(20, 13);
-            this.label12.TabIndex = 37;
-            this.label12.Text = "To";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(9, 80);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(207, 13);
-            this.label13.TabIndex = 38;
-            this.label13.Text = "Click on the portal icon to change rotation.";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(89, 96);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 17);
-            this.radioButton2.TabIndex = 39;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Visible";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(172, 96);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(63, 17);
-            this.radioButton6.TabIndex = 40;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Invisible";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 98);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 13);
-            this.label14.TabIndex = 41;
-            this.label14.Text = "Portal type:";
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label16);
@@ -674,6 +710,42 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Text";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 10);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(30, 13);
+            this.label16.TabIndex = 47;
+            this.label16.Text = "Find:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(130, 10);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(50, 13);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "Replace:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(133, 26);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(100, 67);
+            this.textBox4.TabIndex = 46;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(13, 26);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 67);
+            this.textBox3.TabIndex = 45;
             // 
             // label15
             // 
@@ -706,47 +778,11 @@
             this.radioButton8.Text = "Sign";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(13, 26);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 67);
-            this.textBox3.TabIndex = 45;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(133, 26);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 67);
-            this.textBox4.TabIndex = 46;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 10);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 13);
-            this.label16.TabIndex = 47;
-            this.label16.Text = "Find:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(130, 10);
-            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(50, 13);
-            this.label17.TabIndex = 48;
-            this.label17.Text = "Replace:";
-            // 
             // Replacer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 338);
+            this.ClientSize = new System.Drawing.Size(558, 389);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button8);
@@ -764,12 +800,13 @@
             this.Text = "Find & replace";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Replacer_FormClosed);
             this.Load += new System.EventHandler(this.Replacer_Load);
+            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.replaceRotate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.findRotate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.FindPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -783,6 +820,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
@@ -808,8 +847,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox FindPictureBox;
+        private System.Windows.Forms.PictureBox ReplacePictureBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
@@ -858,5 +897,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.RadioButton radioButton7;
         private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.Button ClearBgsButton;
+        private System.Windows.Forms.PictureBox ReplacePictureBox2;
+        private System.Windows.Forms.PictureBox RotationPictureBox1;
     }
 }

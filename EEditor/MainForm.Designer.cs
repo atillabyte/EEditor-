@@ -121,6 +121,7 @@
             this.lastUsedBlockButton2 = new System.Windows.Forms.ToolStripButton();
             this.lastUsedBlockButton3 = new System.Windows.Forms.ToolStripButton();
             this.lastUsedBlockButton4 = new System.Windows.Forms.ToolStripButton();
+            this.backgroundIgnoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.morphToolStrip.SuspendLayout();
             this.viewToolStrip.SuspendLayout();
             this.settingsToolStrip.SuspendLayout();
@@ -314,7 +315,7 @@
             this.accountsComboBox,
             this.settingsButton,
             this.aboutButton});
-            this.settingsToolStrip.Location = new System.Drawing.Point(588, 0);
+            this.settingsToolStrip.Location = new System.Drawing.Point(619, 0);
             this.settingsToolStrip.Name = "settingsToolStrip";
             this.settingsToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.settingsToolStrip.Size = new System.Drawing.Size(156, 27);
@@ -505,7 +506,7 @@
             this.toolToolStrip.Location = new System.Drawing.Point(96, 0);
             this.toolToolStrip.Name = "toolToolStrip";
             this.toolToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolToolStrip.Size = new System.Drawing.Size(204, 27);
+            this.toolToolStrip.Size = new System.Drawing.Size(235, 27);
             this.toolToolStrip.TabIndex = 3;
             // 
             // penButton
@@ -622,7 +623,8 @@
             this.insertDropButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.insertDropButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.imageButton,
-            this.textButton});
+            this.textButton,
+            this.backgroundIgnoreToolStripMenuItem});
             this.insertDropButton.Image = global::EEditor.Properties.Resources.insert;
             this.insertDropButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.insertDropButton.Name = "insertDropButton";
@@ -634,7 +636,7 @@
             // 
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
-            this.imageButton.Size = new System.Drawing.Size(148, 22);
+            this.imageButton.Size = new System.Drawing.Size(179, 26);
             this.imageButton.Text = "Image (Ctrl+I)";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -642,7 +644,7 @@
             // 
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
-            this.textButton.Size = new System.Drawing.Size(148, 22);
+            this.textButton.Size = new System.Drawing.Size(179, 26);
             this.textButton.Text = "Text (Ctrl+T)";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
@@ -724,7 +726,7 @@
             this.refreshButton,
             this.codeTextbox,
             this.uploadButton});
-            this.uploadToolStrip.Location = new System.Drawing.Point(378, 0);
+            this.uploadToolStrip.Location = new System.Drawing.Point(409, 0);
             this.uploadToolStrip.Name = "uploadToolStrip";
             this.uploadToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.uploadToolStrip.Size = new System.Drawing.Size(210, 27);
@@ -795,7 +797,7 @@
             this.undoButton,
             this.redoButton,
             this.historyButton});
-            this.historyToolStrip.Location = new System.Drawing.Point(300, 0);
+            this.historyToolStrip.Location = new System.Drawing.Point(331, 0);
             this.historyToolStrip.Name = "historyToolStrip";
             this.historyToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.historyToolStrip.Size = new System.Drawing.Size(78, 27);
@@ -1088,6 +1090,13 @@
             this.lastUsedBlockButton4.Size = new System.Drawing.Size(23, 22);
             this.lastUsedBlockButton4.Click += new System.EventHandler(this.lastUsedBlockButton);
             // 
+            // backgroundIgnoreToolStripMenuItem
+            // 
+            this.backgroundIgnoreToolStripMenuItem.Name = "backgroundIgnoreToolStripMenuItem";
+            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.backgroundIgnoreToolStripMenuItem.Text = "Background Ignore";
+            this.backgroundIgnoreToolStripMenuItem.Click += new System.EventHandler(this.backgroundIgnoreToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1232,6 +1241,7 @@
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton2;
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton3;
         private System.Windows.Forms.ToolStripButton lastUsedBlockButton4;
+        private System.Windows.Forms.ToolStripMenuItem backgroundIgnoreToolStripMenuItem;
     }
 }
 

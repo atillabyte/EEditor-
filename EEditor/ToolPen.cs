@@ -37,23 +37,28 @@ namespace EEditor
                 {
                     //if (editArea.IsBackground)
                     //{
-                    if (editArea.ShiftDown)
+                    if (editArea.CtrlDown)
+                    {
+                        int bfid = editArea.CurFrame.Foreground[y, x];
+                        if (mousedown)
+                        {
+                            if (bfid != 0)
+                                editArea.CurFrame.Background[y, x] = 0;
+                        }
+                        else
+                        {
+                            editArea.CurFrame.Background[y, x] = 0;
+                        }
+                        editArea.mouseDown = false;
+                    }
+                    else if (editArea.ShiftDown)
                     {
                         int bfid = editArea.CurFrame.Foreground[y, x];
                         int loc9 = 0;
                         int loc8 = PenID >= 500 && PenID <= 999 ? 1 : 0;
                         if (mousedown)
                         {
-                            if (MainForm.userdata.backgroundOnlyShift)
-                            {
-                                if (bfid != 0)
-                                {
-                                    loc9 = 1;
-                                    editArea.CurFrame.Background[y, x] = 0;
-                                }
-                            }
-                            else
-                            {
+
                                 loc9 = loc8;
                                 if (bfid != 0)
                                 {
@@ -70,7 +75,7 @@ namespace EEditor
                                     editArea.CurFrame.Background[y, x] = 0;
                                 }
                                 lockid = loc9;
-                            }
+                            
                         }
                         else
                         {

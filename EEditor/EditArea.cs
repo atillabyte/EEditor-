@@ -708,6 +708,7 @@ namespace EEditor
         {
             Tool.KeyDown(e);
             ShiftDown = e.Shift;
+            CtrlDown = e.Control;
             SwitchBlock = e.Alt;
             ChangeBlock = e.KeyCode == Keys.Q ? true : false;
             if (e.Control && e.KeyCode == Keys.V)
@@ -809,11 +810,12 @@ namespace EEditor
             ShiftDown = e.Shift;
             SwitchBlock = e.Alt;
             ChangeBlock = e.KeyCode == Keys.Q ? true : false;
+            CtrlDown = e.Control;
             ShowLines = false;
         }
 
         public bool ShiftDown = false;
-
+        public bool CtrlDown = false;
         public bool SwitchBlock = false;
 
         public bool ChangeBlock = false;
