@@ -3806,7 +3806,6 @@ namespace EEditor
         public bool updateChecker { get; set; }
         public List<JToken> newestBlocks { get; set; }
         public bool selectAllBorder { get; set; }
-        public bool backgroundOnlyShift { get; set; }
         public bool openWorld { get; set; }
         public bool saveWorldCrew { get; set; }
         public bool confirmClose { get; set; }

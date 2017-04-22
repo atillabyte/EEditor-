@@ -31,14 +31,12 @@ namespace EEditor
             #region Setting checkboxes
             ToolTip tp = new ToolTip();
             tp.SetToolTip(usePenToolCheckBox, "Enables draw tool after switching blocks.");
-            tp.SetToolTip(shiftBackgroundCheckbox, "Makes Shift+click only remove background blocks.");
             tp.SetToolTip(dontreplacefCheckBox, "Won't allow drawing over blocks that are loaded from the world.\nOnly works within EEditor, not for uploading.");
             tp.SetToolTip(selectAllBorderCheckBox, "Includes bordering blocks when selecting the whole world by hotkey Ctrl+A.");
             tp.SetToolTip(confirmCloseCheckBox, "Prompts when you attempt to close EEditor.");
             tp.SetToolTip(updateCheckCheckBox, "Checks for updates on every EEditor start.");
 
             usePenToolCheckBox.Checked = MainForm.userdata.usePenTool;
-            shiftBackgroundCheckbox.Checked = MainForm.userdata.backgroundOnlyShift;
             dontreplacefCheckBox.Checked = MainForm.userdata.dontReplaceBlocks;
             selectAllBorderCheckBox.Checked = MainForm.userdata.selectAllBorder;
             confirmCloseCheckBox.Checked = MainForm.userdata.confirmClose;
@@ -55,11 +53,6 @@ namespace EEditor
         private void usePenToolCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.userdata.usePenTool = usePenToolCheckBox.Checked;
-        }
-
-        private void shiftBackgroundCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            MainForm.userdata.backgroundOnlyShift = shiftBackgroundCheckbox.Checked;
         }
 
         private void dontreplacefCheckBox_CheckedChanged(object sender, EventArgs e)

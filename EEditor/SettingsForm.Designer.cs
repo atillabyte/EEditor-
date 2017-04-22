@@ -32,7 +32,6 @@
             this.dontreplacefCheckBox = new System.Windows.Forms.CheckBox();
             this.usePenToolCheckBox = new System.Windows.Forms.CheckBox();
             this.selectAllBorderCheckBox = new System.Windows.Forms.CheckBox();
-            this.shiftBackgroundCheckbox = new System.Windows.Forms.CheckBox();
             this.updateCheckCheckBox = new System.Windows.Forms.CheckBox();
             this.tempLabel = new System.Windows.Forms.Label();
             this.clearComboBox = new System.Windows.Forms.ComboBox();
@@ -75,7 +74,7 @@
             // dontreplacefCheckBox
             // 
             this.dontreplacefCheckBox.AutoSize = true;
-            this.dontreplacefCheckBox.Location = new System.Drawing.Point(17, 80);
+            this.dontreplacefCheckBox.Location = new System.Drawing.Point(17, 57);
             this.dontreplacefCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.dontreplacefCheckBox.Name = "dontreplacefCheckBox";
             this.dontreplacefCheckBox.Size = new System.Drawing.Size(127, 17);
@@ -99,7 +98,7 @@
             // selectAllBorderCheckBox
             // 
             this.selectAllBorderCheckBox.AutoSize = true;
-            this.selectAllBorderCheckBox.Location = new System.Drawing.Point(17, 59);
+            this.selectAllBorderCheckBox.Location = new System.Drawing.Point(17, 36);
             this.selectAllBorderCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.selectAllBorderCheckBox.Name = "selectAllBorderCheckBox";
             this.selectAllBorderCheckBox.Size = new System.Drawing.Size(165, 17);
@@ -108,21 +107,10 @@
             this.selectAllBorderCheckBox.UseVisualStyleBackColor = true;
             this.selectAllBorderCheckBox.CheckedChanged += new System.EventHandler(this.selectAllBorderCheckBox_CheckedChanged);
             // 
-            // shiftBackgroundCheckbox
-            // 
-            this.shiftBackgroundCheckbox.AutoSize = true;
-            this.shiftBackgroundCheckbox.Location = new System.Drawing.Point(17, 37);
-            this.shiftBackgroundCheckbox.Name = "shiftBackgroundCheckbox";
-            this.shiftBackgroundCheckbox.Size = new System.Drawing.Size(155, 17);
-            this.shiftBackgroundCheckbox.TabIndex = 18;
-            this.shiftBackgroundCheckbox.Text = "Shift+click removes bg only";
-            this.shiftBackgroundCheckbox.UseVisualStyleBackColor = true;
-            this.shiftBackgroundCheckbox.CheckedChanged += new System.EventHandler(this.shiftBackgroundCheckbox_CheckedChanged);
-            // 
             // updateCheckCheckBox
             // 
             this.updateCheckCheckBox.AutoSize = true;
-            this.updateCheckCheckBox.Location = new System.Drawing.Point(17, 122);
+            this.updateCheckCheckBox.Location = new System.Drawing.Point(17, 99);
             this.updateCheckCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.updateCheckCheckBox.Name = "updateCheckCheckBox";
             this.updateCheckCheckBox.Size = new System.Drawing.Size(132, 17);
@@ -171,7 +159,7 @@
             // confirmCloseCheckBox
             // 
             this.confirmCloseCheckBox.AutoSize = true;
-            this.confirmCloseCheckBox.Location = new System.Drawing.Point(17, 101);
+            this.confirmCloseCheckBox.Location = new System.Drawing.Point(17, 78);
             this.confirmCloseCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.confirmCloseCheckBox.Name = "confirmCloseCheckBox";
             this.confirmCloseCheckBox.Size = new System.Drawing.Size(117, 17);
@@ -198,7 +186,6 @@
             this.tabPage1.Controls.Add(this.clearButton);
             this.tabPage1.Controls.Add(this.tempLabel);
             this.tabPage1.Controls.Add(this.clearComboBox);
-            this.tabPage1.Controls.Add(this.shiftBackgroundCheckbox);
             this.tabPage1.Controls.Add(this.selectAllBorderCheckBox);
             this.tabPage1.Controls.Add(this.updateCheckCheckBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -428,7 +415,6 @@
         private System.Windows.Forms.CheckBox usePenToolCheckBox;
         private System.Windows.Forms.CheckBox updateCheckCheckBox;
         private System.Windows.Forms.CheckBox selectAllBorderCheckBox;
-        private System.Windows.Forms.CheckBox shiftBackgroundCheckbox;
         private System.Windows.Forms.Label tempLabel;
         private System.Windows.Forms.ComboBox clearComboBox;
         private System.Windows.Forms.Button clearButton;
