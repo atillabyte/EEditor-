@@ -59,39 +59,33 @@ namespace EEditor
                         if (mousedown)
                         {
 
-                                loc9 = loc8;
-                                if (bfid != 0)
-                                {
-                                    loc9 = 0;
+                            loc9 = loc8;
+                            if (bfid != 0)
+                            {
+                                loc9 = 0;
 
-                                    if (IsPaintable(x, y, 0, true))
-                                    {
-                                        editArea.CurFrame.Foreground[y, x] = 0;
-                                    }
-                                }
-                                else
-                                {
-                                    loc9 = 1;
-                                    editArea.CurFrame.Background[y, x] = 0;
-                                }
-                                lockid = loc9;
-                            
-                        }
-                        else
-                        {
-                            if (MainForm.userdata.backgroundOnlyShift)
-                            {
-                                editArea.CurFrame.Background[y, x] = 0;
-                            }
-                            else
-                            {
-                                loc9 = lockid;
-                                if (loc9 == 0 && IsPaintable(x, y, 0, true))
+                                if (IsPaintable(x, y, 0, true))
                                 {
                                     editArea.CurFrame.Foreground[y, x] = 0;
                                 }
-                                if (loc9 == 1) editArea.CurFrame.Background[y, x] = 0;
                             }
+                            else
+                            {
+                                loc9 = 1;
+                                editArea.CurFrame.Background[y, x] = 0;
+                            }
+                            lockid = loc9;
+
+                        }
+                        else
+                        {
+                            loc9 = lockid;
+                            if (loc9 == 0 && IsPaintable(x, y, 0, true))
+                            {
+                                editArea.CurFrame.Foreground[y, x] = 0;
+                            }
+                            if (loc9 == 1) editArea.CurFrame.Background[y, x] = 0;
+
                         }
                         editArea.mouseDown = false;
                     }
@@ -691,7 +685,7 @@ namespace EEditor
                     g.Save();
                     editArea.Invalidate(new Rectangle(p, new Size(16, 16)));
                 }
-                
+
             }
         }
     }
