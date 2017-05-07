@@ -68,20 +68,20 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label14 = new System.Windows.Forms.Label();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.PortalINVRadioButton = new System.Windows.Forms.RadioButton();
+            this.PortalRadioButton = new System.Windows.Forms.RadioButton();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.PortalReplaceTo = new System.Windows.Forms.NumericUpDown();
+            this.PortalFindFrom = new System.Windows.Forms.NumericUpDown();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.PortalFindTo = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.PortalReplaceFrom = new System.Windows.Forms.NumericUpDown();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label16 = new System.Windows.Forms.Label();
@@ -109,11 +109,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalReplaceTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalFindFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalFindTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalReplaceFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
@@ -239,7 +239,7 @@
             // rotateIcon2
             // 
             this.rotateIcon2.Image = global::EEditor.Properties.Resources.rotate;
-            this.rotateIcon2.Location = new System.Drawing.Point(141, 52);
+            this.rotateIcon2.Location = new System.Drawing.Point(134, 52);
             this.rotateIcon2.Name = "rotateIcon2";
             this.rotateIcon2.Size = new System.Drawing.Size(16, 16);
             this.rotateIcon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -258,7 +258,7 @@
             // 
             // replaceRotate
             // 
-            this.replaceRotate.Location = new System.Drawing.Point(166, 51);
+            this.replaceRotate.Location = new System.Drawing.Point(156, 51);
             this.replaceRotate.Margin = new System.Windows.Forms.Padding(2);
             this.replaceRotate.Maximum = new decimal(new int[] {
             999,
@@ -266,7 +266,7 @@
             0,
             0});
             this.replaceRotate.Name = "replaceRotate";
-            this.replaceRotate.Size = new System.Drawing.Size(40, 20);
+            this.replaceRotate.Size = new System.Drawing.Size(50, 20);
             this.replaceRotate.TabIndex = 19;
             this.replaceRotate.ValueChanged += new System.EventHandler(this.replaceRotate_ValueChanged);
             // 
@@ -280,13 +280,13 @@
             0,
             0});
             this.findRotate.Name = "findRotate";
-            this.findRotate.Size = new System.Drawing.Size(40, 20);
+            this.findRotate.Size = new System.Drawing.Size(51, 20);
             this.findRotate.TabIndex = 18;
             this.findRotate.ValueChanged += new System.EventHandler(this.findRotate_ValueChanged);
             // 
             // FindPictureBox
             // 
-            this.FindPictureBox.Location = new System.Drawing.Point(87, 29);
+            this.FindPictureBox.Location = new System.Drawing.Point(98, 29);
             this.FindPictureBox.Name = "FindPictureBox";
             this.FindPictureBox.Size = new System.Drawing.Size(16, 16);
             this.FindPictureBox.TabIndex = 7;
@@ -302,7 +302,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(166, 27);
+            this.numericUpDown2.Location = new System.Drawing.Point(155, 27);
             this.numericUpDown2.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             3000,
@@ -310,7 +310,7 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(51, 20);
             this.numericUpDown2.TabIndex = 3;
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             this.numericUpDown2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown2_KeyUp);
@@ -325,7 +325,7 @@
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(40, 20);
+            this.numericUpDown1.Size = new System.Drawing.Size(51, 20);
             this.numericUpDown1.TabIndex = 2;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             this.numericUpDown1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.numericUpDown1_KeyUp);
@@ -482,7 +482,7 @@
             // 
             // RotationPictureBox1
             // 
-            this.RotationPictureBox1.Location = new System.Drawing.Point(87, 55);
+            this.RotationPictureBox1.Location = new System.Drawing.Point(98, 55);
             this.RotationPictureBox1.Name = "RotationPictureBox1";
             this.RotationPictureBox1.Size = new System.Drawing.Size(16, 16);
             this.RotationPictureBox1.TabIndex = 24;
@@ -491,7 +491,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(139, 28);
+            this.label6.Location = new System.Drawing.Point(132, 28);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(18, 13);
             this.label6.TabIndex = 23;
@@ -509,20 +509,20 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label14);
-            this.tabPage2.Controls.Add(this.radioButton6);
-            this.tabPage2.Controls.Add(this.radioButton2);
+            this.tabPage2.Controls.Add(this.PortalINVRadioButton);
+            this.tabPage2.Controls.Add(this.PortalRadioButton);
             this.tabPage2.Controls.Add(this.label13);
             this.tabPage2.Controls.Add(this.label12);
             this.tabPage2.Controls.Add(this.label11);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.numericUpDown6);
-            this.tabPage2.Controls.Add(this.numericUpDown7);
+            this.tabPage2.Controls.Add(this.PortalReplaceTo);
+            this.tabPage2.Controls.Add(this.PortalFindFrom);
             this.tabPage2.Controls.Add(this.pictureBox5);
-            this.tabPage2.Controls.Add(this.numericUpDown8);
+            this.tabPage2.Controls.Add(this.PortalFindTo);
             this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Controls.Add(this.numericUpDown9);
+            this.tabPage2.Controls.Add(this.PortalReplaceFrom);
             this.tabPage2.Controls.Add(this.pictureBox6);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
@@ -541,27 +541,27 @@
             this.label14.TabIndex = 41;
             this.label14.Text = "Portal type:";
             // 
-            // radioButton6
+            // PortalINVRadioButton
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(172, 96);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(63, 17);
-            this.radioButton6.TabIndex = 40;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Invisible";
-            this.radioButton6.UseVisualStyleBackColor = true;
+            this.PortalINVRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.PortalINVRadioButton.AutoSize = true;
+            this.PortalINVRadioButton.Location = new System.Drawing.Point(172, 96);
+            this.PortalINVRadioButton.Name = "PortalINVRadioButton";
+            this.PortalINVRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.PortalINVRadioButton.TabIndex = 40;
+            this.PortalINVRadioButton.TabStop = true;
+            this.PortalINVRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // PortalRadioButton
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(89, 96);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(55, 17);
-            this.radioButton2.TabIndex = 39;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Visible";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.PortalRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+            this.PortalRadioButton.AutoSize = true;
+            this.PortalRadioButton.Location = new System.Drawing.Point(89, 96);
+            this.PortalRadioButton.Name = "PortalRadioButton";
+            this.PortalRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.PortalRadioButton.TabIndex = 39;
+            this.PortalRadioButton.TabStop = true;
+            this.PortalRadioButton.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
@@ -575,7 +575,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(139, 53);
+            this.label12.Location = new System.Drawing.Point(132, 53);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(20, 13);
             this.label12.TabIndex = 37;
@@ -593,7 +593,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(139, 30);
+            this.label7.Location = new System.Drawing.Point(132, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 13);
             this.label7.TabIndex = 35;
@@ -618,79 +618,79 @@
             this.label9.TabIndex = 24;
             this.label9.Text = "Find:";
             // 
-            // numericUpDown6
+            // PortalReplaceTo
             // 
-            this.numericUpDown6.Location = new System.Drawing.Point(174, 52);
-            this.numericUpDown6.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
+            this.PortalReplaceTo.Location = new System.Drawing.Point(167, 51);
+            this.PortalReplaceTo.Margin = new System.Windows.Forms.Padding(2);
+            this.PortalReplaceTo.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown6.TabIndex = 31;
+            this.PortalReplaceTo.Name = "PortalReplaceTo";
+            this.PortalReplaceTo.Size = new System.Drawing.Size(55, 20);
+            this.PortalReplaceTo.TabIndex = 31;
             // 
-            // numericUpDown7
+            // PortalFindFrom
             // 
-            this.numericUpDown7.Location = new System.Drawing.Point(44, 26);
-            this.numericUpDown7.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.PortalFindFrom.Location = new System.Drawing.Point(44, 29);
+            this.PortalFindFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.PortalFindFrom.Maximum = new decimal(new int[] {
             3000,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown7.TabIndex = 26;
+            this.PortalFindFrom.Name = "PortalFindFrom";
+            this.PortalFindFrom.Size = new System.Drawing.Size(52, 20);
+            this.PortalFindFrom.TabIndex = 26;
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(89, 28);
+            this.pictureBox5.Location = new System.Drawing.Point(101, 29);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(16, 16);
             this.pictureBox5.TabIndex = 29;
             this.pictureBox5.TabStop = false;
             // 
-            // numericUpDown8
+            // PortalFindTo
             // 
-            this.numericUpDown8.Location = new System.Drawing.Point(44, 50);
-            this.numericUpDown8.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.PortalFindTo.Location = new System.Drawing.Point(44, 53);
+            this.PortalFindTo.Margin = new System.Windows.Forms.Padding(2);
+            this.PortalFindTo.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown8.TabIndex = 30;
+            this.PortalFindTo.Name = "PortalFindTo";
+            this.PortalFindTo.Size = new System.Drawing.Size(52, 20);
+            this.PortalFindTo.TabIndex = 30;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(139, 12);
+            this.label10.Location = new System.Drawing.Point(132, 10);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(50, 13);
             this.label10.TabIndex = 25;
             this.label10.Text = "Replace:";
             // 
-            // numericUpDown9
+            // PortalReplaceFrom
             // 
-            this.numericUpDown9.Location = new System.Drawing.Point(174, 28);
-            this.numericUpDown9.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.PortalReplaceFrom.Location = new System.Drawing.Point(167, 28);
+            this.PortalReplaceFrom.Margin = new System.Windows.Forms.Padding(2);
+            this.PortalReplaceFrom.Maximum = new decimal(new int[] {
             3000,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown9.TabIndex = 27;
+            this.PortalReplaceFrom.Name = "PortalReplaceFrom";
+            this.PortalReplaceFrom.Size = new System.Drawing.Size(55, 20);
+            this.PortalReplaceFrom.TabIndex = 27;
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(219, 30);
+            this.pictureBox6.Location = new System.Drawing.Point(227, 29);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(16, 16);
             this.pictureBox6.TabIndex = 28;
@@ -759,24 +759,24 @@
             // 
             // WorldPortalRadioButton
             // 
+            this.WorldPortalRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
             this.WorldPortalRadioButton.AutoSize = true;
             this.WorldPortalRadioButton.Location = new System.Drawing.Point(151, 96);
             this.WorldPortalRadioButton.Name = "WorldPortalRadioButton";
-            this.WorldPortalRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.WorldPortalRadioButton.Size = new System.Drawing.Size(6, 6);
             this.WorldPortalRadioButton.TabIndex = 43;
             this.WorldPortalRadioButton.TabStop = true;
-            this.WorldPortalRadioButton.Text = "World portal";
             this.WorldPortalRadioButton.UseVisualStyleBackColor = true;
             // 
             // SignRadioButton
             // 
+            this.SignRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
             this.SignRadioButton.AutoSize = true;
             this.SignRadioButton.Location = new System.Drawing.Point(90, 96);
             this.SignRadioButton.Name = "SignRadioButton";
-            this.SignRadioButton.Size = new System.Drawing.Size(46, 17);
+            this.SignRadioButton.Size = new System.Drawing.Size(6, 6);
             this.SignRadioButton.TabIndex = 42;
             this.SignRadioButton.TabStop = true;
-            this.SignRadioButton.Text = "Sign";
             this.SignRadioButton.UseVisualStyleBackColor = true;
             // 
             // Replacer
@@ -825,11 +825,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalReplaceTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalFindFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalFindTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PortalReplaceFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -875,20 +875,20 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton PortalINVRadioButton;
+        private System.Windows.Forms.RadioButton PortalRadioButton;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown PortalReplaceTo;
+        private System.Windows.Forms.NumericUpDown PortalFindFrom;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
+        private System.Windows.Forms.NumericUpDown PortalFindTo;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown PortalReplaceFrom;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label16;

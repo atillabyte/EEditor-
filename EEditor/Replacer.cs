@@ -32,7 +32,14 @@ namespace EEditor
             replaced1 = new int[MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width];
             MainForm.editArea.Back1 = MainForm.editArea.Back;
             numericUpDown1.Value = MainForm.editArea.Tool.PenID;
-            if (ToolPen.rotation.ContainsKey(MainForm.editArea.Tool.PenID)) {
+
+            PortalRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(108 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+            PortalINVRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(112 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+            WorldPortalRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(33 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+            SignRadioButton.Image = MainForm.miscBMD.Clone(new Rectangle(255 * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+
+            if (ToolPen.rotation.ContainsKey(MainForm.editArea.Tool.PenID))
+            {
                 if (bdata.getRotation(MainForm.editArea.Tool.PenID, ToolPen.rotation[MainForm.editArea.Tool.PenID]) != null)
                 {
                     RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID, ToolPen.rotation[MainForm.editArea.Tool.PenID]);
@@ -43,7 +50,7 @@ namespace EEditor
             {
                 if (bdata.getRotation(MainForm.editArea.Tool.PenID, 0) != null)
                 {
-                    RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID,0);
+                    RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID, 0);
                 }
             }
 
@@ -567,7 +574,7 @@ namespace EEditor
 
                 }
             }
-            
+
             if ((numericUpDown1.Value < 500 || numericUpDown1.Value >= 1001) && (numericUpDown2.Value < 500 || numericUpDown2.Value >= 1001))
             {
                 for (int yy = 0; yy < MainForm.editArea.Frames[0].Height; yy++)
@@ -583,7 +590,21 @@ namespace EEditor
                                 {
                                     if (MainForm.editArea.Frames[0].BlockData[yy, xx] == findRotate.Value)
                                     {
-                                        MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                        if (MainForm.editArea.Frames[0].Foreground[yy, xx] == 255)
+                                        {
+                                            //if (MainForm.editArea.Frames[0].BlockData[yy, xx] == )
+                                        }
+                                        else
+                                        {
+                                            if (MainForm.editArea.Frames[0].Foreground[yy, xx] == 385 || MainForm.editArea.Frames[0].Foreground[yy, xx] == 374)
+                                            {
+                                                if (SignRadioButton.Checked || WorldPortalRadioButton.Checked)
+                                                {
+                                                    MainForm.editArea.Frames[0].BlockData3[yy, xx] = ReplaceTextBox.Text;
+                                                }
+                                            }
+                                            MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                        }
                                     }
                                 }
                                 //incfg += (int)rp.NU2.Value + ":" + editArea.CurFrame.Foreground[yy, xx] + ":" + xx + ":" + yy + ":";
@@ -601,7 +622,7 @@ namespace EEditor
                                     MainForm.editArea.Draw(xx, yy, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
 
                                 }
-                                
+
                             }
 
                         }
@@ -907,7 +928,7 @@ namespace EEditor
                 if (img1 != null) RotationPictureBox1.Image = img1;
                 else RotationPictureBox1.Image = Properties.Resources.cross;
             }
-            
+
         }
 
         private void ClearBgsButton_Click(object sender, EventArgs e)
@@ -955,7 +976,7 @@ namespace EEditor
                     img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
                 }
                 if (img1 != null) ReplacePictureBox2.Image = img1;
-                else  ReplacePictureBox2.Image = Properties.Resources.cross;
+                else ReplacePictureBox2.Image = Properties.Resources.cross;
             }
         }
     }
