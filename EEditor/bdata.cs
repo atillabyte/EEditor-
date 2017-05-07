@@ -86,6 +86,7 @@ namespace EEditor
                 else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || fid == 339 || fid == 340 || fid == 1041 || fid == 1042 || fid == 1043 || fid == 456 || fid == 457 || fid == 458 || fid == 447 || fid == 448 || fid == 449 || fid == 450 || fid == 451 || fid == 452 || fid >= 1075 && fid <= 1078 || fid == 471 || fid == 475 || fid == 476 || fid == 477 || fid == 497 || fid == 492 || fid == 493 || fid == 494 || fid == 499 || fid == 1500 || fid == 1502 || fid == 1506 || fid == 1507)
                 {
                     int roted = 15;
+                    bool empty = false;
                     switch (coins)
                     {
                         case 0:
@@ -235,10 +236,14 @@ namespace EEditor
                         default:
                             roted = 15;
                             break;
+
                     }
-                    
-                    Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
-                    return bmp2;
+                    if (roted == 15) return null;
+                    else
+                    {
+                        Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
+                        return bmp2;
+                    }
                 }
                 //Medieval
                 else if (fid == 440 || fid == 275 || fid == 329 || fid == 273 || fid == 328 || fid == 327)

@@ -177,10 +177,11 @@ namespace EEditor
                 }
                 if (editArea.ChangeBlock)
                 {
+                    editArea.ChangeBlock = false;
                     int fid = editArea.CurFrame.Foreground[y, x];
                     if (fid != 0) editArea.MainForm.setBrick(editArea.CurFrame.Foreground[y, x], false);
                     else editArea.MainForm.setBrick(editArea.CurFrame.Background[y, x], false);
-                    editArea.ChangeBlock = false;
+                    
                 }
                 else
                 {

@@ -596,15 +596,18 @@ namespace EEditor
                 if (CurFrame.Foreground[p.Y, p.X] == 374)
                 {
                     string text = null;
-                    if (CurFrame.BlockData3[p.Y, p.X].ToString().Length >= 20)
+                    if (CurFrame.BlockData3[p.Y, p.X].ToString() != null)
                     {
-                        text = CurFrame.BlockData3[p.Y, p.X].ToString().Substring(0, 20) + "....";
+                        if (CurFrame.BlockData3[p.Y, p.X].ToString().Length >= 20)
+                        {
+                            text = CurFrame.BlockData3[p.Y, p.X].ToString().Substring(0, 20) + "....";
+                        }
+                        else
+                        {
+                            text = CurFrame.BlockData3[p.Y, p.X].ToString();
+                        }
+                        MainForm.txt.Text = CurFrame.BlockData3[p.Y, p.X].ToString();
                     }
-                    else
-                    {
-                        text = CurFrame.BlockData3[p.Y, p.X].ToString();
-                    }
-                    MainForm.txt.Text = CurFrame.BlockData3[p.Y, p.X].ToString();
                 }
                 else if (CurFrame.Foreground[p.Y, p.X] == 385)
                 {
@@ -710,7 +713,7 @@ namespace EEditor
             ShiftDown = e.Shift;
             CtrlDown = e.Control;
             SwitchBlock = e.Alt;
-            ChangeBlock = e.KeyCode == Keys.Q ? true : false;
+            if (e.KeyCode == Keys.Q) ChangeBlock = true;
             if (e.Control && e.KeyCode == Keys.V)
             {
                 if (!MainForm.selectionTool) MainForm.SetMarkTool();
@@ -809,7 +812,7 @@ namespace EEditor
             base.OnKeyUp(e);
             ShiftDown = e.Shift;
             SwitchBlock = e.Alt;
-            ChangeBlock = e.KeyCode == Keys.Q ? true : false;
+            ChangeBlock = false;
             CtrlDown = e.Control;
             ShowLines = false;
         }

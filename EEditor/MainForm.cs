@@ -100,7 +100,7 @@ namespace EEditor
                 if (userdata.imageSpecialblocksAction.ToString() == null) userdata.imageSpecialblocksAction = false;
                 if (userdata.random.ToString() == null) userdata.random = false;
                 if (userdata.reverse.ToString() == null) userdata.reverse = false;
-                if (userdata.IgnoreBlocks.ToString() == null) userdata.IgnoreBlocks = new List<JToken>() { };
+                if (userdata.IgnoreBlocks == null) userdata.IgnoreBlocks = new List<JToken>() { };
             }
             else
             {
@@ -3666,7 +3666,7 @@ namespace EEditor
         #region Form loading and closing
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (userdata.updateChecker == true)
+            if (userdata.updateChecker)
             {
 
                 About ab = new About(this);
@@ -3684,7 +3684,7 @@ namespace EEditor
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MainForm.userdata.confirmClose == true)
+            if (MainForm.userdata.confirmClose)
             {
                 DialogResult dr = MessageBox.Show("Are you sure you want to exit EEditor?", "Quit EEditor?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dr == DialogResult.Yes)

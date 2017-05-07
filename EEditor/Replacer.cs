@@ -32,6 +32,21 @@ namespace EEditor
             replaced1 = new int[MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width];
             MainForm.editArea.Back1 = MainForm.editArea.Back;
             numericUpDown1.Value = MainForm.editArea.Tool.PenID;
+            if (ToolPen.rotation.ContainsKey(MainForm.editArea.Tool.PenID)) {
+                if (bdata.getRotation(MainForm.editArea.Tool.PenID, ToolPen.rotation[MainForm.editArea.Tool.PenID]) != null)
+                {
+                    RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID, ToolPen.rotation[MainForm.editArea.Tool.PenID]);
+                    findRotate.Value = ToolPen.rotation[MainForm.editArea.Tool.PenID];
+                }
+            }
+            else
+            {
+                if (bdata.getRotation(MainForm.editArea.Tool.PenID, 0) != null)
+                {
+                    RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID,0);
+                }
+            }
+
             numericUpDown2.Value = 0;
             //if (bdata.getRotation(numericUpDown1.Value, MainForm.editArea.Frames[0].BlockData[yy, xx]) != null) MainForm.editArea.Back = bdata.getRotation(MainForm.editArea.Frames[0].Foreground[yy, xx], MainForm.editArea.Frames[0].BlockData[yy, xx]);
             Bitmap img2 = MainForm.foregroundBMD.Clone(new Rectangle(0 * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
@@ -880,14 +895,17 @@ namespace EEditor
             var bid = (int)numericUpDown1.Value;
             if (bid < 500 || bid >= 1001)
             {
+
                 if (MainForm.decosBMI[bid] != 0)
                 {
-                    img1 = MainForm.decosBMD.Clone(new Rectangle(MainForm.decosBMI[bid] * 16, 0, 16, 16), MainForm.decosBMD.PixelFormat);
+                    img1 = bdata.getRotation(bid, (int)findRotate.Value);
                 }
                 else if (MainForm.miscBMI[bid] != 0)
                 {
-                    RotationPictureBox1.Image = bdata.getRotation(bid, (int)findRotate.Value);
+                    img1 = bdata.getRotation(bid, (int)findRotate.Value);
                 }
+                if (img1 != null) RotationPictureBox1.Image = img1;
+                else RotationPictureBox1.Image = Properties.Resources.cross;
             }
             
         }
@@ -919,6 +937,25 @@ namespace EEditor
                         }
                     }
                 }
+            }
+        }
+
+        private void replaceRotate_ValueChanged(object sender, EventArgs e)
+        {
+            var bid = (int)numericUpDown2.Value;
+            if (bid < 500 || bid >= 1001)
+            {
+
+                if (MainForm.decosBMI[bid] != 0)
+                {
+                    img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
+                }
+                else if (MainForm.miscBMI[bid] != 0)
+                {
+                    img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
+                }
+                if (img1 != null) ReplacePictureBox2.Image = img1;
+                else  ReplacePictureBox2.Image = Properties.Resources.cross;
             }
         }
     }

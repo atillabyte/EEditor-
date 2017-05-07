@@ -86,11 +86,11 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ReplaceTextBox = new System.Windows.Forms.TextBox();
+            this.FindTextBox = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.WorldPortalRadioButton = new System.Windows.Forms.RadioButton();
+            this.SignRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rotateIcon1)).BeginInit();
@@ -268,6 +268,7 @@
             this.replaceRotate.Name = "replaceRotate";
             this.replaceRotate.Size = new System.Drawing.Size(40, 20);
             this.replaceRotate.TabIndex = 19;
+            this.replaceRotate.ValueChanged += new System.EventHandler(this.replaceRotate_ValueChanged);
             // 
             // findRotate
             // 
@@ -699,11 +700,11 @@
             // 
             this.tabPage3.Controls.Add(this.label16);
             this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.textBox4);
-            this.tabPage3.Controls.Add(this.textBox3);
+            this.tabPage3.Controls.Add(this.ReplaceTextBox);
+            this.tabPage3.Controls.Add(this.FindTextBox);
             this.tabPage3.Controls.Add(this.label15);
-            this.tabPage3.Controls.Add(this.radioButton7);
-            this.tabPage3.Controls.Add(this.radioButton8);
+            this.tabPage3.Controls.Add(this.WorldPortalRadioButton);
+            this.tabPage3.Controls.Add(this.SignRadioButton);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(249, 121);
@@ -731,21 +732,21 @@
             this.label17.TabIndex = 48;
             this.label17.Text = "Replace:";
             // 
-            // textBox4
+            // ReplaceTextBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(133, 26);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 67);
-            this.textBox4.TabIndex = 46;
+            this.ReplaceTextBox.Location = new System.Drawing.Point(133, 26);
+            this.ReplaceTextBox.Multiline = true;
+            this.ReplaceTextBox.Name = "ReplaceTextBox";
+            this.ReplaceTextBox.Size = new System.Drawing.Size(100, 67);
+            this.ReplaceTextBox.TabIndex = 46;
             // 
-            // textBox3
+            // FindTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(13, 26);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 67);
-            this.textBox3.TabIndex = 45;
+            this.FindTextBox.Location = new System.Drawing.Point(13, 26);
+            this.FindTextBox.Multiline = true;
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(100, 67);
+            this.FindTextBox.TabIndex = 45;
             // 
             // label15
             // 
@@ -756,27 +757,27 @@
             this.label15.TabIndex = 44;
             this.label15.Text = "Block type:";
             // 
-            // radioButton7
+            // WorldPortalRadioButton
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(151, 96);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(82, 17);
-            this.radioButton7.TabIndex = 43;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "World portal";
-            this.radioButton7.UseVisualStyleBackColor = true;
+            this.WorldPortalRadioButton.AutoSize = true;
+            this.WorldPortalRadioButton.Location = new System.Drawing.Point(151, 96);
+            this.WorldPortalRadioButton.Name = "WorldPortalRadioButton";
+            this.WorldPortalRadioButton.Size = new System.Drawing.Size(82, 17);
+            this.WorldPortalRadioButton.TabIndex = 43;
+            this.WorldPortalRadioButton.TabStop = true;
+            this.WorldPortalRadioButton.Text = "World portal";
+            this.WorldPortalRadioButton.UseVisualStyleBackColor = true;
             // 
-            // radioButton8
+            // SignRadioButton
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(90, 96);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(46, 17);
-            this.radioButton8.TabIndex = 42;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Sign";
-            this.radioButton8.UseVisualStyleBackColor = true;
+            this.SignRadioButton.AutoSize = true;
+            this.SignRadioButton.Location = new System.Drawing.Point(90, 96);
+            this.SignRadioButton.Name = "SignRadioButton";
+            this.SignRadioButton.Size = new System.Drawing.Size(46, 17);
+            this.SignRadioButton.TabIndex = 42;
+            this.SignRadioButton.TabStop = true;
+            this.SignRadioButton.Text = "Sign";
+            this.SignRadioButton.UseVisualStyleBackColor = true;
             // 
             // Replacer
             // 
@@ -892,11 +893,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ReplaceTextBox;
+        private System.Windows.Forms.TextBox FindTextBox;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton WorldPortalRadioButton;
+        private System.Windows.Forms.RadioButton SignRadioButton;
         private System.Windows.Forms.Button ClearBgsButton;
         private System.Windows.Forms.PictureBox ReplacePictureBox2;
         private System.Windows.Forms.PictureBox RotationPictureBox1;
