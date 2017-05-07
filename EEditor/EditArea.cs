@@ -189,7 +189,17 @@ namespace EEditor
                         incfg += Tool.PenID + ":" + CurFrame.Background[ys[i], xs[i]] + ":" + xs[i] + ":" + ys[i] + ":";
 
                     }
-                    CurFrame.Background[ys[i], xs[i]] = Tool.PenID;
+                    if (Tool.PenSize == 1) CurFrame.Background[ys[i], xs[i]] = Tool.PenID;
+                    else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
+                    {
+                        for (int yy = 0; yy < Tool.PenSize; yy++)
+                        {
+                            for (int xx = 0; xx < Tool.PenSize; xx++)
+                            {
+                                CurFrame.Background[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                            }
+                        }
+                    }
                 }
                 if (Tool.PenID < 500 || Tool.PenID >= 1001)
                 {
@@ -220,12 +230,33 @@ namespace EEditor
                         if (Tool.IsPaintable(xs[i], ys[i], Tool.PenID, true) && Tool.IsPaintable(xs[i], ys[i], Tool.PenID, false))
                         {
 
-                            CurFrame.Foreground[ys[i], xs[i]] = Tool.PenID;
+                            if (Tool.PenSize == 1) CurFrame.Foreground[ys[i], xs[i]] = Tool.PenID;
+                            else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
+                            {
+                                for (int yy = 0; yy < Tool.PenSize; yy++)
+                                {
+                                    for (int xx = 0; xx < Tool.PenSize; xx++)
+                                    {
+                                        CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
 
-                Draw(xs[i], ys[i], g, Color.Transparent);
+                if (Tool.PenSize == 1) Draw(xs[i], ys[i], g, Color.Transparent);
+                else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
+                {
+                    for (int yy = 0; yy < Tool.PenSize; yy++)
+                    {
+                        for (int xx = 0; xx < Tool.PenSize; xx++)
+                        {
+                            Draw(xs[i] + xx, ys[i] + yy, g, Color.Transparent);
+                        }
+                    }
+                }
+                
             }
             g.Save();
             for (int i = 0; i < xs.Count; ++i)
