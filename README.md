@@ -1,5 +1,5 @@
-# EEditor-
-This is the source code for the offline editor EEditor for Everybody Edits  
-The code isn't the cutest but the tool work, right? :p
+# EEditor
+This is the source code for the offline editor EEditor for Everybody Edits.  
+If there is errors after compile for you I can't tell you what's wrong. Because the uploaded code is in beta stage only.
 
-This code is version 3.5.9
+If you came here and want the stable builds please go to [Stable builds](https://github.com/capasha/eeditor/releases)
