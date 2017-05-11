@@ -17,6 +17,7 @@ namespace EEditor
         MainForm MainForm { get; set; }
         private int[,] replaced;
         private int[,] replaced1;
+        private int[,] lastBlock;
         Bitmap bmp = new Bitmap(1, 1);
         Bitmap img1;
         public Replacer(MainForm mainForm)
@@ -30,6 +31,7 @@ namespace EEditor
             bmp = new Bitmap(MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width);
             replaced = new int[MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width];
             replaced1 = new int[MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width];
+            lastBlock = new int[MainForm.editArea.Frames[0].Height, MainForm.editArea.Frames[0].Width];
             MainForm.editArea.Back1 = MainForm.editArea.Back;
             numericUpDown1.Value = MainForm.editArea.Tool.PenID;
 
@@ -70,6 +72,14 @@ namespace EEditor
 
             tp.SetToolTip(toolStripContainer1.ContentPanel, "Left click: insert ID to find box\nRight click: insert ID to replace box"); // Would be more useful if the tooltip was added to single blocks
             this.Text = MainForm.debug ? "Find & replace - Debug Activated" : "Find & replace";
+
+            for (int y = 0; y < MainForm.editArea.Frames[0].Height; y++)
+            {
+                for (int x = 0; x < MainForm.editArea.Frames[0].Width; x++)
+                {
+                    lastBlock[y, x] = -1;
+                }
+            }
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -494,25 +504,27 @@ namespace EEditor
             {
                 for (int x = 0; x < MainForm.editArea.Frames[0].Width; x++)
                 {
-                    if (MainForm.editArea.Frames[0].Foreground[y, x] == numericUpDown1.Value && MainForm.editArea.Tool.IsPaintable(x, y, (int)numericUpDown2.Value, true))
+                    replaced[y, x] = 0;
+                    replaced1[y, x] = 0;
+                    if (lastBlock[y,x] == numericUpDown1.Value)
                     {
                         first += 1;
                         if (first == 1)
                         {
+
                             Point p = new Point(x * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.X), y * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.Y));
                             MainForm.editArea.Frames[0].Foreground[y, x] = (int)numericUpDown2.Value;
                             MainForm.editArea.Draw(x, y, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
-                            MainForm.editArea.Invalidate(new Rectangle(p, new Size(16, 16)));
+                            MainForm.editArea.Invalidate();
                             label4.Text = "Finished replacing block ID " + numericUpDown1.Value + " with " + numericUpDown2.Value + "."; //Checks for last row, not last block unfortunately
+                            lastBlock[y, x] = -1;
                             break;
-                        }
-                        else
-                        {
-                            label4.Text = "Replaced block ID " + numericUpDown1.Value + " with " + numericUpDown2.Value + ".";
                         }
                     }
                 }
             }
+            MainForm.editArea.Back1 = MainForm.editArea.Back;
+            MainForm.editArea.Invalidate();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -601,9 +613,10 @@ namespace EEditor
                                                 if (SignRadioButton.Checked || WorldPortalRadioButton.Checked)
                                                 {
                                                     MainForm.editArea.Frames[0].BlockData3[yy, xx] = ReplaceTextBox.Text;
+                                                    MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
                                                 }
                                             }
-                                            MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                            if (NormalRadioButton.Checked) MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
                                         }
                                     }
                                 }
@@ -667,7 +680,7 @@ namespace EEditor
                         if (first == 1)
                         {
 
-
+                            lastBlock[y, x] = MainForm.editArea.Frames[0].Foreground[y, x];
                             Point p = new Point(x * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.X), y * 16 - Math.Abs(MainForm.editArea.AutoScrollPosition.Y));
                             Graphics gr = Graphics.FromImage(MainForm.editArea.Back1);
                             gr.DrawRectangle(new Pen(Color.Red), new Rectangle(x * 16, y * 16, 15, 15));
@@ -683,6 +696,7 @@ namespace EEditor
                         Bitmap img1 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[MainForm.editArea.Frames[0].Foreground[y, x]] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
                         Graphics gr = Graphics.FromImage(MainForm.editArea.Back1);
                         gr.DrawImage(img1, new Point(x * 16, y * 16));
+                        lastBlock[y, x] = -1;
                         //gr.DrawRectangle(new Pen(Color.FromArgb(255, 0, 0, 0)), new Rectangle(x * 16, y * 16, 16, 16));
                         //gr.FillRectangle(new SolidBrush(Color.Transparent), new Rectangle(x * 16, y * 16, 16, 16));
                     }
@@ -978,6 +992,51 @@ namespace EEditor
                 if (img1 != null) ReplacePictureBox2.Image = img1;
                 else ReplacePictureBox2.Image = Properties.Resources.cross;
             }
+        }
+
+        private void PortalRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = true;
+            PortalINVRadioButton.Checked = false;
+            SignRadioButton.Checked = false;
+            WorldPortalRadioButton.Checked = false;
+            NormalRadioButton.Checked = false;
+        }
+
+        private void PortalINVRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = false;
+            PortalINVRadioButton.Checked = true;
+            SignRadioButton.Checked = false;
+            WorldPortalRadioButton.Checked = false;
+            NormalRadioButton.Checked = false;
+        }
+
+        private void NormalRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = false;
+            PortalINVRadioButton.Checked = false;
+            SignRadioButton.Checked = false;
+            WorldPortalRadioButton.Checked = false;
+            NormalRadioButton.Checked = true;
+        }
+
+        private void SignRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = false;
+            PortalINVRadioButton.Checked = false;
+            SignRadioButton.Checked = true;
+            WorldPortalRadioButton.Checked = false;
+            NormalRadioButton.Checked = false;
+        }
+
+        private void WorldPortalRadioButton_Click(object sender, EventArgs e)
+        {
+            PortalRadioButton.Checked = false;
+            PortalINVRadioButton.Checked = false;
+            SignRadioButton.Checked = false;
+            WorldPortalRadioButton.Checked = true;
+            NormalRadioButton.Checked = false;
         }
     }
 }

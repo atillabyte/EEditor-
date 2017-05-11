@@ -35,13 +35,13 @@
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ClearBgsButton = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.ClearBgsButton = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             this.rotateIcon2 = new System.Windows.Forms.PictureBox();
             this.rotateIcon1 = new System.Windows.Forms.PictureBox();
             this.replaceRotate = new System.Windows.Forms.NumericUpDown();
@@ -62,6 +62,7 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.NormalRadioButton = new System.Windows.Forms.RadioButton();
             this.ReplacePictureBox2 = new System.Windows.Forms.PictureBox();
             this.RotationPictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -157,27 +158,23 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.ClearBgsButton);
+            this.groupBox1.Controls.Add(this.button3);
+            this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Location = new System.Drawing.Point(270, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(278, 324);
+            this.groupBox1.Size = new System.Drawing.Size(278, 349);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Find && replace";
             // 
-            // ClearBgsButton
-            // 
-            this.ClearBgsButton.Location = new System.Drawing.Point(76, 264);
-            this.ClearBgsButton.Name = "ClearBgsButton";
-            this.ClearBgsButton.Size = new System.Drawing.Size(136, 40);
-            this.ClearBgsButton.TabIndex = 0;
-            this.ClearBgsButton.Text = "Clear bgs behind blocks";
-            this.ClearBgsButton.UseVisualStyleBackColor = true;
-            this.ClearBgsButton.Click += new System.EventHandler(this.ClearBgsButton_Click);
-            // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(422, 229);
+            this.button9.Location = new System.Drawing.Point(152, 253);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(92, 34);
             this.button9.TabIndex = 17;
@@ -188,53 +185,63 @@
             // button5
             // 
             this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(422, 179);
+            this.button5.Location = new System.Drawing.Point(152, 202);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(45, 45);
             this.button5.TabIndex = 10;
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(300, 229);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(92, 34);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "Reset view";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // button4
             // 
             this.button4.Image = global::EEditor.Properties.Resources.find_next;
-            this.button4.Location = new System.Drawing.Point(300, 180);
+            this.button4.Location = new System.Drawing.Point(31, 202);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(45, 45);
             this.button4.TabIndex = 9;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button3
-            // 
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(346, 180);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 45);
-            this.button3.TabIndex = 8;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // button1
             // 
             this.button1.Image = global::EEditor.Properties.Resources.replace_all;
-            this.button1.Location = new System.Drawing.Point(469, 179);
+            this.button1.Location = new System.Drawing.Point(199, 202);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 45);
             this.button1.TabIndex = 4;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // ClearBgsButton
+            // 
+            this.ClearBgsButton.Location = new System.Drawing.Point(82, 293);
+            this.ClearBgsButton.Name = "ClearBgsButton";
+            this.ClearBgsButton.Size = new System.Drawing.Size(136, 40);
+            this.ClearBgsButton.TabIndex = 0;
+            this.ClearBgsButton.Text = "Clear bgs behind blocks";
+            this.ClearBgsButton.UseVisualStyleBackColor = true;
+            this.ClearBgsButton.Click += new System.EventHandler(this.ClearBgsButton_Click);
+            // 
+            // button3
+            // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.Location = new System.Drawing.Point(82, 202);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 45);
+            this.button3.TabIndex = 8;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(28, 253);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(92, 34);
+            this.button8.TabIndex = 16;
+            this.button8.Text = "Reset view";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // rotateIcon2
             // 
@@ -423,7 +430,7 @@
             // 
             this.groupBox5.Controls.Add(this.progressBar1);
             this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Location = new System.Drawing.Point(12, 335);
+            this.groupBox5.Location = new System.Drawing.Point(12, 360);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(536, 42);
             this.groupBox5.TabIndex = 16;
@@ -445,11 +452,12 @@
             this.tabControl1.Location = new System.Drawing.Point(283, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(257, 147);
+            this.tabControl1.Size = new System.Drawing.Size(257, 171);
             this.tabControl1.TabIndex = 17;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.NormalRadioButton);
             this.tabPage1.Controls.Add(this.ReplacePictureBox2);
             this.tabPage1.Controls.Add(this.RotationPictureBox1);
             this.tabPage1.Controls.Add(this.label6);
@@ -467,10 +475,23 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(249, 121);
+            this.tabPage1.Size = new System.Drawing.Size(249, 145);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Normal";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // NormalRadioButton
+            // 
+            this.NormalRadioButton.AutoSize = true;
+            this.NormalRadioButton.Checked = true;
+            this.NormalRadioButton.Location = new System.Drawing.Point(11, 98);
+            this.NormalRadioButton.Name = "NormalRadioButton";
+            this.NormalRadioButton.Size = new System.Drawing.Size(58, 17);
+            this.NormalRadioButton.TabIndex = 26;
+            this.NormalRadioButton.TabStop = true;
+            this.NormalRadioButton.Text = "Normal";
+            this.NormalRadioButton.UseVisualStyleBackColor = true;
+            this.NormalRadioButton.Click += new System.EventHandler(this.NormalRadioButton_Click);
             // 
             // ReplacePictureBox2
             // 
@@ -527,7 +548,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(249, 121);
+            this.tabPage2.Size = new System.Drawing.Size(249, 145);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Portal";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -535,7 +556,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 98);
+            this.label14.Location = new System.Drawing.Point(9, 106);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(60, 13);
             this.label14.TabIndex = 41;
@@ -544,24 +565,37 @@
             // PortalINVRadioButton
             // 
             this.PortalINVRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.PortalINVRadioButton.AutoSize = true;
-            this.PortalINVRadioButton.Location = new System.Drawing.Point(172, 96);
+            this.PortalINVRadioButton.FlatAppearance.BorderSize = 0;
+            this.PortalINVRadioButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.PortalINVRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.PortalINVRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.PortalINVRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PortalINVRadioButton.Location = new System.Drawing.Point(172, 101);
             this.PortalINVRadioButton.Name = "PortalINVRadioButton";
-            this.PortalINVRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.PortalINVRadioButton.Size = new System.Drawing.Size(29, 23);
             this.PortalINVRadioButton.TabIndex = 40;
             this.PortalINVRadioButton.TabStop = true;
             this.PortalINVRadioButton.UseVisualStyleBackColor = true;
+            this.PortalINVRadioButton.Click += new System.EventHandler(this.PortalINVRadioButton_Click);
             // 
             // PortalRadioButton
             // 
             this.PortalRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.PortalRadioButton.AutoSize = true;
-            this.PortalRadioButton.Location = new System.Drawing.Point(89, 96);
+            this.PortalRadioButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.PortalRadioButton.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PortalRadioButton.FlatAppearance.BorderSize = 0;
+            this.PortalRadioButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.PortalRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.PortalRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.PortalRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PortalRadioButton.Location = new System.Drawing.Point(88, 101);
+            this.PortalRadioButton.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
             this.PortalRadioButton.Name = "PortalRadioButton";
-            this.PortalRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.PortalRadioButton.Size = new System.Drawing.Size(29, 23);
             this.PortalRadioButton.TabIndex = 39;
             this.PortalRadioButton.TabStop = true;
             this.PortalRadioButton.UseVisualStyleBackColor = true;
+            this.PortalRadioButton.Click += new System.EventHandler(this.PortalRadioButton_Click);
             // 
             // label13
             // 
@@ -707,7 +741,7 @@
             this.tabPage3.Controls.Add(this.SignRadioButton);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(249, 121);
+            this.tabPage3.Size = new System.Drawing.Size(249, 145);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Text";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -751,7 +785,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(10, 98);
+            this.label15.Location = new System.Drawing.Point(8, 106);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(60, 13);
             this.label15.TabIndex = 44;
@@ -760,38 +794,42 @@
             // WorldPortalRadioButton
             // 
             this.WorldPortalRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.WorldPortalRadioButton.AutoSize = true;
-            this.WorldPortalRadioButton.Location = new System.Drawing.Point(151, 96);
+            this.WorldPortalRadioButton.FlatAppearance.BorderSize = 0;
+            this.WorldPortalRadioButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.WorldPortalRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.WorldPortalRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.WorldPortalRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.WorldPortalRadioButton.Location = new System.Drawing.Point(153, 101);
             this.WorldPortalRadioButton.Name = "WorldPortalRadioButton";
-            this.WorldPortalRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.WorldPortalRadioButton.Size = new System.Drawing.Size(29, 23);
             this.WorldPortalRadioButton.TabIndex = 43;
             this.WorldPortalRadioButton.TabStop = true;
             this.WorldPortalRadioButton.UseVisualStyleBackColor = true;
+            this.WorldPortalRadioButton.Click += new System.EventHandler(this.WorldPortalRadioButton_Click);
             // 
             // SignRadioButton
             // 
             this.SignRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
-            this.SignRadioButton.AutoSize = true;
-            this.SignRadioButton.Location = new System.Drawing.Point(90, 96);
+            this.SignRadioButton.FlatAppearance.BorderSize = 0;
+            this.SignRadioButton.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.SignRadioButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.Window;
+            this.SignRadioButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.SignRadioButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SignRadioButton.Location = new System.Drawing.Point(74, 101);
             this.SignRadioButton.Name = "SignRadioButton";
-            this.SignRadioButton.Size = new System.Drawing.Size(6, 6);
+            this.SignRadioButton.Size = new System.Drawing.Size(29, 23);
             this.SignRadioButton.TabIndex = 42;
             this.SignRadioButton.TabStop = true;
             this.SignRadioButton.UseVisualStyleBackColor = true;
+            this.SignRadioButton.Click += new System.EventHandler(this.SignRadioButton_Click);
             // 
             // Replacer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(558, 389);
-            this.Controls.Add(this.button9);
+            this.ClientSize = new System.Drawing.Size(558, 414);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.groupBox5);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -901,5 +939,6 @@
         private System.Windows.Forms.Button ClearBgsButton;
         private System.Windows.Forms.PictureBox ReplacePictureBox2;
         private System.Windows.Forms.PictureBox RotationPictureBox1;
+        private System.Windows.Forms.RadioButton NormalRadioButton;
     }
 }
