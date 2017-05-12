@@ -159,6 +159,8 @@ namespace EEditor
                         imageSpecialblocksAction = false,
                         random = false,
                         reverse = false,
+                        ColorFG = true,
+                        ColorBG = true
 
                     };
                     MainForm.userdata.openWorld = false;

@@ -101,6 +101,8 @@ namespace EEditor
                 if (userdata.random.ToString() == null) userdata.random = false;
                 if (userdata.reverse.ToString() == null) userdata.reverse = false;
                 if (userdata.IgnoreBlocks == null) userdata.IgnoreBlocks = new List<JToken>() { };
+                if (userdata.ColorBG.ToString() == null) userdata.ColorBG = true;
+                if (userdata.ColorFG.ToString() == null) userdata.ColorFG = true;
             }
             else
             {
@@ -130,7 +132,9 @@ namespace EEditor
                     imageSpecialblocksAction = false,
                     random = false,
                     reverse = false,
-                    IgnoreBlocks = new List<JToken>() { }
+                    IgnoreBlocks = new List<JToken>() { },
+                    ColorFG = true,
+                    ColorBG = true
 
 
 
@@ -616,20 +620,14 @@ namespace EEditor
         {
             if (historyToolStrip.InvokeRequired)
             {
-                try
-                {
-                    if (ToolPen.undolist.Count >= 1) this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; });
-                    if (ToolPen.redolist.Count >= 1) this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; });
-                    if (ToolPen.undolist.Count == 0) this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; });
-                    if (ToolPen.redolist.Count == 0) this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; });
-                    if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; });
-                    if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; });
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                if (ToolPen.undolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; }); }
+                if (ToolPen.redolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; }); }
+                if (ToolPen.undolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; }); }
+                if (ToolPen.redolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; }); }
+                if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); }
+                if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); }
             }
+            
 
         }
         #endregion
@@ -1985,13 +1983,12 @@ namespace EEditor
                 }
             }
             #endregion
-            private void lastSelectedBlocksUpdate(BrickButton bb)
+            public static void lastSelectedBlocksUpdate(BrickButton bb)
             {
                 BrickButton cur = bb;
                 var bid = cur.ID;
                 var derp = cur.Name;
-                Console.WriteLine(cur.mode);
-                if (MainForm.lastUsedBlockButton0.Name != cur.ID.ToString() && MainForm.lastUsedBlockButton1.Name != cur.ID.ToString() && MainForm.lastUsedBlockButton2.Name != cur.ID.ToString() && MainForm.lastUsedBlockButton3.Name != cur.ID.ToString() && MainForm.lastUsedBlockButton4.Name != cur.ID.ToString())
+                if (MainForm.editArea.MainForm.lastUsedBlockButton0.Name != cur.ID.ToString() && MainForm.editArea.MainForm.lastUsedBlockButton1.Name != cur.ID.ToString() && MainForm.editArea.MainForm.lastUsedBlockButton2.Name != cur.ID.ToString() && MainForm.editArea.MainForm.lastUsedBlockButton3.Name != cur.ID.ToString() && MainForm.editArea.MainForm.lastUsedBlockButton4.Name != cur.ID.ToString())
                 {
                     Bitmap img4 = new Bitmap(16, 16); ;
                     if (cur.ID < 500 || cur.ID >= 1001)
@@ -2013,20 +2010,20 @@ namespace EEditor
                     {
                         img4 = backgroundBMD.Clone(new Rectangle(backgroundBMI[cur.ID] * 16, 0, 16, 16), backgroundBMD.PixelFormat);
                     }
-                    MainForm.lastUsedBlockButton4.Image = MainForm.lastUsedBlockButton3.Image;
-                    MainForm.lastUsedBlockButton4.Name = MainForm.lastUsedBlockButton3.Name;
+                    MainForm.editArea.MainForm.lastUsedBlockButton4.Image = MainForm.editArea.MainForm.lastUsedBlockButton3.Image;
+                    MainForm.editArea.MainForm.lastUsedBlockButton4.Name = MainForm.editArea.MainForm.lastUsedBlockButton3.Name;
 
-                    MainForm.lastUsedBlockButton3.Image = MainForm.lastUsedBlockButton2.Image;
-                    MainForm.lastUsedBlockButton3.Name = MainForm.lastUsedBlockButton2.Name;
+                    MainForm.editArea.MainForm.lastUsedBlockButton3.Image = MainForm.editArea.MainForm.lastUsedBlockButton2.Image;
+                    MainForm.editArea.MainForm.lastUsedBlockButton3.Name = MainForm.editArea.MainForm.lastUsedBlockButton2.Name;
 
-                    MainForm.lastUsedBlockButton2.Image = MainForm.lastUsedBlockButton1.Image;
-                    MainForm.lastUsedBlockButton2.Name = MainForm.lastUsedBlockButton1.Name;
+                    MainForm.editArea.MainForm.lastUsedBlockButton2.Image = MainForm.editArea.MainForm.lastUsedBlockButton1.Image;
+                    MainForm.editArea.MainForm.lastUsedBlockButton2.Name = MainForm.editArea.MainForm.lastUsedBlockButton1.Name;
 
-                    MainForm.lastUsedBlockButton1.Image = MainForm.lastUsedBlockButton0.Image;
-                    MainForm.lastUsedBlockButton1.Name = MainForm.lastUsedBlockButton0.Name;
+                    MainForm.editArea.MainForm.lastUsedBlockButton1.Image = MainForm.editArea.MainForm.lastUsedBlockButton0.Image;
+                    MainForm.editArea.MainForm.lastUsedBlockButton1.Name = MainForm.editArea.MainForm.lastUsedBlockButton0.Name;
 
-                    MainForm.lastUsedBlockButton0.Image = img4;
-                    MainForm.lastUsedBlockButton0.Name = cur.ID.ToString();
+                    MainForm.editArea.MainForm.lastUsedBlockButton0.Image = img4;
+                    MainForm.editArea.MainForm.lastUsedBlockButton0.Name = cur.ID.ToString();
                 }
                 else
                 {
@@ -2221,6 +2218,7 @@ namespace EEditor
                     {
                         if (item.ID == id)
                         {
+                            
                             showBlocksButton.PerformClick();
                             editArea.Tool.PenID = item.ID;
                             selectedBrick.Checked = false;
@@ -2230,6 +2228,7 @@ namespace EEditor
                             tip.Show("V", ctrl, rec.X, rec.Y - 20, 2000);
                             selectedBrick = item;
                             found = 1;
+                            BrickButton.lastSelectedBlocksUpdate(item);
                             break;
                         }
 
@@ -2253,6 +2252,7 @@ namespace EEditor
                                 selectedBrick = cur;
                                 cur.Checked = true;
                                 found = 2;
+                                BrickButton.lastSelectedBlocksUpdate(item);
                                 break;
                             }
 
@@ -3696,7 +3696,7 @@ namespace EEditor
                     e.Cancel = true;
                 }
             }
-
+            timer.Stop();
             string s = "";
             for (int i = 0; i < 10; i++)
             {
@@ -3712,14 +3712,6 @@ namespace EEditor
             ToolPen.text.Clear();
             ToolPen.id.Clear();
             ToolPen.target.Clear();
-            try
-            {
-                timer.Stop();
-            }
-            catch
-            {
-
-            }
         }
         #endregion
 
@@ -3828,6 +3820,8 @@ namespace EEditor
         public bool random { get; set; }
         public bool openCodeWorld { get; set; }
         public List<JToken> IgnoreBlocks { get; set; }
+        public bool ColorFG { get; set; }
+        public bool ColorBG { get; set; }
 
     }
     public class removeBadRenderer : ToolStripSystemRenderer

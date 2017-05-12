@@ -210,7 +210,7 @@
             this.toolStripSeparator1,
             this.hideBlocksButton,
             this.minimapButton});
-            this.viewToolStrip.Location = new System.Drawing.Point(350, 0);
+            this.viewToolStrip.Location = new System.Drawing.Point(381, 0);
             this.viewToolStrip.Name = "viewToolStrip";
             this.viewToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.viewToolStrip.Size = new System.Drawing.Size(180, 27);
@@ -1009,7 +1009,7 @@
             this.findToolStrip.Location = new System.Drawing.Point(218, 0);
             this.findToolStrip.Name = "findToolStrip";
             this.findToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.findToolStrip.Size = new System.Drawing.Size(132, 27);
+            this.findToolStrip.Size = new System.Drawing.Size(163, 27);
             this.findToolStrip.TabIndex = 1;
             this.findToolStrip.Text = "toolStrip1";
             // 
@@ -1041,7 +1041,7 @@
             this.lastUsedBlockButton2,
             this.lastUsedBlockButton3,
             this.lastUsedBlockButton4});
-            this.lastUsedToolStrip.Location = new System.Drawing.Point(530, 0);
+            this.lastUsedToolStrip.Location = new System.Drawing.Point(561, 0);
             this.lastUsedToolStrip.Name = "lastUsedToolStrip";
             this.lastUsedToolStrip.Size = new System.Drawing.Size(118, 25);
             this.lastUsedToolStrip.TabIndex = 3;

@@ -12,27 +12,36 @@ namespace EEditor
         public ToolPicker(EditArea editArea)
             : base(editArea)
         {
-
-            ColorDialog cd = new ColorDialog();
-            if (cd.ShowDialog() == DialogResult.OK)
+            ToolpickerSettings settings = new ToolpickerSettings();
+            if (settings.ShowDialog() == DialogResult.OK)
             {
-                Color2ID(cd.Color);
+                ColorDialog cd = new ColorDialog();
+                if (cd.ShowDialog() == DialogResult.OK)
+                {
+                    Color2ID(cd.Color);
+                }
             }
         }
         private void Color2ID(Color color)
         {
-            foreach (uint lst in InsertImageForm.Blocks)
+            if (MainForm.userdata.ColorFG)
             {
-                if (!colblocks.ContainsValue((int)lst) && !colblocks.ContainsKey(Color.FromArgb((int)Minimap.Colors[lst])))
+                foreach (uint lst in InsertImageForm.Blocks)
                 {
-                    colblocks.Add(Color.FromArgb((int)Minimap.Colors[lst]), (int)lst);
+                    if (!colblocks.ContainsValue((int)lst) && !colblocks.ContainsKey(Color.FromArgb((int)Minimap.Colors[lst])))
+                    {
+                        colblocks.Add(Color.FromArgb((int)Minimap.Colors[lst]), (int)lst);
+                    }
                 }
             }
-            foreach (uint lst1 in InsertImageForm.Background)
+            if (MainForm.userdata.ColorBG)
             {
-                if (!colblocks.ContainsValue((int)lst1) && !colblocks.ContainsKey(Color.FromArgb((int)Minimap.Colors[lst1])))
+                foreach (uint lst1 in InsertImageForm.Background)
                 {
-                    colblocks.Add(Color.FromArgb((int)Minimap.Colors[lst1]), (int)lst1);
+                    if (!colblocks.ContainsValue((int)lst1) && !colblocks.ContainsKey(Color.FromArgb((int)Minimap.Colors[lst1])))
+                    {
+                        colblocks.Add(Color.FromArgb((int)Minimap.Colors[lst1]), (int)lst1);
+                    }
                 }
             }
             var bid = closestColor(color);
