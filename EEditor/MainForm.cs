@@ -21,6 +21,8 @@ namespace EEditor
     {
         public static bool debug = false;
         public static string selectedAcc = "guest";
+        public static bool OpenWorld = false;
+        public static bool OpenWorldCode = false;
         public static userData userdata = new userData();
         public static string pathSettings = Directory.GetCurrentDirectory() + @"\settings.json";
         private Dictionary<int, Bitmap> sblocks = new Dictionary<int, Bitmap>();
@@ -141,8 +143,8 @@ namespace EEditor
                 };
                 File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
             }
-            userdata.openWorld = false;
-            userdata.openCodeWorld = false;
+            OpenWorld = false;
+            OpenWorldCode = false;
             userdata.useColor = false;
             userdata.thisColor = Color.Transparent;
             starting = true;
@@ -823,7 +825,7 @@ namespace EEditor
             AddToolStrip(foregroundBMD, 0, new int[] { 22, 235, 32, 236, 33 }, new uint[] { 0x895B12, 0xD19322, 0xCF9022, 0x523B0F, 0x000000 }, false, "Generic", 0, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 45, 46, 47, 48, 49 }, new uint[] { 0x72614B, 0x6E6B60, 0x8E734F, 0x7F4F2B, 0x757575 }, false, "Factory", 0, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 44 }, new uint[] { 0x000000 }, false, "Secrets", 0, 0, true);
-            if (!userdata.openWorld) AddToolStrip(miscBMD, 1, new int[] { 9, 10, 16 }, null, false, "Secrets", 0, 0, true);
+            if (!OpenWorld) AddToolStrip(miscBMD, 1, new int[] { 9, 10, 16 }, null, false, "Secrets", 0, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 51, 52, 53, 54, 55, 56, 57, 58 }, new uint[] { 0xF89299, 0xE98BF6, 0xA789F6, 0x7E99F6, 0x95DCF6, 0x92FBAA, 0xF8DA8C, 0xF6BA94 }, false, "Glass", 0, 0, true);
             if (ihavethese.Contains("brickminiral") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 70, 71, 72, 73, 74, 75, 76 }, new uint[] { 0xEE0000, 0xEE00EE, 0x0000EE, 0x00EEEE, 0x00EE00, 0xEEEE00, 0xEE7700 }, false, "Minerals", 0, 0, true); }
             else { AddToolStrip(foregroundBMD, 0, new int[] { 70, 71, 72, 73, 74, 75, 76 }, new uint[] { 0xEE0000, 0xEE00EE, 0x0000EE, 0x00EEEE, 0x00EE00, 0xEEEE00, 0xEE7700 }, false, "Minerals", 0, 0, false); }
@@ -3126,16 +3128,16 @@ namespace EEditor
                     userdata.useColor = false;
                     if (levelTextbox.Text.StartsWith("OW"))
                     {
-                        userdata.openWorld = true;
+                        OpenWorld = true;
                         InsertImageForm.Background.Clear();
                         InsertImageForm.Blocks.Clear();
                         rebuildGUI(false);
                     }
                     else
                     {
-                        if (userdata.openWorld)
+                        if (OpenWorld)
                         {
-                            userdata.openWorld = false;
+                            OpenWorld = false;
                             rebuildGUI(false);
                         }
 
@@ -3158,16 +3160,16 @@ namespace EEditor
                     userdata.useColor = false;
                     if (levelTextbox.Text.StartsWith("OW"))
                     {
-                        userdata.openWorld = true;
+                        OpenWorld = true;
                         InsertImageForm.Background.Clear();
                         InsertImageForm.Blocks.Clear();
                         rebuildGUI(false);
                     }
                     else
                     {
-                        if (userdata.openWorld)
+                        if (OpenWorld)
                         {
-                            userdata.openWorld = false;
+                            OpenWorld = false;
                             rebuildGUI(false);
                         }
 
@@ -3704,8 +3706,8 @@ namespace EEditor
                 s += shortCutButtons[i] == null ? -1 : shortCutButtons[i].ID;
             }
             userdata.brickHotkeys = s;
-            userdata.openWorld = false;
-            userdata.openCodeWorld = false;
+            OpenWorld = false;
+            OpenWorldCode = false;
             File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
             //Clear block rotations
             ToolPen.rotation.Clear();
@@ -3798,7 +3800,6 @@ namespace EEditor
         public bool updateChecker { get; set; }
         public List<JToken> newestBlocks { get; set; }
         public bool selectAllBorder { get; set; }
-        public bool openWorld { get; set; }
         public bool saveWorldCrew { get; set; }
         public bool confirmClose { get; set; }
         public int uploadOption { get; set; }
@@ -3818,7 +3819,6 @@ namespace EEditor
         public bool imageSpecialblocksAction { get; set; }
         public bool reverse { get; set; }
         public bool random { get; set; }
-        public bool openCodeWorld { get; set; }
         public List<JToken> IgnoreBlocks { get; set; }
         public bool ColorFG { get; set; }
         public bool ColorBG { get; set; }

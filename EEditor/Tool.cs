@@ -55,10 +55,10 @@ namespace EEditor
                 if (x == 0 || x == editArea.CurFrame.Width - 1 || y == 0 || y == editArea.CurFrame.Height - 1)
                 {
 
-                    if (MainForm.userdata.openWorld)
+                    if (MainForm.OpenWorld)
                     {
-                            if (MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld) return true;
-                            else if (!MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld && y > 4) return true;
+                            if (MainForm.OpenWorldCode && MainForm.OpenWorld) return true;
+                            else if (!MainForm.OpenWorldCode && MainForm.OpenWorld && y > 4) return true;
                             else return false;
                     }
                     else
@@ -68,10 +68,10 @@ namespace EEditor
                 }
                 else
                 {
-                    if (MainForm.userdata.openWorld)
+                    if (MainForm.OpenWorld)
                     {
-                            if (MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld) return true;
-                            else if (!MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld && y > 4) return true;
+                            if (MainForm.OpenWorldCode && MainForm.OpenWorld) return true;
+                            else if (!MainForm.OpenWorldCode && MainForm.OpenWorld && y > 4) return true;
                             else return false;
                         
                     }

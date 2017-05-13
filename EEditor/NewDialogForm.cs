@@ -81,8 +81,8 @@ namespace EEditor
             MainForm.tsc.Text = "Background";
             NeedsInit = true;
             MainForm.Text = "EEditor " + MainForm.ProductVersion;
-            MainForm.userdata.openWorld = false;
-            MainForm.userdata.openCodeWorld = false;
+            MainForm.OpenWorld = false;
+            MainForm.OpenWorldCode = false;
             #region Listbox selection
             if (listBox1.SelectedIndex == 0)
             {
@@ -160,16 +160,16 @@ namespace EEditor
             {
                 SizeWidth = 200;
                 SizeHeight = 200;
-                MainForm.userdata.openWorld = true;
-                MainForm.userdata.openCodeWorld = false;
+                MainForm.OpenWorld = true;
+                MainForm.OpenWorldCode = false;
                 // restrictions here
             }
             else if (listBox1.SelectedIndex == 14)
             {
                 SizeWidth = 200;
                 SizeHeight = 200;
-                MainForm.userdata.openWorld = true;
-                MainForm.userdata.openCodeWorld = true;
+                MainForm.OpenWorld = true;
+                MainForm.OpenWorldCode = true;
                 // restrictions here
             }
             else if (listBox1.SelectedIndex == 15)
@@ -483,7 +483,6 @@ namespace EEditor
         {
             if (e.Type == "init")
             {
-                Console.WriteLine(e.ToString());
                 MapFrame = Frame.FromMessage(e, false);
                 if (MapFrame != null)
                 {

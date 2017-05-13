@@ -163,7 +163,7 @@ namespace EEditor
                         ColorBG = true
 
                     };
-                    MainForm.userdata.openWorld = false;
+                    MainForm.OpenWorld = false;
                     MainForm.userdata.useColor = false;
                     MainForm.userdata.thisColor = Color.Transparent;
                     MainForm.editArea.MainForm.updateImageColor();

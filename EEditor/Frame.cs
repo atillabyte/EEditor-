@@ -160,8 +160,8 @@ namespace EEditor
             var chunks = EEditor.InitParse.Parse(e);
             if (MainForm.userdata.level.StartsWith("OW"))
             {
-                if (e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = false; }
-                else if (!e.GetBoolean(14)) { MainForm.userdata.openWorld = true; MainForm.userdata.openCodeWorld = true; }
+                if (e.GetBoolean(14)) { MainForm.OpenWorld = true; MainForm.OpenWorldCode = false; }
+                else if (!e.GetBoolean(14)) { MainForm.OpenWorld = true; MainForm.OpenWorldCode = true; }
             }
             //int num2 = 0;
             foreach (var chunk in chunks)
@@ -628,14 +628,14 @@ namespace EEditor
                         }
                         else
                         {
-                            if (MainForm.userdata.level.StartsWith("OW") && !MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld)
+                            if (MainForm.userdata.level.StartsWith("OW") && !MainForm.OpenWorldCode && MainForm.OpenWorld)
                             {
                                 if (y > 4)
                                 {
                                     res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0" });
                                 }
                             }
-                            else if (MainForm.userdata.level.StartsWith("OW") && MainForm.userdata.openCodeWorld && MainForm.userdata.openWorld)
+                            else if (MainForm.userdata.level.StartsWith("OW") && MainForm.OpenWorldCode && MainForm.OpenWorld)
                             {
                                 res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0" });
                             }

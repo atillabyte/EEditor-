@@ -139,7 +139,7 @@ namespace EEditor
                 {
                     x = Convert.ToInt32(cur[0]);
                     y = Convert.ToInt32(cur[1]);
-                    if (MainForm.userdata.openWorld && !MainForm.userdata.openCodeWorld)
+                    if (MainForm.OpenWorld && !MainForm.OpenWorldCode)
                     {
                         if (y > 4) drawblocks = true;
                         else drawblocks = false;
@@ -449,7 +449,7 @@ namespace EEditor
                 ++Gcurrent;
                 ++Gcurrent1;
                 int value = Gcurrent1;
-                OnStatusChanged("Uploading blocks to level. (Total: " + value + "/" + Gtotal + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                OnStatusChanged("Uploading blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
                 if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
             }
             else if (e.Type == "br")
@@ -593,14 +593,14 @@ namespace EEditor
                     {
                         if (e.GetBoolean(14))
                         {
-                            MainForm.userdata.openWorld = true;
-                            MainForm.userdata.openCodeWorld = false;
+                            MainForm.OpenWorld = true;
+                            MainForm.OpenWorldCode = false;
                             locker.Release();
                         }
                         else
                         {
-                            MainForm.userdata.openWorld = false;
-                            MainForm.userdata.openCodeWorld = false;
+                            MainForm.OpenWorld = false;
+                            MainForm.OpenWorldCode = false;
                             OnStatusChanged("You need a password for this world", DateTime.MinValue, true, Gtotal, Gcurrent);
                             return;
                         }
@@ -609,15 +609,15 @@ namespace EEditor
                     {
                         if (!e.GetBoolean(14))
                         {
-                            MainForm.userdata.openWorld = true;
-                            MainForm.userdata.openCodeWorld = true;
+                            MainForm.OpenWorld = true;
+                            MainForm.OpenWorldCode = true;
                             conn.Send("access", levelPassword);
                             passTimer = new System.Threading.Timer(x => OnStatusChanged("Wrong level code. Please enter the right one and retry.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 5000, Timeout.Infinite);
                         }
                         else
                         {
-                            MainForm.userdata.openWorld = true;
-                            MainForm.userdata.openCodeWorld = false;
+                            MainForm.OpenWorld = true;
+                            MainForm.OpenWorldCode = false;
                             OnStatusChanged("This world isn't password protected", DateTime.MinValue, true, Gtotal, Gcurrent);
                             return;
                         }
@@ -651,7 +651,6 @@ namespace EEditor
                     {
                         if (MainForm.userdata.thisColor != Color.Transparent)
                         {
-                            Console.WriteLine("derp");
                             var hex = ColorTranslator.ToHtml(MainForm.userdata.thisColor);
                             conn.Send("say", "/bgcolor " + hex);
                         }
