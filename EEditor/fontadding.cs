@@ -20,7 +20,9 @@ namespace EEditor
         private string[,] Text1;
         private string fontname = "Calibri";
         private int fontsize = 20;
+        private int increase = 0;
         private Bitmap bmp = new Bitmap(25, 25);
+        private List<string> messages = new List<string>();
         public fontadding()
         {
             InitializeComponent();
@@ -56,6 +58,7 @@ namespace EEditor
                 g.Clear(Color.Empty);
                 pictureBox1.Image = bitmap;
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -78,7 +81,7 @@ namespace EEditor
                     Graphics g = Graphics.FromImage(bitmap);
                     g.FillRectangle(new SolidBrush(Color.Black), 0, 0, bitmap.Width, bitmap.Height);
                     g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel;
-                    g.DrawString(message, new Font(fontname, fontsize / 2), new SolidBrush(Color.White), 0, 0);
+                    g.DrawString(message, new Font(fontname, fontsize / 2), new SolidBrush(Color.White),0, 0);
                     SizeF size = g.MeasureString(message, new Font(fontname, fontsize / 2));
                     Area = new string[height, Size.Round(size).Width];
                     Back = new string[height, Size.Round(size).Width];
@@ -122,6 +125,7 @@ namespace EEditor
                             SendKeys.Send("^{v}");
                             Close();
                         }
+
                     }
                 }
             }

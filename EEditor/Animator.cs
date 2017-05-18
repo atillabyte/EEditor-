@@ -36,6 +36,7 @@ namespace EEditor
         System.Threading.Timer passTimer;
         DateTime start;
         object[] param;
+        bool restart = false;
         public static System.Windows.Forms.ProgressBar pb; //Make AnimateForm.cs' progressbar work with this upload status
         public static System.Windows.Forms.Label time;
         public static IntPtr afHandle; //Make TaskbarProgress.cs' progressbar work with this upload status
@@ -380,6 +381,7 @@ namespace EEditor
                             int progress = (int)Math.Round((double)(100 * Gcurrent) / Gtotal);
                             if (progress == 50) goto stopit;
                             else if (progress == 90) goto stopit;
+                            if (restart) { restart = false; goto stopit; }
 
                             if (param != null) conn.Send("b", param);
                             Thread.Sleep(MainForm.userdata.uploadDelay);
@@ -444,85 +446,180 @@ namespace EEditor
         {
             if (e.Type == "b")
             {
-                int layer = e.GetInt(0), x = e.GetInt(1), y = e.GetInt(2), id = e.GetInt(3);
-                if (layer == 0) { remoteFrame.Foreground[y, x] = id; } else { remoteFrame.Background[y, x] = id; }
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(4) && MainForm.userdata.ignoreplacing)
+                {
+                    if (e.GetInt(0) == 0)
+                    {
+                        frames[0].Foreground[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
+                        remoteFrame.Foreground[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
+                    }
+                    else
+                    {
+                        frames[0].Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
+                        remoteFrame.Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
+                    }
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int layer = e.GetInt(0), x = e.GetInt(1), y = e.GetInt(2), id = e.GetInt(3);
+                    if (layer == 0) { remoteFrame.Foreground[y, x] = id; } else { remoteFrame.Background[y, x] = id; }
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "br")
             {
-                int x = e.GetInt(0), y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData[y, x] = e.GetInt(3);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading rotatable blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(5) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0), y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData[y, x] = e.GetInt(3);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading rotatable blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "wp")
             {
-                int x = e.GetInt(0), y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData3[y, x] = e.GetString(3);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading world portals to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(4) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData3[e.GetInt(1), e.GetInt(0)] = e.GetString(3);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData3[e.GetInt(1), e.GetInt(0)] = e.GetString(3);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0), y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData3[y, x] = e.GetString(3);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading world portals to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "ts")
             {
-                int x = e.GetInt(0), y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData3[y, x] = e.GetString(3);
-                remoteFrame.BlockData[y, x] = e.GetInt(4);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading signs to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(5) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData3[e.GetInt(1), e.GetInt(0)] = e.GetString(3);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(4);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData3[e.GetInt(1), e.GetInt(0)] = e.GetString(3);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(4);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0), y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData3[y, x] = e.GetString(3);
+                    remoteFrame.BlockData[y, x] = e.GetInt(4);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading signs to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "bc")
             {
-
-                int x = e.GetInt(0), y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData[y, x] = e.GetInt(3);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading numbered action blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(4) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0), y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData[y, x] = e.GetInt(3);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading numbered action blocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "pt")
             {
-                int x = e.GetInt(0);
-                int y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData[y, x] = e.GetInt(3);
-                remoteFrame.BlockData1[y, x] = e.GetInt(4);
-                remoteFrame.BlockData2[y, x] = e.GetInt(5);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading portals to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(6) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    frames[0].BlockData1[e.GetInt(1), e.GetInt(0)] = e.GetInt(4);
+                    frames[0].BlockData2[e.GetInt(1), e.GetInt(0)] = e.GetInt(5);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    remoteFrame.BlockData1[e.GetInt(1), e.GetInt(0)] = e.GetInt(4);
+                    remoteFrame.BlockData2[e.GetInt(1), e.GetInt(0)] = e.GetInt(5);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0);
+                    int y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData[y, x] = e.GetInt(3);
+                    remoteFrame.BlockData1[y, x] = e.GetInt(4);
+                    remoteFrame.BlockData2[y, x] = e.GetInt(5);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading portals to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "bs")
             {
-                int x = e.GetInt(0);
-                int y = e.GetInt(1);
-                remoteFrame.Foreground[y, x] = e.GetInt(2);
-                remoteFrame.BlockData[y, x] = e.GetInt(3);
-                ++Gcurrent;
-                ++Gcurrent1;
-                int value = Gcurrent1;
-                OnStatusChanged("Uploading noteblocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
-                if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                if (botid != (int)e.GetInt(4) && MainForm.userdata.ignoreplacing)
+                {
+                    frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    ++Gcurrent1;
+                    restart = true;
+                }
+                else
+                {
+                    int x = e.GetInt(0);
+                    int y = e.GetInt(1);
+                    remoteFrame.Foreground[y, x] = e.GetInt(2);
+                    remoteFrame.BlockData[y, x] = e.GetInt(3);
+                    ++Gcurrent;
+                    ++Gcurrent1;
+                    int value = Gcurrent1;
+                    OnStatusChanged("Uploading noteblocks to level. (Total: " + value + "/" + firstFrame.Count + ")", DateTime.MinValue, false, Gtotal, Gcurrent);
+                    if (Convert.ToDouble(Gcurrent1) <= pb.Maximum && Convert.ToDouble(Gcurrent1) >= pb.Minimum) { if (pb.InvokeRequired) pb.Invoke((MethodInvoker)delegate { pb.Value = Gcurrent1; }); TaskbarProgress.SetValue(afHandle, Gcurrent1, firstFrame.Count); }
+                }
             }
             else if (e.Type == "access")
             {
@@ -677,7 +774,6 @@ namespace EEditor
             }
             else
             {
-                //Console.WriteLine(e.ToString());
                 switch (e.Type)
                 {
                     case "info":

@@ -160,8 +160,8 @@ namespace EEditor
                         random = false,
                         reverse = false,
                         ColorFG = true,
-                        ColorBG = true
-
+                        ColorBG = true,
+                        ignoreplacing = false
                     };
                     MainForm.OpenWorld = false;
                     MainForm.userdata.useColor = false;

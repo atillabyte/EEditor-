@@ -63,7 +63,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.NormalRadioButton = new System.Windows.Forms.RadioButton();
-            this.ReplacePictureBox2 = new System.Windows.Forms.PictureBox();
+            this.RotationPictureBox2 = new System.Windows.Forms.PictureBox();
             this.RotationPictureBox1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -107,7 +107,7 @@
             this.groupBox5.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PortalReplaceTo)).BeginInit();
@@ -458,7 +458,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.NormalRadioButton);
-            this.tabPage1.Controls.Add(this.ReplacePictureBox2);
+            this.tabPage1.Controls.Add(this.RotationPictureBox2);
             this.tabPage1.Controls.Add(this.RotationPictureBox1);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
@@ -493,13 +493,13 @@
             this.NormalRadioButton.UseVisualStyleBackColor = true;
             this.NormalRadioButton.Click += new System.EventHandler(this.NormalRadioButton_Click);
             // 
-            // ReplacePictureBox2
+            // RotationPictureBox2
             // 
-            this.ReplacePictureBox2.Location = new System.Drawing.Point(211, 55);
-            this.ReplacePictureBox2.Name = "ReplacePictureBox2";
-            this.ReplacePictureBox2.Size = new System.Drawing.Size(16, 16);
-            this.ReplacePictureBox2.TabIndex = 25;
-            this.ReplacePictureBox2.TabStop = false;
+            this.RotationPictureBox2.Location = new System.Drawing.Point(211, 55);
+            this.RotationPictureBox2.Name = "RotationPictureBox2";
+            this.RotationPictureBox2.Size = new System.Drawing.Size(16, 16);
+            this.RotationPictureBox2.TabIndex = 25;
+            this.RotationPictureBox2.TabStop = false;
             // 
             // RotationPictureBox1
             // 
@@ -859,7 +859,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ReplacePictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RotationPictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
@@ -937,7 +937,7 @@
         private System.Windows.Forms.RadioButton WorldPortalRadioButton;
         private System.Windows.Forms.RadioButton SignRadioButton;
         private System.Windows.Forms.Button ClearBgsButton;
-        private System.Windows.Forms.PictureBox ReplacePictureBox2;
+        private System.Windows.Forms.PictureBox RotationPictureBox2;
         private System.Windows.Forms.PictureBox RotationPictureBox1;
         private System.Windows.Forms.RadioButton NormalRadioButton;
     }

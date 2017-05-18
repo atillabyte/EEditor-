@@ -87,24 +87,66 @@ namespace EEditor
             {
                 //var output = JObject.Parse(File.ReadAllText(pathSettings));
                 userdata = JsonConvert.DeserializeObject<userData>(File.ReadAllText(pathSettings));
-                if (userdata.themeBlock.IsEmpty) userdata.themeBlock = SystemColors.Window;
-                if (userdata.themeBlocks.IsEmpty) userdata.themeBlocks = SystemColors.Control;
-                if (userdata.themeIcons.IsEmpty) userdata.themeIcons = Color.Black;
-                if (userdata.themeIconsBg.IsEmpty) userdata.themeIconsBg = Color.Transparent;
-                if (userdata.themeToolbarBg.IsEmpty) userdata.themeToolbarBg = SystemColors.Control;
-                if (userdata.themeToolbarText.IsEmpty) userdata.themeToolbarText = SystemColors.ControlText;
-                if (userdata.themeBlockBG.IsEmpty) userdata.themeBlockBG = Color.Transparent;
-                if (userdata.themeBorder.ToString() == null) userdata.themeBorder = false;
-                if (userdata.drawMixed.ToString() == null) userdata.drawMixed = false;
-                if (userdata.imageBackgrounds.ToString() == null) userdata.imageBackgrounds = true;
-                if (userdata.imageBlocks.ToString() == null) userdata.imageBlocks = true;
-                if (userdata.imageSpecialblocksMorph.ToString() == null) userdata.imageSpecialblocksMorph = false;
-                if (userdata.imageSpecialblocksAction.ToString() == null) userdata.imageSpecialblocksAction = false;
-                if (userdata.random.ToString() == null) userdata.random = false;
-                if (userdata.reverse.ToString() == null) userdata.reverse = false;
-                if (userdata.IgnoreBlocks == null) userdata.IgnoreBlocks = new List<JToken>() { };
-                if (userdata.ColorBG.ToString() == null) userdata.ColorBG = true;
-                if (userdata.ColorFG.ToString() == null) userdata.ColorFG = true;
+                if (userdata != null)
+                {
+                    if (userdata.themeBlock.IsEmpty) userdata.themeBlock = SystemColors.Window;
+                    if (userdata.themeBlocks.IsEmpty) userdata.themeBlocks = SystemColors.Control;
+                    if (userdata.themeIcons.IsEmpty) userdata.themeIcons = Color.Black;
+                    if (userdata.themeIconsBg.IsEmpty) userdata.themeIconsBg = Color.Transparent;
+                    if (userdata.themeToolbarBg.IsEmpty) userdata.themeToolbarBg = SystemColors.Control;
+                    if (userdata.themeToolbarText.IsEmpty) userdata.themeToolbarText = SystemColors.ControlText;
+                    if (userdata.themeBlockBG.IsEmpty) userdata.themeBlockBG = Color.Transparent;
+                    if (userdata.themeBorder.ToString() == null) userdata.themeBorder = false;
+                    if (userdata.drawMixed.ToString() == null) userdata.drawMixed = false;
+                    if (userdata.imageBackgrounds.ToString() == null) userdata.imageBackgrounds = true;
+                    if (userdata.imageBlocks.ToString() == null) userdata.imageBlocks = true;
+                    if (userdata.imageSpecialblocksMorph.ToString() == null) userdata.imageSpecialblocksMorph = false;
+                    if (userdata.imageSpecialblocksAction.ToString() == null) userdata.imageSpecialblocksAction = false;
+                    if (userdata.random.ToString() == null) userdata.random = false;
+                    if (userdata.reverse.ToString() == null) userdata.reverse = false;
+                    if (userdata.IgnoreBlocks == null) userdata.IgnoreBlocks = new List<JToken>() { };
+                    if (userdata.ColorBG.ToString() == null) userdata.ColorBG = true;
+                    if (userdata.ColorFG.ToString() == null) userdata.ColorFG = true;
+                    if (userdata.ignoreplacing.ToString() == null) userdata.ignoreplacing = false;
+                }
+                else
+                {
+                    userdata = new userData()
+                    {
+                        username = "guest",
+                        newestBlocks = new List<JToken>() { },
+                        uploadDelay = 5,
+                        brickHotkeys = " ",
+                        sprayr = 5,
+                        sprayp = 10,
+                        confirmClose = true,
+                        updateChecker = true,
+                        uploadOption = 0,
+                        themeBlock = SystemColors.Window,
+                        themeBlocks = SystemColors.Control,
+                        themeBlockBG = Color.Transparent,
+                        themeIcons = Color.Black,
+                        themeIconsBg = Color.Transparent,
+                        themeToolbarBg = SystemColors.Control,
+                        themeToolbarText = SystemColors.ControlText,
+                        themeBorder = false,
+                        themeClean = false,
+                        imageBackgrounds = true,
+                        imageBlocks = true,
+                        imageSpecialblocksMorph = false,
+                        imageSpecialblocksAction = false,
+                        random = false,
+                        reverse = false,
+                        IgnoreBlocks = new List<JToken>() { },
+                        ColorFG = true,
+                        ColorBG = true,
+                        ignoreplacing = false
+
+
+
+                    };
+                    File.WriteAllText(pathSettings, JsonConvert.SerializeObject(userdata, Newtonsoft.Json.Formatting.Indented));
+                }
             }
             else
             {
@@ -136,8 +178,8 @@ namespace EEditor
                     reverse = false,
                     IgnoreBlocks = new List<JToken>() { },
                     ColorFG = true,
-                    ColorBG = true
-
+                    ColorBG = true,
+                    ignoreplacing = false
 
 
                 };
@@ -622,12 +664,12 @@ namespace EEditor
         {
             if (historyToolStrip.InvokeRequired)
             {
-                if (ToolPen.undolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; }); }
-                if (ToolPen.redolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; }); }
-                if (ToolPen.undolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; }); }
-                if (ToolPen.redolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; }); }
-                if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); }
-                if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); }
+                if (ToolPen.undolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; }); }
+                if (ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; }); }
+                if (ToolPen.undolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; }); }
+                if (ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; }); }
+                if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); }
+                if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); }
             }
             
 
@@ -3698,7 +3740,7 @@ namespace EEditor
                     e.Cancel = true;
                 }
             }
-            timer.Stop();
+            timer.Dispose();
             string s = "";
             for (int i = 0; i < 10; i++)
             {
@@ -3822,7 +3864,7 @@ namespace EEditor
         public List<JToken> IgnoreBlocks { get; set; }
         public bool ColorFG { get; set; }
         public bool ColorBG { get; set; }
-
+        public bool ignoreplacing { get; set; }
     }
     public class removeBadRenderer : ToolStripSystemRenderer
     {

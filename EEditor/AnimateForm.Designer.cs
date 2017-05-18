@@ -47,9 +47,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBoxRandom = new System.Windows.Forms.CheckBox();
             this.checkBoxReverse = new System.Windows.Forms.CheckBox();
+            this.IgnoreDrawingCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +70,7 @@
             this.groupBox1.Controls.Add(this.TimeRunningLabel);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.uploadProgressBar);
-            this.groupBox1.Location = new System.Drawing.Point(8, 162);
+            this.groupBox1.Location = new System.Drawing.Point(8, 219);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(324, 93);
             this.groupBox1.TabIndex = 1;
@@ -260,11 +263,33 @@
             this.checkBoxReverse.UseVisualStyleBackColor = true;
             this.checkBoxReverse.CheckedChanged += new System.EventHandler(this.checkBoxReverse_CheckedChanged);
             // 
+            // IgnoreDrawingCheckBox
+            // 
+            this.IgnoreDrawingCheckBox.AutoSize = true;
+            this.IgnoreDrawingCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.IgnoreDrawingCheckBox.Name = "IgnoreDrawingCheckBox";
+            this.IgnoreDrawingCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.IgnoreDrawingCheckBox.TabIndex = 32;
+            this.IgnoreDrawingCheckBox.Text = "Ignore Drawing";
+            this.IgnoreDrawingCheckBox.UseVisualStyleBackColor = true;
+            this.IgnoreDrawingCheckBox.CheckedChanged += new System.EventHandler(this.IgnoreDrawingCheckBox_CheckedChanged);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.IgnoreDrawingCheckBox);
+            this.groupBox3.Location = new System.Drawing.Point(8, 162);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(324, 51);
+            this.groupBox3.TabIndex = 33;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Misc";
+            // 
             // AnimateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 263);
+            this.ClientSize = new System.Drawing.Size(347, 321);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.autoSaveCheckBox);
             this.Controls.Add(this.numericUpDown2);
@@ -287,6 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,5 +340,7 @@
         private System.Windows.Forms.CheckBox checkBoxRandom;
         private System.Windows.Forms.TextBox TimeRunningTextBox;
         private System.Windows.Forms.Label TimeRunningLabel;
+        private System.Windows.Forms.CheckBox IgnoreDrawingCheckBox;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

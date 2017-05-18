@@ -97,6 +97,8 @@ namespace EEditor
                     FindPictureBox.Image = img1;
                     button4.Enabled = true;
                     button3.Enabled = true;
+                    findRotate.Value = 1;
+                    findRotation();
                 }
                 else if (MainForm.miscBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 119)
                 {
@@ -105,6 +107,8 @@ namespace EEditor
                     FindPictureBox.Image = img1;
                     button4.Enabled = true;
                     button3.Enabled = true;
+                    findRotate.Value = 1;
+                    findRotation();
                 }
                 else if (MainForm.foregroundBMI[(int)numericUpDown1.Value] != 0 || (int)numericUpDown1.Value == 0)
                 {
@@ -113,6 +117,8 @@ namespace EEditor
                     numericUpDown1.ForeColor = SystemColors.ControlText;
                     button4.Enabled = true;
                     button3.Enabled = true;
+                    findRotate.Value = 1;
+                    findRotation();
                 }
                 else
                 {
@@ -165,6 +171,8 @@ namespace EEditor
                         label4.Text = null;
                         button5.Enabled = true;
                         button1.Enabled = true;
+                        replaceRotate.Value = 1;
+                        replaceRotating();
                     }
                     else
                     {
@@ -186,6 +194,8 @@ namespace EEditor
                         label4.Text = null;
                         button5.Enabled = true;
                         button1.Enabled = true;
+                        replaceRotate.Value = 1;
+                        replaceRotating();
                     }
                     else
                     {
@@ -206,6 +216,7 @@ namespace EEditor
                         label4.Text = null;
                         button5.Enabled = true;
                         button1.Enabled = true;
+                        replaceRotate.Value = 1;
                     }
                     else
                     {
@@ -483,11 +494,14 @@ namespace EEditor
             {
                 ToolStripButton der = (ToolStripButton)sender;
                 numericUpDown2.Value = Convert.ToInt32(der.Name);
+                replaceRotate.Value = 1;
+
             }
             else if (e.Button == MouseButtons.Left)
             {
                 ToolStripButton der = (ToolStripButton)sender;
                 numericUpDown1.Value = Convert.ToInt32(der.Name);
+                findRotate.Value = 1;
             }
             ToolTip tp = new ToolTip();
             tp.SetToolTip(button4, "Finds the next block with ID " + numericUpDown1.Value + "\nAnd displays a red rectangle around it");
@@ -616,7 +630,11 @@ namespace EEditor
                                                     MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
                                                 }
                                             }
-                                            if (NormalRadioButton.Checked) MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                            if (NormalRadioButton.Checked)
+                                            {
+                                                MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                                ToolPen.rotation[(int)numericUpDown2.Value] = (int)replaceRotate.Value;
+                                            }
                                         }
                                     }
                                 }
@@ -927,6 +945,11 @@ namespace EEditor
 
         private void findRotate_ValueChanged(object sender, EventArgs e)
         {
+            findRotation();
+
+        }
+        private void findRotation()
+        {
             var bid = (int)numericUpDown1.Value;
             if (bid < 500 || bid >= 1001)
             {
@@ -942,9 +965,7 @@ namespace EEditor
                 if (img1 != null) RotationPictureBox1.Image = img1;
                 else RotationPictureBox1.Image = Properties.Resources.cross;
             }
-
         }
-
         private void ClearBgsButton_Click(object sender, EventArgs e)
         {
             for (int y = 0; y < MainForm.editArea.Frames[0].Height; y++)
@@ -977,6 +998,11 @@ namespace EEditor
 
         private void replaceRotate_ValueChanged(object sender, EventArgs e)
         {
+            replaceRotating();
+        }
+
+        private void replaceRotating()
+        {
             var bid = (int)numericUpDown2.Value;
             if (bid < 500 || bid >= 1001)
             {
@@ -989,11 +1015,10 @@ namespace EEditor
                 {
                     img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
                 }
-                if (img1 != null) ReplacePictureBox2.Image = img1;
-                else ReplacePictureBox2.Image = Properties.Resources.cross;
+                if (img1 != null) RotationPictureBox2.Image = img1;
+                else RotationPictureBox2.Image = Properties.Resources.cross;
             }
         }
-
         private void PortalRadioButton_Click(object sender, EventArgs e)
         {
             PortalRadioButton.Checked = true;

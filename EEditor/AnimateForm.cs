@@ -178,9 +178,10 @@ namespace EEditor
             levelTextBox.Text = MainForm.userdata.level;
             if (MainForm.userdata.uploadOption == 0) uploadOptionButton1.Checked = true;
             else if (MainForm.userdata.uploadOption == 2) uploadOptionButton3.Checked = true;
+            
             levelPassTextBox.Enabled = true;
             levelPassTextBox.Text = MainForm.userdata.levelPass;
-            
+            IgnoreDrawingCheckBox.Checked = MainForm.userdata.ignoreplacing;
 
             ToolTip tp = new ToolTip();
             tp.SetToolTip(label4, "Insert the world ID you want to upload to.");
@@ -198,6 +199,7 @@ namespace EEditor
 
             tp.SetToolTip(autoSaveCheckBox, "Saves the Everybody Edits world automatically during the upload and after that.\nWorks only if the bot has save access (world owner/crew member).");
 
+            tp.SetToolTip(IgnoreDrawingCheckBox, "Ignore the blocks that someone is placing during uploading.");
         }
 
 
@@ -279,6 +281,11 @@ namespace EEditor
             {
                 MainForm.userdata.levelPass = levelPassTextBox.Text;
             }
+        }
+
+        private void IgnoreDrawingCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            MainForm.userdata.ignoreplacing = IgnoreDrawingCheckBox.Checked;
         }
     }
 
