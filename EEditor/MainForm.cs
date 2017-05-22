@@ -421,7 +421,7 @@ namespace EEditor
                 { 472, 252 }, { 1081, 253 }, { 1082, 254}, { 1083, 255}, { 1084, 256}, { 1085, 257}, { 1086, 258}, { 1087, 259},
                 { 1088, 260 }, { 1089, 261 }, { 1090, 262 }, { 1091, 263 }, { 1093, 264 }, { 1096, 265 }, { 1097, 266 }, { 1098, 267 }, { 1099, 268 }, { 1100, 269 },
                 { 1101, 270 },{ 1102, 271 },{ 1103, 272 },{ 1104, 273 },{ 1105, 274 },{ 1106, 275 },{ 1107, 276 },{ 1108, 277 },{ 1109, 278 },{ 1110, 279 },
-                { 1111, 280 },{ 1112, 281 },{ 1113, 282 },{ 1114, 283 },{ 1115, 284 }
+                { 1111, 280 },{ 1112, 281 },{ 1113, 282 },{ 1114, 283 },{ 1115, 284 }, { 1518, 285 }, { 1520, 286 }
 
             };
             for (int i = 0; i < blockInit.Length / 2; i++)
@@ -1192,7 +1192,7 @@ namespace EEditor
 
             //Everyone have these
             AddToolStrip(foregroundBMD, 0, new int[] { 0 }, null, true, "Empty", 1, 0, true);
-            AddToolStrip(foregroundBMD, 0, new int[] { 1, 2, 3, 4, 233 }, null, false, "Gravity", 1, 0, true);
+            AddToolStrip(foregroundBMD, 0, new int[] { 1, 2, 3, 285, 4, 233 }, null, false, "Gravity", 1, 0, true);
             AddToolStrip(miscBMD, 1, new int[] { 70, 71, 72, 73, 222 }, null, false, "Invisible Gravity", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 6, 7, 8, 189, 190, 191 }, new uint[] { 0x2C1A1A, 0x1A2C1A, 0x1A1A2C, 0x0C2D3D, 0x400C40, 0x2C330A }, false, "Keys", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 26, 27, 28, 195, 196, 197 }, new uint[] { 0x9C2D46, 0x379C30, 0x2D449C, 0x2D8D99, 0x912D99, 0x97922D }, false, "Gates", 1, 0, true);
@@ -1235,6 +1235,8 @@ namespace EEditor
             else { AddToolStrip(foregroundBMD, 0, new int[] { 83 }, null, false, "Music", 1, 2, false); }
             if (ihavethese.Contains("bricknode") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 77 }, null, false, "Music", 1, 2, true); }
             else { AddToolStrip(foregroundBMD, 0, new int[] { 77 }, null, false, "Music", 1, 2, false); }
+            if (ihavethese.Contains("brickguitar") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 286 }, null, false, "Music", 1, 2, true); }
+            else { AddToolStrip(foregroundBMD, 0, new int[] { 286 }, null, false, "Music", 1, 2, false); }
             if (ihavethese.Contains("brickfire") || debug) { AddToolStrip(miscBMD, 1, new int[] { 28 }, null, false, "Hazards", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 28 }, null, false, "Hazards", 1, 2, false); }
             if (ihavethese.Contains("brickspike") || debug) { AddToolStrip(miscBMD, 1, new int[] { 24 }, null, false, "Hazards", 1, 2, true); }
@@ -1247,10 +1249,10 @@ namespace EEditor
             else { AddToolStrip(miscBMD, 1, new int[] { 29 }, null, false, "Liquids", 1, 2, false); }
             if (ihavethese.Contains("brickinvisibleportal") || debug) { AddToolStrip(miscBMD, 1, new int[] { 112 }, null, false, "Portals", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 112 }, null, false, "Portals", 1, 2, false); }
-            if (ihavethese.Contains("brickportal") || debug) { AddToolStrip(miscBMD, 1, new int[] { 108 }, null, false, "Portals", 1, 2, true); }
-            else { AddToolStrip(miscBMD, 1, new int[] { 108 }, null, false, "Portals", 1, 2, false); }
-            if (ihavethese.Contains("brickworldportal") || debug) { AddToolStrip(miscBMD, 1, new int[] { 33 }, null, false, "Portals", 1, 2, true); }
-            else { AddToolStrip(miscBMD, 1, new int[] { 33 }, null, false, "Portals", 1, 2, false); }
+            if (ihavethese.Contains("brickportal") || debug) { AddToolStrip(miscBMD, 1, new int[] { 108 }, new uint[] { 0x7BA7C7 }, false, "Portals", 1, 2, true); }
+            else { AddToolStrip(miscBMD, 1, new int[] { 108 }, new uint[] { 0x7BA7C7 }, false, "Portals", 1, 2, false); }
+            if (ihavethese.Contains("brickworldportal") || debug) { AddToolStrip(miscBMD, 1, new int[] { 33 }, new uint[] { 0xB96D6D }, false, "Portals", 1, 2, true); }
+            else { AddToolStrip(miscBMD, 1, new int[] { 33 }, new uint[] { 0xB96D6D }, false, "Portals", 1, 2, false); }
             if (ihavethese.Contains("brickdiamond") || debug) { AddToolStrip(miscBMD, 1, new int[] { 221 }, null, false, "Diamond", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 221 }, null, false, "Diamond", 1, 2, false); }
             if (ihavethese.Contains("brickcake") || debug) { AddToolStrip(miscBMD, 1, new int[] { 2 }, null, false, "Cake", 1, 2, true); }
@@ -1704,8 +1706,8 @@ namespace EEditor
                             // Double jump effect
                             cm.Items.Add(new ToolStripSeparator());
                             cm.Items.Add(toolStripMenuCreator(cur.ID, "No Jumping", 0, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Infinite Jumping", 1, true));
                             cm.Items.Add(toolStripMenuCreator(cur.ID, "Normal Jumping", 1, true));
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Double Jumping", 2, true));
                         }
                         else
                         {
@@ -2110,7 +2112,7 @@ namespace EEditor
                     if (values.Length == 2)
                     {
                         int bid = Convert.ToInt32(values[0]);
-                        int rotation = Convert.ToInt16(values[1]);
+                        int rotation = Convert.ToInt32(values[1]);
                         selectedBrick.Checked = false;
                         editArea.Tool.PenID = bid;
                         //selectedBrick = bid;
@@ -2234,9 +2236,22 @@ namespace EEditor
         void SetBrick(object sender, EventArgs e)
         {
             BrickButton cur = (BrickButton)sender;
-            if (cur.ID == 83 || cur.ID == 77)
+            if (cur.ID == 83 || cur.ID == 77 || cur.ID == 1520)
             {
-                MessageBox.Show("EEditor doesn't support the newest Piano or Drums yet.", "Sorry!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                string message = "Piano";
+                switch (cur.ID)
+                {
+                    case 83:
+                        message = "Drums";
+                        break;
+                    case 77:
+                        message = "Piano";
+                        break;
+                    case 1520:
+                        message = "Guitar";
+                        break;
+                }
+                MessageBox.Show("EEditor doesn't support " + message + " Blocks yet.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 selectedBrick.Checked = false;
                 editArea.Tool.PenID = cur.ID;
                 selectedBrick = cur;
@@ -2248,6 +2263,7 @@ namespace EEditor
                 editArea.Tool.PenID = cur.ID;
                 selectedBrick = cur;
                 if (userdata.usePenTool) SetPenTool();
+                BrickButton.lastSelectedBlocksUpdate(cur);
             }
         }
 
@@ -2318,6 +2334,7 @@ namespace EEditor
                             item.Checked = true;
                             selectedBrick = item;
                             found = 1;
+                            BrickButton.lastSelectedBlocksUpdate(item);
                             break;
                         }
 
@@ -2337,6 +2354,7 @@ namespace EEditor
                                 item.Checked = true;
                                 selectedBrick = item;
                                 found = 2;
+                                BrickButton.lastSelectedBlocksUpdate(item);
                                 break;
                             }
 
@@ -2357,6 +2375,7 @@ namespace EEditor
                                 item.Checked = true;
                                 selectedBrick = item;
                                 found = 3;
+                                BrickButton.lastSelectedBlocksUpdate(item);
                                 break;
                             }
 
@@ -2377,6 +2396,7 @@ namespace EEditor
                                 item.Checked = true;
                                 selectedBrick = item;
                                 found = 4;
+                                BrickButton.lastSelectedBlocksUpdate(item);
                                 break;
                             }
 

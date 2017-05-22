@@ -361,7 +361,7 @@ namespace EEditor
 
                                     if (bdata.goal.Contains((int)bid))
                                     {
-                                        if (bid == 77 || bid == 83)
+                                        if (bid == 77 || bid == 83 || bid == 1520)
                                         {
 
                                             uint id = worldinfo.GetUInt("id");
@@ -476,7 +476,7 @@ namespace EEditor
 
                                     if (bdata.goal.Contains((int)bid))
                                     {
-                                        if (bid == 77 || bid == 83)
+                                        if (bid == 77 || bid == 83 || bid == 1520)
                                         {
                                             uint rotation = worldinfo.GetUInt("id");
                                             frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
@@ -601,7 +601,7 @@ namespace EEditor
                         {
                             res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0", BlockData[y, x].ToString() });
                         }
-                        else if (bdata.goal.Contains(Foreground[y, x]) && Foreground[y, x] != 83 && Foreground[y, x] != 77)
+                        else if (bdata.goal.Contains(Foreground[y, x]) && Foreground[y, x] != 83 && Foreground[y, x] != 77 && Foreground[y, x] != 1520)
                         {
                             res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0", BlockData[y, x].ToString() });
                         }
@@ -614,7 +614,7 @@ namespace EEditor
                             res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0", BlockData[y, x].ToString(), BlockData1[y, x].ToString(), BlockData2[y, x].ToString() });
 
                         }
-                        else if (Foreground[y, x] == 83 || Foreground[y, x] == 77)
+                        else if (Foreground[y, x] == 83 || Foreground[y, x] == 77 || Foreground[y, x] == 1520)
                         {
                             res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0", BlockData[y, x].ToString() });
                         }
@@ -654,7 +654,7 @@ namespace EEditor
                                 res.Add(new string[] { x.ToString(), y.ToString(), Foreground[y, x].ToString(), "0", BlockData[y, x].ToString() });
                             }
                         }
-                        else if (bdata.goal.Contains(Foreground[y, x]) && Foreground[y, x] != 83 && Foreground[y, x] != 77)
+                        else if (bdata.goal.Contains(Foreground[y, x]) && Foreground[y, x] != 83 && Foreground[y, x] != 77 && Foreground[y, x] != 1520)
                         {
                             if (BlockData[y, x] != f.BlockData[y, x])
                             {
@@ -676,7 +676,7 @@ namespace EEditor
                             }
 
                         }
-                        else if (Foreground[y, x] == 83 || Foreground[y, x] == 77)
+                        else if (Foreground[y, x] == 83 || Foreground[y, x] == 77 || Foreground[y, x] == 1520)
                         {
                             if (BlockData[y, x] != f.BlockData[y, x])
                             {

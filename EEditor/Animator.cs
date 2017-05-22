@@ -161,7 +161,7 @@ namespace EEditor
                                 {
                                     b = true;
                                 }
-                                else if (bdata.goal.Contains(type) && type != 83 && type != 77)
+                                else if (bdata.goal.Contains(type) && type != 83 && type != 77 && type != 1520)
                                 {
                                     if (cur.Length == 5)
                                     {
@@ -189,7 +189,7 @@ namespace EEditor
                                         b = true;
                                     }
                                 }
-                                else if (type == 83 || type == 77)
+                                else if (type == 83 || type == 77 || type == 1520)
                                 {
                                     if (cur.Length == 5)
                                     {
@@ -220,7 +220,7 @@ namespace EEditor
                                         }
                                     }
                                 }
-                                else if (bdata.goal.Contains(type) && type != 83 && type != 77)
+                                else if (bdata.goal.Contains(type) && type != 83 && type != 77 && type != 1520)
                                 {
                                     if (cur.Length == 5)
                                     {
@@ -260,7 +260,7 @@ namespace EEditor
                                         }
                                     }
                                 }
-                                else if (type == 83 || type == 77)
+                                else if (type == 83 || type == 77 || type == 1520)
                                 {
                                     if (cur.Length == 5)
                                     {
@@ -325,7 +325,7 @@ namespace EEditor
                                 }
 
                             }
-                            else if (type == 77 || type == 83)
+                            else if (type == 77 || type == 83 || type == 1520)
                             {
                                 if (cur.Length == 5)
                                 {
@@ -457,6 +457,8 @@ namespace EEditor
                     {
                         frames[0].Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
                         remoteFrame.Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
+                        frames[0].Foreground[e.GetInt(2), e.GetInt(1)] = 0;
+                        remoteFrame.Foreground[e.GetInt(2), e.GetInt(1)] = 0;
                     }
                     ++Gcurrent1;
                     restart = true;

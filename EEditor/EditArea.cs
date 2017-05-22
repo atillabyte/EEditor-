@@ -203,7 +203,7 @@ namespace EEditor
                 }
                 if (Tool.PenID < 500 || Tool.PenID >= 1001)
                 {
-                    if (Tool.PenID != 83 && Tool.PenID != 77)
+                    if (Tool.PenID != 83 && Tool.PenID != 77 && Tool.PenID != 1520)
                     {
                         if (ToolPen.rotation.ContainsKey(Tool.PenID))
                         {
@@ -501,16 +501,28 @@ namespace EEditor
             else if (fid == 0)
             {
             }
-            if (bdata.goal.Contains(fid) && fid != 423 && fid != 417 && fid != 418 && fid != 419 && fid != 420 && fid != 421 && fid != 422 && fid != 453 && fid != 1027 && fid != 1028 && fid != 461)
+            if (bdata.goal.Contains(fid) && fid != 423 && fid != 417 && fid != 418 && fid != 419 && fid != 420 && fid != 421 && fid != 422 && fid != 453 && fid != 1027 && fid != 1028)
             {
                 int offSet = coins >= 10 ? 4 : 9;
-                if (fid == 467 || fid == 1079 || fid == 1080 || fid == 1012 || fid == 214 || fid == 165 || fid == 113 || fid == 184 || fid == 185 || fid == 213)
+                if (fid == 467 || fid == 1079 || fid == 1080 || fid == 1012 || fid == 214 || fid == 165 || fid == 113 || fid == 184 || fid == 185 || fid == 213 || fid == 461)
                 {
-                    if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
-                    else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
+                    if (fid == 461 && coins == 1)
+                    {
+                        if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
+                        else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
+                    }
+                    else if (fid == 461 && coins == 1000)
+                    {
+                        DrawText("x", Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
+                    }
+                    else
+                    {
+                        if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
+                        else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
+                    }
                     //g.DrawString(coins.ToString(), new Font("Courier", 6), Brushes.White, new PointF(x * 16 + offSet, y * 16 + 8));
                 }
-                else if (fid != 77 && fid != 83)
+                else if (fid != 77 && fid != 83 && fid != 1520)
                 {
                     //Console.WriteLine(bfont.Families[0]);
                     if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.Black, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);

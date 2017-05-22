@@ -108,7 +108,7 @@ namespace EEditor
                             {
                                 if (!MainForm.userdata.dontReplaceBlocks)
                                 {
-                                    if (PenID != 77 && PenID != 83)
+                                    if (PenID != 77 && PenID != 83 && PenID != 1520)
                                     {
                                         if (IsPaintable(x, y, PenID, true) && IsPaintable(x, y, PenID, false))
                                         {
@@ -129,7 +129,7 @@ namespace EEditor
                             }
                             else
                             {
-                                if (PenID != 77 && PenID != 83)
+                                if (PenID != 77 && PenID != 83 && PenID != 1520)
                                 {
                                     if (IsPaintable(x, y, PenID, true) && IsPaintable(x, y, PenID, false))
                                     {
@@ -179,9 +179,12 @@ namespace EEditor
                 {
                     editArea.ChangeBlock = false;
                     int fid = editArea.CurFrame.Foreground[y, x];
-                    if (fid != 0) editArea.MainForm.setBrick(editArea.CurFrame.Foreground[y, x], false);
+                    if (fid != 0)
+                    {
+                        editArea.MainForm.setBrick(editArea.CurFrame.Foreground[y, x], false);
+                    }
                     else editArea.MainForm.setBrick(editArea.CurFrame.Background[y, x], false);
-                    
+
                 }
                 else
                 {
@@ -288,7 +291,7 @@ namespace EEditor
                             else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                         }
                     }
-                    else if (bid != 77 && bid != 83 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028 && bid != 461)
+                    else if (bid != 77 && bid != 83 && bid != 1520 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028 && bid != 461)
                     {
                         if (button)
                         {
@@ -407,70 +410,25 @@ namespace EEditor
                             }
                         }
                     }
-                    else if (bid == 77)
+                    else if (bid == 83 || bid == 77 || bid == 1520)
                     {
+                        string message = "Piano";
                         if (button)
                         {
-                            /*
-                            using (Piano po = new Piano())
+                            switch (bid)
                             {
-                                po.Label2.Text = Convert.ToString(editArea.CurFrame.BlockData[y, x]);
-                                if (po.ShowDialog() == DialogResult.OK)
-                                {
-                                    var val = Convert.ToInt32(po.Label2.Text);
-                                    if (rotation.ContainsKey(bid)) { rotation[bid] = val; }
-                                    else { rotation.Add(bid, val); }
-                                    if (val >= 0)
-                                    {
-                                        
-                                        if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                                        else { editArea.CurFrame.BlockData[y, x] = val; }
-                                    }
-                                }
-                                editArea.mouseDown = false;
+                                case 83:
+                                    message = "Drums";
+                                    break;
+                                case 77:
+                                    message = "Piano";
+                                    break;
+                                case 1520:
+                                    message = "Guitar";
+                                    break;
                             }
-                             */
-                            MessageBox.Show("EEditor doesn't support the new Piano blocks yet.", "Sorry!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            MessageBox.Show("EEditor doesn't support the new " + message + " blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             editArea.mouseDown = false;
-                        }
-                        else
-                        {
-                            /*
-                            if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                            else { editArea.CurFrame.BlockData[y, x] = 0; }
-                             */
-                        }
-                    }
-                    else if (bid == 83)
-                    {
-                        if (button)
-                        {
-                            /*
-                            using (Drums ds = new Drums())
-                            {
-                                ds.Label2.Text = Convert.ToString(editArea.CurFrame.BlockData[y, x]);
-                                if (ds.ShowDialog() == DialogResult.OK)
-                                {
-                                    var val = Convert.ToInt32(ds.Label2.Text);
-                                    if (rotation.ContainsKey(bid)) { rotation[bid] = val; }
-                                    else { rotation.Add(bid, val); }
-                                    if (val >= 0)
-                                    {
-                                        if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                                        else { editArea.CurFrame.BlockData[y, x] = val; }
-                                    }
-                                }
-                                editArea.mouseDown = false;
-                            }
-                             */
-                            MessageBox.Show("EEditor doesn't support the new Drums' blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            editArea.mouseDown = false;
-                        }
-                        else
-                        {
-                            /*if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                            else { editArea.CurFrame.BlockData[y, x] = 0; }
-                             */
                         }
                     }
                     else if (bid == 374 || bid == 385)
