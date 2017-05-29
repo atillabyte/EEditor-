@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -190,7 +190,9 @@ namespace EEditor
             int x1 = (int)Math.Max(start.X, end.X);
             int y0 = (int)Math.Min(start.Y, end.Y);
             int y1 = (int)Math.Max(start.Y, end.Y);
-            int a = Math.Abs(x1 - x0), b = Math.Abs(y1 - y0), b1 = b & 1; /* values of diameter */
+            int a = Math.Abs(x1 - x0),
+            b = Math.Abs(y1 - y0),
+            b1 = b & 1; /* values of diameter */
             long dx = 4 * (1 - a) * b * b, dy = 4 * (b1 + 1) * a * a; /* error increment */
             long err = dx + dy + b1 * a * a, e2; /* error of 1.step */
 

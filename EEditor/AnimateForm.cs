@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using PlayerIOClient;
-
+using System.Text.RegularExpressions;
 namespace EEditor
 {
     public partial class AnimateForm : Form
@@ -124,15 +124,49 @@ namespace EEditor
                             {
                                 client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
                             }
+                            if (MainForm.userdata.level.StartsWith("OW"))
+                            {
+                                client.Multiplayer.ListRooms("Everybodyedits" + client.BigDB.Load("config", "config")["version"], null, 0, 0,
+                                delegate (RoomInfo[] rinfo)
+                                {
+                                    foreach (var val in rinfo)
+                                    {
+                                        if (val.Id.StartsWith("OW"))
+                                        {
+                                            if (val.Id.Length == MainForm.userdata.level.Length)
+                                            {
+                                                MainForm.userdata.level = val.Id;
+                                                levelTextBox.Text = val.Id;
+                                                conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                                                Animator anim = new Animator(frames, conn, levelPassTextBox.Text, shuffleCheckBox.Checked, checkBoxReverse.Checked, checkBoxRandom.Checked);
+                                                conn.OnDisconnect += Conn_OnDisconnect;
+                                                Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar
+                                                Animator.afHandle = this.Handle; //Make TaskbarProgress.cs work with this form's upload progress
+                                                anim.StatusChanged += new EventHandler<StatusChangedArgs>(UpdateStatus);
+                                                thread = new Thread(new ThreadStart(anim.Run));
+                                                thread.Start();
+                                                break;
+                                            }
+                                        }
+                                    }
+                                },
+                                delegate (PlayerIOError error)
+                                {
+                                    Console.WriteLine(error.Message);
+                                });
+                            }
+                            else
+                            {
+                                conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                                Animator anim = new Animator(frames, conn, levelPassTextBox.Text, shuffleCheckBox.Checked, checkBoxReverse.Checked, checkBoxRandom.Checked);
+                                conn.OnDisconnect += Conn_OnDisconnect;
+                                Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar
+                                Animator.afHandle = this.Handle; //Make TaskbarProgress.cs work with this form's upload progress
+                                anim.StatusChanged += new EventHandler<StatusChangedArgs>(UpdateStatus);
+                                thread = new Thread(new ThreadStart(anim.Run));
+                                thread.Start();
+                            }
                             
-                            conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level.StartsWith("OW") ? MainForm.userdata.level.Replace("-"," ") : MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
-                            Animator anim = new Animator(frames, conn, levelPassTextBox.Text, shuffleCheckBox.Checked,checkBoxReverse.Checked, checkBoxRandom.Checked);
-                            conn.OnDisconnect += Conn_OnDisconnect;
-                            Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar
-                            Animator.afHandle = this.Handle; //Make TaskbarProgress.cs work with this form's upload progress
-                            anim.StatusChanged += new EventHandler<StatusChangedArgs>(UpdateStatus);
-                            thread = new Thread(new ThreadStart(anim.Run));
-                            thread.Start();
                         }
                     }
                     catch (PlayerIOError err)

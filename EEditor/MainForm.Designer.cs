@@ -315,7 +315,7 @@
             this.accountsComboBox,
             this.settingsButton,
             this.aboutButton});
-            this.settingsToolStrip.Location = new System.Drawing.Point(588, 0);
+            this.settingsToolStrip.Location = new System.Drawing.Point(619, 0);
             this.settingsToolStrip.Name = "settingsToolStrip";
             this.settingsToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.settingsToolStrip.Size = new System.Drawing.Size(156, 27);
@@ -736,7 +736,7 @@
             this.uploadToolStrip.Location = new System.Drawing.Point(378, 0);
             this.uploadToolStrip.Name = "uploadToolStrip";
             this.uploadToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.uploadToolStrip.Size = new System.Drawing.Size(210, 27);
+            this.uploadToolStrip.Size = new System.Drawing.Size(241, 27);
             this.uploadToolStrip.TabIndex = 6;
             // 
             // levelTextbox

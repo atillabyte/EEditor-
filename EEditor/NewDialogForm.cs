@@ -32,7 +32,7 @@ namespace EEditor
         public NewDialogForm(MainForm mainForm)
         {
             InitializeComponent();
-            levelTextBox.Text = MainForm.userdata.level ;
+            levelTextBox.Text = MainForm.userdata.level;
             //levelPassTextBox.Text = EEditor.Properties.Settings.Default.LevelPass;
             MainForm = mainForm;
             mainform = mainForm;
@@ -255,43 +255,78 @@ namespace EEditor
         public void LoadFromLevel(string level, int datas)
         {
 
-                //errors = false;
-                //EEditor.Properties.Settings.Default.LevelPass = levelPassTextBox.Text;
+            //errors = false;
+            //EEditor.Properties.Settings.Default.LevelPass = levelPassTextBox.Text;
 
-                try
+            try
+            {
+                if (MainForm.accs[MainForm.selectedAcc].loginMethod == 0 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                 {
-                    if (MainForm.accs[MainForm.selectedAcc].loginMethod == 0 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
-                    {
-                        client = PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
-                    }
-                    else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 1 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
-                    {
-                        client = PlayerIO.QuickConnect.FacebookOAuthConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, null, null);
-                    }
-                    else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 2 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
-                    {
-                        client = PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
-                    }
-                    else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 3 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
-                    {
-                        client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
-                    }
+                    client = PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                }
+                else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 1 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
+                {
+                    client = PlayerIO.QuickConnect.FacebookOAuthConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, null, null);
+                }
+                else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 2 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
+                {
+                    client = PlayerIO.QuickConnect.KongregateConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null);
+                }
+                else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 3 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
+                {
+                    client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
+                }
 
-                    if (datas == 0)
+                if (datas == 0)
+                {
+
+                    if (MainForm.userdata.level.StartsWith("OW"))
                     {
-                        Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                        client.Multiplayer.ListRooms("Everybodyedits" + client.BigDB.Load("config", "config")["version"], null, 0, 0,
+                        delegate (RoomInfo[] rinfo)
+                        {
+                            foreach (var val in rinfo)
+                            {
+                                if (val.Id.StartsWith("OW"))
+                                {
+                                    if (val.Id.StartsWith(MainForm.userdata.level.Substring(0,4)))
+                                    {
+                                        MainForm.userdata.level = val.Id;
+                                        Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                                        Connection.OnMessage += OnMessage;
+                                        Connection.Send("init");
+                                        NeedsInit = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            
+                        },
+                        delegate (PlayerIOError error)
+                        {
+                            Console.WriteLine(error.Message);
+                        });
+                        s.WaitOne();
+                    }
+                    else
+                    {
+                        Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level == "BW" ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
                         Connection.OnMessage += OnMessage;
                         Connection.Send("init");
                         NeedsInit = false;
                         s.WaitOne();
                     }
 
+                }
 
-                    else if (datas == 1)
+
+                else if (datas == 1)
+                {
+                    int w = 0;
+                    int h = 0;
+                    DatabaseObject dbo = client.BigDB.Load("Worlds", MainForm.userdata.level);
+                    if (dbo != null)
                     {
-                        int w = 0;
-                        int h = 0;
-                        DatabaseObject dbo = client.BigDB.Load("Worlds", MainForm.userdata.level);
                         var name = dbo.Contains("name") ? dbo["name"].ToString() : "Untitled World";
                         owner = dbo.Contains("owner") ? dbo["owner"].ToString() : null;
                         if (dbo.Contains("width") && dbo.Contains("height") && dbo.Contains("worlddata"))
@@ -365,6 +400,7 @@ namespace EEditor
                         }
 
 
+
                         if (dbo.Contains("worlddata"))
                         {
                             MapFrame = Frame.FromMessage2(dbo);
@@ -380,11 +416,14 @@ namespace EEditor
                         }
                         Close();
                     }
-                    else if (datas == 2)
+                }
+                else if (datas == 2)
+                {
+                    int w = 0;
+                    int h = 0;
+                    DatabaseObject dbo = client.BigDB.Load("Worlds", MainForm.userdata.level);
+                    if (dbo != null)
                     {
-                        int w = 0;
-                        int h = 0;
-                        DatabaseObject dbo = client.BigDB.Load("Worlds", MainForm.userdata.level);
                         var name = dbo.Contains("name") ? dbo["name"].ToString() : "Untitled World";
                         owner = dbo.Contains("owner") ? dbo["owner"].ToString() : null;
                         if (dbo.Contains("width") && dbo.Contains("height") && dbo.Contains("worlddata"))
@@ -462,14 +501,15 @@ namespace EEditor
                         NeedsInit = false;
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                         Close();
-
                     }
+
                 }
-                catch (PlayerIOError error)
-                {
-                    MessageBox.Show("An error occurred:" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            
+            }
+            catch (PlayerIOError error)
+            {
+                MessageBox.Show("An error occurred:" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private Color UIntToColor(uint color)
         {
@@ -481,6 +521,7 @@ namespace EEditor
         }
         public void OnMessage(object sender, PlayerIOClient.Message e)
         {
+            Console.WriteLine(e.ToString());
             if (e.Type == "init")
             {
                 MapFrame = Frame.FromMessage(e, false);
@@ -492,7 +533,7 @@ namespace EEditor
                         EEditor.MainForm.userdata.useColor = true;
                         EEditor.MainForm.userdata.thisColor = UIntToColor(e.GetUInt(21));
                     }
-                    
+
                     var owner = e.GetString(0) == "" ? "Unknown" : e.GetString(0);
                     MainForm.Text = e[1] + " by " + owner + " (" + e[18] + "x" + e[19] + ") - EEditor " + this.ProductVersion;
                     SizeWidth = MapFrame.Width;

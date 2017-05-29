@@ -664,12 +664,12 @@ namespace EEditor
         {
             if (historyToolStrip.InvokeRequired)
             {
-                if (ToolPen.undolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; }); }
-                if (ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; }); }
-                if (ToolPen.undolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; }); }
-                if (ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; }); }
-                if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); }
-                if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); }
+                if (ToolPen.undolist.Count >= 1) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = true; }); } catch { } }
+                if (ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = true; }); } catch { } }
+                if (ToolPen.undolist.Count == 0) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { undoButton.Enabled = false; }); } catch { } }
+                if (ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { redoButton.Enabled = false; }); } catch { } }
+                if (ToolPen.undolist.Count >= 1 || ToolPen.redolist.Count >= 1) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = true; }); } catch { } }
+                if (ToolPen.undolist.Count == 0 && ToolPen.redolist.Count == 0) if (!historyButton.IsDisposed) { try { this.Invoke((MethodInvoker)delegate { historyButton.Enabled = false; }); } catch { } }
             }
             
 
@@ -3204,7 +3204,7 @@ namespace EEditor
                         }
 
                     }
-                    userdata.level = levelTextbox.Text.StartsWith("OW") ? levelTextbox.Text.Replace("-", " ") : levelTextbox.Text;
+                    userdata.level = levelTextbox.Text;
                     loaddata(0);
 
                 }
@@ -3282,6 +3282,10 @@ namespace EEditor
                     refreshButton.Image = bmp1;
                     //updateImageColor();
                 }
+            }
+            else
+            {
+                Console.WriteLine("NO");
             }
         }
         //Upload
