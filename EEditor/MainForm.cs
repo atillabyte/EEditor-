@@ -341,7 +341,8 @@ namespace EEditor
                 { 473, 205 }, { 474, 206 }, { 478, 209 }, { 479, 208 }, { 480, 207 }, { 495, 218 }, { 496, 219 },
                 { 487, 213 }, { 488, 214 },{ 489, 215 },{ 490, 216 },{ 491, 217 }, { 1501, 220 },
                 { 484, 212 }, { 485, 211 }, { 486, 210 }, { 1503,221  }, { 1504,222  }, { 1505,223  },
-                { 1508,224 }, { 1509, 225 }, { 1511, 226 }, { 1512, 227 }, { 1513, 228 }, { 1514, 229 }, { 1515, 230 }
+                { 1508,224 }, { 1509, 225 }, { 1511, 226 }, { 1512, 227 }, { 1513, 228 }, { 1514, 229 }, { 1515, 230 },
+                { 1516, 231 }
 
 
             };
@@ -372,6 +373,8 @@ namespace EEditor
                 { 497, 311 }, { 498, 317 },
                 { 492, 319 }, { 493, 323 }, { 494, 327 }, { 499, 331 }, { 1500, 335 }, { 1502, 338 },
                 { 1094, 341 }, { 1095, 340 }, { 1506, 348 }, { 1507, 343 }, { 1510, 352 },
+                { 1517, 355 }, { 1519, 360 }, { 1116, 362 }, { 1117, 366 }, { 1118, 370 }, { 1119, 374 },
+                { 1120, 378 },{ 1121, 382 },{ 1122, 386 },{ 1123, 390 },{ 1124, 394 },{ 1125, 398 },
 
 
             };
@@ -965,6 +968,9 @@ namespace EEditor
             if (ihavethese.Contains("bricktiles") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 }, new uint[] { 0xB3B09B, 0x959386, 0x716F60, 0xAD7373, 0xA97C67, 0xA59069, 0x7E9575, 0x7EA194, 0x7C8B9D, 0x857A99 }, false, "Tiles", 0, 2, true); }
             else { AddToolStrip(foregroundBMD, 0, new int[] { 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 }, new uint[] { 0xB3B09B, 0x959386, 0x716F60, 0xAD7373, 0xA97C67, 0xA59069, 0x7E9575, 0x7EA194, 0x7C8B9D, 0x857A99 }, false, "Tiles", 0, 2, false); }
 
+            if (ihavethese.Contains("brickhalfblocks") || debug) { AddToolStrip(miscBMD, 1, new int[] { 362,366,370,374,378,382,386,390,394,398 }, new uint[] { 0x5D5D5D, 0x2E2E2E, 0x151515, 0x59030D, 0x591D03, 0x4E3C02, 0x0E3E10, 0x034143, 0x032643, 0x4F0359 }, false, "Half Blocks", 0, 2, true); }
+            else { AddToolStrip(miscBMD, 1, new int[] { 362, 366, 370, 374, 378, 382, 386, 390, 394, 398 }, new uint[] { 0x5D5D5D, 0x2E2E2E, 0x151515, 0x59030D, 0x591D03, 0x4E3C02, 0x0E3E10, 0x034143, 0x032643, 0x4F0359 }, false, "Half Blocks", 0, 2, false); }
+
             #endregion
 
             #region Decoration
@@ -1193,7 +1199,7 @@ namespace EEditor
             //Everyone have these
             AddToolStrip(foregroundBMD, 0, new int[] { 0 }, null, true, "Empty", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 1, 2, 3, 285, 4, 233 }, null, false, "Gravity", 1, 0, true);
-            AddToolStrip(miscBMD, 1, new int[] { 70, 71, 72, 73, 222 }, null, false, "Invisible Gravity", 1, 0, true);
+            AddToolStrip(miscBMD, 1, new int[] { 70, 71, 72, 360, 73, 222 }, null, false, "Invisible Gravity", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 6, 7, 8, 189, 190, 191 }, new uint[] { 0x2C1A1A, 0x1A2C1A, 0x1A1A2C, 0x0C2D3D, 0x400C40, 0x2C330A }, false, "Keys", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 26, 27, 28, 195, 196, 197 }, new uint[] { 0x9C2D46, 0x379C30, 0x2D449C, 0x2D8D99, 0x912D99, 0x97922D }, false, "Gates", 1, 0, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 23, 24, 25, 192, 193, 194 }, new uint[] { 0x9C2D46, 0x379C30, 0x2D449C, 0x2D8D99, 0x912D99, 0x97922D }, false, "Doors", 1, 0, true);
@@ -1205,6 +1211,8 @@ namespace EEditor
             AddToolStrip(miscBMD, 1, new int[] { 27 }, null, false, "Tools", 1, 0, true);
             AddToolStrip(miscBMD, 1, new int[] { 8 }, null, false, "Tools", 1, 0, true);
             AddToolStrip(decosBMD, 2, new int[] { 199 }, null, false, "Tools", 1, 0, true);
+            if (ihavethese.Contains("brickgodblock") || debug) { AddToolStrip(decosBMD, 2, new int[] { 231 }, null, false, "Tools", 1, 0, true); }
+            else { AddToolStrip(decosBMD, 2, new int[] { 231 }, null, false, "Tools", 1, 0, false); }
             AddToolStrip(foregroundBMD, 0, new int[] { 5 }, new uint[] { 0x43391F }, false, "Crown", 1, 0, true);
             if (ihavethese.Contains("brickcrowndoor") || debug) { AddToolStrip(miscBMD, 1, new int[] { 341, 340 }, null, false, "Crown Doors", 1, 0, true); }
             else AddToolStrip(miscBMD, 1, new int[] { 341, 340 }, null, false, "Crown Doors", 1, 0, false);
@@ -1275,16 +1283,19 @@ namespace EEditor
             else { AddToolStrip(miscBMD, 1, new int[] { 78 }, null, false, "Effects", 1, 2, false); }
             if (ihavethese.Contains("brickeffectmultijump") || debug) { AddToolStrip(miscBMD, 1, new int[] { 252 }, null, false, "Effects", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 252 }, null, false, "Effects", 1, 2, false); }
+
+            if (ihavethese.Contains("brickeffectgravity") || debug) { AddToolStrip(miscBMD, 1, new int[] { 355 }, null, false, "Gravity", 1, 2, true); }
+            else { AddToolStrip(miscBMD, 1, new int[] { 355 }, null, false, "Gravity", 1, 2, false); }
+
             if (ihavethese.Contains("goldmember") || debug) { AddToolStrip(miscBMD, 1, new int[] { 12, 13 }, new uint[] { 0x281C00, 0xBA983B }, false, "Gold Membership", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 12, 13 }, new uint[] { 0x281C00, 0xBA983B }, false, "Gold Membership", 1, 2, false); }
             if (ihavethese.Contains("brickice2") || debug) { AddToolStrip(miscBMD, 1, new int[] { 251 }, new uint[] { 0x409EB1 }, false, "Ice", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 251 }, new uint[] { 0x409EB1 }, false, "Ice", 1, 2, false); }
+                #endregion
 
-            #endregion
-
-            #region Background
-            //Backgrounds
-            AddToolStrip(backgroundBMD, 3, new int[] { 209, 0, 1, 2, 3, 4, 5, 6, 138, 139 }, new uint[] { 0x707070, 0x343434, 0x1A2955, 0x4A1751, 0x551A2A, 0x465217, 0x1E5218, 0x174F53, 0x6F370B, 0x050505 }, false, "Basic", 3, 0, true);
+                #region Background
+                //Backgrounds
+                AddToolStrip(backgroundBMD, 3, new int[] { 209, 0, 1, 2, 3, 4, 5, 6, 138, 139 }, new uint[] { 0x707070, 0x343434, 0x1A2955, 0x4A1751, 0x551A2A, 0x465217, 0x1E5218, 0x174F53, 0x6F370B, 0x050505 }, false, "Basic", 3, 0, true);
             AddToolStrip(backgroundBMD, 3, new int[] { 210, 8, 9, 10, 11, 12, 140, 141, 142, 7 }, new uint[] { 0x5B5B5B, 0x113726, 0x251136, 0x214108, 0x371214, 0x372E12, 0x282828, 0x051132, 0x0F0F0F, 0x441D04 }, false, "Brick", 3, 0, true);
             AddToolStrip(backgroundBMD, 3, new int[] { 212, 13, 14, 15, 16, 17, 18, 19, 143, 144 }, new uint[] { 0x6B6B6B, 0x3C3C3C, 0x1F365F, 0x552860, 0x5E0E23, 0x525A1D, 0x25591E, 0x236764, 0x834A1A, 0x191919 }, false, "Checker", 3, 0, true);
             AddToolStrip(backgroundBMD, 3, new int[] { 213, 20, 21, 22, 23, 24, 25, 26, 145, 146 }, new uint[] { 0x636363, 0x353535, 0x1C325D, 0x4C1853, 4283501598, 0x485318, 0x1D5318, 0x1C5D5B, 0x7A4111, 0x121212 }, false, "Dark", 3, 0, true);
@@ -1870,7 +1881,7 @@ namespace EEditor
                         cm.Items.Add(toolStripMenuCreator(cur.ID, "Left /", 3,3, true));
 
                     }
-                    else if (bid == 1001 || bid == 1002 || bid == 1003 || bid == 1004 || bid == 1052 || bid == 1053 || bid == 1054 || bid == 1055 || bid == 1056 || bid == 1092)
+                    else if (bid == 1001 || bid == 1002 || bid == 1003 || bid == 1004 || bid == 1052 || bid == 1053 || bid == 1054 || bid == 1055 || bid == 1056 || bid == 1092 || bid >= 1116 && bid <= 1125)
                     {
                         //One-Way
                         cm.Items.Add(new ToolStripSeparator());
@@ -2004,6 +2015,16 @@ namespace EEditor
                         cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2,2, true));
                         cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
                         cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
+                    }
+                    else if (bid == 1517)
+                    {
+                        cm.Items.Add(new ToolStripSeparator());
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "No Gravity", 4, 4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 3, 3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 1, 1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 2, 2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 0, 0, true));
+                        
                     }
                     cm.ItemClicked += cm_ItemClicked;
                 }

@@ -15,11 +15,11 @@ namespace EEditor
         //public static int[] effects = { 417, 418, 419, 420, 421, 422, 453 };
         public static int[] rotate = { 1001, 1002, 1003, 1004, 1027, 1028, 361, 385, 374, 1052, 1053, 1054, 1055, 1056, 1092};
         public static int[] ignore = { 1001, 1002, 1003, 1004, 361, 417, 418, 419, 420, 1052, 1053, 1054, 1055, 1056, 1092 };
-        public static int[] morphable = { 375, 376, 379, 380, 377, 378, 438, 439, 276, 277, 279, 280, 440, 275, 329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 456, 457, 458, 447, 448, 449, 450, 451, 452, 464, 465, 1075, 1076, 1077, 1078, 471, 475, 476, 477, 481, 482, 483, 497, 492, 493, 494, 499, 1500, 1502,1507, 1506,1101,1102,1103,1104,1105 };
+        public static int[] morphable = { 375, 376, 379, 380, 377, 378, 438, 439, 276, 277, 279, 280, 440, 275, 329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 456, 457, 458, 447, 448, 449, 450, 451, 452, 464, 465, 1075, 1076, 1077, 1078, 471, 475, 476, 477, 481, 482, 483, 497, 492, 493, 494, 499, 1500, 1502,1507, 1506,1101,1102,1103,1104,1105,1517,1116,1117,1118,1119,1120,1121,1122,1123,1124,1125 };
         public static int[] portals = { 242, 381 };
 
         //ToolPen (Increase up to 1, 2, 3, 5)
-        public static int[] increase3 = { 1001, 1002, 1003, 1004, 361, 375, 376, 377, 378, 379, 380, 438, 439, 275, 329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 447, 448, 449, 450, 451, 452, 1052, 1053, 1054, 1055, 1056, 1075, 1076, 1077, 1078, 1092, 492, 493, 494, 499, 1502 };
+        public static int[] increase3 = { 1001, 1002, 1003, 1004, 361, 375, 376, 377, 378, 379, 380, 438, 439, 275, 329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 447, 448, 449, 450, 451, 452, 1052, 1053, 1054, 1055, 1056, 1075, 1076, 1077, 1078, 1092, 492, 493, 494, 499, 1502, 1116, 1117, 1118, 1119, 1120, 1121, 1122, 1123, 1124, 1125 };
         public static int[] increase2 = { 276, 277, 279, 280, 471, 475, 476, 477, 483, 1500 };
         public static int[] increase1 = { 417, 418, 419, 420, 453, 456, 457, 458 };
         public static int[] increase4 = { 1507, 1506, 464, 465 };
@@ -83,7 +83,7 @@ namespace EEditor
                     Bitmap bmp2 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[fid] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
                     return bmp2;
                 }
-                else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || fid == 339 || fid == 340 || fid == 1041 || fid == 1042 || fid == 1043 || fid == 456 || fid == 457 || fid == 458 || fid == 447 || fid == 448 || fid == 449 || fid == 450 || fid == 451 || fid == 452 || fid >= 1075 && fid <= 1078 || fid == 471 || fid == 475 || fid == 476 || fid == 477 || fid == 497 || fid == 492 || fid == 493 || fid == 494 || fid == 499 || fid == 1500 || fid == 1502 || fid == 1506 || fid == 1507)
+                else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || fid == 339 || fid == 340 || fid == 1041 || fid == 1042 || fid == 1043 || fid == 456 || fid == 457 || fid == 458 || fid == 447 || fid == 448 || fid == 449 || fid == 450 || fid == 451 || fid == 452 || fid >= 1075 && fid <= 1078 || fid == 471 || fid == 475 || fid == 476 || fid == 477 || fid == 497 || fid == 492 || fid == 493 || fid == 494 || fid == 499 || fid == 1500 || fid == 1502 || fid == 1506 || fid == 1507 || fid == 1517 || fid >= 1116 && fid <= 1125)
                 {
                     int roted = 15;
                     bool empty = false;
@@ -126,6 +126,17 @@ namespace EEditor
                             if (fid == 1502) roted = 339;
                             if (fid == 1507) roted = 342;
                             if (fid == 1506) roted = 347;
+                            if (fid == 1517) roted = 355;
+                            if (fid == 1116) roted = 361;
+                            if (fid == 1117) roted = 365;
+                            if (fid == 1118) roted = 369;
+                            if (fid == 1119) roted = 373;
+                            if (fid == 1120) roted = 377;
+                            if (fid == 1121) roted = 381;
+                            if (fid == 1122) roted = 385;
+                            if (fid == 1123) roted = 389;
+                            if (fid == 1124) roted = 393;
+                            if (fid == 1125) roted = 397;
                             break;
                         case 1:
                             if (fid == 276) roted = 141;
@@ -164,6 +175,17 @@ namespace EEditor
                             if (fid == 1502) roted = 338;
                             if (fid == 1507) roted = 343;
                             if (fid == 1506) roted = 348;
+                            if (fid == 1517) roted = 356;
+                            if (fid == 1116) roted = 362;
+                            if (fid == 1117) roted = 366;
+                            if (fid == 1118) roted = 370;
+                            if (fid == 1119) roted = 374;
+                            if (fid == 1120) roted = 378;
+                            if (fid == 1121) roted = 382;
+                            if (fid == 1122) roted = 386;
+                            if (fid == 1123) roted = 390;
+                            if (fid == 1124) roted = 394;
+                            if (fid == 1125) roted = 398;
                             break;
                         case 2:
                             if (fid == 276) roted = 142;
@@ -198,6 +220,17 @@ namespace EEditor
                             if (fid == 1502) roted = 337;
                             if (fid == 1507) roted = 344;
                             if (fid == 1506) roted = 349;
+                            if (fid == 1517) roted = 357;
+                            if (fid == 1116) roted = 363;
+                            if (fid == 1117) roted = 367;
+                            if (fid == 1118) roted = 371;
+                            if (fid == 1119) roted = 375;
+                            if (fid == 1120) roted = 379;
+                            if (fid == 1121) roted = 383;
+                            if (fid == 1122) roted = 387;
+                            if (fid == 1123) roted = 391;
+                            if (fid == 1124) roted = 395;
+                            if (fid == 1125) roted = 399;
                             break;
                         case 3:
                             if (fid == 338) roted = 139;
@@ -224,11 +257,23 @@ namespace EEditor
                             if (fid == 1502) roted = 336;
                             if (fid == 1507) roted = 345;
                             if (fid == 1506) roted = 350;
+                            if (fid == 1517) roted = 358;
+                            if (fid == 1116) roted = 364;
+                            if (fid == 1117) roted = 368;
+                            if (fid == 1118) roted = 372;
+                            if (fid == 1119) roted = 376;
+                            if (fid == 1120) roted = 380;
+                            if (fid == 1121) roted = 384;
+                            if (fid == 1122) roted = 388;
+                            if (fid == 1123) roted = 392;
+                            if (fid == 1124) roted = 396;
+                            if (fid == 1125) roted = 400;
                             break;
                         case 4:
                             if (fid == 497) roted = 315;
                             if (fid == 1507) roted = 346;
                             if (fid == 1506) roted = 351;
+                            if (fid == 1517) roted = 359;
                             break;
                         case 5:
                             if (fid == 497) roted = 316;

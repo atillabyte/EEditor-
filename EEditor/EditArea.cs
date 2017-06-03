@@ -515,6 +515,16 @@ namespace EEditor
                     {
                         DrawText("x", Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
                     }
+                    else if (fid == 461 && coins == 1)
+                    {
+                        Bitmap bmp3 = bdata.getRotation(fid, coins);
+                        if (bmp3 != null) g.DrawImage(bmp3, x * 16, y * 16);
+                    }
+                    else
+                    {
+                        if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
+                        else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
+                    }
                     //g.DrawString(coins.ToString(), new Font("Courier", 6), Brushes.White, new PointF(x * 16 + offSet, y * 16 + 8));
                 }
                 else if (fid != 77 && fid != 83 && fid != 1520)
