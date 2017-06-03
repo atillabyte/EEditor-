@@ -291,7 +291,7 @@ namespace EEditor
                             else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                         }
                     }
-                    else if (bid != 77 && bid != 83 && bid != 1520 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028 && bid != 461)
+                    else if (bid != 77 && bid != 83 && bid != 1520 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028)
                     {
                         if (button)
                         {
@@ -301,9 +301,10 @@ namespace EEditor
                                 co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
                                 if (co.ShowDialog() == DialogResult.OK)
                                 {
-                                    editArea.CurFrame.BlockData[y, x] = (int)co.NumberChangerNumeric.Value;
-                                    if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumberChangerNumeric.Value; }
-                                    else { rotation.Add(bid, (int)co.NumberChangerNumeric.Value); }
+                                    var value = (int)co.NumberChangerNumeric.Value == -1 ? 1000 : (int)co.NumberChangerNumeric.Value;
+                                    editArea.CurFrame.BlockData[y, x] = value;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = value; }
+                                    else { rotation.Add(bid, value); }
                                 }
                                 editArea.mouseDown = false;
 

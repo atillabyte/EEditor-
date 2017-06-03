@@ -506,7 +506,7 @@ namespace EEditor
                 int offSet = coins >= 10 ? 4 : 9;
                 if (fid == 467 || fid == 1079 || fid == 1080 || fid == 1012 || fid == 214 || fid == 165 || fid == 113 || fid == 184 || fid == 185 || fid == 213 || fid == 461)
                 {
-                    if (fid == 461 && coins == 1)
+                    if (fid == 461 && coins == 0 || coins > 1 && coins <= 999)
                     {
                         if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
                         else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
@@ -514,11 +514,6 @@ namespace EEditor
                     else if (fid == 461 && coins == 1000)
                     {
                         DrawText("x", Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
-                    }
-                    else
-                    {
-                        if (bfont.Families.Length == 1) DrawText(coins.ToString(), Back, Brushes.White, bfont.Families[0], 8, "bottom", "right", x * 16, y * 16, false);
-                        else DrawText(coins.ToString(), Back, Brushes.White, null, 8, "bottom", "center", x * 16, y * 16, false);
                     }
                     //g.DrawString(coins.ToString(), new Font("Courier", 6), Brushes.White, new PointF(x * 16 + offSet, y * 16 + 8));
                 }
@@ -540,13 +535,21 @@ namespace EEditor
                 }*/
                 if (fid == 242 || fid == 381)
                 {
+
                     Bitmap bmp3 = bdata.getRotation(fid, coins);
                     if (bmp3 != null) g.DrawImage(bmp3, x * 16, y * 16);
                     //g.DrawString(id.ToString(), new Font("Courier", 6), Brushes.Black, new PointF(x * 16 + 4, y * 16 + 1));
-                    if (bfont.Families.Length == 1) DrawText(id.ToString(), Back, Brushes.Black, bfont.Families[0], 8, "top", "center", x * 16, y * 16 + 1, false);
-                    else DrawText(id.ToString(), Back, Brushes.Black, null, 8, "top", "center", x * 16, y * 16, false);
-                    if (bfont.Families.Length == 1) DrawText(target.ToString(), Back, Brushes.Red, bfont.Families[0], 8, "bottom", "center", x * 16, y * 16 - 1, false);
-                    else DrawText(target.ToString(), Back, Brushes.Red, null, 8, "bottom", "center", x * 16, y * 16, false);
+
+                    int idd = id;
+                    int targget = target;
+                    if (id.ToString().Length > 3) { idd = Convert.ToInt32(id.ToString().Substring(0, 3)); }
+                    if (target.ToString().Length > 3) { targget = Convert.ToInt32(target.ToString().Substring(0, 3)); }
+                        if (bfont.Families.Length == 1) DrawText(idd.ToString(), Back, Brushes.Black, bfont.Families[0], 8, "top", "center", x * 16, y * 16 + 1, false);
+                        else DrawText(idd.ToString(), Back, Brushes.Black, null, 8, "top", "center", x * 16, y * 16, false);
+                        if (bfont.Families.Length == 1) DrawText(targget.ToString(), Back, Brushes.Red, bfont.Families[0], 8, "bottom", "center", x * 16, y * 16 - 1, false);
+                        else DrawText(targget.ToString(), Back, Brushes.Red, null, 8, "bottom", "center", x * 16, y * 16, false);
+                        
+                    
 
                 }
                 else

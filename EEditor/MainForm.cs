@@ -366,7 +366,7 @@ namespace EEditor
                 { 300, 1}, { 440, 169 }, { 275 , 117 }, { 329 , 129 }, { 273 , 125 }, { 328 , 157 }, { 327 , 121 },
                 { 338,119 }, {339,120 }, { 327,121 }, { 370,30 }, { 456, 215 }, { 457,217 }, { 458,219 }, { 338,137}, { 339,133}, { 340 ,153 },
                 { 370, 30}, {1041, 203}, {1042, 207}, {1043, 211 }, { 456, 215} ,{ 457, 217},{ 458, 219}, {447, 179},{ 448, 183},{449, 187}, {450, 191},{451, 195},{ 452, 199}, { 464, 201 }, { 465, 202 }, { 460, 222 },
-                { 461, 253}, { 1064, 251}, {1052, 224 }, {1053, 228 }, { 1054 ,232 }, { 1055, 236 }, { 1056, 240 }, { 464, 244 }, { 465, 248 },
+                { 461, 252}, { 1064, 251}, {1052, 224 }, {1053, 228 }, { 1054 ,232 }, { 1055, 236 }, { 1056, 240 }, { 464, 244 }, { 465, 248 },
                 { 467, 259} , {1080, 261}, { 1079, 262 }, { 1081, 263 }, { 1075, 264 }, { 1076, 268}, { 1077, 272}, { 1078, 276 }, { 471, 279 },
                 { 475, 283 }, { 476, 286 }, { 477, 289 }, { 481, 292}, { 482, 298 }, { 483, 304}, { 1092, 308 },
                 { 497, 311 }, { 498, 317 },
@@ -1273,8 +1273,8 @@ namespace EEditor
             else { AddToolStrip(miscBMD, 1, new int[] { 77 }, null, false, "Effects", 1, 2, false); }
             if (ihavethese.Contains("brickeffectcurse") || debug) { AddToolStrip(miscBMD, 1, new int[] { 78 }, null, false, "Effects", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 78 }, null, false, "Effects", 1, 2, false); }
-            if (ihavethese.Contains("brickeffectmultijump") || debug) { AddToolStrip(miscBMD, 1, new int[] { 253 }, null, false, "Effects", 1, 2, true); }
-            else { AddToolStrip(miscBMD, 1, new int[] { 253 }, null, false, "Effects", 1, 2, false); }
+            if (ihavethese.Contains("brickeffectmultijump") || debug) { AddToolStrip(miscBMD, 1, new int[] { 252 }, null, false, "Effects", 1, 2, true); }
+            else { AddToolStrip(miscBMD, 1, new int[] { 252 }, null, false, "Effects", 1, 2, false); }
             if (ihavethese.Contains("goldmember") || debug) { AddToolStrip(miscBMD, 1, new int[] { 12, 13 }, new uint[] { 0x281C00, 0xBA983B }, false, "Gold Membership", 1, 2, true); }
             else { AddToolStrip(miscBMD, 1, new int[] { 12, 13 }, new uint[] { 0x281C00, 0xBA983B }, false, "Gold Membership", 1, 2, false); }
             if (ihavethese.Contains("brickice2") || debug) { AddToolStrip(miscBMD, 1, new int[] { 251 }, new uint[] { 0x409EB1 }, false, "Ice", 1, 2, true); }
@@ -1691,13 +1691,13 @@ namespace EEditor
                     {
                         //Team door, gate, colors
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "None", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Magenta", 5, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 6, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "None", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4,4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Magenta", 5,5, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 6,6, true));
                     }
                     else if (bid == 461 || bid == 417 || bid == 418 || bid == 419 || bid == 420 || bid == 453)
                     {
@@ -1705,304 +1705,305 @@ namespace EEditor
                         {
                             // Double jump effect
                             cm.Items.Add(new ToolStripSeparator());
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "No Jumping", 0, true));
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Infinite Jumping", 1, true));
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Normal Jumping", 1, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "No Jumping", 0,0, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Infinite Jumping", 0,1000, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Normal Jumping", 1, 1, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Double Jumping", 0, 2, true));
                         }
                         else
                         {
                             //Rest of the effects
                             cm.Items.Add(new ToolStripSeparator());
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Disabled", 0, true));
-                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Enabled", 1, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Disabled", 0,0, true));
+                            cm.Items.Add(toolStripMenuCreator(cur.ID, "Enabled", 1,1, true));
                         }
                     }
                     else if (bid == 385)
                     {
                         // Signs
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Normal", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Silver", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Copper", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Gold", 3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Normal", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Silver", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Copper", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Gold", 3,3, true));
                     }
                     else if (bid == 464 || bid == 465)
                     {
                         //New year 2015 - String and Balloon
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 4,4, true));
                     }
                     else if (bid == 456 || bid == 457 || bid == 458)
                     {
                         //halloween 2015
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Light", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Dark", 1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Light", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Dark", 1,1, true));
                     }
                     else if (bid == 447)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Upper, turned on", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Upper, turned off", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lower, turned on", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lower, turned off", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Upper, turned on", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Upper, turned off", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lower, turned on", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lower, turned off", 0,0, true));
                     }
                     else if (bid == 448)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right to down", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left to down", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up to left", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up to right", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right to down", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left to down", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up to left", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up to right", 0,0, true));
                     }
                     else if (bid == 449)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Daylight", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Northern lights", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Sunset", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Night", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Daylight", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Northern lights", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Sunset", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Night", 0,0, true));
                     }
                     else if (bid == 450)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-yellow", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-red", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-pink", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-blue", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-yellow", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-red", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-pink", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green-blue", 0,0, true));
                     }
                     else if (bid == 451)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Standby", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "No signal", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Sea doc", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Wildlife", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Standby", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "No signal", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Sea doc", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Wildlife", 0,0, true));
                     }
                     else if (bid == 452)
                     {
                         //Domestic
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lights off", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue light", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Pink light", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow light", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Lights off", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue light", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Pink light", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow light", 0,0, true));
                     }
                     else if (bid == 361)
                     {
                         //Spikes
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 0,0, true));
                     }
                     else if (bid == 273 || bid == 328 || bid == 327)
                     {
                         //Colored Flags from medieval
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 0,0, true));
                     }
                     else if (bid == 329)
                     {
                         //Sword from medieval
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Right", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Left", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Left", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Right", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Right", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Left", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Left", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Right", 0,0, true));
                     }
                     else if (bid == 275)
                     {
                         //Axe from medieval
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Right", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Right", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Left", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Left", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Right", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Right", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down Left", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up Left", 0,0, true));
                     }
                     else if (bid == 440)
                     {
                         //wood from medieval
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "''''", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "T", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "|", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "\\'", 4, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "7", 5, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Ṽ", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "''''", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "T", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "|", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "\\'", 4,4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "7", 5,5, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Ṽ", 0,0, true));
                     }
                     else if (bid == 280 || bid == 279 || bid == 277 || bid == 276)
                     {
                         //Dojo
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 0,0, true));
                     }
                     else if (bid == 439 || bid == 380 || bid == 378 || bid == 376)
                     {
                         //Scifi
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "‒", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "|", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "‒", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "|", 0,0, true));
                     }
                     else if (bid == 438 || bid == 379 || bid == 375 || bid == 377)
                     {
                         //Scifi
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right /", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right \\", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left \\", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left /", 3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right /", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right \\", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left \\", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left /", 3,3, true));
 
                     }
                     else if (bid == 1001 || bid == 1002 || bid == 1003 || bid == 1004 || bid == 1052 || bid == 1053 || bid == 1054 || bid == 1055 || bid == 1056 || bid == 1092)
                     {
                         //One-Way
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 0,0, true));
 
                     }
                     else if (bid == 1041 || bid == 1042 || bid == 1043)
                     {
                         //Domestic halfblocks
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 0,0, true));
 
                     }
                     else if (bid == 1075 || bid == 1076 || bid == 1077 || bid == 1078)
                     {
                         //Fairytale halfblocks
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Down", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Up", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right", 0,0, true));
 
                     }
                     else if (bid == 471)
                     {
                         //Fairytale Flowers
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Pink", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Pink", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 2,2, true));
                     }
                     else if (bid == 475)
                     {
                         //Spring 2016
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "White", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "White", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
                     }
                     else if (bid == 476)
                     {
                         //Spring 2016
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
                     }
                     else if (bid == 477)
                     {
                         //Spring 2016
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "White", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "White", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 0,0, true));
                     }
                     else if (bid == 481 || bid == 482)
                     {
                         //Summer 2016
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 5, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Orange", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4,4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 5,5, true));
                     }
                     else if (bid == 483)
                     {
                         //Summer 2016
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 0, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Brown", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 0,0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Brown", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 3,3, true));
                     }
                     else if (bid == 497)
                     {
                         //Mine
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 5, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Cyan", 4,4, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Blue", 5,5, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
                     }
                     else if (bid == 492 || bid == 493 || bid == 494)
                     {
                         //Halloween 2016 
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "", 0,0, true));
                     }
                     else if (bid == 499)
                     {
                         //Halloween 2016 tree
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right Down", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left Down", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left Up", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right Up", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right Down", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left Down", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Left Up", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Right Up", 0,0, true));
                     }
                     else if (bid == 1500)
                     {
                         //Halloween 2016 pumpkin
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Dark", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Light", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Dark", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Light", 0,0, true));
                     }
                     else if (bid == 1502)
                     {
                         //Halloween 2016 pumpkin
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 0,0, true));
                     }
                     else if (bid == 1506 || bid == 1507)
                     {
                         cm.Items.Add(new ToolStripSeparator());
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3, true));
-                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Red", 1,1, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Yellow", 2,2, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Green", 3,3, true));
+                        cm.Items.Add(toolStripMenuCreator(cur.ID, "Purple", 0,0, true));
                     }
                     cm.ItemClicked += cm_ItemClicked;
                 }
@@ -2121,12 +2122,12 @@ namespace EEditor
                     }
                 }
             }
-            private ToolStripMenuItem toolStripMenuCreator(int bid, string text, int rotation, bool userotation)
+            private ToolStripMenuItem toolStripMenuCreator(int bid, string text, int imgrotation, int rot, bool userotation)
             {
                 ToolStripMenuItem tsp = new ToolStripMenuItem();
-                tsp.Name = bid.ToString() + ":" + rotation.ToString();
+                tsp.Name = bid.ToString() + ":" + rot.ToString();
                 tsp.Text = text;
-                tsp.Image = id2block(bid, rotation, userotation);
+                tsp.Image = id2block(bid, imgrotation, userotation);
                 return tsp;
             }
             private Bitmap id2block(int id, int rotation, bool userotation)

@@ -479,8 +479,8 @@ namespace EEditor
                         if (fid == 453) roted = 176;
                         if (fid == 461) roted = 253;
                         break;
-                    case 2:
-                        if (fid == 461) roted = 254;
+                    default:
+                        if (fid == 461) roted = 252;
                         break;
                 }
                 Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(roted * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
