@@ -17,6 +17,7 @@ namespace EEditor
         private string[,] Id;
         private string[,] Target;
         private string[,] Text1;
+        private bool exit = false;
         int n;
         float[] H;
         float[] S;
@@ -47,6 +48,7 @@ namespace EEditor
                     S[i] = c.GetSaturation();
                     B[i] = c.GetBrightness();
                 }
+
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
@@ -88,6 +90,8 @@ namespace EEditor
             float B = c.GetBrightness();
             double d = DistanceHSB(H, S, B, 0);
             for (int i = 1; i < n; i++)
+            {
+
                 if (Minimap.ImageColor[i])
                 {
                     double dist = DistanceHSB(H, S, B, i);
@@ -97,6 +101,10 @@ namespace EEditor
                         j = i;
                     }
                 }
+                if (exit) break;
+                
+                
+            }
             return j;
         }
 
@@ -112,40 +120,48 @@ namespace EEditor
             double d = Distance(c, Color.FromArgb((int)Minimap.Colors[0]));
             if (checkBoxBackground.Checked)
                 foreach (int i in Background)
+                {
                     if (Minimap.ImageColor[i])
                     {
-                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                        if (dist < d)
-                        {
-                            d = dist;
-                            j = i;
-                        }
+                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                            if (dist < d)
+                            {
+                                d = dist;
+                                j = i;
+                            }
                     }
-
+                    if (exit) break;
+                }
             if (checkBoxBlocks.Checked)
                 foreach (int i in Blocks)
+                {
                     if (Minimap.ImageColor[i])
                     {
-                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                        if (dist < d)
-                        {
-                            d = dist;
-                            j = i;
-                        }
+                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                            if (dist < d)
+                            {
+                                d = dist;
+                                j = i;
+                            }
+                        
                     }
+                    if (exit) break;
+                }
             if (MorphablecheckBox.Checked)
             {
                 foreach (int i in SpecialMorph)
                 {
                     if (Minimap.ImageColor[i])
                     {
-                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                        if (dist < d)
-                        {
-                            d = dist;
-                            j = i;
-                        }
+                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                            if (dist < d)
+                            {
+                                d = dist;
+                                j = i;
+                            }
+                        
                     }
+                    if (exit) break;
                 }
             }
             if (ActionBlockscheckBox.Checked)
@@ -154,68 +170,20 @@ namespace EEditor
                 {
                     if (Minimap.ImageColor[i])
                     {
-                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                        if (dist < d)
-                        {
-                            d = dist;
-                            j = i;
-                        }
+                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                            if (dist < d)
+                            {
+                                d = dist;
+                                j = i;
+                            }
+                        
                     }
+                    if (exit) break;
                 }
             }
 
             return j;
 
-        }
-        private int closestColor(Color col, int bid)
-        {
-            Color black = Color.Black;
-            Color color2 = Color.Black;
-            int bids = 0;
-            double num = 999.0;
-            double d = 0.0;
-            foreach (int i in Background)
-            {
-                if (Minimap.ImageColor[i])
-                {
-                    color2 = Color.FromArgb((int)Minimap.Colors[i]);
-
-                    if (color2.R >= col.R)
-                    {
-                        d += Math.Pow((double)(color2.R - col.R), 2.0);
-                    }
-                    else
-                    {
-                        d += Math.Pow((double)(col.R - color2.R), 2.0);
-                    }
-                    if (color2.G >= col.G)
-                    {
-                        d += Math.Pow((double)(color2.G - col.G), 2.0);
-                    }
-                    else
-                    {
-                        d += Math.Pow((double)(col.G - color2.G), 2.0);
-                    }
-                    if (color2.B >= col.B)
-                    {
-                        d += Math.Pow((double)(color2.B - col.B), 2.0);
-                    }
-                    else
-                    {
-                        d += Math.Pow((double)(col.B - color2.B), 2.0);
-                    }
-                    d = Math.Sqrt(d);
-                    if (d < num)
-                    {
-                        num = d;
-                        black = color2;
-                    }
-                    if (bid >= 500 && bid <= 999) bids = Background[i];
-                }
-                
-
-            }
-            return bids;
         }
         #endregion
 
@@ -255,7 +223,9 @@ namespace EEditor
                                 Area[y, x] = Convert.ToString(c);
                             else
                                 Back[y, x] = Convert.ToString(c);
+                            if (exit) break;
                         }
+                        if (exit) break;
                     }
                 }
                 else
@@ -286,7 +256,9 @@ namespace EEditor
                             Area[y, x] = Convert.ToString(c);
                         else
                             Back[y, x] = Convert.ToString(c);
+                        if (exit) break;
                     }
+                    if (exit) break;
                 }
 
             }
@@ -304,11 +276,12 @@ namespace EEditor
             }
             else if (imagedone == DialogResult.No)
             {
-                this.Invoke((MethodInvoker)delegate
+                /*this.Invoke((MethodInvoker)delegate
                 {
                     Clipboard.SetData("EEData", new string[][,] { Area, Back, Coins, Id, Target, Text1 });
                     Close();
                 });
+                */
             }
             try
             {
@@ -353,6 +326,11 @@ namespace EEditor
         private void ActionBlockscheckBox_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.userdata.imageSpecialblocksAction = ActionBlockscheckBox.Checked;
+        }
+
+        private void InsertImageForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            exit = true;
         }
     }
 }

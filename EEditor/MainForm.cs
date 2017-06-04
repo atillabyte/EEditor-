@@ -3764,6 +3764,7 @@ namespace EEditor
                 thread.Start();
             }
             SetPenTool();
+            hideBlocksButton.PerformClick();
 
         }
         private void MainForm_Activated(object sender, EventArgs e)

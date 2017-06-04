@@ -35,16 +35,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ActionBlockscheckBox = new System.Windows.Forms.CheckBox();
             this.MorphablecheckBox = new System.Windows.Forms.CheckBox();
-            this.ConvertergroupBox = new System.Windows.Forms.GroupBox();
-            this.EEditorRadiobutton = new System.Windows.Forms.RadioButton();
-            this.EEArtistRadioButton = new System.Windows.Forms.RadioButton();
             this.CreateImagegroupBox.SuspendLayout();
-            this.ConvertergroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // loadImageButton
             // 
-            this.loadImageButton.Location = new System.Drawing.Point(12, 231);
+            this.loadImageButton.Location = new System.Drawing.Point(12, 159);
             this.loadImageButton.Name = "loadImageButton";
             this.loadImageButton.Size = new System.Drawing.Size(134, 27);
             this.loadImageButton.TabIndex = 1;
@@ -85,7 +81,7 @@
             this.CreateImagegroupBox.Controls.Add(this.MorphablecheckBox);
             this.CreateImagegroupBox.Controls.Add(this.checkBoxBackground);
             this.CreateImagegroupBox.Controls.Add(this.checkBoxBlocks);
-            this.CreateImagegroupBox.Location = new System.Drawing.Point(12, 84);
+            this.CreateImagegroupBox.Location = new System.Drawing.Point(12, 12);
             this.CreateImagegroupBox.Name = "CreateImagegroupBox";
             this.CreateImagegroupBox.Size = new System.Drawing.Size(134, 141);
             this.CreateImagegroupBox.TabIndex = 7;
@@ -123,57 +119,22 @@
             this.MorphablecheckBox.UseVisualStyleBackColor = true;
             this.MorphablecheckBox.CheckedChanged += new System.EventHandler(this.MorphablecheckBox_CheckedChanged);
             // 
-            // ConvertergroupBox
-            // 
-            this.ConvertergroupBox.Controls.Add(this.EEArtistRadioButton);
-            this.ConvertergroupBox.Controls.Add(this.EEditorRadiobutton);
-            this.ConvertergroupBox.Location = new System.Drawing.Point(12, 12);
-            this.ConvertergroupBox.Name = "ConvertergroupBox";
-            this.ConvertergroupBox.Size = new System.Drawing.Size(134, 66);
-            this.ConvertergroupBox.TabIndex = 8;
-            this.ConvertergroupBox.TabStop = false;
-            this.ConvertergroupBox.Text = "Choose Converter";
-            // 
-            // EEditorRadiobutton
-            // 
-            this.EEditorRadiobutton.AutoSize = true;
-            this.EEditorRadiobutton.Checked = true;
-            this.EEditorRadiobutton.Location = new System.Drawing.Point(6, 19);
-            this.EEditorRadiobutton.Name = "EEditorRadiobutton";
-            this.EEditorRadiobutton.Size = new System.Drawing.Size(59, 17);
-            this.EEditorRadiobutton.TabIndex = 0;
-            this.EEditorRadiobutton.TabStop = true;
-            this.EEditorRadiobutton.Text = "EEditor";
-            this.EEditorRadiobutton.UseVisualStyleBackColor = true;
-            // 
-            // EEArtistRadioButton
-            // 
-            this.EEArtistRadioButton.AutoSize = true;
-            this.EEArtistRadioButton.Location = new System.Drawing.Point(6, 36);
-            this.EEArtistRadioButton.Name = "EEArtistRadioButton";
-            this.EEArtistRadioButton.Size = new System.Drawing.Size(62, 17);
-            this.EEArtistRadioButton.TabIndex = 1;
-            this.EEArtistRadioButton.Text = "EEArtist";
-            this.EEArtistRadioButton.UseVisualStyleBackColor = true;
-            // 
             // InsertImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(164, 270);
-            this.Controls.Add(this.ConvertergroupBox);
+            this.ClientSize = new System.Drawing.Size(164, 203);
             this.Controls.Add(this.CreateImagegroupBox);
             this.Controls.Add(this.loadImageButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "InsertImageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Insert image";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.InsertImageForm_FormClosing);
             this.Load += new System.EventHandler(this.InsertImageForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.InsertImageForm_KeyDown);
             this.CreateImagegroupBox.ResumeLayout(false);
             this.CreateImagegroupBox.PerformLayout();
-            this.ConvertergroupBox.ResumeLayout(false);
-            this.ConvertergroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -186,8 +147,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ActionBlockscheckBox;
         private System.Windows.Forms.CheckBox MorphablecheckBox;
-        private System.Windows.Forms.GroupBox ConvertergroupBox;
-        private System.Windows.Forms.RadioButton EEArtistRadioButton;
-        private System.Windows.Forms.RadioButton EEditorRadiobutton;
     }
 }
