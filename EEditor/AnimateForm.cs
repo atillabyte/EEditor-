@@ -211,7 +211,6 @@ namespace EEditor
             numericUpDown2.Value = MainForm.userdata.uploadDelay;
             levelTextBox.Text = MainForm.userdata.level;
             if (MainForm.userdata.uploadOption == 0) uploadOptionButton1.Checked = true;
-            else if (MainForm.userdata.uploadOption == 2) uploadOptionButton3.Checked = true;
             
             levelPassTextBox.Enabled = true;
             levelPassTextBox.Text = MainForm.userdata.levelPass;
@@ -321,6 +320,12 @@ namespace EEditor
         {
             MainForm.userdata.ignoreplacing = IgnoreDrawingCheckBox.Checked;
         }
+
+        private void waitForEditcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 
     public class StatusChangedArgs : EventArgs

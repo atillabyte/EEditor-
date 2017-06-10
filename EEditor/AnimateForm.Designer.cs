@@ -43,7 +43,6 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.autoSaveCheckBox = new System.Windows.Forms.CheckBox();
             this.uploadOptionButton1 = new System.Windows.Forms.RadioButton();
-            this.uploadOptionButton3 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBoxRandom = new System.Windows.Forms.CheckBox();
             this.checkBoxReverse = new System.Windows.Forms.CheckBox();
@@ -215,22 +214,9 @@
             this.uploadOptionButton1.UseVisualStyleBackColor = true;
             this.uploadOptionButton1.CheckedChanged += new System.EventHandler(this.uploadOptionButton1_CheckedChanged);
             // 
-            // uploadOptionButton3
-            // 
-            this.uploadOptionButton3.AutoSize = true;
-            this.uploadOptionButton3.Enabled = false;
-            this.uploadOptionButton3.Location = new System.Drawing.Point(76, 19);
-            this.uploadOptionButton3.Name = "uploadOptionButton3";
-            this.uploadOptionButton3.Size = new System.Drawing.Size(81, 17);
-            this.uploadOptionButton3.TabIndex = 29;
-            this.uploadOptionButton3.Text = "Time-Based";
-            this.uploadOptionButton3.UseVisualStyleBackColor = true;
-            this.uploadOptionButton3.CheckedChanged += new System.EventHandler(this.uploadOptionButton3_CheckedChanged);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.uploadOptionButton1);
-            this.groupBox2.Controls.Add(this.uploadOptionButton3);
             this.groupBox2.Controls.Add(this.shuffleCheckBox);
             this.groupBox2.Controls.Add(this.checkBoxRandom);
             this.groupBox2.Controls.Add(this.checkBoxReverse);
@@ -334,7 +320,6 @@
         public System.Windows.Forms.ProgressBar uploadProgressBar;
         private System.Windows.Forms.CheckBox autoSaveCheckBox;
         private System.Windows.Forms.RadioButton uploadOptionButton1;
-        private System.Windows.Forms.RadioButton uploadOptionButton3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox checkBoxReverse;
         private System.Windows.Forms.CheckBox checkBoxRandom;

@@ -583,7 +583,7 @@
             this.rectangleButton.Image = global::EEditor.Properties.Resources.rectangle;
             this.rectangleButton.Name = "rectangleButton";
             this.rectangleButton.ShortcutKeyDisplayString = ",";
-            this.rectangleButton.Size = new System.Drawing.Size(210, 26);
+            this.rectangleButton.Size = new System.Drawing.Size(206, 22);
             this.rectangleButton.Text = "Rectangle";
             this.rectangleButton.Click += new System.EventHandler(this.rectangleButton_Click);
             // 
@@ -592,7 +592,7 @@
             this.filledRectangleButton.Image = global::EEditor.Properties.Resources.rectanglefill;
             this.filledRectangleButton.Name = "filledRectangleButton";
             this.filledRectangleButton.ShortcutKeyDisplayString = "CTRL + ,";
-            this.filledRectangleButton.Size = new System.Drawing.Size(210, 26);
+            this.filledRectangleButton.Size = new System.Drawing.Size(206, 22);
             this.filledRectangleButton.Text = "Filled rectangle";
             this.filledRectangleButton.Click += new System.EventHandler(this.filledRectangleButton_Click);
             // 
@@ -601,7 +601,7 @@
             this.circleButton.Image = global::EEditor.Properties.Resources.circle;
             this.circleButton.Name = "circleButton";
             this.circleButton.ShortcutKeyDisplayString = ".";
-            this.circleButton.Size = new System.Drawing.Size(210, 26);
+            this.circleButton.Size = new System.Drawing.Size(206, 22);
             this.circleButton.Text = "Circle";
             this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
             // 
@@ -610,7 +610,7 @@
             this.filledCircleButton.Image = global::EEditor.Properties.Resources.circlefill;
             this.filledCircleButton.Name = "filledCircleButton";
             this.filledCircleButton.ShortcutKeyDisplayString = "CTRL + .";
-            this.filledCircleButton.Size = new System.Drawing.Size(210, 26);
+            this.filledCircleButton.Size = new System.Drawing.Size(206, 22);
             this.filledCircleButton.Text = "Filled circle";
             this.filledCircleButton.Visible = false;
             // 
@@ -619,7 +619,7 @@
             this.lineButton.Image = global::EEditor.Properties.Resources.line;
             this.lineButton.Name = "lineButton";
             this.lineButton.ShortcutKeyDisplayString = "-";
-            this.lineButton.Size = new System.Drawing.Size(210, 26);
+            this.lineButton.Size = new System.Drawing.Size(206, 22);
             this.lineButton.Text = "Line";
             this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
             // 
@@ -642,7 +642,7 @@
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
             this.imageButton.ShortcutKeyDisplayString = "CTRL + I";
-            this.imageButton.Size = new System.Drawing.Size(179, 26);
+            this.imageButton.Size = new System.Drawing.Size(175, 22);
             this.imageButton.Text = "Image";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -651,7 +651,7 @@
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
             this.textButton.ShortcutKeyDisplayString = "CTRL + T";
-            this.textButton.Size = new System.Drawing.Size(179, 26);
+            this.textButton.Size = new System.Drawing.Size(175, 22);
             this.textButton.Text = "Text";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 

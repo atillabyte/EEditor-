@@ -196,7 +196,10 @@ namespace EEditor
                         {
                             for (int xx = 0; xx < Tool.PenSize; xx++)
                             {
-                                CurFrame.Background[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1)
+                                {
+                                    CurFrame.Background[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                }
                             }
                         }
                     }
@@ -237,7 +240,10 @@ namespace EEditor
                                 {
                                     for (int xx = 0; xx < Tool.PenSize; xx++)
                                     {
-                                        CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                        if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1) {
+                                            CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
+                                        }
+                                        
                                     }
                                 }
                             }
@@ -252,7 +258,7 @@ namespace EEditor
                     {
                         for (int xx = 0; xx < Tool.PenSize; xx++)
                         {
-                            Draw(xs[i] + xx, ys[i] + yy, g, Color.Transparent);
+                            if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1) { Draw(xs[i] + xx, ys[i] + yy, g, Color.Transparent); }
                         }
                     }
                 }

@@ -968,6 +968,14 @@ namespace EEditor
         }
         private void ClearBgsButton_Click(object sender, EventArgs e)
         {
+            removeBgBehindBlocks();
+        }
+
+        private void removeBgBehindBlocks()
+        {
+            int total1 = MainForm.editArea.Frames[0].Height - 1;
+            int incr = 0;
+            int totalReplaced = 0;
             for (int y = 0; y < MainForm.editArea.Frames[0].Height; y++)
             {
                 for (int x = 0; x < MainForm.editArea.Frames[0].Width; x++)
@@ -983,6 +991,7 @@ namespace EEditor
                                 MainForm.editArea.Frames[0].Background[y, x] = 0;
                                 MainForm.editArea.Draw(x, y, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
                                 MainForm.editArea.Invalidate();
+                                totalReplaced += 1;
                             }
                         }
                         else
@@ -990,12 +999,38 @@ namespace EEditor
                             MainForm.editArea.Frames[0].Background[y, x] = 0;
                             MainForm.editArea.Draw(x, y, Graphics.FromImage(MainForm.editArea.Back), MainForm.userdata.thisColor);
                             MainForm.editArea.Invalidate();
+                            totalReplaced += 1;
                         }
                     }
                 }
+                if (progressBar1.InvokeRequired)
+                {
+                    progressBar1.Invoke((MethodInvoker)delegate
+                    {
+                        double db = ((double)incr / total1) * 100;
+                        progressBar1.Value = Convert.ToInt32(db);
+                    });
+                }
+                if (!progressBar1.InvokeRequired)
+                {
+                    double db = ((double)incr / total1) * 100;
+                    progressBar1.Value = Convert.ToInt32(db);
+                }
+                incr += 1;
+
+            }
+            if (label4.InvokeRequired)
+            {
+                label4.Invoke((MethodInvoker)delegate
+                {
+                    label4.Text = "Replaced " + totalReplaced + " blocks you don't own.";
+                });
+            }
+            else
+            {
+                label4.Text = "Replaced " + totalReplaced + " backgrounds behind blocks.";
             }
         }
-
         private void replaceRotate_ValueChanged(object sender, EventArgs e)
         {
             replaceRotating();

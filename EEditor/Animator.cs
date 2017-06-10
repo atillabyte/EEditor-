@@ -129,7 +129,6 @@ namespace EEditor
             Queue<string[]> queue = new Queue<string[]>(diff);
             List<string[]> blocks1 = new List<string[]>(diff);
             List<object[]> blocks = new List<object[]>();
-
             //Set AnimateForm.cs' progressbar max value
             while (queue.Count > 0)
             {
@@ -457,8 +456,9 @@ namespace EEditor
                     {
                         frames[0].Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
                         remoteFrame.Background[e.GetInt(2), e.GetInt(1)] = e.GetInt(3);
-                        frames[0].Foreground[e.GetInt(2), e.GetInt(1)] = 0;
+                        /*frames[0].Foreground[e.GetInt(2), e.GetInt(1)] = 0;
                         remoteFrame.Foreground[e.GetInt(2), e.GetInt(1)] = 0;
+                        */
                     }
                     ++Gcurrent1;
                     restart = true;
@@ -721,10 +721,6 @@ namespace EEditor
                             return;
                         }
                     }
-                    else if (e.GetBoolean(14))
-                    {
-                        locker.Release();
-                    }
                     else
                     {
                         if (MainForm.userdata.saveWorldCrew)
@@ -734,12 +730,24 @@ namespace EEditor
                         }
                         else
                         {
-                            Gtotal = Gcurrent = pb.Maximum = pb.Value = 1;
-                            ModifyProgressBarColor.SetState(pb, 3);
-                            TaskbarProgress.SetValue(afHandle, Gcurrent, Gtotal);
-                            TaskbarProgress.SetState(afHandle, TaskbarProgress.TaskbarStates.Paused);
-                            conn.Send("access", levelPassword);
-                            passTimer = new System.Threading.Timer(x => OnStatusChanged("Wrong level code. Please enter the right one and retry.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 5000, Timeout.Infinite);
+                            if (levelPassword.Length > 0)
+                            {
+                                Gtotal = Gcurrent = pb.Maximum = pb.Value = 1;
+                                ModifyProgressBarColor.SetState(pb, 3);
+                                TaskbarProgress.SetValue(afHandle, Gcurrent, Gtotal);
+                                TaskbarProgress.SetState(afHandle, TaskbarProgress.TaskbarStates.Paused);
+                                conn.Send("access", levelPassword);
+                                passTimer = new System.Threading.Timer(x => OnStatusChanged("Wrong level code. Please enter the right one and retry.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 5000, Timeout.Infinite);
+                            }
+                            else if (e.GetBoolean(14))
+                            {
+                                AnimateForm.editRights = true;
+                                locker.Release();
+                            }
+                            else
+                            {
+                                passTimer = new System.Threading.Timer(x => OnStatusChanged("Didn't get edit. Timer stopped.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 12000, Timeout.Infinite);
+                            }
                         }
                     }
 
@@ -765,11 +773,6 @@ namespace EEditor
                     AnimateForm.editRights = true;
                     AnimateForm.saveRights = true;
                     owner = true;
-                    locker.Release();
-                }
-                else if (e.GetBoolean(14))
-                {
-                    AnimateForm.editRights = true;
                     locker.Release();
                 }
 

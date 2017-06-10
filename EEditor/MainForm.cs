@@ -108,6 +108,7 @@ namespace EEditor
                     if (userdata.ColorBG.ToString() == null) userdata.ColorBG = true;
                     if (userdata.ColorFG.ToString() == null) userdata.ColorFG = true;
                     if (userdata.ignoreplacing.ToString() == null) userdata.ignoreplacing = false;
+                    if (userdata.randomLines.ToString() == null) userdata.randomLines = false;
                 }
                 else
                 {
@@ -179,7 +180,8 @@ namespace EEditor
                     IgnoreBlocks = new List<JToken>() { },
                     ColorFG = true,
                     ColorBG = true,
-                    ignoreplacing = false
+                    ignoreplacing = false,
+                    randomLines = false
 
 
                 };
@@ -3764,7 +3766,6 @@ namespace EEditor
                 thread.Start();
             }
             SetPenTool();
-            hideBlocksButton.PerformClick();
 
         }
         private void MainForm_Activated(object sender, EventArgs e)
@@ -3808,7 +3809,7 @@ namespace EEditor
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (debug == false) debug = true;
+            if (!debug) debug = true;
             else debug = false;
             rebuildGUI(false);
         }
@@ -3912,6 +3913,7 @@ namespace EEditor
         public bool ColorFG { get; set; }
         public bool ColorBG { get; set; }
         public bool ignoreplacing { get; set; }
+        public bool randomLines { get; set; }
     }
     public class removeBadRenderer : ToolStripSystemRenderer
     {
