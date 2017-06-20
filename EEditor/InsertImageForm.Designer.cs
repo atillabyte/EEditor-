@@ -35,6 +35,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ActionBlockscheckBox = new System.Windows.Forms.CheckBox();
             this.MorphablecheckBox = new System.Windows.Forms.CheckBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.CreateImagegroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -119,11 +120,19 @@
             this.MorphablecheckBox.UseVisualStyleBackColor = true;
             this.MorphablecheckBox.CheckedChanged += new System.EventHandler(this.MorphablecheckBox_CheckedChanged);
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(12, 192);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(134, 23);
+            this.progressBar1.TabIndex = 8;
+            // 
             // InsertImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(164, 203);
+            this.ClientSize = new System.Drawing.Size(164, 226);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.CreateImagegroupBox);
             this.Controls.Add(this.loadImageButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
@@ -147,5 +156,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox ActionBlockscheckBox;
         private System.Windows.Forms.CheckBox MorphablecheckBox;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

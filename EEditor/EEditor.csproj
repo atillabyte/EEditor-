@@ -87,6 +87,12 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="AboutUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutUpdate.Designer.cs">
+      <DependentUpon>AboutUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Accounts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +256,9 @@
     <Compile Include="ToolSpray.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutUpdate.resx">
+      <DependentUpon>AboutUpdate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Accounts.resx">
       <DependentUpon>Accounts.cs</DependentUpon>

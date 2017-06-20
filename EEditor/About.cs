@@ -34,7 +34,7 @@ namespace EEditor
         {
             UsingLabel.Text = "Using: " + this.ProductVersion;
 
-            ChangelogRichTextBox.Text = "Click \"Check for updates\" to see the latest changelog here.";
+            //ChangelogRichTextBox.Text = "Click \"Check for updates\" to see the latest changelog here.";
             UpdaterButton.Enabled = true;
 
         }
@@ -55,7 +55,7 @@ namespace EEditor
         //Bugs/features
         private void BugsOrFeature_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://bitbucket.org/capasha/eeditor/issues?status=new&status=open");
+            System.Diagnostics.Process.Start("http://forums.everybodyedits.com/viewtopic.php?id=32502");
         }
 
         //Homepage
@@ -113,27 +113,86 @@ namespace EEditor
                             string newversion = null;
                             downloadLink = null;
                             dynamic stuff1 = Newtonsoft.Json.JsonConvert.DeserializeObject(text);
+                            //if (stuff1["browser_download_url"] != null) Console.WriteLine(stuff1["browser_download_url"]);
                             if (stuff1["tag_name"] != null) newversion = stuff1["tag_name"].ToString();
                             if (stuff1["html_url"] != null) downloadLink = stuff1["html_url"].ToString();
                             //Console.WriteLine("Version: " + stuff1["tag_name"] + "\nDownload Link: " + stuff1["html_url"] + "\n\nChangelog: \n" + stuff1["body"]);
+                                if (stuff1["assets"] != null)
+                                {
+                                    foreach (var val in stuff1["assets"])
+                                    {
+                                        if (val["browser_download_url"] != null)
+                                        {
+                                            Console.WriteLine(val["browser_download_url"]);
 
+                                        }
+                                    
+                                }
+                            }
                             if (button)
                             {
                                 if (Convert.ToInt32(this.ProductVersion.Replace(".", "")) < Convert.ToInt32(newversion.Replace(".", "")))
                                 {
-                                    DialogResult dr = MessageBox.Show("EEditor " + newversion.ToString() + " is available! Would you like to download it now?", "Updater", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+                                    AboutUpdate abupdate = new AboutUpdate();
+                                    if (!abupdate.IsAccessible)
+                                    {
+                                        abupdate.labelNewVer = "Newest: " + newversion;
+                                        abupdate.labelOldVer = "Current: " + this.ProductVersion;
+                                        if (stuff1["body"] != null) abupdate.richtextboxChangelog = stuff1["body"].ToString();
+                                        abupdate.ShowDialog();
+                                    }
+                                    /*DialogResult dr = MessageBox.Show("EEditor " + newversion.ToString() + " is available! Would you like to download it now?", "Updater", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                                     if (dr == DialogResult.Yes)
                                     {
                                         Process.Start(downloadLink);
-                                    }
+                                    }*/
                                 }
                             }
                             else
                             {
                                 this.Invoke((MethodInvoker)delegate
                                 {
-                                    if (stuff1["body"] != null) ChangelogRichTextBox.Text = stuff1["body"].ToString();
-                                    NewestLabel.Text = "Newest: " + newversion;
+                                    if (stuff1["body"] != null)
+                                    {
+                                        string[] split = stuff1["body"].ToString().Split('*');
+                                        NewestLabel.Text = "Newest: " + newversion;
+                                        
+                                        for (int i = 0; i < split.Length; i++)
+                                        {
+                                            if (split[i].Length > 1)
+                                            {
+                                                var value = split[i].Substring(1, split[i].Length - 1);
+                                                if (value.StartsWith("Added"))
+                                                {
+                                                    ChangelogRichTextBox.SelectionColor = Color.Green;
+                                                    ChangelogRichTextBox.AppendText("Added: ");
+                                                    ChangelogRichTextBox.SelectionColor = Color.Black;
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Added", ""));
+                                                }
+                                                else if (value.StartsWith("Removed"))
+                                                {
+                                                    ChangelogRichTextBox.SelectionColor = Color.Red;
+                                                    ChangelogRichTextBox.AppendText("Removed: ");
+                                                    ChangelogRichTextBox.SelectionColor = Color.Black;
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Removed", ""));
+                                                }
+                                                else if (value.StartsWith("Fixed"))
+                                                {
+                                                    ChangelogRichTextBox.SelectionColor = Color.Blue;
+                                                    ChangelogRichTextBox.AppendText("Fixed: ");
+                                                    ChangelogRichTextBox.SelectionColor = Color.Black;
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Fixed", ""));
+                                                }
+
+                                                else
+                                                {
+                                                    ChangelogRichTextBox.SelectionColor = Color.Orange;
+                                                    ChangelogRichTextBox.AppendText(value);
+                                                }
+                                            }
+                                        }
+                                    }
                                 });
                             }
 

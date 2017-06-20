@@ -191,6 +191,7 @@ namespace EEditor
         {
             int width = image.Width;
             int height = image.Height;
+            int incr = 0;
             Area = new string[height, width];
             Back = new string[height, width];
             Coins = new string[height, width];
@@ -259,6 +260,15 @@ namespace EEditor
                         if (exit) break;
                     }
                     if (exit) break;
+                    incr += 1;
+                    if (progressBar1.InvokeRequired)
+                    {
+                        MainForm.editArea.Invoke((MethodInvoker)delegate
+                        {
+                            progressBar1.Value = (x / width) * 100;
+
+                        });
+                    }
                 }
 
             }

@@ -96,7 +96,7 @@
             this.ChangelogRichTextBox.ReadOnly = true;
             this.ChangelogRichTextBox.Size = new System.Drawing.Size(441, 147);
             this.ChangelogRichTextBox.TabIndex = 1;
-            this.ChangelogRichTextBox.Text = "Click \"Check for updates\" to see the latest changelog here.";
+            this.ChangelogRichTextBox.Text = "";
             // 
             // UsingLabel
             // 
