@@ -2212,7 +2212,6 @@ namespace EEditor
                 {
                     if (EditArea.IsKeyDown(key))
                     {
-                        Console.WriteLine(key);
                         ShortCutID = key - (int)Keys.D0;
                         MainForm.SetBrickShortCut(ShortCutID, this);
                         return;
@@ -3309,7 +3308,6 @@ namespace EEditor
             }
             else
             {
-                Console.WriteLine("NO");
             }
         }
         //Upload

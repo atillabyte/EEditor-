@@ -33,8 +33,6 @@ namespace EEditor
         private void About_Load(object sender, EventArgs e)
         {
             UsingLabel.Text = "Using: " + this.ProductVersion;
-
-            //ChangelogRichTextBox.Text = "Click \"Check for updates\" to see the latest changelog here.";
             UpdaterButton.Enabled = true;
 
         }
@@ -96,7 +94,7 @@ namespace EEditor
                 try
                 {
 
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/madis0/eeditor/releases/latest");
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/capasha/eeditor/releases/latest");
                     request.Method = "GET";
                     request.Accept = "application/vnd.github.v3+json";
                     request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; rv:48.0) Gecko/20100101 Firefox/48.0";
@@ -123,7 +121,7 @@ namespace EEditor
                                     {
                                         if (val["browser_download_url"] != null)
                                         {
-                                            Console.WriteLine(val["browser_download_url"]);
+                                            //Console.WriteLine(val["browser_download_url"]);
 
                                         }
                                     
@@ -139,7 +137,47 @@ namespace EEditor
                                     {
                                         abupdate.labelNewVer = "Newest: " + newversion;
                                         abupdate.labelOldVer = "Current: " + this.ProductVersion;
-                                        if (stuff1["body"] != null) abupdate.richtextboxChangelog = stuff1["body"].ToString();
+                                        abupdate.downloadlink = downloadLink;
+                                        if (stuff1["body"] != null)
+                                        {
+                                            string[] split = stuff1["body"].ToString().Split('*');
+
+                                            for (int i = 0; i < split.Length; i++)
+                                            {
+                                                if (split[i].Length > 1)
+                                                {
+                                                    var value = split[i].Substring(1, split[i].Length - 1);
+                                                    if (value.StartsWith("Added"))
+                                                    {
+
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Green;
+                                                        abupdate.richtextboxChangelog.AppendText("Added: ");
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Black;
+                                                        abupdate.richtextboxChangelog.AppendText(value.Replace("Added", "").Substring(1, 1).ToUpper() + value.Replace("Added", "").Substring(2, value.Replace("Added", "").Length - 2));
+                                                    }
+                                                    else if (value.StartsWith("Removed"))
+                                                    {
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Red;
+                                                        abupdate.richtextboxChangelog.AppendText("Removed: ");
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Black;
+                                                        abupdate.richtextboxChangelog.AppendText(value.Replace("Removed", "").Substring(1, 1).ToUpper() + value.Replace("Removed", "").Substring(2, value.Replace("Removed", "").Length - 2));
+                                                    }
+                                                    else if (value.StartsWith("Fixed"))
+                                                    {
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Blue;
+                                                        abupdate.richtextboxChangelog.AppendText("Fixed: ");
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Black;
+                                                        abupdate.richtextboxChangelog.AppendText(value.Replace("Fixed", "").Substring(1, 1).ToUpper() + value.Replace("Fixed", "").Substring(2, value.Replace("Fixed", "").Length - 2));
+                                                    }
+
+                                                    else
+                                                    {
+                                                        abupdate.richtextboxChangelog.SelectionColor = Color.Orange;
+                                                        abupdate.richtextboxChangelog.AppendText(value);
+                                                    }
+                                                }
+                                            }
+                                        }
                                         abupdate.ShowDialog();
                                     }
                                     /*DialogResult dr = MessageBox.Show("EEditor " + newversion.ToString() + " is available! Would you like to download it now?", "Updater", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -168,21 +206,21 @@ namespace EEditor
                                                     ChangelogRichTextBox.SelectionColor = Color.Green;
                                                     ChangelogRichTextBox.AppendText("Added: ");
                                                     ChangelogRichTextBox.SelectionColor = Color.Black;
-                                                    ChangelogRichTextBox.AppendText(value.Replace("Added", ""));
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Added", "").Substring(1, 1).ToUpper() + value.Replace("Added","").Substring(2, value.Replace("Added", "").Length - 2));
                                                 }
                                                 else if (value.StartsWith("Removed"))
                                                 {
                                                     ChangelogRichTextBox.SelectionColor = Color.Red;
                                                     ChangelogRichTextBox.AppendText("Removed: ");
                                                     ChangelogRichTextBox.SelectionColor = Color.Black;
-                                                    ChangelogRichTextBox.AppendText(value.Replace("Removed", ""));
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Removed", "").Substring(1, 1).ToUpper() + value.Replace("Removed", "").Substring(2, value.Replace("Removed", "").Length - 2));
                                                 }
                                                 else if (value.StartsWith("Fixed"))
                                                 {
                                                     ChangelogRichTextBox.SelectionColor = Color.Blue;
                                                     ChangelogRichTextBox.AppendText("Fixed: ");
                                                     ChangelogRichTextBox.SelectionColor = Color.Black;
-                                                    ChangelogRichTextBox.AppendText(value.Replace("Fixed", ""));
+                                                    ChangelogRichTextBox.AppendText(value.Replace("Fixed", "").Substring(1, 1).ToUpper() + value.Replace("Fixed", "").Substring(2, value.Replace("Fixed", "").Length - 2));
                                                 }
 
                                                 else

@@ -123,40 +123,45 @@ namespace EEditor
             }
             else if (listBox1.SelectedIndex == 6)
             {
-                SizeWidth = 110;
-                SizeHeight = 110;
+                SizeWidth = 150;
+                SizeHeight = 150;
             }
             else if (listBox1.SelectedIndex == 7)
             {
-                SizeWidth = 200;
-                SizeHeight = 200;
+                SizeWidth = 110;
+                SizeHeight = 110;
             }
             else if (listBox1.SelectedIndex == 8)
             {
                 SizeWidth = 200;
-                SizeHeight = 400;
+                SizeHeight = 200;
             }
             else if (listBox1.SelectedIndex == 9)
+            {
+                SizeWidth = 200;
+                SizeHeight = 400;
+            }
+            else if (listBox1.SelectedIndex == 10)
             {
                 SizeWidth = 300;
                 SizeHeight = 300;
             }
-            else if (listBox1.SelectedIndex == 10)
+            else if (listBox1.SelectedIndex == 11)
             {
                 SizeWidth = 400;
                 SizeHeight = 50;
             }
-            else if (listBox1.SelectedIndex == 11)
+            else if (listBox1.SelectedIndex == 12)
             {
                 SizeWidth = 400;
                 SizeHeight = 200;
             }
-            else if (listBox1.SelectedIndex == 12)
+            else if (listBox1.SelectedIndex == 13)
             {
                 SizeWidth = 636;
                 SizeHeight = 50;
             }
-            else if (listBox1.SelectedIndex == 13)
+            else if (listBox1.SelectedIndex == 14)
             {
                 SizeWidth = 200;
                 SizeHeight = 200;
@@ -164,7 +169,7 @@ namespace EEditor
                 MainForm.OpenWorldCode = false;
                 // restrictions here
             }
-            else if (listBox1.SelectedIndex == 14)
+            else if (listBox1.SelectedIndex == 15)
             {
                 SizeWidth = 200;
                 SizeHeight = 200;
@@ -172,7 +177,7 @@ namespace EEditor
                 MainForm.OpenWorldCode = true;
                 // restrictions here
             }
-            else if (listBox1.SelectedIndex == 15)
+            else if (listBox1.SelectedIndex == 16)
             {
                 if (!string.IsNullOrEmpty(levelTextBox.Text))
                 {
@@ -184,7 +189,7 @@ namespace EEditor
                 }
                 return;
             }
-            else if (listBox1.SelectedIndex == 16)
+            else if (listBox1.SelectedIndex == 17)
             {
                 if (!string.IsNullOrEmpty(levelTextBox.Text))
                 {
@@ -196,7 +201,7 @@ namespace EEditor
                 }
                 return;
             }
-            else if (listBox1.SelectedIndex == 17)
+            else if (listBox1.SelectedIndex == 18)
             {
                 /*if (!string.IsNullOrEmpty(levelTextBox.Text))
                 {
@@ -382,8 +387,8 @@ namespace EEditor
                                         h = 150;
                                         break;
                                     case 13:
-                                        w = 200;
-                                        h = 200;
+                                        w = 150;
+                                        h = 150;
                                         break;
                                 }
                                 if (dbo.Contains("worlddata"))
@@ -479,8 +484,8 @@ namespace EEditor
                                         h = 150;
                                         break;
                                     case 13:
-                                        w = 200;
-                                        h = 200;
+                                        w = 150;
+                                        h = 150;
                                         break;
                                 }
                                 MapFrame = new Frame(w, h);
@@ -521,7 +526,6 @@ namespace EEditor
         }
         public void OnMessage(object sender, PlayerIOClient.Message e)
         {
-            Console.WriteLine(e.ToString());
             if (e.Type == "init")
             {
                 MapFrame = Frame.FromMessage(e, false);

@@ -637,6 +637,7 @@ namespace EEditor
                 AnimateForm.crewWorld = false;
                 remoteFrame = Frame.FromMessage(e, false);
                 conn.Send("init2");
+                OnStatusChanged("Connected to the world.", DateTime.MinValue, false, Gtotal, Gcurrent);
                 if (frames[0].Width <= remoteFrame.Width && frames[0].Height <= remoteFrame.Height)
                 {
                 }
@@ -746,7 +747,7 @@ namespace EEditor
                             }
                             else
                             {
-                                passTimer = new System.Threading.Timer(x => OnStatusChanged("Didn't get edit. Timer stopped.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 12000, Timeout.Infinite);
+                                passTimer = new System.Threading.Timer(x => OnStatusChanged("Didn't get edit. Timer stopped.", DateTime.MinValue, true, Gtotal, Gcurrent), null, 20000, Timeout.Infinite);
                             }
                         }
                     }

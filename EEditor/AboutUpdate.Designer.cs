@@ -33,6 +33,7 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.versionGroupBox = new System.Windows.Forms.GroupBox();
             this.changelogGroupBox = new System.Windows.Forms.GroupBox();
+            this.DownloadButton = new System.Windows.Forms.Button();
             this.versionGroupBox.SuspendLayout();
             this.changelogGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -85,11 +86,22 @@
             this.changelogGroupBox.TabStop = false;
             this.changelogGroupBox.Text = "Changelog";
             // 
+            // DownloadButton
+            // 
+            this.DownloadButton.Location = new System.Drawing.Point(12, 288);
+            this.DownloadButton.Name = "DownloadButton";
+            this.DownloadButton.Size = new System.Drawing.Size(75, 23);
+            this.DownloadButton.TabIndex = 5;
+            this.DownloadButton.Text = "Download";
+            this.DownloadButton.UseVisualStyleBackColor = true;
+            this.DownloadButton.Click += new System.EventHandler(this.DownloadButton_Click);
+            // 
             // AboutUpdate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 294);
+            this.ClientSize = new System.Drawing.Size(361, 319);
+            this.Controls.Add(this.DownloadButton);
             this.Controls.Add(this.changelogGroupBox);
             this.Controls.Add(this.versionGroupBox);
             this.Name = "AboutUpdate";
@@ -110,5 +122,6 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.GroupBox versionGroupBox;
         private System.Windows.Forms.GroupBox changelogGroupBox;
+        private System.Windows.Forms.Button DownloadButton;
     }
 }

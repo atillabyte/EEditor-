@@ -84,7 +84,6 @@ namespace EEditor
             {
                 if (dbo.Contains("type"))
                 {
-
                     switch ((int)dbo["type"])
                     {
                         case 1:
