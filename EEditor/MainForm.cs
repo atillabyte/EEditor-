@@ -2733,8 +2733,10 @@ namespace EEditor
         {
             if (e.Button == MouseButtons.Right)
             {
-                Brush frm = new Brush();
+                /*Brush frm = new Brush();
                 frm.BrushSize.Value = Tool.PenSize;
+                frm.ShowDialog();*/
+                BrushesTool frm = new BrushesTool();
                 frm.ShowDialog();
             }
         }

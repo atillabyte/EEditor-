@@ -188,333 +188,335 @@ namespace EEditor
                 }
                 else
                 {
-
-                    var bid = editArea.CurFrame.Foreground[y, x];
-                    if (bdata.increase1.Contains(bid))
+                    if (PenID < 500 || PenID >= 1001)
                     {
-                        if (!mouseMove)
+                        var bid = editArea.CurFrame.Foreground[y, x];
+                        if (bdata.increase1.Contains(bid))
                         {
-                            if (button)
+                            if (!mouseMove)
                             {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 1) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                            }
-                        }
-                        else
-                        {
-                            if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                            else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                        }
-                    }
-                    else if (bdata.increase3.Contains(bid))
-                    {
-                        if (!mouseMove)
-                        {
-                            if (button)
-                            {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 3) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                            }
-                        }
-                        else
-                        {
-                            if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                            else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                        }
-                    }
-                    else if (bdata.increase2.Contains(bid))
-                    {
-                        if (!mouseMove)
-                        {
-                            if (button)
-                            {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 2) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                            }
-
-                        }
-                        else
-                        {
-                            if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                            else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                        }
-                    }
-                    else if (bdata.increase5.Contains(bid))
-                    {
-                        if (!mouseMove)
-                        {
-                            if (button)
-                            {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 5) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                            }
-                        }
-                        else
-                        {
-                            if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                            else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                        }
-                    }
-                    else if (bdata.increase4.Contains(bid))
-                    {
-                        if (!mouseMove)
-                        {
-                            if (button)
-                            {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 4) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                            }
-                        }
-                        else
-                        {
-                            if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
-                            else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
-                        }
-                    }
-                    else if (bid != 77 && bid != 83 && bid != 1520 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028)
-                    {
-                        if (button)
-                        {
-
-                            using (NumberChanger co = new NumberChanger())
-                            {
-                                co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
-                                if (co.ShowDialog() == DialogResult.OK)
+                                if (button)
                                 {
-                                    var value = (int)co.NumberChangerNumeric.Value == -1 ? 1000 : (int)co.NumberChangerNumeric.Value;
-                                    editArea.CurFrame.BlockData[y, x] = value;
-                                    if (rotation.ContainsKey(bid)) { rotation[bid] = value; }
-                                    else { rotation.Add(bid, value); }
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 1) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                                 }
-                                editArea.mouseDown = false;
-
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                             }
                         }
-                        else
+                        else if (bdata.increase3.Contains(bid))
                         {
-                            if (rotation.ContainsKey(bid))
+                            if (!mouseMove)
                             {
-                                editArea.CurFrame.BlockData[y, x] = rotation[bid];
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 3) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                             }
                         }
-
-
-                    }
-                    else if (bid == 461)
-                    {
-                        if (!button)
+                        else if (bdata.increase2.Contains(bid))
                         {
-                            if (rotation.ContainsKey(bid))
+                            if (!mouseMove)
                             {
-                                editArea.CurFrame.BlockData[y, x] = rotation[bid];
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 2) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                }
+
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                             }
                         }
-                    }
-                    else if (bid >= 417 && bid <= 423 || bid == 1027 || bid == 1028)
-                    {
-                        if (button)
+                        else if (bdata.increase5.Contains(bid))
                         {
-                            if (bid == 421 || bid == 422)
+                            if (!mouseMove)
                             {
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 5) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                            }
+                        }
+                        else if (bdata.increase4.Contains(bid))
+                        {
+                            if (!mouseMove)
+                            {
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 4) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                            }
+                        }
+                        else if (bid != 77 && bid != 83 && bid != 1520 && bdata.goal.Contains(bid) && bid != 423 && bid != 1027 && bid != 1028)
+                        {
+                            if (button)
+                            {
+
                                 using (NumberChanger co = new NumberChanger())
                                 {
                                     co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
                                     if (co.ShowDialog() == DialogResult.OK)
                                     {
-                                        editArea.CurFrame.BlockData[y, x] = (int)co.NumberChangerNumeric.Value;
-                                        if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumberChangerNumeric.Value; }
-                                        else { rotation.Add(bid, (int)co.NumberChangerNumeric.Value); }
+                                        var value = (int)co.NumberChangerNumeric.Value == -1 ? 1000 : (int)co.NumberChangerNumeric.Value;
+                                        editArea.CurFrame.BlockData[y, x] = value;
+                                        if (rotation.ContainsKey(bid)) { rotation[bid] = value; }
+                                        else { rotation.Add(bid, value); }
                                     }
-                                    else
+                                    editArea.mouseDown = false;
+
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid))
+                                {
+                                    editArea.CurFrame.BlockData[y, x] = rotation[bid];
+                                }
+                            }
+
+
+                        }
+                        else if (bid == 461)
+                        {
+                            if (!button)
+                            {
+                                if (rotation.ContainsKey(bid))
+                                {
+                                    editArea.CurFrame.BlockData[y, x] = rotation[bid];
+                                }
+                            }
+                        }
+                        else if (bid >= 417 && bid <= 423 || bid == 1027 || bid == 1028)
+                        {
+                            if (button)
+                            {
+                                if (bid == 421 || bid == 422)
+                                {
+                                    using (NumberChanger co = new NumberChanger())
                                     {
-                                        if (bid == 422 || bid == 421)
+                                        co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
+                                        if (co.ShowDialog() == DialogResult.OK)
                                         {
-                                            editArea.CurFrame.BlockData[y, x] = 10;
+                                            editArea.CurFrame.BlockData[y, x] = (int)co.NumberChangerNumeric.Value;
+                                            if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumberChangerNumeric.Value; }
+                                            else { rotation.Add(bid, (int)co.NumberChangerNumeric.Value); }
                                         }
                                         else
                                         {
-                                            editArea.CurFrame.BlockData[y, x] = 0;
+                                            if (bid == 422 || bid == 421)
+                                            {
+                                                editArea.CurFrame.BlockData[y, x] = 10;
+                                            }
+                                            else
+                                            {
+                                                editArea.CurFrame.BlockData[y, x] = 0;
+                                            }
                                         }
-                                    }
-                                    editArea.mouseDown = false;
+                                        editArea.mouseDown = false;
 
-                                }
-                            }
-                            else if (bid == 423 || bid == 1027 || bid == 1028)
-                            {
-                                using (TeamColorChanger co = new TeamColorChanger())
-                                {
-                                    co.SetColorId = editArea.CurFrame.BlockData[y, x];
-                                    //co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
-                                    if (co.ShowDialog() == DialogResult.OK)
-                                    {
-                                        editArea.CurFrame.BlockData[y, x] = co.SetColorId;
-                                        if (rotation.ContainsKey(bid)) { rotation[PenID] = co.SetColorId; }
-                                        else { rotation.Add(PenID, co.SetColorId); }
-                                    }
-                                    editArea.mouseDown = false;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            /*if (bid >= 417 && bid <= 420)
-                            {
-                                editArea.CurFrame.BlockData[y, x] += 1;
-                                if (editArea.CurFrame.BlockData[y, x] > 1) editArea.CurFrame.BlockData[y, x] = 0;
-                                editArea.CurFrame.BlockData1[y, x] = 0;
-                                editArea.CurFrame.BlockData2[y, x] = 0;
-                            }
-                             */
-                            if (bid == 423 || bid == 1027 || bid == 1028)
-                            {
-                                if (rotation.ContainsKey(bid))
-                                {
-                                    editArea.CurFrame.BlockData[y, x] = rotation[bid];
-                                }
-                                else
-                                {
-                                    editArea.CurFrame.BlockData[y, x] = 0;
-                                }
-
-                            }
-                            if (bid == 422 || bid == 421)
-                            {
-                                if (rotation.ContainsKey(bid))
-                                {
-                                    editArea.CurFrame.BlockData[y, x] = rotation[bid];
-                                }
-                                else
-                                {
-                                    editArea.CurFrame.BlockData[y, x] = 10;
-                                }
-                            }
-                        }
-                    }
-                    else if (bid == 83 || bid == 77 || bid == 1520)
-                    {
-                        string message = "Piano";
-                        if (button)
-                        {
-                            switch (bid)
-                            {
-                                case 83:
-                                    message = "Drums";
-                                    break;
-                                case 77:
-                                    message = "Piano";
-                                    break;
-                                case 1520:
-                                    message = "Guitar";
-                                    break;
-                            }
-                            MessageBox.Show("EEditor doesn't support the new " + message + " blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                            editArea.mouseDown = false;
-                        }
-                    }
-                    else if (bid == 374 || bid == 385)
-                    {
-
-                        if (button)
-                        {
-                            using (Text co = new Text())
-                            {
-                                co.textbox.Text = editArea.CurFrame.BlockData3[y, x];
-                                co.id1 = bid;
-                                if (bid == 385) co.cm1 = editArea.CurFrame.BlockData[y, x];
-                                if (co.ShowDialog() == DialogResult.OK)
-                                {
-                                    if (text.ContainsKey(bid)) { text[bid] = co.textbox.Text; }
-                                    else { text.Add(bid, co.textbox.Text); }
-                                    editArea.CurFrame.BlockData3[y, x] = co.textbox.Text;
-
-                                    if (bid == 385)
-                                    {
-                                        if (rotation.ContainsKey(bid)) { rotation[bid] = co.cm1; }
-                                        else { rotation.Add(bid, co.cm1); }
-                                        editArea.CurFrame.BlockData[y, x] = co.cm1;
                                     }
                                 }
-
-                            }
-                            editArea.mouseDown = false;
-
-                        }
-                        else
-                        {
-                            if (bid == 385)
-                            {
-                                if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                                else { editArea.CurFrame.BlockData[y, x] = 0; }
-                            }
-                            if (text.ContainsKey(bid)) { editArea.CurFrame.BlockData3[y, x] = text[bid]; }
-                            else { editArea.CurFrame.BlockData3[y, x] = "Unknown"; }
-                        }
-                    }
-                    else if (bid == 242 || bid == 381)
-                    {
-                        if (button)
-                        {
-                            using (CoinsOptions co = new CoinsOptions())
-                            {
-                                co.NumericUpdown1.Value = editArea.CurFrame.BlockData[y, x];
-                                co.NumericUpdown2.Value = editArea.CurFrame.BlockData1[y, x];
-                                co.NumericUpdown3.Value = editArea.CurFrame.BlockData2[y, x];
-                                if (co.ShowDialog() == DialogResult.OK)
+                                else if (bid == 423 || bid == 1027 || bid == 1028)
                                 {
-                                    if (co.NumericUpdown1.Value >= 0 && co.NumericUpdown1.Value <= 3)
+                                    using (TeamColorChanger co = new TeamColorChanger())
                                     {
-                                        if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumericUpdown1.Value; }
-                                        else { rotation.Add(bid, (int)co.NumericUpdown1.Value); }
-                                        if (id.ContainsKey(bid)) { id[bid] = (int)co.NumericUpdown2.Value; }
-                                        else { id.Add(bid, (int)co.NumericUpdown2.Value); }
-                                        if (target.ContainsKey(bid)) { target[bid] = (int)co.NumericUpdown3.Value; }
-                                        else { target.Add(bid, (int)co.NumericUpdown3.Value); }
-                                        editArea.CurFrame.BlockData[y, x] = (int)co.NumericUpdown1.Value;
-                                        editArea.CurFrame.BlockData1[y, x] = (int)co.NumericUpdown2.Value;
-                                        editArea.CurFrame.BlockData2[y, x] = (int)co.NumericUpdown3.Value;
+                                        co.SetColorId = editArea.CurFrame.BlockData[y, x];
+                                        //co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
+                                        if (co.ShowDialog() == DialogResult.OK)
+                                        {
+                                            editArea.CurFrame.BlockData[y, x] = co.SetColorId;
+                                            if (rotation.ContainsKey(bid)) { rotation[PenID] = co.SetColorId; }
+                                            else { rotation.Add(PenID, co.SetColorId); }
+                                        }
+                                        editArea.mouseDown = false;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                /*if (bid >= 417 && bid <= 420)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 1) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                }
+                                 */
+                                if (bid == 423 || bid == 1027 || bid == 1028)
+                                {
+                                    if (rotation.ContainsKey(bid))
+                                    {
+                                        editArea.CurFrame.BlockData[y, x] = rotation[bid];
                                     }
                                     else
                                     {
-                                        MessageBox.Show("The rotation value is too high. ", "Rotation too high", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                        var num2 = 0;
-                                        editArea.CurFrame.BlockData[y, x] = num2;
-                                        editArea.CurFrame.BlockData1[y, x] = num2;
-                                        editArea.CurFrame.BlockData2[y, x] = num2;
+                                        editArea.CurFrame.BlockData[y, x] = 0;
                                     }
+
+                                }
+                                if (bid == 422 || bid == 421)
+                                {
+                                    if (rotation.ContainsKey(bid))
+                                    {
+                                        editArea.CurFrame.BlockData[y, x] = rotation[bid];
+                                    }
+                                    else
+                                    {
+                                        editArea.CurFrame.BlockData[y, x] = 10;
+                                    }
+                                }
+                            }
+                        }
+                        else if (bid == 83 || bid == 77 || bid == 1520)
+                        {
+                            string message = "Piano";
+                            if (button)
+                            {
+                                switch (bid)
+                                {
+                                    case 83:
+                                        message = "Drums";
+                                        break;
+                                    case 77:
+                                        message = "Piano";
+                                        break;
+                                    case 1520:
+                                        message = "Guitar";
+                                        break;
+                                }
+                                MessageBox.Show("EEditor doesn't support the new " + message + " blocks yet.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                editArea.mouseDown = false;
+                            }
+                        }
+                        else if (bid == 374 || bid == 385)
+                        {
+
+                            if (button)
+                            {
+                                using (Text co = new Text())
+                                {
+                                    co.textbox.Text = editArea.CurFrame.BlockData3[y, x];
+                                    co.id1 = bid;
+                                    if (bid == 385) co.cm1 = editArea.CurFrame.BlockData[y, x];
+                                    if (co.ShowDialog() == DialogResult.OK)
+                                    {
+                                        if (text.ContainsKey(bid)) { text[bid] = co.textbox.Text; }
+                                        else { text.Add(bid, co.textbox.Text); }
+                                        editArea.CurFrame.BlockData3[y, x] = co.textbox.Text;
+
+                                        if (bid == 385)
+                                        {
+                                            if (rotation.ContainsKey(bid)) { rotation[bid] = co.cm1; }
+                                            else { rotation.Add(bid, co.cm1); }
+                                            editArea.CurFrame.BlockData[y, x] = co.cm1;
+                                        }
+                                    }
+
                                 }
                                 editArea.mouseDown = false;
 
                             }
+                            else
+                            {
+                                if (bid == 385)
+                                {
+                                    if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
+                                    else { editArea.CurFrame.BlockData[y, x] = 0; }
+                                }
+                                if (text.ContainsKey(bid)) { editArea.CurFrame.BlockData3[y, x] = text[bid]; }
+                                else { editArea.CurFrame.BlockData3[y, x] = "Unknown"; }
+                            }
                         }
-                        else
+                        else if (bid == 242 || bid == 381)
                         {
-                            if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
-                            else { editArea.CurFrame.BlockData[y, x] = 0; }
-                            if (id.ContainsKey(bid)) { editArea.CurFrame.BlockData1[y, x] = id[bid]; }
-                            else { editArea.CurFrame.BlockData1[y, x] = 0; }
-                            if (target.ContainsKey(bid)) { editArea.CurFrame.BlockData2[y, x] = target[bid]; }
-                            else { editArea.CurFrame.BlockData2[y, x] = 0; }
+                            if (button)
+                            {
+                                using (CoinsOptions co = new CoinsOptions())
+                                {
+                                    co.NumericUpdown1.Value = editArea.CurFrame.BlockData[y, x];
+                                    co.NumericUpdown2.Value = editArea.CurFrame.BlockData1[y, x];
+                                    co.NumericUpdown3.Value = editArea.CurFrame.BlockData2[y, x];
+                                    if (co.ShowDialog() == DialogResult.OK)
+                                    {
+                                        if (co.NumericUpdown1.Value >= 0 && co.NumericUpdown1.Value <= 3)
+                                        {
+                                            if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumericUpdown1.Value; }
+                                            else { rotation.Add(bid, (int)co.NumericUpdown1.Value); }
+                                            if (id.ContainsKey(bid)) { id[bid] = (int)co.NumericUpdown2.Value; }
+                                            else { id.Add(bid, (int)co.NumericUpdown2.Value); }
+                                            if (target.ContainsKey(bid)) { target[bid] = (int)co.NumericUpdown3.Value; }
+                                            else { target.Add(bid, (int)co.NumericUpdown3.Value); }
+                                            editArea.CurFrame.BlockData[y, x] = (int)co.NumericUpdown1.Value;
+                                            editArea.CurFrame.BlockData1[y, x] = (int)co.NumericUpdown2.Value;
+                                            editArea.CurFrame.BlockData2[y, x] = (int)co.NumericUpdown3.Value;
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("The rotation value is too high. ", "Rotation too high", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                            var num2 = 0;
+                                            editArea.CurFrame.BlockData[y, x] = num2;
+                                            editArea.CurFrame.BlockData1[y, x] = num2;
+                                            editArea.CurFrame.BlockData2[y, x] = num2;
+                                        }
+                                    }
+                                    editArea.mouseDown = false;
+
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { editArea.CurFrame.BlockData[y, x] = rotation[bid]; }
+                                else { editArea.CurFrame.BlockData[y, x] = 0; }
+                                if (id.ContainsKey(bid)) { editArea.CurFrame.BlockData1[y, x] = id[bid]; }
+                                else { editArea.CurFrame.BlockData1[y, x] = 0; }
+                                if (target.ContainsKey(bid)) { editArea.CurFrame.BlockData2[y, x] = target[bid]; }
+                                else { editArea.CurFrame.BlockData2[y, x] = 0; }
+                            }
                         }
                     }
                 }
@@ -542,8 +544,27 @@ namespace EEditor
                         mouseMove = false;
                         if (PenSize == 1)
                         {
-
-                            PlaceBrick(p.X, p.Y, false, false, true);
+                            if (Clipboard.ContainsData("EEBrush"))
+                            {
+                                string[][,] data = (string[][,])Clipboard.GetData("EEBrush");
+                                if (data != null && data.Length == 6)
+                                {
+                                    for (int y = 0; y < data[0].GetLength(0); y++)
+                                    {
+                                        for (int x = 0; x < data[0].GetLength(1); x++)
+                                        {
+                                            PenID = Convert.ToInt32(data[0][y, x]);
+                                            PlaceBrick(p.X + x, p.Y + y, false, true, false);
+                                        }
+                                    }
+                                    //Clipboard.Clear();
+                                    //Console.WriteLine(data[0]);
+                                }
+                            }
+                            else
+                            {
+                                PlaceBrick(p.X, p.Y, false, false, true);
+                            }
                         }
                         else if (PenSize >= 2 && PenSize <= 10)
                         {
@@ -597,7 +618,8 @@ namespace EEditor
                         mouseMove = true;
                         if (PenSize == 1)
                         {
-                            PlaceBrick(p.X, p.Y, false, false, false);
+                                PlaceBrick(p.X, p.Y, false, false, true);
+                            
                         }
                         else if (PenSize >= 2 && PenSize <= 10)
                         {

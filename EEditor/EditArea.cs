@@ -91,7 +91,7 @@ namespace EEditor
             {
                 if (Regex.IsMatch(Path.GetExtension(files[0]).ToLower(), @"^.jpg$|^.png$|^.jpg$|^.jpeg$|^.gif$|^.bmp$"))
                 {
-                    MessageBox.Show("Sorry, image dragging is not implemented yet.\nPlease use the insert menu to add an image to world.","Boohoo",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Sorry, image dragging is not implemented yet.\nPlease use the insert menu to add an image to world.", "Boohoo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
             }
         }
@@ -147,7 +147,7 @@ namespace EEditor
             }
         }
         private Point prevLocation = new Point(-1, -1);
-        
+
 
         void DrawLine(Point P, Point Q)
         {
@@ -230,23 +230,25 @@ namespace EEditor
                             incfg += Tool.PenID + ":" + CurFrame.Foreground[ys[i], xs[i]] + ":" + xs[i] + ":" + ys[i] + ":";
 
                         }
-                        if (Tool.IsPaintable(xs[i], ys[i], Tool.PenID, true) && Tool.IsPaintable(xs[i], ys[i], Tool.PenID, false))
-                        {
 
-                            if (Tool.PenSize == 1) CurFrame.Foreground[ys[i], xs[i]] = Tool.PenID;
-                            else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
+                        if (Tool.PenSize == 1)
+                        {
+                            CurFrame.Foreground[ys[i], xs[i]] = Tool.PenID;
+                        }
+                        else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
+                        {
+                            for (int yy = 0; yy < Tool.PenSize; yy++)
                             {
-                                for (int yy = 0; yy < Tool.PenSize; yy++)
+                                for (int xx = 0; xx < Tool.PenSize; xx++)
                                 {
-                                    for (int xx = 0; xx < Tool.PenSize; xx++)
+                                    if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1)
                                     {
-                                        if (xs[i] + xx <= CurFrame.Width - 1 && ys[i] + yy <= CurFrame.Height - 1) {
-                                            CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
-                                        }
-                                        
+                                        CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
                                     }
+
                                 }
                             }
+
                         }
                     }
                 }
@@ -262,7 +264,7 @@ namespace EEditor
                         }
                     }
                 }
-                
+
             }
             g.Save();
             for (int i = 0; i < xs.Count; ++i)
@@ -560,12 +562,12 @@ namespace EEditor
                     int targget = target;
                     if (id.ToString().Length > 3) { idd = Convert.ToInt32(id.ToString().Substring(0, 3)); }
                     if (target.ToString().Length > 3) { targget = Convert.ToInt32(target.ToString().Substring(0, 3)); }
-                        if (bfont.Families.Length == 1) DrawText(idd.ToString(), Back, Brushes.Black, bfont.Families[0], 8, "top", "center", x * 16, y * 16 + 1, false);
-                        else DrawText(idd.ToString(), Back, Brushes.Black, null, 8, "top", "center", x * 16, y * 16, false);
-                        if (bfont.Families.Length == 1) DrawText(targget.ToString(), Back, Brushes.Red, bfont.Families[0], 8, "bottom", "center", x * 16, y * 16 - 1, false);
-                        else DrawText(targget.ToString(), Back, Brushes.Red, null, 8, "bottom", "center", x * 16, y * 16, false);
-                        
-                    
+                    if (bfont.Families.Length == 1) DrawText(idd.ToString(), Back, Brushes.Black, bfont.Families[0], 8, "top", "center", x * 16, y * 16 + 1, false);
+                    else DrawText(idd.ToString(), Back, Brushes.Black, null, 8, "top", "center", x * 16, y * 16, false);
+                    if (bfont.Families.Length == 1) DrawText(targget.ToString(), Back, Brushes.Red, bfont.Families[0], 8, "bottom", "center", x * 16, y * 16 - 1, false);
+                    else DrawText(targget.ToString(), Back, Brushes.Red, null, 8, "bottom", "center", x * 16, y * 16, false);
+
+
 
                 }
                 else

@@ -42,6 +42,7 @@ namespace EEditor
             tp.SetToolTip(saveAccount, "Save account values");
             tp.SetToolTip(reloadPacks, "Reload the list of item packs purchased with the account");
             tp.SetToolTip(accEverybodyEdits, "Use Everybody Edits Account");
+            tp.SetToolTip(accEverybodyEditsTransfer, "Use transfered Accounts");
             tp.SetToolTip(accKongregate, "Use Kongregate Account");
             tp.SetToolTip(accArmorGames, "Use ArmorGames Account");
             tp.SetToolTip(accFacebook, "Use Facebook Account");
@@ -87,6 +88,19 @@ namespace EEditor
         {
             var value = (RadioButton)sender;
             if (value.Name == "accEverybodyEdits")
+            {
+                loginLabel1.Text = "Email:";
+                loginField1.Width = 146;
+                loginField1.Location = new Point(48, 190);
+                loginField1.Visible = true;
+
+                loginLabel2.Text = "Password:";
+                loginField2.Width = 125;
+                loginField2.Location = new Point(69, 219);
+
+                instructionsField.Rtf = everybodyEditsRTF;
+            }
+            if (value.Name == "accEverybodyEditsTransfer")
             {
                 loginLabel1.Text = "Email:";
                 loginField1.Width = 146;
@@ -150,6 +164,28 @@ namespace EEditor
                         PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin, failLogin);
                         accountOption = 0;
                     }
+                    
+                    if (accEverybodyEditsTransfer.Checked)
+                    {
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, delegate (Client cli)
+                         {
+
+
+                             cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
+                              {
+                                  con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
+                                  {
+                                      if (m.Type == "auth") PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } },null,successLogin,failLogin);
+                                  };
+                              },
+                             delegate (PlayerIOError error)
+                             {
+                                 MessageBox.Show(error.Message, "Error");
+                             });
+                         },
+                        failLogin);
+                        accountOption = 4;
+                    }
                     /* Facebook disabled
                      * else if (accFacebook.Checked)
                     {
@@ -183,6 +219,27 @@ namespace EEditor
                     if (accEverybodyEdits.Checked)
                     {
                         PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, successLogin1, failLogin);
+                    }
+                    if (accEverybodyEditsTransfer.Checked)
+                    {
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, delegate (Client cli)
+                        {
+
+
+                            cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
+                            {
+                                con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
+                                {
+                                    if (m.Type == "auth") PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null, successLogin, failLogin);
+                                };
+                            },
+                            delegate (PlayerIOError error)
+                            {
+                                MessageBox.Show(error.Message, "Error");
+                            });
+                        },
+                        failLogin);
+                        accountOption = 4;
                     }
                     /* Facebook disabled
                     else if (accFacebook.Checked)
@@ -376,6 +433,9 @@ namespace EEditor
                             break;
                         case 3:
                             accArmorGames.Checked = true;
+                            break;
+                        case 4:
+                            accEverybodyEditsTransfer.Checked = true;
                             break;
                     }
                     loginField1.Text = MainForm.accs[lastSelected].login;

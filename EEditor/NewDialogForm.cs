@@ -27,6 +27,7 @@ namespace EEditor
         private string owner = null;
         private Dictionary<string, string> data = new Dictionary<string, string>();
         private Semaphore s = new Semaphore(0, 1);
+        private Semaphore s1 = new Semaphore(0, 1);
         private int messages = 0;
         //private bool errors = false;
         public NewDialogForm(MainForm mainForm)
@@ -69,6 +70,7 @@ namespace EEditor
         private void button1_Click(object sender, EventArgs e)
         {
             MainForm.SetPenTool();
+            if (Clipboard.ContainsData("EEBrush")) Clipboard.Clear();
             MainForm.userdata.thisColor = Color.Transparent;
             MainForm.userdata.useColor = false;
             ToolPen.undolist.Clear();
@@ -281,7 +283,34 @@ namespace EEditor
                 {
                     client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
                 }
+                else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 4 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
+                {
+                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, delegate (Client cli)
+                    {
 
+
+                        cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con1)
+                        {
+                            con1.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
+                            {
+                                if (m.Type == "auth")
+                                {
+                                    client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null);
+                                    s1.Release();
+                                }
+                            };
+                        },
+                        delegate (PlayerIOError error)
+                        {
+                            MessageBox.Show(error.Message, "Error");
+                        });
+                    }, delegate (PlayerIOError error)
+                    {
+                        MessageBox.Show(error.Message, "Error");
+                    });
+                    s1.WaitOne();
+                }
+                
                 if (datas == 0)
                 {
 
@@ -315,11 +344,18 @@ namespace EEditor
                     }
                     else
                     {
-                        Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level == "BW" ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
-                        Connection.OnMessage += OnMessage;
-                        Connection.Send("init");
-                        NeedsInit = false;
-                        s.WaitOne();
+                        if (client != null)
+                        {
+                            Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level,"Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                            Connection.OnMessage += OnMessage;
+                            Connection.Send("init");
+                            NeedsInit = false;
+                            s.WaitOne();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Client is null");
+                        }
                     }
 
                 }

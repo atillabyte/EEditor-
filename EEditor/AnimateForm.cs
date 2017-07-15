@@ -23,6 +23,7 @@ namespace EEditor
         public static bool crewWorld = false;
         public static bool editRights = false;
         public static bool saveRights = false;
+        private Semaphore s1 = new Semaphore(0, 1);
         public AnimateForm(List<Frame> frames)
         {
             InitializeComponent();
@@ -124,6 +125,33 @@ namespace EEditor
                             {
                                 client = PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", MainForm.accs[MainForm.selectedAcc].login }, { "authToken", MainForm.accs[MainForm.selectedAcc].password } }, null);
                             }
+                            else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 4)
+                            {
+                                PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, delegate (Client cli)
+                                {
+
+
+                                    cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
+                                    {
+                                        con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
+                                        {
+                                            if (m.Type == "auth")
+                                            {
+                                                client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null);
+                                                s1.Release();
+                                            }
+                                        };
+                                    },
+                                    delegate (PlayerIOError error)
+                                    {
+                                        MessageBox.Show(error.Message, "Error");
+                                    });
+                                }, delegate (PlayerIOError error)
+                                 {
+                                     MessageBox.Show(error.Message, "Error");
+                                 });
+                                s1.WaitOne();
+                            }
                             if (MainForm.userdata.level.StartsWith("OW"))
                             {
                                 client.Multiplayer.ListRooms("Everybodyedits" + client.BigDB.Load("config", "config")["version"], null, 0, 0,
@@ -157,7 +185,7 @@ namespace EEditor
                             }
                             else
                             {
-                                conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
+                                conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level,"Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
                                 Animator anim = new Animator(frames, conn, levelPassTextBox.Text, shuffleCheckBox.Checked, checkBoxReverse.Checked, checkBoxRandom.Checked);
                                 conn.OnDisconnect += Conn_OnDisconnect;
                                 Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar

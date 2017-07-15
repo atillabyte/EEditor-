@@ -223,6 +223,16 @@ namespace EEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ee_transfer {
+            get {
+                object obj = ResourceManager.GetObject("ee_transfer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eeditor_action {
             get {
                 object obj = ResourceManager.GetObject("eeditor_action", resourceCulture);

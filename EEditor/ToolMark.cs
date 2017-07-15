@@ -123,6 +123,7 @@ namespace EEditor
 
         public override void MouseUp(MouseEventArgs e)
         {
+            Console.WriteLine(e.Button);
             if (e.Button == MouseButtons.Left)
             {
                 if (progress == Progress.Select)
@@ -162,6 +163,7 @@ namespace EEditor
                 {
                 }
 
+            
             }
         }
 
@@ -347,6 +349,16 @@ namespace EEditor
                 progress = Progress.Select;
                 editArea.MainForm.SetTransFormToolStrip(false);
                 editArea.Invalidate();
+            }
+            else if (e.Control && e.KeyCode == Keys.G && progress == Progress.Selected)
+            {
+                Clipboard.SetData("EEBrush", new string[][,] { Front, Back, Coins, Id1, Target1, Text1 });
+                RemoveBorder();
+                Clear();
+                progress = Progress.Select;
+                editArea.MainForm.SetTransFormToolStrip(false);
+                editArea.Invalidate();
+
             }
             else if (e.KeyCode == Keys.Delete)
             {

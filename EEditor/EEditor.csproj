@@ -119,6 +119,12 @@
     <Compile Include="Brush.Designer.cs">
       <DependentUpon>Brush.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrushesTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BrushesTool.Designer.cs">
+      <DependentUpon>BrushesTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="CoinsOptions.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     <EmbeddedResource Include="Brush.resx">
       <DependentUpon>Brush.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BrushesTool.resx">
+      <DependentUpon>BrushesTool.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CoinsOptions.resx">
       <DependentUpon>CoinsOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -367,6 +376,7 @@
     <None Include="Resources\find_all.png" />
     <None Include="Resources\ee_icon.png" />
     <None Include="Resources\fb_icon.png" />
+    <None Include="Resources\ee_transfer.png" />
     <Content Include="Resources\history.png" />
     <Content Include="Resources\id.png" />
     <Content Include="Resources\insert.png" />

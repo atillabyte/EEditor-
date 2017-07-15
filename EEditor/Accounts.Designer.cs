@@ -33,6 +33,7 @@
             this.removeAccount = new System.Windows.Forms.Button();
             this.addAccount = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.accEverybodyEditsTransfer = new System.Windows.Forms.RadioButton();
             this.reloadPacks = new System.Windows.Forms.Button();
             this.saveAccount = new System.Windows.Forms.Button();
             this.loginField2 = new System.Windows.Forms.TextBox();
@@ -100,6 +101,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.accEverybodyEditsTransfer);
             this.groupBox2.Controls.Add(this.reloadPacks);
             this.groupBox2.Controls.Add(this.saveAccount);
             this.groupBox2.Controls.Add(this.loginField2);
@@ -117,6 +119,20 @@
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Details";
+            // 
+            // accEverybodyEditsTransfer
+            // 
+            this.accEverybodyEditsTransfer.Appearance = System.Windows.Forms.Appearance.Button;
+            this.accEverybodyEditsTransfer.AutoSize = true;
+            this.accEverybodyEditsTransfer.Checked = true;
+            this.accEverybodyEditsTransfer.Image = global::EEditor.Properties.Resources.ee_transfer;
+            this.accEverybodyEditsTransfer.Location = new System.Drawing.Point(41, 19);
+            this.accEverybodyEditsTransfer.Name = "accEverybodyEditsTransfer";
+            this.accEverybodyEditsTransfer.Size = new System.Drawing.Size(22, 22);
+            this.accEverybodyEditsTransfer.TabIndex = 11;
+            this.accEverybodyEditsTransfer.TabStop = true;
+            this.accEverybodyEditsTransfer.UseVisualStyleBackColor = true;
+            this.accEverybodyEditsTransfer.CheckedChanged += new System.EventHandler(this.radiobuttons_CheckedChanged);
             // 
             // reloadPacks
             // 
@@ -191,7 +207,7 @@
             this.accArmorGames.Appearance = System.Windows.Forms.Appearance.Button;
             this.accArmorGames.AutoSize = true;
             this.accArmorGames.Image = global::EEditor.Properties.Resources.ag_icon;
-            this.accArmorGames.Location = new System.Drawing.Point(69, 19);
+            this.accArmorGames.Location = new System.Drawing.Point(97, 19);
             this.accArmorGames.Name = "accArmorGames";
             this.accArmorGames.Size = new System.Drawing.Size(22, 22);
             this.accArmorGames.TabIndex = 3;
@@ -203,7 +219,7 @@
             this.accKongregate.Appearance = System.Windows.Forms.Appearance.Button;
             this.accKongregate.AutoSize = true;
             this.accKongregate.Image = global::EEditor.Properties.Resources.kg_icon;
-            this.accKongregate.Location = new System.Drawing.Point(41, 19);
+            this.accKongregate.Location = new System.Drawing.Point(69, 19);
             this.accKongregate.Name = "accKongregate";
             this.accKongregate.Size = new System.Drawing.Size(22, 22);
             this.accKongregate.TabIndex = 2;
@@ -216,7 +232,7 @@
             this.accFacebook.AutoSize = true;
             this.accFacebook.Enabled = false;
             this.accFacebook.Image = global::EEditor.Properties.Resources.fb_icon;
-            this.accFacebook.Location = new System.Drawing.Point(97, 19);
+            this.accFacebook.Location = new System.Drawing.Point(125, 19);
             this.accFacebook.Name = "accFacebook";
             this.accFacebook.Size = new System.Drawing.Size(22, 22);
             this.accFacebook.TabIndex = 1;
@@ -295,5 +311,6 @@
         private System.Windows.Forms.ListBox accountListBox;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.RadioButton accEverybodyEditsTransfer;
     }
 }
