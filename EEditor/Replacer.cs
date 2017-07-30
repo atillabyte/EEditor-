@@ -55,7 +55,7 @@ namespace EEditor
                     RotationPictureBox1.Image = bdata.getRotation(MainForm.editArea.Tool.PenID, 0);
                 }
             }
-
+            replaceRotate.Value = 1;
             numericUpDown2.Value = 0;
             //if (bdata.getRotation(numericUpDown1.Value, MainForm.editArea.Frames[0].BlockData[yy, xx]) != null) MainForm.editArea.Back = bdata.getRotation(MainForm.editArea.Frames[0].Foreground[yy, xx], MainForm.editArea.Frames[0].BlockData[yy, xx]);
             Bitmap img2 = MainForm.foregroundBMD.Clone(new Rectangle(0 * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);

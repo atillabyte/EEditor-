@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Drawing;
 using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 namespace EEditor
 {
     public class Frame
@@ -38,9 +40,9 @@ namespace EEditor
         }
         public event EventHandler<StatusChangedArgs> StatusChanged;
 
-        protected void OnStatusChanged(string msg, DateTime time,bool done = false,int totallines = 0,int countlines = 0)
+        protected void OnStatusChanged(string msg, DateTime time, bool done = false, int totallines = 0, int countlines = 0)
         {
-            if (StatusChanged != null) StatusChanged(this, new StatusChangedArgs(msg, time,done,totallines,countlines));
+            if (StatusChanged != null) StatusChanged(this, new StatusChangedArgs(msg, time, done, totallines, countlines));
         }
         public void Reset(bool frame)
         {
@@ -788,7 +790,7 @@ namespace EEditor
             bool[] corrects = new bool[10];
             using (BinaryReader reader = new BinaryReader(File.Open(file, FileMode.Open)))
             {
-                
+
                 var width = reader.ReadInt32();
                 var height = reader.ReadInt32();
                 if (width >= 25 && width <= 636 || height >= 25 && height <= 400) { corrects[0] = true; }
@@ -796,7 +798,7 @@ namespace EEditor
 
                 if (corrects[0])
                 {
-                    for (int y = 0;y < height;y++)
+                    for (int y = 0; y < height; y++)
                     {
                         for (int x = 0; x < width; x++)
                         {
@@ -843,6 +845,143 @@ namespace EEditor
             }
             return corrects;
         }
+
+        public static Frame LoadADatabase(string file)
+        {
+            int width = 0, height = 0;
+            var world = JObject.Parse(File.ReadAllText(file));
+            foreach(var val in world)
+            {
+                width = val.Key.Contains("width") ? (int)val.Value : 200;
+                height = val.Key.Contains("height") ? (int)val.Value : 200;
+            }
+
+            Frame f = new Frame(width, height);
+            var array = world["worlddata"].Values().AsJEnumerable();
+            var temp = new DatabaseArray();
+
+            foreach (var block in array)
+            {
+                var dbo = new DatabaseObject();
+
+                foreach (var token in block)
+                {
+                    var property = (JProperty)token;
+                    var value = property.Value;
+
+                    switch (value.Type)
+                    {
+                        case JTokenType.Integer:
+                            dbo.Set(property.Name, (uint)value);
+                            break;
+                        case JTokenType.Boolean:
+                            dbo.Set(property.Name, (bool)value);
+                            break;
+                        case JTokenType.Float:
+                            dbo.Set(property.Name, (double)value);
+                            break;
+                        default:
+                            dbo.Set(property.Name, (string)value);
+                            break;
+                    }
+                }
+                temp.Add(dbo);
+            }
+            if (temp == null || temp.Count == 0) { f = null; }
+            else
+            {
+                for (int i = 0; i < temp.Count; i++)
+                {
+                    if (temp.Contains(i) && temp.GetObject(i).Count != 0)
+                    {
+
+                        var obj = temp.GetObject(i);
+                        byte[] x = TryGetBytes(obj, "x", new byte[0]), y = TryGetBytes(obj, "y", new byte[0]);
+                        byte[] x1 = TryGetBytes(obj, "x1", new byte[0]), y1 = TryGetBytes(obj, "y1", new byte[0]);
+
+                        for (int j = 0; j < x1.Length; j++)
+                        {
+                            f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                        }
+                        /*for (int k = 0; k < x.Length; k += 2)
+                        {
+                            int yy = (y[k] << 8) + y[k + 1];
+                            int xx = (x[k] << 8) + x[k + 1];
+                            f.Foreground[yy,xx] = Convert.ToInt32(obj["type"]);
+                        }*/
+                    }
+                }
+            }
+            return f;
+            /*foreach (var value in temp)
+            {
+                Byte[] val1 = Convert.FromBase64String(temp["x"].ToString());
+                Byte[] val2 = Convert.FromBase64String(dbo["y"].ToString());
+                for (int xxx = 0; xxx < val1.Length; xxx += 2)
+                {
+                    int tmpxx = val1[xxx] << 8 | val1[xxx + 1];
+                    int tmpyy = val2[xxx] << 8 | val2[xxx + 1];
+                    f.Foreground[tmpyy, tmpxx] = 9;
+                }
+            }
+            foreach (var property in output)
+            {
+                if (property.Key == "width")
+                {
+                    width = (int)property.Value;
+                    w = true;
+                }
+                if (property.Key == "height")
+                {
+                    height = (int)property.Value;
+                    h = true;
+                }
+                if (h && w)
+                {
+                    area = new string[height, width];
+                    back = new string[height, width];
+                    coins = new string[height, width];
+                    id = new string[height, width];
+                    target = new string[height, width];
+                    text1 = new string[height, width];
+                }
+                if (property.Key == "worlddata")
+                {
+                    JToken[] jsonarr = property.Value.ToArray<JToken>();
+                    for (int i = 0; i < jsonarr.Length; i++)
+                    {
+                        JToken[] jsonarr1 = jsonarr[i].ToArray<JToken>();
+
+                        foreach (var value in jsonarr1)
+                        {
+                            //if (i == 0) {
+                            Byte[] val1 = Convert.FromBase64String(value["x"].ToString());
+                            Byte[] val2 = Convert.FromBase64String(value["y"].ToString());
+                            for (int xxx = 0; xxx < val1.Length; xxx += 2)
+                            {
+                                int tmpxx = val1[xxx] << 8 | val1[xxx + 1];
+                                int tmpyy = val2[xxx] << 8 | val2[xxx + 1];
+                                Console.WriteLine(tmpxx + " " + tmpyy);
+                            }
+                            //}
+                        }
+                    }
+                }
+            }*/
+
+        }
+
+        public static byte[] TryGetBytes(DatabaseObject input, string key, byte[] defaultValue)
+        {
+            object obj = null;
+
+            if (input.TryGetValue(key, out obj))
+            {
+                return (obj is string) ? Convert.FromBase64String(obj as string) : (obj is byte[]) ? obj as byte[] : defaultValue;
+            }
+
+            return defaultValue;
+        }
         public static void LoadEEBuilder(string file, int num)
         {
             if (MainForm.editArea.Frames[0].Height >= 30 && MainForm.editArea.Frames[0].Width >= 41)
@@ -861,7 +1000,7 @@ namespace EEditor
                     linee += 1;
                     if (linee == 1)
                     {
-                        
+
                         if (Regex.IsMatch(line, @"[0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}\ [0-9]{1,3}"))
                         {
                             split1 = line.Split(' ');
@@ -884,7 +1023,7 @@ namespace EEditor
 
                                 if (Convert.ToInt32(split1[abc]) == s1)
                                 {
-                                        area[Convert.ToInt32(split[2]) - 1, Convert.ToInt32(split[1]) - 1] = s2.ToString();
+                                    area[Convert.ToInt32(split[2]) - 1, Convert.ToInt32(split[1]) - 1] = s2.ToString();
                                 }
                             }
                         }
@@ -900,7 +1039,7 @@ namespace EEditor
             }
             else
             {
-                MessageBox.Show("The world is too small to handle EEBuilder files.\nWorlds should be larger or equal to width 30 and height 41", "World too small",MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
+                MessageBox.Show("The world is too small to handle EEBuilder files.\nWorlds should be larger or equal to width 30 and height 41", "World too small", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
             }
         }

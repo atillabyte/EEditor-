@@ -3834,6 +3834,40 @@ namespace EEditor
             BackgroundIgnore bgi = new BackgroundIgnore();
             bgi.Show();
         }
+
+        private void roomDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SetDummy();
+            try
+            {
+                MainForm.editArea.Back = null;
+                MainForm.editArea.Back1 = null;
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Title = "Select a level to load from";
+                ofd.DefaultExt = "json";
+                ofd.Filter = "Atilla's World Database (*.json)|*.json";
+                ofd.FilterIndex = 1;
+                ofd.AddExtension = true;
+                ofd.RestoreDirectory = true;
+                ofd.CheckFileExists = true;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    string path = ofd.FileName;
+                    Frame frame = Frame.LoadADatabase(path);
+                    if (frame != null)
+                    {
+                        this.Text = Path.GetFileName(ofd.FileName) + " by " + "test" + " (" + frame.Width + "x" + frame.Height + ") - EEditor " + this.ProductVersion;
+                        editArea.Init(frame, false);
+                    }
+                    else MessageBox.Show("The loaded file is broken.", "File is broken", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
     public class ownedBlocks
     {

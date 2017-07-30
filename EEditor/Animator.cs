@@ -382,13 +382,17 @@ namespace EEditor
                             else if (progress == 90) goto stopit;
                             if (restart) { restart = false; goto stopit; }
 
-                            if (param != null) conn.Send("b", param);
-                            Thread.Sleep(MainForm.userdata.uploadDelay);
+                            if (param != null)
+                            {
+                                sendParam(conn, param);
+                                Thread.Sleep(MainForm.userdata.uploadDelay);
+                            }
 
 
 
 
-                            if (Gcurrent1 >= firstFrame.Count)
+
+                                if (Gcurrent1 >= firstFrame.Count)
                             {
                                 break;
                             }
@@ -440,7 +444,15 @@ namespace EEditor
 
         }
 
-
+        static async void sendParam(Connection con,object[] param)
+        {
+            await Task.Run(() =>
+            {
+                con.Send("b", param);
+                
+            }
+            );
+        }
         void OnMessage(object sender, PlayerIOClient.Message e)
         {
             if (e.Type == "b")
