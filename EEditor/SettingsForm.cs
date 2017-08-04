@@ -31,13 +31,11 @@ namespace EEditor
             #region Setting checkboxes
             ToolTip tp = new ToolTip();
             tp.SetToolTip(usePenToolCheckBox, "Enables draw tool after switching blocks.");
-            tp.SetToolTip(dontreplacefCheckBox, "Won't allow drawing over blocks that are loaded from the world.\nOnly works within EEditor, not for uploading.");
             tp.SetToolTip(selectAllBorderCheckBox, "Includes bordering blocks when selecting the whole world by hotkey Ctrl+A.");
             tp.SetToolTip(confirmCloseCheckBox, "Prompts when you attempt to close EEditor.");
             tp.SetToolTip(updateCheckCheckBox, "Checks for updates on every EEditor start.");
 
             usePenToolCheckBox.Checked = MainForm.userdata.usePenTool;
-            dontreplacefCheckBox.Checked = MainForm.userdata.dontReplaceBlocks;
             selectAllBorderCheckBox.Checked = MainForm.userdata.selectAllBorder;
             confirmCloseCheckBox.Checked = MainForm.userdata.confirmClose;
             updateCheckCheckBox.Checked = MainForm.userdata.updateChecker;
@@ -53,11 +51,6 @@ namespace EEditor
         private void usePenToolCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             MainForm.userdata.usePenTool = usePenToolCheckBox.Checked;
-        }
-
-        private void dontreplacefCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            MainForm.userdata.dontReplaceBlocks = dontreplacefCheckBox.Checked;
         }
 
         private void selectAllBorderCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -162,7 +155,10 @@ namespace EEditor
                         ColorFG = true,
                         ColorBG = true,
                         ignoreplacing = false,
-                        randomLines = false
+                        randomLines = false,
+                        BPSblocks = 100,
+                        BPSplacing = false,
+                        IgnoreBlocks = new List<JToken>() { }
                     };
                     MainForm.OpenWorld = false;
                     MainForm.userdata.useColor = false;

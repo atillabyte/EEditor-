@@ -385,14 +385,18 @@ namespace EEditor
                             if (param != null)
                             {
                                 sendParam(conn, param);
-                                Thread.Sleep(MainForm.userdata.uploadDelay);
+                                if (maxBlocks == 100)
+                                {
+                                    Thread.Sleep(MainForm.userdata.uploadDelay);
+                                    maxBlocks = 0;
+                                }
                             }
 
 
 
 
 
-                                if (Gcurrent1 >= firstFrame.Count)
+                            if (Gcurrent1 >= firstFrame.Count)
                             {
                                 break;
                             }
@@ -444,12 +448,12 @@ namespace EEditor
 
         }
 
-        static async void sendParam(Connection con,object[] param)
+        static async void sendParam(Connection con, object[] param)
         {
             await Task.Run(() =>
             {
                 con.Send("b", param);
-                
+
             }
             );
         }

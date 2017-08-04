@@ -373,6 +373,8 @@
     <None Include="Resources\ag_icon.png" />
     <None Include="Resources\add.png" />
     <Content Include="Resources\copy.png" />
+    <None Include="Resources\eeditor_bgIgnore.png" />
+    <None Include="Resources\eeditor_bgIgnore.ico" />
     <Content Include="Resources\eeditor_unknown.png" />
     <None Include="Resources\eye.png" />
     <None Include="Resources\find_next.png" />

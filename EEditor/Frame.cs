@@ -359,65 +359,15 @@ namespace EEditor
                                 int tmpyy = yy[xxx] << 8 | yy[xxx + 1];
                                 if (layer == 0)
                                 {
-
-                                    if (bdata.goal.Contains((int)bid))
-                                    {
-                                        if (bid == 77 || bid == 83 || bid == 1520)
-                                        {
-
-                                            uint id = worldinfo.GetUInt("id");
-                                            frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                            frame.BlockData[tmpyy, tmpxx] = (int)id;
-                                        }
-                                        else
-                                        {
-
-                                            uint rotation = worldinfo.GetUInt("goal");
-                                            frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                            frame.BlockData[tmpyy, tmpxx] = (int)rotation;
-                                        }
-                                    }
-                                    else if (bdata.rotate.Contains((int)bid) || bdata.morphable.Contains((int)bid))
-                                    {
-                                        if (bid == 385)
-                                        {
-                                            if (worldinfo.Contains("text"))
-                                            {
-                                                string text = worldinfo.GetString("text");
-                                                frame.BlockData3[tmpyy, tmpxx] = text;
-                                                if (worldinfo.Contains("signtype"))
-                                                {
-                                                    uint rotation = worldinfo.GetUInt("signtype");
-                                                    frame.BlockData[tmpyy, tmpxx] = (int)rotation;
-                                                }
-                                                else
-                                                {
-                                                    frame.BlockData[tmpyy, tmpxx] = 0;
-                                                }
-                                                frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                                frame.BlockData3[tmpyy, tmpxx] = text;
-
-                                            }
-                                        }
-                                        else if (bid == 374)
-                                        {
-                                            if (worldinfo.Contains("target"))
-                                            {
-                                                string world = worldinfo.GetString("target");
-                                                frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                                frame.BlockData3[tmpyy, tmpxx] = world;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (worldinfo.Contains("rotation"))
-                                            {
-                                                uint rotation = worldinfo.GetUInt("rotation");
-                                                frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                                frame.BlockData[tmpyy, tmpxx] = (int)rotation;
-                                            }
-                                        }
-                                    }
+                                    object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
+                                    frame.Foreground[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["type"]);
+                                    if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["goal"]);
+                                    if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["signtype"]);
+                                    if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy, tmpxx] = worldinfo["text"].ToString();
+                                    if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["rotation"]);
+                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["id"]);
+                                    if (bid == 374) frame.BlockData3[tmpyy, tmpxx] = worldinfo["target"].ToString();
+                                    else frame.BlockData2[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["target"]);
                                     /*else if (bid == 1000)
                                     {
                                         string hexcolor = "#FFFFFF";
@@ -437,26 +387,6 @@ namespace EEditor
                                             }
                                         }
                                     }*/
-                                    else if (bdata.portals.Contains((int)bid))
-                                    {
-                                        uint rotation = worldinfo.GetUInt("rotation");
-                                        uint sid = worldinfo.GetUInt("id");
-                                        uint tid = worldinfo.GetUInt("target");
-                                        frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                        frame.BlockData[tmpyy, tmpxx] = (int)rotation;
-                                        frame.BlockData1[tmpyy, tmpxx] = (int)sid;
-                                        frame.BlockData2[tmpyy, tmpxx] = (int)tid;
-                                    }
-                                    else
-                                    {
-
-                                        frame.Foreground[tmpyy, tmpxx] = (int)bid;
-                                        var rotation = worldinfo.Contains("rotation") ? (int)worldinfo.GetUInt("rotation") : -1;
-                                        if (rotation != -1)
-                                        {
-                                            frame.BlockData[tmpyy, tmpxx] = (int)rotation;
-                                        }
-                                    }
                                 }
                                 else
                                 {
@@ -474,64 +404,19 @@ namespace EEditor
                                 int tmpyy0 = yy1[xxxx];
                                 if (layer == 0)
                                 {
-
-                                    if (bdata.goal.Contains((int)bid))
+                                    object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
+                                    frame.Foreground[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["type"]);
+                                    if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["goal"]);
+                                    if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["signtype"]);
+                                    if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy0, tmpxx0] = worldinfo["text"].ToString();
+                                    if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["rotation"]);
+                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["id"]);
+                                    if (worldinfo.TryGetValue("target", out target))
                                     {
-                                        if (bid == 77 || bid == 83 || bid == 1520)
-                                        {
-                                            uint rotation = worldinfo.GetUInt("id");
-                                            frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                            frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                        }
-                                        else
-                                        {
-                                            uint rotation = worldinfo.GetUInt("goal");
-                                            frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                            frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                        }
+                                        if (bid == 374) frame.BlockData3[tmpyy0, tmpxx0] = worldinfo["target"].ToString();
+                                        else frame.BlockData2[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["target"]);
                                     }
-                                    else if (bdata.rotate.Contains((int)bid) || bdata.morphable.Contains((int)bid))
-                                    {
-                                        if (bid == 385)
-                                        {
-                                            if (worldinfo.Contains("text"))
-                                            {
-                                                string text = worldinfo.GetString("text");
-                                                if (worldinfo.Contains("signtype"))
-                                                {
-                                                    uint rotation = worldinfo.GetUInt("signtype");
-                                                    frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                                }
-                                                else
-                                                {
-                                                    frame.BlockData[tmpyy0, tmpxx0] = 0;
-                                                }
-                                                frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                                frame.BlockData3[tmpyy0, tmpxx0] = text;
-                                            }
-                                        }
-                                        else if (bid == 374)
-                                        {
-                                            frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                            if (worldinfo.Contains("target"))
-                                            {
-                                                string target = worldinfo.GetString("target");
-                                                frame.BlockData3[tmpyy0, tmpxx0] = target;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                            if (worldinfo.Contains("rotation"))
-                                            {
-                                                uint rotation = worldinfo.GetUInt("rotation");
-                                                frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                            }
-                                            else
-                                            {
-                                            }
-                                        }
-                                    }
+                                    
                                     /*else if (bid == 1000)
                                     {
                                         string hexcolor = "#FFFFFF";
@@ -551,26 +436,6 @@ namespace EEditor
                                             }
                                         }
                                     }*/
-                                    else if (bdata.portals.Contains((int)bid))
-                                    {
-                                        uint rotation = worldinfo.GetUInt("rotation");
-                                        uint sid = worldinfo.GetUInt("id");
-                                        uint tid = worldinfo.GetUInt("target");
-                                        frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                        frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                        frame.BlockData1[tmpyy0, tmpxx0] = (int)sid;
-                                        frame.BlockData2[tmpyy0, tmpxx0] = (int)tid;
-                                    }
-                                    else
-                                    {
-
-                                        frame.Foreground[tmpyy0, tmpxx0] = (int)bid;
-                                        var rotation = worldinfo.Contains("rotation") ? (int)worldinfo.GetUInt("rotation") : -1;
-                                        if (rotation != -1)
-                                        {
-                                            frame.BlockData[tmpyy0, tmpxx0] = (int)rotation;
-                                        }
-                                    }
                                 }
                                 else
                                 {
@@ -850,69 +715,109 @@ namespace EEditor
         {
             int width = 0, height = 0;
             var world = JObject.Parse(File.ReadAllText(file));
-            foreach(var val in world)
+            JToken w = 0, h = 0, wd = null;
+            width = world.TryGetValue("width", out w) ? (int)world.GetValue("width") : 200;
+            height = world.TryGetValue("height", out h) ? (int)world.GetValue("height") : 200;
+            if (world.TryGetValue("worlddata", out wd))
             {
-                width = val.Key.Contains("width") ? (int)val.Value : 200;
-                height = val.Key.Contains("height") ? (int)val.Value : 200;
-            }
+                Frame f = new Frame(width, height);
+                var array = world["worlddata"].Values().AsJEnumerable();
+                var temp = new DatabaseArray();
 
-            Frame f = new Frame(width, height);
-            var array = world["worlddata"].Values().AsJEnumerable();
-            var temp = new DatabaseArray();
-
-            foreach (var block in array)
-            {
-                var dbo = new DatabaseObject();
-
-                foreach (var token in block)
+                foreach (var block in array)
                 {
-                    var property = (JProperty)token;
-                    var value = property.Value;
+                    var dbo = new DatabaseObject();
 
-                    switch (value.Type)
+                    foreach (var token in block)
                     {
-                        case JTokenType.Integer:
-                            dbo.Set(property.Name, (uint)value);
-                            break;
-                        case JTokenType.Boolean:
-                            dbo.Set(property.Name, (bool)value);
-                            break;
-                        case JTokenType.Float:
-                            dbo.Set(property.Name, (double)value);
-                            break;
-                        default:
-                            dbo.Set(property.Name, (string)value);
-                            break;
+                        var property = (JProperty)token;
+                        var value = property.Value;
+
+                        switch (value.Type)
+                        {
+                            case JTokenType.Integer:
+                                dbo.Set(property.Name, (uint)value);
+                                break;
+                            case JTokenType.Boolean:
+                                dbo.Set(property.Name, (bool)value);
+                                break;
+                            case JTokenType.Float:
+                                dbo.Set(property.Name, (double)value);
+                                break;
+                            default:
+                                dbo.Set(property.Name, (string)value);
+                                break;
+                        }
+                    }
+                    temp.Add(dbo);
+                }
+                if (temp == null || temp.Count == 0) { f = null; }
+                else
+                {
+                    for (int i = 0; i < temp.Count; i++)
+                    {
+                        if (temp.Contains(i) && temp.GetObject(i).Count != 0)
+                        {
+
+                            var obj = temp.GetObject(i);
+                            byte[] x = TryGetBytes(obj, "x", new byte[0]), y = TryGetBytes(obj, "y", new byte[0]);
+                            byte[] x1 = TryGetBytes(obj, "x1", new byte[0]), y1 = TryGetBytes(obj, "y1", new byte[0]);
+
+                            for (int j = 0; j < x1.Length; j++)
+                            {
+                                if (y1[j] < height && x1[j] < width)
+                                {
+                                    if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
+                                    {
+                                        object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
+                                        f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["goal"]);
+                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["signtype"]);
+                                        if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = obj["text"].ToString();
+                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["rotation"]);
+                                        if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(obj["id"]);
+                                        if (obj.TryGetValue("target", out target)) f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(obj["target"]);
+                                    }
+                                    else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) f.Background[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                }
+                            }
+                            for (int k = 0; k < x.Length; k += 2)
+                            {
+
+                                int yy = (y[k] << 8) | y[k + 1];
+                                int xx = (x[k] << 8) | x[k + 1];
+
+                                //if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
+                                if (yy < height && xx < width)
+                                {
+                                    if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
+                                    {
+                                        object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
+                                        f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
+                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
+                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
+                                        if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = obj["text"].ToString();
+                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
+                                        if (obj.TryGetValue("id", out id)) f.BlockData1[yy, xx] = Convert.ToInt32(obj["id"]);
+                                        if (obj.TryGetValue("target", out target)) f.BlockData2[yy, xx] = Convert.ToInt32(obj["target"]);
+                                    }
+                                    else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999)
+                                    {
+                                        f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
+
+                                    }
+                                }
+                            }
+
+                        }
                     }
                 }
-                temp.Add(dbo);
+                return f;
             }
-            if (temp == null || temp.Count == 0) { f = null; }
             else
             {
-                for (int i = 0; i < temp.Count; i++)
-                {
-                    if (temp.Contains(i) && temp.GetObject(i).Count != 0)
-                    {
-
-                        var obj = temp.GetObject(i);
-                        byte[] x = TryGetBytes(obj, "x", new byte[0]), y = TryGetBytes(obj, "y", new byte[0]);
-                        byte[] x1 = TryGetBytes(obj, "x1", new byte[0]), y1 = TryGetBytes(obj, "y1", new byte[0]);
-
-                        for (int j = 0; j < x1.Length; j++)
-                        {
-                            f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
-                        }
-                        /*for (int k = 0; k < x.Length; k += 2)
-                        {
-                            int yy = (y[k] << 8) + y[k + 1];
-                            int xx = (x[k] << 8) + x[k + 1];
-                            f.Foreground[yy,xx] = Convert.ToInt32(obj["type"]);
-                        }*/
-                    }
-                }
+                return null;
             }
-            return f;
             /*foreach (var value in temp)
             {
                 Byte[] val1 = Convert.FromBase64String(temp["x"].ToString());
@@ -1236,7 +1141,7 @@ namespace EEditor
             }
         }
         static int[,] eebuilderData = new int[,]
-    {
+        {
                 { 1, 9 }, { 2, 10 }, { 3, 11 }, { 4, 12 }, { 5, 13 }, { 6, 14 }, { 7, 15 },
                 { 8, 37 }, { 9, 38 }, { 10, 39 }, { 11, 40 }, { 12, 41 }, { 13, 42 },
                 { 14, 16 }, { 15, 17 }, { 16, 18 }, { 17, 19 }, { 18, 20 }, { 19, 21 },
@@ -1252,6 +1157,6 @@ namespace EEditor
                 { 65, 50 }, { 66, 243 },
                 { 67, 51 }, { 68, 52 }, { 69, 53 }, { 70, 54 }, { 71, 55 }, { 72, 56 }, { 73, 57 }, { 74, 58 },
                 { 75, 233 }, { 76, 234 }, { 77, 235 }, { 78, 236 }, { 79, 237 }, { 80, 238 }, { 81, 239 }, { 82, 240 },
-    };
+        };
     }
 }

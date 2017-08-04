@@ -89,6 +89,38 @@ namespace EEditor
                         }
                         editArea.mouseDown = false;
                     }
+                    else if (editArea.AltDown)
+                    {
+                        if (editArea.CurFrame.Foreground[y, x] != 0 || editArea.CurFrame.Background[y, x] != 0)
+                        {
+
+                            editArea.mouseDown = false;
+
+                        }
+                        else
+                        {
+                            if (PenID < 500 || PenID >= 1001)
+                            {
+                                if (PenID != 77 && PenID != 83 && PenID != 1520)
+                                {
+                                    editArea.CurFrame.Foreground[y, x] = PenID;
+                                    if (rotation.ContainsKey(PenID))
+                                    {
+                                        editArea.CurFrame.BlockData[y, x] = rotation[PenID];
+                                    }
+                                    if (text.ContainsKey(PenID))
+                                    {
+                                        editArea.CurFrame.BlockData3[y, x] = text[PenID];
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                editArea.CurFrame.Background[y, x] = PenID;
+                            }
+                        }
+
+                    }
                     else
                     {
                         if (PenID < 500 || PenID >= 1001)
@@ -103,29 +135,6 @@ namespace EEditor
                                 {
                                     undolist.Push(PenID + ":" + editArea.CurFrame.Foreground[y, x] + ":" + x + ":" + y);
                                 }
-                            }
-                            if (editArea.CurFrame.Foreground[y, x] != 0)
-                            {
-                                if (!MainForm.userdata.dontReplaceBlocks)
-                                {
-                                    if (PenID != 77 && PenID != 83 && PenID != 1520)
-                                    {
-                                        if (IsPaintable(x, y, PenID, true) && IsPaintable(x, y, PenID, false))
-                                        {
-                                            editArea.CurFrame.Foreground[y, x] = PenID;
-                                        }
-                                        if (rotation.ContainsKey(PenID))
-                                        {
-                                            editArea.CurFrame.BlockData[y, x] = rotation[PenID];
-                                        }
-                                        if (text.ContainsKey(PenID))
-                                        {
-                                            editArea.CurFrame.BlockData3[y, x] = text[PenID];
-                                        }
-                                    }
-                                }
-                                if (MainForm.userdata.dontReplaceBlocks) editArea.mouseDown = false;
-
                             }
                             else
                             {
@@ -160,18 +169,8 @@ namespace EEditor
                                     undolist.Push(PenID + ":" + editArea.CurFrame.Background[y, x] + ":" + x + ":" + y);
                                 }
                             }
-                            if (editArea.CurFrame.Background[y, x] != 0)
-                            {
-                                if (!MainForm.userdata.dontReplaceBlocks)
-                                {
-                                    editArea.CurFrame.Background[y, x] = PenID;
-                                }
-                                if (MainForm.userdata.dontReplaceBlocks) editArea.mouseDown = false;
-                            }
-                            else
-                            {
-                                editArea.CurFrame.Background[y, x] = PenID;
-                            }
+                            editArea.CurFrame.Background[y, x] = PenID;
+
                         }
                     }
                 }
@@ -618,8 +617,8 @@ namespace EEditor
                         mouseMove = true;
                         if (PenSize == 1)
                         {
-                                PlaceBrick(p.X, p.Y, false, false, true);
-                            
+                            PlaceBrick(p.X, p.Y, false, false, true);
+
                         }
                         else if (PenSize >= 2 && PenSize <= 10)
                         {

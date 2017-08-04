@@ -253,6 +253,26 @@ namespace EEditor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap eeditor_bgIgnore {
+            get {
+                object obj = ResourceManager.GetObject("eeditor_bgIgnore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon eeditor_bgIgnore1 {
+            get {
+                object obj = ResourceManager.GetObject("eeditor_bgIgnore1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eeditor_block {
             get {
                 object obj = ResourceManager.GetObject("eeditor_block", resourceCulture);

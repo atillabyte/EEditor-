@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 namespace EEditor
 {
     public partial class BackgroundIgnore : Form
@@ -19,8 +20,14 @@ namespace EEditor
 
         private void BackgroundIgnore_Load(object sender, EventArgs e)
         {
+            loaddata();
+        }
+        private void loaddata()
+        {
+            Console.WriteLine(MainForm.userdata.IgnoreBlocks.Count);
             listView1.View = View.Tile;
             listView1.TileSize = new Size(200, 24);
+            listView1.Items.Clear();
             var width = MainForm.decosBMD.Width / 16 + MainForm.miscBMD.Width / 16 + MainForm.foregroundBMD.Width / 16 + MainForm.backgroundBMD.Width / 16;
             if (imglist.Images.Count == 0)
             {
@@ -52,7 +59,7 @@ namespace EEditor
                     imglist.Images.Add(img1);
 
                 }
-                listView1.LargeImageList  = imglist;
+                listView1.LargeImageList = imglist;
             }
             if (MainForm.userdata.IgnoreBlocks.Count > 0)
             {
@@ -65,6 +72,29 @@ namespace EEditor
                     listView1.Items.Add(lvi);
                 }
             }
+        }
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                
+            }
+        }
+
+        private void RemoveButton_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedIndices.Count > 0)
+            {
+                JToken val = Convert.ToInt32(listView1.Items[0].Name);
+                MainForm.userdata.IgnoreBlocks.Remove(val);
+                loaddata();
+            }
+        }
+
+        private void ClearAllButton_Click(object sender, EventArgs e)
+        {
+            MainForm.userdata.IgnoreBlocks.Clear();
+            loaddata();
         }
     }
 }

@@ -401,60 +401,60 @@
             // new33ToolStripMenuItem
             // 
             this.new33ToolStripMenuItem.Name = "new33ToolStripMenuItem";
-            this.new33ToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.new33ToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.new33ToolStripMenuItem.Text = "EEditor 3.3+";
             this.new33ToolStripMenuItem.Click += new System.EventHandler(this.new33ToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(192, 6);
             // 
             // loadNewMenuItem
             // 
             this.loadNewMenuItem.Name = "loadNewMenuItem";
-            this.loadNewMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.loadNewMenuItem.Size = new System.Drawing.Size(195, 22);
             this.loadNewMenuItem.Text = "EEditor 2.1 - 3.2";
             this.loadNewMenuItem.Click += new System.EventHandler(this.loadNewMenuItem_Click);
             // 
             // loadOldMenuItem
             // 
             this.loadOldMenuItem.Name = "loadOldMenuItem";
-            this.loadOldMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.loadOldMenuItem.Size = new System.Drawing.Size(195, 22);
             this.loadOldMenuItem.Text = "EEditor ... - 2.0";
             this.loadOldMenuItem.Click += new System.EventHandler(this.loadOldMenuItem_Click);
             // 
             // loadOldestMenuItem
             // 
             this.loadOldestMenuItem.Name = "loadOldestMenuItem";
-            this.loadOldestMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.loadOldestMenuItem.Size = new System.Drawing.Size(195, 22);
             this.loadOldestMenuItem.Text = "EEditor 1.0 - ...";
             this.loadOldestMenuItem.Click += new System.EventHandler(this.loadOldestMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(154, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(192, 6);
             // 
             // savToolStripMenuItem
             // 
             this.savToolStripMenuItem.Name = "savToolStripMenuItem";
-            this.savToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.savToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.savToolStripMenuItem.Text = "EEAnimator";
             this.savToolStripMenuItem.Click += new System.EventHandler(this.savToolStripMenuItem_Click);
             // 
             // eEBuilderToolStripMenuItem
             // 
             this.eEBuilderToolStripMenuItem.Name = "eEBuilderToolStripMenuItem";
-            this.eEBuilderToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.eEBuilderToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.eEBuilderToolStripMenuItem.Text = "EEBuilder";
             this.eEBuilderToolStripMenuItem.Click += new System.EventHandler(this.eEBuilderToolStripMenuItem_Click);
             // 
             // roomDatabaseToolStripMenuItem
             // 
             this.roomDatabaseToolStripMenuItem.Name = "roomDatabaseToolStripMenuItem";
-            this.roomDatabaseToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.roomDatabaseToolStripMenuItem.Text = "Room Database (Beta)";
+            this.roomDatabaseToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this.roomDatabaseToolStripMenuItem.Text = "Atilla\'s Room Database";
             this.roomDatabaseToolStripMenuItem.Click += new System.EventHandler(this.roomDatabaseToolStripMenuItem_Click);
             // 
             // saveDropButton
@@ -651,7 +651,7 @@
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
             this.imageButton.ShortcutKeyDisplayString = "CTRL + I";
-            this.imageButton.Size = new System.Drawing.Size(175, 22);
+            this.imageButton.Size = new System.Drawing.Size(179, 26);
             this.imageButton.Text = "Image";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -660,14 +660,15 @@
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
             this.textButton.ShortcutKeyDisplayString = "CTRL + T";
-            this.textButton.Size = new System.Drawing.Size(175, 22);
+            this.textButton.Size = new System.Drawing.Size(179, 26);
             this.textButton.Text = "Text";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
             // backgroundIgnoreToolStripMenuItem
             // 
+            this.backgroundIgnoreToolStripMenuItem.Image = global::EEditor.Properties.Resources.eeditor_bgIgnore;
             this.backgroundIgnoreToolStripMenuItem.Name = "backgroundIgnoreToolStripMenuItem";
-            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.backgroundIgnoreToolStripMenuItem.Text = "Background Ignore";
             this.backgroundIgnoreToolStripMenuItem.Click += new System.EventHandler(this.backgroundIgnoreToolStripMenuItem_Click);
             // 
@@ -865,10 +866,10 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(0, 153);
+            this.panel1.Location = new System.Drawing.Point(36, 32);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(703, 261);
+            this.panel1.Size = new System.Drawing.Size(485, 277);
             this.panel1.TabIndex = 1;
             // 
             // flowLayoutPanel6

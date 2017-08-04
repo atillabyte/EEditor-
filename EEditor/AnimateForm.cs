@@ -236,8 +236,10 @@ namespace EEditor
         private void AnimateForm_Load(object sender, EventArgs e)
         {
             //this.Size = new Size(380, 184);
-            numericUpDown2.Value = MainForm.userdata.uploadDelay;
+            numericUpDown2.Value = MainForm.userdata.uploadDelay == 0 ? 1: MainForm.userdata.uploadDelay;
+            BPSNumericUpDown.Value = MainForm.userdata.BPSblocks == 0 ? 1: MainForm.userdata.BPSblocks;
             levelTextBox.Text = MainForm.userdata.level;
+            BPSCheckBox.Checked = MainForm.userdata.BPSplacing;
             if (MainForm.userdata.uploadOption == 0) uploadOptionButton1.Checked = true;
             
             levelPassTextBox.Enabled = true;
@@ -245,16 +247,20 @@ namespace EEditor
             IgnoreDrawingCheckBox.Checked = MainForm.userdata.ignoreplacing;
 
             ToolTip tp = new ToolTip();
-            tp.SetToolTip(label4, "Insert the world ID you want to upload to.");
             tp.SetToolTip(levelTextBox, "Insert the world ID you want to upload to.");
-
-            tp.SetToolTip(label5, "Insert the code of the world you are uploading to.");
             tp.SetToolTip(levelPassTextBox, "Insert the code of the world you are uploading to.");
+
+            tp.SetToolTip(BPSNumericUpDown, "This will change how many blocks is sent between the delay.");
 
             tp.SetToolTip(button1, "Starts/stops uploading the world to Everybody Edits.");
 
-            tp.SetToolTip(shuffleCheckBox, "When activated, EEditor uploads blocks in random order instead of top-to-bottom.");
+            tp.SetToolTip(shuffleCheckBox, "When activated, EEditor uploads blocks in random order.\nWhen none is selected the upload goes by top to bottom.");
 
+            tp.SetToolTip(checkBoxReverse, "When activated, EEditor uploads blocks from bottom and up.\nWhen none is selected the upload goes by top to bottom.");
+
+            tp.SetToolTip(checkBoxRandom, "When activated, EEditor uploads blocks to different places.\nWhen none is selected the upload goes by top to bottom.");
+
+            tp.SetToolTip(BPSCheckBox, "When activated, EEditor is going to upload x blocks per second.");
             tp.SetToolTip(label2, "Sets the delay of the blocks being uploaded to Everybody Edits.\nHigher values are slower, but less laggy.");
             tp.SetToolTip(numericUpDown2, "Sets the delay of the blocks being uploaded to Everybody Edits.\nHigher values are slower, but less laggy.");
 
@@ -354,6 +360,15 @@ namespace EEditor
 
         }
 
+        private void BPSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            MainForm.userdata.BPSplacing = BPSCheckBox.Checked;
+        }
+
+        private void BPSNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class StatusChangedArgs : EventArgs

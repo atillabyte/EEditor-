@@ -110,18 +110,8 @@ namespace EEditor
                             {
                                 incfg += PenID + ":" + editArea.CurFrame.Foreground[(int)yy, (int)xx] + ":" + (int)xx + ":" + (int)yy + ":";
                             }
-                            if (editArea.CurFrame.Foreground[(int)yy, (int)xx] != 0)
-                            {
-                                if (!MainForm.userdata.dontReplaceBlocks)
-                                {
-                                    editArea.CurFrame.Foreground[(int)yy, (int)xx] = PenID;
-                                }
+                            editArea.CurFrame.Foreground[(int)yy, (int)xx] = PenID;
 
-                            }
-                            else
-                            {
-                                editArea.CurFrame.Foreground[(int)yy, (int)xx] = PenID;
-                            }
                         }
                         if (PenID >= 500 && PenID <= 999)
                         {
@@ -131,10 +121,7 @@ namespace EEditor
                             }
                             if (editArea.CurFrame.Background[(int)yy, (int)xx] != 0)
                             {
-                                if (!MainForm.userdata.dontReplaceBlocks)
-                                {
-                                    editArea.CurFrame.Background[(int)yy, (int)xx] = PenID;
-                                }
+                                editArea.CurFrame.Background[(int)yy, (int)xx] = PenID;
 
                             }
                             else

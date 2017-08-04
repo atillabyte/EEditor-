@@ -44,13 +44,21 @@
             this.autoSaveCheckBox = new System.Windows.Forms.CheckBox();
             this.uploadOptionButton1 = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.checkBoxRandom = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.BPSNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.BPSLabel = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.BPSCheckBox = new System.Windows.Forms.CheckBox();
             this.checkBoxReverse = new System.Windows.Forms.CheckBox();
+            this.checkBoxRandom = new System.Windows.Forms.CheckBox();
             this.IgnoreDrawingCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BPSNumericUpDown)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,9 +77,9 @@
             this.groupBox1.Controls.Add(this.TimeRunningLabel);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.uploadProgressBar);
-            this.groupBox1.Location = new System.Drawing.Point(8, 219);
+            this.groupBox1.Location = new System.Drawing.Point(8, 351);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 93);
+            this.groupBox1.Size = new System.Drawing.Size(318, 93);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Status";
@@ -98,7 +106,7 @@
             // 
             this.uploadProgressBar.Location = new System.Drawing.Point(6, 32);
             this.uploadProgressBar.Name = "uploadProgressBar";
-            this.uploadProgressBar.Size = new System.Drawing.Size(312, 21);
+            this.uploadProgressBar.Size = new System.Drawing.Size(300, 21);
             this.uploadProgressBar.TabIndex = 24;
             // 
             // button1
@@ -148,7 +156,7 @@
             // shuffleCheckBox
             // 
             this.shuffleCheckBox.AutoSize = true;
-            this.shuffleCheckBox.Location = new System.Drawing.Point(9, 42);
+            this.shuffleCheckBox.Location = new System.Drawing.Point(14, 51);
             this.shuffleCheckBox.Name = "shuffleCheckBox";
             this.shuffleCheckBox.Size = new System.Drawing.Size(59, 17);
             this.shuffleCheckBox.TabIndex = 11;
@@ -159,19 +167,19 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(231, 61);
+            this.label2.Location = new System.Drawing.Point(116, 36);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 21;
-            this.label2.Text = "Speed:";
+            this.label2.Text = "Delay:";
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(272, 59);
+            this.numericUpDown2.Location = new System.Drawing.Point(157, 34);
             this.numericUpDown2.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown2.Maximum = new decimal(new int[] {
-            9999,
+            99999,
             0,
             0,
             0});
@@ -181,10 +189,10 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(60, 20);
             this.numericUpDown2.TabIndex = 22;
             this.numericUpDown2.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -205,7 +213,7 @@
             // 
             this.uploadOptionButton1.AutoSize = true;
             this.uploadOptionButton1.Checked = true;
-            this.uploadOptionButton1.Location = new System.Drawing.Point(9, 19);
+            this.uploadOptionButton1.Location = new System.Drawing.Point(14, 28);
             this.uploadOptionButton1.Name = "uploadOptionButton1";
             this.uploadOptionButton1.Size = new System.Drawing.Size(61, 17);
             this.uploadOptionButton1.TabIndex = 27;
@@ -216,38 +224,107 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.uploadOptionButton1);
-            this.groupBox2.Controls.Add(this.shuffleCheckBox);
-            this.groupBox2.Controls.Add(this.checkBoxRandom);
-            this.groupBox2.Controls.Add(this.checkBoxReverse);
-            this.groupBox2.Location = new System.Drawing.Point(8, 81);
+            this.groupBox2.Controls.Add(this.groupBox4);
+            this.groupBox2.Controls.Add(this.groupBox5);
+            this.groupBox2.Location = new System.Drawing.Point(8, 84);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(324, 75);
+            this.groupBox2.Size = new System.Drawing.Size(318, 182);
             this.groupBox2.TabIndex = 30;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Uploading Method";
+            this.groupBox2.Text = "Uploading";
             // 
-            // checkBoxRandom
+            // groupBox4
             // 
-            this.checkBoxRandom.AutoSize = true;
-            this.checkBoxRandom.Location = new System.Drawing.Point(146, 42);
-            this.checkBoxRandom.Name = "checkBoxRandom";
-            this.checkBoxRandom.Size = new System.Drawing.Size(66, 17);
-            this.checkBoxRandom.TabIndex = 31;
-            this.checkBoxRandom.Text = "Random";
-            this.checkBoxRandom.UseVisualStyleBackColor = true;
-            this.checkBoxRandom.CheckedChanged += new System.EventHandler(this.checkBoxRandom_CheckedChanged);
+            this.groupBox4.Controls.Add(this.BPSNumericUpDown);
+            this.groupBox4.Controls.Add(this.BPSLabel);
+            this.groupBox4.Controls.Add(this.numericUpDown2);
+            this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.Location = new System.Drawing.Point(12, 19);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(294, 69);
+            this.groupBox4.TabIndex = 34;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Uploading Delay";
+            // 
+            // BPSNumericUpDown
+            // 
+            this.BPSNumericUpDown.Location = new System.Drawing.Point(46, 34);
+            this.BPSNumericUpDown.Margin = new System.Windows.Forms.Padding(2);
+            this.BPSNumericUpDown.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.BPSNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.BPSNumericUpDown.Name = "BPSNumericUpDown";
+            this.BPSNumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.BPSNumericUpDown.TabIndex = 24;
+            this.BPSNumericUpDown.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.BPSNumericUpDown.ValueChanged += new System.EventHandler(this.BPSNumericUpDown_ValueChanged);
+            // 
+            // BPSLabel
+            // 
+            this.BPSLabel.AutoSize = true;
+            this.BPSLabel.Location = new System.Drawing.Point(6, 36);
+            this.BPSLabel.Name = "BPSLabel";
+            this.BPSLabel.Size = new System.Drawing.Size(31, 13);
+            this.BPSLabel.TabIndex = 23;
+            this.BPSLabel.Text = "BPS:";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.BPSCheckBox);
+            this.groupBox5.Controls.Add(this.shuffleCheckBox);
+            this.groupBox5.Controls.Add(this.uploadOptionButton1);
+            this.groupBox5.Controls.Add(this.checkBoxReverse);
+            this.groupBox5.Controls.Add(this.checkBoxRandom);
+            this.groupBox5.Location = new System.Drawing.Point(12, 94);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(294, 75);
+            this.groupBox5.TabIndex = 32;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Uploading Way";
+            // 
+            // BPSCheckBox
+            // 
+            this.BPSCheckBox.AutoSize = true;
+            this.BPSCheckBox.Location = new System.Drawing.Point(77, 28);
+            this.BPSCheckBox.Name = "BPSCheckBox";
+            this.BPSCheckBox.Size = new System.Drawing.Size(47, 17);
+            this.BPSCheckBox.TabIndex = 32;
+            this.BPSCheckBox.Text = "BPS";
+            this.BPSCheckBox.UseVisualStyleBackColor = true;
+            this.BPSCheckBox.CheckedChanged += new System.EventHandler(this.BPSCheckBox_CheckedChanged);
             // 
             // checkBoxReverse
             // 
             this.checkBoxReverse.AutoSize = true;
-            this.checkBoxReverse.Location = new System.Drawing.Point(74, 42);
+            this.checkBoxReverse.Location = new System.Drawing.Point(79, 51);
             this.checkBoxReverse.Name = "checkBoxReverse";
             this.checkBoxReverse.Size = new System.Drawing.Size(66, 17);
             this.checkBoxReverse.TabIndex = 30;
             this.checkBoxReverse.Text = "Reverse";
             this.checkBoxReverse.UseVisualStyleBackColor = true;
             this.checkBoxReverse.CheckedChanged += new System.EventHandler(this.checkBoxReverse_CheckedChanged);
+            // 
+            // checkBoxRandom
+            // 
+            this.checkBoxRandom.AutoSize = true;
+            this.checkBoxRandom.Location = new System.Drawing.Point(151, 51);
+            this.checkBoxRandom.Name = "checkBoxRandom";
+            this.checkBoxRandom.Size = new System.Drawing.Size(66, 17);
+            this.checkBoxRandom.TabIndex = 31;
+            this.checkBoxRandom.Text = "Random";
+            this.checkBoxRandom.UseVisualStyleBackColor = true;
+            this.checkBoxRandom.CheckedChanged += new System.EventHandler(this.checkBoxRandom_CheckedChanged);
             // 
             // IgnoreDrawingCheckBox
             // 
@@ -263,9 +340,9 @@
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.IgnoreDrawingCheckBox);
-            this.groupBox3.Location = new System.Drawing.Point(8, 162);
+            this.groupBox3.Location = new System.Drawing.Point(8, 294);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(324, 51);
+            this.groupBox3.Size = new System.Drawing.Size(318, 51);
             this.groupBox3.TabIndex = 33;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Misc";
@@ -274,12 +351,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(347, 321);
+            this.ClientSize = new System.Drawing.Size(339, 494);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.autoSaveCheckBox);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.levelPassTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -297,7 +372,11 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BPSNumericUpDown)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -327,5 +406,10 @@
         private System.Windows.Forms.Label TimeRunningLabel;
         private System.Windows.Forms.CheckBox IgnoreDrawingCheckBox;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown BPSNumericUpDown;
+        private System.Windows.Forms.Label BPSLabel;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.CheckBox BPSCheckBox;
     }
 }

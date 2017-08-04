@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.dontreplacefCheckBox = new System.Windows.Forms.CheckBox();
             this.usePenToolCheckBox = new System.Windows.Forms.CheckBox();
             this.selectAllBorderCheckBox = new System.Windows.Forms.CheckBox();
             this.updateCheckCheckBox = new System.Windows.Forms.CheckBox();
@@ -71,18 +70,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
-            // dontreplacefCheckBox
-            // 
-            this.dontreplacefCheckBox.AutoSize = true;
-            this.dontreplacefCheckBox.Location = new System.Drawing.Point(17, 57);
-            this.dontreplacefCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.dontreplacefCheckBox.Name = "dontreplacefCheckBox";
-            this.dontreplacefCheckBox.Size = new System.Drawing.Size(127, 17);
-            this.dontreplacefCheckBox.TabIndex = 12;
-            this.dontreplacefCheckBox.Text = "Freeze loaded blocks";
-            this.dontreplacefCheckBox.UseVisualStyleBackColor = true;
-            this.dontreplacefCheckBox.CheckedChanged += new System.EventHandler(this.dontreplacefCheckBox_CheckedChanged);
-            // 
             // usePenToolCheckBox
             // 
             this.usePenToolCheckBox.AutoSize = true;
@@ -110,7 +97,7 @@
             // updateCheckCheckBox
             // 
             this.updateCheckCheckBox.AutoSize = true;
-            this.updateCheckCheckBox.Location = new System.Drawing.Point(17, 99);
+            this.updateCheckCheckBox.Location = new System.Drawing.Point(17, 78);
             this.updateCheckCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.updateCheckCheckBox.Name = "updateCheckCheckBox";
             this.updateCheckCheckBox.Size = new System.Drawing.Size(132, 17);
@@ -159,7 +146,7 @@
             // confirmCloseCheckBox
             // 
             this.confirmCloseCheckBox.AutoSize = true;
-            this.confirmCloseCheckBox.Location = new System.Drawing.Point(17, 78);
+            this.confirmCloseCheckBox.Location = new System.Drawing.Point(17, 57);
             this.confirmCloseCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.confirmCloseCheckBox.Name = "confirmCloseCheckBox";
             this.confirmCloseCheckBox.Size = new System.Drawing.Size(117, 17);
@@ -182,7 +169,6 @@
             // 
             this.tabPage1.Controls.Add(this.usePenToolCheckBox);
             this.tabPage1.Controls.Add(this.confirmCloseCheckBox);
-            this.tabPage1.Controls.Add(this.dontreplacefCheckBox);
             this.tabPage1.Controls.Add(this.clearButton);
             this.tabPage1.Controls.Add(this.tempLabel);
             this.tabPage1.Controls.Add(this.clearComboBox);
@@ -411,7 +397,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.CheckBox dontreplacefCheckBox;
         private System.Windows.Forms.CheckBox usePenToolCheckBox;
         private System.Windows.Forms.CheckBox updateCheckCheckBox;
         private System.Windows.Forms.CheckBox selectAllBorderCheckBox;
