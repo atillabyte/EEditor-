@@ -385,10 +385,17 @@ namespace EEditor
                             if (param != null)
                             {
                                 sendParam(conn, param);
-                                if (maxBlocks == 100)
+                                if (MainForm.userdata.BPSplacing)
+                                {
+                                    if (maxBlocks == MainForm.userdata.BPSblocks)
+                                    {
+                                        Thread.Sleep(MainForm.userdata.uploadDelay);
+                                        maxBlocks = 0;
+                                    }
+                                }
+                                else
                                 {
                                     Thread.Sleep(MainForm.userdata.uploadDelay);
-                                    maxBlocks = 0;
                                 }
                             }
 
