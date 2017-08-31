@@ -775,7 +775,7 @@ namespace EEditor
         {
             Tool.KeyDown(e);
             ShiftDown = e.Shift;
-            CtrlDown = e.Control;
+            //CtrlDown = e.Control;
             AltDown = e.Alt;
             SwitchBlock = e.Alt;
             if (e.KeyCode == Keys.Q) ChangeBlock = true;
@@ -868,7 +868,18 @@ namespace EEditor
 
                 if (e.Control && e.KeyCode == Keys.Tab) MainForm.SetView(); // Next block tab
 
-                if (e.Control && e.KeyCode == Keys.F5) MainForm.rebuildGUI(false); // Rebuild GUI
+                if (e.Control && e.KeyCode == Keys.F5)
+                {
+                    MainForm.rebuildGUI(false); // Rebuild GUI
+                    if (Clipboard.ContainsData("EEBrush"))
+                    {
+                        Clipboard.Clear();
+                    }
+                }
+                else
+                {
+                    CtrlDown = e.Control;
+                }
             }
         }
 

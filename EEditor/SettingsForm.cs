@@ -164,6 +164,8 @@ namespace EEditor
                     MainForm.userdata.useColor = false;
                     MainForm.userdata.thisColor = Color.Transparent;
                     MainForm.editArea.MainForm.updateImageColor();
+                    Clipboard.Clear();
+                    if (Clipboard.ContainsData("EE"))
                     File.WriteAllText(Directory.GetCurrentDirectory() + "\\settings.json", JsonConvert.SerializeObject(MainForm.userdata, Newtonsoft.Json.Formatting.Indented));
                     reset = true;
                     this.Close();

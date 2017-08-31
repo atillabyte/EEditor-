@@ -39,11 +39,10 @@ namespace EEditor
                     //{
                     if (editArea.CtrlDown)
                     {
-                        int bfid = editArea.CurFrame.Foreground[y, x];
+                        int bbid = editArea.CurFrame.Background[y, x];
                         if (mousedown)
                         {
-                            if (bfid != 0)
-                                editArea.CurFrame.Background[y, x] = 0;
+                           if (bbid != 0) editArea.CurFrame.Background[y, x] = 0;
                         }
                         else
                         {
@@ -51,7 +50,7 @@ namespace EEditor
                         }
                         editArea.mouseDown = false;
                     }
-                    else if (editArea.ShiftDown)
+                   else if (editArea.ShiftDown)
                     {
                         int bfid = editArea.CurFrame.Foreground[y, x];
                         int loc9 = 0;
@@ -134,6 +133,21 @@ namespace EEditor
                                 else
                                 {
                                     undolist.Push(PenID + ":" + editArea.CurFrame.Foreground[y, x] + ":" + x + ":" + y);
+                                }
+                                if (PenID != 77 && PenID != 83 && PenID != 1520)
+                                {
+                                    if (IsPaintable(x, y, PenID, true) && IsPaintable(x, y, PenID, false))
+                                    {
+                                        editArea.CurFrame.Foreground[y, x] = PenID;
+                                    }
+                                    if (rotation.ContainsKey(PenID))
+                                    {
+                                        editArea.CurFrame.BlockData[y, x] = rotation[PenID];
+                                    }
+                                    if (text.ContainsKey(PenID))
+                                    {
+                                        editArea.CurFrame.BlockData3[y, x] = text[PenID];
+                                    }
                                 }
                             }
                             else
@@ -543,6 +557,7 @@ namespace EEditor
                         mouseMove = false;
                         if (PenSize == 1)
                         {
+                            
                             if (Clipboard.ContainsData("EEBrush"))
                             {
                                 string[][,] data = (string[][,])Clipboard.GetData("EEBrush");
