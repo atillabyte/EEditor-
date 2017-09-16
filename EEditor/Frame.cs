@@ -361,13 +361,13 @@ namespace EEditor
                                 {
                                     object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
                                     frame.Foreground[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["type"]);
-                                    if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["goal"]);
-                                    if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["signtype"]);
-                                    if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy, tmpxx] = worldinfo["text"].ToString();
-                                    if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["rotation"]);
-                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["id"]);
-                                    if (bid == 374) frame.BlockData3[tmpyy, tmpxx] = worldinfo["target"].ToString();
-                                    else frame.BlockData2[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["target"]);
+                                    if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(goal);
+                                    if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(signtype);
+                                    if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy, tmpxx] = text.ToString();
+                                    if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(rotation);
+                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy, tmpxx] = Convert.ToInt32(id);
+                                    if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") frame.BlockData2[tmpyy, tmpxx] = Convert.ToInt32(target);
+                                    if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") frame.BlockData3[tmpyy, tmpxx] = target.ToString();
                                     /*else if (bid == 1000)
                                     {
                                         string hexcolor = "#FFFFFF";
@@ -411,12 +411,9 @@ namespace EEditor
                                     if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy0, tmpxx0] = worldinfo["text"].ToString();
                                     if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["rotation"]);
                                     if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["id"]);
-                                    if (worldinfo.TryGetValue("target", out target))
-                                    {
-                                        if (bid == 374) frame.BlockData3[tmpyy0, tmpxx0] = worldinfo["target"].ToString();
-                                        else frame.BlockData2[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["target"]);
-                                    }
-                                    
+                                    if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") frame.BlockData2[tmpyy0, tmpxx0] = Convert.ToInt32(target);
+                                    if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") frame.BlockData3[tmpyy0, tmpxx0] = target.ToString();
+
                                     /*else if (bid == 1000)
                                     {
                                         string hexcolor = "#FFFFFF";
@@ -771,12 +768,13 @@ namespace EEditor
                                     {
                                         object goal = 0, signtype = 0, text = null, rotation = 0, id = 0, target = 0;
                                         f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
-                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["goal"]);
-                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["signtype"]);
-                                        if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = obj["text"].ToString();
-                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(obj["rotation"]);
-                                        if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(obj["id"]);
-                                        if (obj.TryGetValue("target", out target)) f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(obj["target"]);
+                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(goal);
+                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(signtype);
+                                        if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = text.ToString();
+                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(rotation);
+                                        if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(id);
+                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(target);
+                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[y1[j], x1[j]] = target.ToString();
                                     }
                                     else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) f.Background[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
                                 }
@@ -796,10 +794,12 @@ namespace EEditor
                                         f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
                                         if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
                                         if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
-                                        if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = obj["text"].ToString();
+                                        if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = text.ToString();
                                         if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
                                         if (obj.TryGetValue("id", out id)) f.BlockData1[yy, xx] = Convert.ToInt32(obj["id"]);
-                                        if (obj.TryGetValue("target", out target)) f.BlockData2[yy, xx] = Convert.ToInt32(obj["target"]);
+                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[yy, xx] = Convert.ToInt32(target);
+                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[yy, xx] = target.ToString();
+
                                     }
                                     else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999)
                                     {

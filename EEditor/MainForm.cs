@@ -4065,7 +4065,7 @@ namespace EEditor
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Title = "Select a level to load from";
                 ofd.DefaultExt = "json";
-                ofd.Filter = "Atilla's World Database (*.json)|*.json";
+                ofd.Filter = "Atilla's World Database|*.*";
                 ofd.FilterIndex = 1;
                 ofd.AddExtension = true;
                 ofd.RestoreDirectory = true;
