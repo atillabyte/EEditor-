@@ -55,7 +55,6 @@ namespace EEditor
 
         public static void SetState(IntPtr windowHandle, TaskbarStates taskbarState)
         {
-            
             if (taskbarSupported) taskbarInstance.SetProgressState(windowHandle, taskbarState);
         }
 

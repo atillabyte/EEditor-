@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace EEditor
 {
     class ToolSpray : Tool
@@ -11,12 +9,14 @@ namespace EEditor
         int yStart = 0;
         int xStart = 0;
         public ToolSpray(EditArea editArea) : base(editArea) { }
+
         public override void MouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
             }
         }
+
         public override void MouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -35,6 +35,7 @@ namespace EEditor
             {
             }
         }
+
         private void Recte(Point start)
         {
             string incfg = null;
@@ -111,7 +112,6 @@ namespace EEditor
                                 incfg += PenID + ":" + editArea.CurFrame.Foreground[(int)yy, (int)xx] + ":" + (int)xx + ":" + (int)yy + ":";
                             }
                             editArea.CurFrame.Foreground[(int)yy, (int)xx] = PenID;
-
                         }
                         if (PenID >= 500 && PenID <= 999)
                         {
@@ -122,7 +122,6 @@ namespace EEditor
                             if (editArea.CurFrame.Background[(int)yy, (int)xx] != 0)
                             {
                                 editArea.CurFrame.Background[(int)yy, (int)xx] = PenID;
-
                             }
                             else
                             {

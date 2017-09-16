@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+
 namespace EEditor
 {
     public partial class InsertImageForm : Form
@@ -48,18 +46,18 @@ namespace EEditor
                     S[i] = c.GetSaturation();
                     B[i] = c.GetBrightness();
                 }
-
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
-            OpenFileDialog imageFileDialog = new OpenFileDialog();
-            imageFileDialog.Filter = "Images |*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.ico";
-            imageFileDialog.Title = "Choose an Image";
+            OpenFileDialog imageFileDialog = new OpenFileDialog() {
+                Filter = "Images |*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.ico",
+                Title = "Choose an Image"
+            };
             if (imageFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Bitmap originalImage = new Bitmap(Bitmap.FromFile(imageFileDialog.FileName));
-                thread = new Thread(delegate () { Transform(originalImage); });
+                thread = new Thread(() => Transform(originalImage));
                 thread.Start();
 
                 //pictureBox1.Image = image;
@@ -70,7 +68,7 @@ namespace EEditor
         public void loadDroppedImage(string filename)
         {
             Bitmap originalImage = new Bitmap(Bitmap.FromFile(filename));
-            thread = new Thread(delegate () { Transform(originalImage); });
+            thread = new Thread(() => Transform(originalImage));
             thread.Start();
 
             //pictureBox1.Image = image;
@@ -91,7 +89,6 @@ namespace EEditor
             double d = DistanceHSB(H, S, B, 0);
             for (int i = 1; i < n; i++)
             {
-
                 if (Minimap.ImageColor[i])
                 {
                     double dist = DistanceHSB(H, S, B, i);
@@ -102,8 +99,6 @@ namespace EEditor
                     }
                 }
                 if (exit) break;
-                
-                
             }
             return j;
         }
@@ -143,7 +138,6 @@ namespace EEditor
                                 d = dist;
                                 j = i;
                             }
-                        
                     }
                     if (exit) break;
                 }
@@ -159,7 +153,6 @@ namespace EEditor
                                 d = dist;
                                 j = i;
                             }
-                        
                     }
                     if (exit) break;
                 }
@@ -176,14 +169,12 @@ namespace EEditor
                                 d = dist;
                                 j = i;
                             }
-                        
                     }
                     if (exit) break;
                 }
             }
 
             return j;
-
         }
         #endregion
 
@@ -266,11 +257,9 @@ namespace EEditor
                         MainForm.editArea.Invoke((MethodInvoker)delegate
                         {
                             progressBar1.Value = (x / width) * 100;
-
                         });
                     }
                 }
-
             }
             DialogResult imagedone = MessageBox.Show("The image has been loaded! Would you like to insert it now?\n\nYes - inserts loaded image at current world position\nNo - adds loaded image to clipboard, so you can paste it with Ctrl + V\nCancel - lets you pick another image", "Image loaded", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (imagedone == DialogResult.Yes)
@@ -282,7 +271,6 @@ namespace EEditor
                     SendKeys.Send("^{v}");
                     Close();
                 });
-
             }
             else if (imagedone == DialogResult.No)
             {
@@ -300,8 +288,6 @@ namespace EEditor
             catch
             {
             }
-
-
         }
 
         /*if (button1.InvokeRequired) this.Invoke((MethodInvoker)delegate { button1.Enabled = true; });
@@ -315,7 +301,6 @@ namespace EEditor
 
         private void InsertImageForm_Load(object sender, EventArgs e)
         {
-
         }
 
         private void checkBoxBackground_CheckedChanged(object sender, EventArgs e)

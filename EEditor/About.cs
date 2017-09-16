@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
 using System.IO;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Threading;
-using Newtonsoft;
-using System.Diagnostics;
+
 namespace EEditor
 {
     public partial class About : Form
@@ -34,7 +26,6 @@ namespace EEditor
         {
             UsingLabel.Text = "Using: " + this.ProductVersion;
             UpdaterButton.Enabled = true;
-
         }
 
         #region Main links
@@ -67,7 +58,7 @@ namespace EEditor
         //Check for newer version
         private void Updater_Click(object sender, EventArgs e)
         {
-            thread = new Thread(delegate () { checkVersion(false); });
+            thread = new Thread(() => checkVersion(false));
             thread.Start();
         }
 
@@ -93,7 +84,6 @@ namespace EEditor
 
                 try
                 {
-
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.github.com/repos/capasha/eeditor/releases/latest");
                     request.Method = "GET";
                     request.Accept = "application/vnd.github.v3+json";
@@ -124,14 +114,12 @@ namespace EEditor
                                             //Console.WriteLine(val["browser_download_url"]);
 
                                         }
-                                    
                                 }
                             }
                             if (button)
                             {
                                 if (Convert.ToInt32(this.ProductVersion.Replace(".", "")) < Convert.ToInt32(newversion.Replace(".", "")))
                                 {
-
                                     AboutUpdate abupdate = new AboutUpdate();
                                     if (!abupdate.IsAccessible)
                                     {
@@ -149,7 +137,6 @@ namespace EEditor
                                                     var value = split[i].Substring(1, split[i].Length - 1);
                                                     if (value.StartsWith("Added"))
                                                     {
-
                                                         abupdate.richtextboxChangelog.SelectionColor = Color.Green;
                                                         abupdate.richtextboxChangelog.AppendText("Added: ");
                                                         abupdate.richtextboxChangelog.SelectionColor = Color.Black;
@@ -169,7 +156,6 @@ namespace EEditor
                                                         abupdate.richtextboxChangelog.SelectionColor = Color.Black;
                                                         abupdate.richtextboxChangelog.AppendText(value.Replace("Fixed", "").Substring(1, 1).ToUpper() + value.Replace("Fixed", "").Substring(2, value.Replace("Fixed", "").Length - 2));
                                                     }
-
                                                     else
                                                     {
                                                         abupdate.richtextboxChangelog.SelectionColor = Color.Orange;
@@ -222,7 +208,6 @@ namespace EEditor
                                                     ChangelogRichTextBox.SelectionColor = Color.Black;
                                                     ChangelogRichTextBox.AppendText(value.Replace("Fixed", "").Substring(1, 1).ToUpper() + value.Replace("Fixed", "").Substring(2, value.Replace("Fixed", "").Length - 2));
                                                 }
-
                                                 else
                                                 {
                                                     ChangelogRichTextBox.SelectionColor = Color.Orange;
@@ -257,7 +242,6 @@ namespace EEditor
                                     UpdaterButton.Enabled = true;
                                 }
                             }
-
                             else
                             {
                                 if (!button)
@@ -295,7 +279,6 @@ namespace EEditor
                             }
                         }
                     }
-
                 }
                 catch (WebException e)
                 {
@@ -303,8 +286,7 @@ namespace EEditor
                     {
                         if (e.Status == WebExceptionStatus.Timeout)
                         {
-
-                            MessageBox.Show("Took too long time to load the information.", "Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Took too long to load the information.", "Updater", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             if (UpdaterButton.InvokeRequired)
                             {
                                 this.Invoke((MethodInvoker)delegate
@@ -316,7 +298,6 @@ namespace EEditor
                             {
                                 UpdaterButton.Enabled = true;
                             }
-
                         }
                         else if (e.Status == WebExceptionStatus.ProtocolError)
                         {
@@ -353,7 +334,7 @@ namespace EEditor
                     {
                         if (e.Status == WebExceptionStatus.Timeout)
                         {
-                            Thread thread = new Thread(delegate () { checkVersion(true); });
+                            Thread thread = new Thread(() => checkVersion(true));
                             thread.Start();
                         }
                     }
@@ -382,7 +363,7 @@ namespace EEditor
 
         private void About_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (thread != null) thread.Abort();
+            thread?.Abort();
         }
     }
 }

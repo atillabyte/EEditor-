@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
 namespace EEditor
 {
     public partial class History : Form
@@ -15,6 +9,7 @@ namespace EEditor
         {
             InitializeComponent();
         }
+
         public static ImageList imglist = new ImageList();
         //public static ImageList imgl { get { return imglist; } set { imglist = value; } }
         private void History_Load(object sender, EventArgs e)
@@ -52,7 +47,6 @@ namespace EEditor
                         }
                     }
                     imglist.Images.Add(img1);
-
                 }
             }
             /*imglist.ImageSize = new Size(16, 16);

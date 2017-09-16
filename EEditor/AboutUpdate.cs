@@ -22,7 +22,6 @@ namespace EEditor
 
         private void AboutUpdate_Load(object sender, EventArgs e)
         {
-            
         }
 
         private void DownloadButton_Click(object sender, EventArgs e)

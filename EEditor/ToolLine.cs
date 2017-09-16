@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -16,18 +13,17 @@ namespace EEditor
         private Pen borderPen;
         private Bitmap img1 = new Bitmap(3000, 3000);
         private bool hide = false;
+
         public ToolLine(EditArea editArea)
             : base(editArea)
         {
             borderPen = new Pen(Color.LightGreen);
             borderPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
         }
+
         private void Line(Point start, Point end)
         {
-
-        
             //editArea.Invalidate();
-            
             
             Algorithms.Line(start.X, start.Y, end.X, end.Y, plot);
             if (!hide)
@@ -73,7 +69,6 @@ namespace EEditor
                 }
                 editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                 editArea.Invalidate();
-                
             }
             else
             {
@@ -82,16 +77,13 @@ namespace EEditor
                 //editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                 if (PenID >= 500 && PenID <= 999)
                 {
-
                     img1 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[PenID] * 16, 0, 16, 16), MainForm.backgroundBMD.PixelFormat);
-
                 }
                 else if (PenID < 500 || PenID >= 1001)
                 {
                     if (MainForm.miscBMI[PenID] != 0)
                     {
                         img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[PenID] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
-
                     }
                     else if (MainForm.decosBMI[PenID] != 0)
                     {
@@ -108,10 +100,6 @@ namespace EEditor
                 editArea.Invalidate();
                 //editArea.Draw(x, y, g, MainForm.userdata.thisColor);
             }
-
-
-
-
         }
 
         public void PlaceBorder(Point q)
@@ -124,6 +112,7 @@ namespace EEditor
             //g.DrawImage(img1, GetRectangleScaled(P,Q));
             //editArea.Invalidate();
         }
+
         public void RemoveBorder(Point endz, Graphics g = null)
         {
             if (start != null)
@@ -143,21 +132,22 @@ namespace EEditor
                 //editArea.Invalidate();
             }
         }
+
         public Rectangle GetRectangle(Point p, Point q)
         {
-
             Rectangle r = new Rectangle(Math.Min(p.X, q.X), Math.Min(p.Y, q.Y),
                     Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1, Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1);
             return r;
         }
+
         public override void MouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-
                 if (start.IsEmpty)
                 {
                     Point p = GetLocation(e);
+
                     if (IsPaintable(p.X, p.Y))
                     {
                         start = GetLocation(e);
@@ -169,6 +159,7 @@ namespace EEditor
                 else if (!start.IsEmpty)
                 {
                     Point p = GetLocation(e);
+
                     if (IsPaintable(p.X, p.Y))
                     {
                         end = GetLocation(e);
@@ -179,6 +170,7 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -188,11 +180,10 @@ namespace EEditor
                     Line(start, end);
                     start = new Point();
                     end = new Point();
-
-
                 }
             }
         }
+
         public static class Algorithms
         {
             private static void Swap<T>(ref T lhs, ref T rhs) { T temp; temp = lhs; lhs = rhs; rhs = temp; }
@@ -223,7 +214,7 @@ namespace EEditor
                 for (int x = x0; x <= x1; ++x)
                 {
                     if (!(steep ? plot(y, x) : plot(x, y))) return;
-                    err = err - dY;
+                    err -= dY;
                     if (err < 0) { y += ystep; err += dX; }
                 }
             }

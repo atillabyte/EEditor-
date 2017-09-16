@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
+
 namespace EEditor
 {
     public partial class Piano : Form
@@ -34,7 +30,7 @@ namespace EEditor
             MainForm.userdata.showhitboxes = false;
             createHitBoxes();
 
-            if (MainForm.soundsErrorShown == false)
+            if (!MainForm.soundsErrorShown)
             {
                 if (Directory.Exists(Directory.GetCurrentDirectory() + @"\sounds"))
                 {
@@ -46,15 +42,13 @@ namespace EEditor
                 }
             }
         }
+
         private void createHitBoxes()
         {
-
             for (int x = 0; x < 25; x++)
             {
-
                 switch (x)
                 {
-
                     case 0:
                         //White
                         Graphics g = Graphics.FromImage(bmp);
@@ -256,11 +250,7 @@ namespace EEditor
                         rec[24] = area22;
                         break;
                 }
-
-
-
             }
-
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)

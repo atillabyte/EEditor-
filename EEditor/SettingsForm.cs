@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using Microsoft.VisualBasic.FileIO;
-using System.Xml;
-using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 namespace EEditor
 {
     public partial class SettingsForm : Form
@@ -129,7 +124,7 @@ namespace EEditor
                     MainForm.userdata = new userData()
                     {
                         username = "guest",
-                        newestBlocks = new List<JToken>() { },
+                        newestBlocks = new List<JToken>(),
                         uploadDelay = 5,
                         brickHotkeys = "",
                         sprayr = 5,
@@ -158,7 +153,7 @@ namespace EEditor
                         randomLines = false,
                         BPSblocks = 100,
                         BPSplacing = false,
-                        IgnoreBlocks = new List<JToken>() { }
+                        IgnoreBlocks = new List<JToken>()
                     };
                     MainForm.OpenWorld = false;
                     MainForm.userdata.useColor = false;
@@ -260,7 +255,6 @@ namespace EEditor
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
             if (!formload)
             {
                 MainForm.userdata.themeBorder = checkBox1.Checked;
@@ -268,11 +262,12 @@ namespace EEditor
             }
         }
 
-
         private void pictureClicker(object sender,EventArgs e)
         {
-            ColorDialog dg = new ColorDialog();
-            dg.CustomColors = lastColors;
+            ColorDialog dg = new ColorDialog() {
+                CustomColors = lastColors
+            };
+
             if (dg.ShowDialog() == DialogResult.OK)
             {
                 Bitmap bmp = new Bitmap(16, 16);
@@ -357,7 +352,6 @@ namespace EEditor
                  MainForm.editArea.MainForm.rebuildGUI(false);
                  */
             }
-
         }
     }
 }

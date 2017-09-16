@@ -17,7 +17,7 @@ namespace EEditor
         public int SizeHeight { get; private set; }
         public Frame MapFrame { get; private set; }
         public bool NeedsInit { get; private set; }
-        public bool RealTime { get; private set; }
+        public bool RealTime { get; }
         public bool notsaved { get; set; }
         public Connection Connection { get; set; }
         public MainForm MainForm { get; set; }
@@ -94,7 +94,6 @@ namespace EEditor
                     if (level.Contains('/')) level = level.Substring(level.LastIndexOf('/') + 1).Trim();
                     MainForm.userdata.level = level;
                     LoadFromLevel(level, 2);
-
                 }
                 return;
             }
@@ -187,7 +186,6 @@ namespace EEditor
                     if (level.Contains('/')) level = level.Substring(level.LastIndexOf('/') + 1).Trim();
                     MainForm.userdata.level = level;
                     LoadFromLevel(level, 0);
-
                 }
                 return;
             }
@@ -241,7 +239,6 @@ namespace EEditor
             Graphics g = Graphics.FromImage(MainForm.editArea.Back);
             for (int y = 0; y < MainForm.editArea.Frames[0].Height; y++)
             {
-
                 for (int x = 0; x < MainForm.editArea.Frames[0].Width; x++)
                 {
                     if (x == 0 || y == 0 || x == MainForm.editArea.Frames[0].Width - 1 || y == MainForm.editArea.Frames[0].Height - 1)
@@ -261,7 +258,6 @@ namespace EEditor
 
         public void LoadFromLevel(string level, int datas)
         {
-
             //errors = false;
             //EEditor.Properties.Settings.Default.LevelPass = levelPassTextBox.Text;
 
@@ -285,46 +281,29 @@ namespace EEditor
                 }
                 else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 4 && MainForm.accs.ContainsKey(MainForm.selectedAcc))
                 {
-                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, delegate (Client cli)
-                    {
-
-
-                        cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con1)
-                        {
-                            con1.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
-                            {
-                                if (m.Type == "auth")
-                                {
+                    PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, (Client cli) => {
+                        cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, (Connection con1) => {
+                            con1.OnMessage += (object sender1, PlayerIOClient.Message m) => {
+                                if (m.Type == "auth") {
                                     client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null);
                                     s1.Release();
                                 }
                             };
                         },
-                        delegate (PlayerIOError error)
-                        {
-                            MessageBox.Show(error.Message, "Error");
-                        });
-                    }, delegate (PlayerIOError error)
-                    {
-                        MessageBox.Show(error.Message, "Error");
-                    });
+                        (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
+                    }, (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
                     s1.WaitOne();
                 }
-                
+
                 if (datas == 0)
                 {
-
                     if (MainForm.userdata.level.StartsWith("OW"))
                     {
                         client.Multiplayer.ListRooms("Everybodyedits" + client.BigDB.Load("config", "config")["version"], null, 0, 0,
-                        delegate (RoomInfo[] rinfo)
-                        {
-                            foreach (var val in rinfo)
-                            {
-                                if (val.Id.StartsWith("OW"))
-                                {
-                                    if (val.Id.StartsWith(MainForm.userdata.level.Substring(0,4)))
-                                    {
+                        (RoomInfo[] rinfo) => {
+                            foreach (var val in rinfo) {
+                                if (val.Id.StartsWith("OW")) {
+                                    if (val.Id.StartsWith(MainForm.userdata.level.Substring(0, 4))) {
                                         MainForm.userdata.level = val.Id;
                                         Connection = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
                                         Connection.OnMessage += OnMessage;
@@ -334,12 +313,8 @@ namespace EEditor
                                     }
                                 }
                             }
-                            
                         },
-                        delegate (PlayerIOError error)
-                        {
-                            Console.WriteLine(error.Message);
-                        });
+                        (PlayerIOError error) => Console.WriteLine(error.Message));
                         s.WaitOne();
                     }
                     else
@@ -357,10 +332,7 @@ namespace EEditor
                             MessageBox.Show("Client is null");
                         }
                     }
-
                 }
-
-
                 else if (datas == 1)
                 {
                     int w = 0;
@@ -439,8 +411,6 @@ namespace EEditor
                                 MapFrame = new Frame(200, 200);
                             }
                         }
-
-
 
                         if (dbo.Contains("worlddata"))
                         {
@@ -532,9 +502,6 @@ namespace EEditor
                                 uid2name(owner, name, 200, 200);
                                 MapFrame = new Frame(200, 200);
                             }
-
-
-
                         }
                         MapFrame.Reset(false);
                         SizeWidth = MapFrame.Width;
@@ -543,15 +510,14 @@ namespace EEditor
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                         Close();
                     }
-
                 }
             }
             catch (PlayerIOError error)
             {
                 MessageBox.Show("An error occurred:" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
+
         private Color UIntToColor(uint color)
         {
             byte a = (byte)(color >> 24);
@@ -560,11 +526,12 @@ namespace EEditor
             byte b = (byte)(color >> 0);
             return Color.FromArgb(a, r, g, b);
         }
+
         public void OnMessage(object sender, PlayerIOClient.Message e)
         {
             if (e.Type == "init")
             {
-                MapFrame = Frame.FromMessage(e, false);
+                MapFrame = Frame.FromMessage(e);
                 if (MapFrame != null)
                 {
                     if (e.GetUInt(21) == 0) { EEditor.MainForm.userdata.thisColor = Color.Transparent; }
@@ -574,7 +541,7 @@ namespace EEditor
                         EEditor.MainForm.userdata.thisColor = UIntToColor(e.GetUInt(21));
                     }
 
-                    var owner = e.GetString(0) == "" ? "Unknown" : e.GetString(0);
+                    var owner = e.GetString(0)?.Length == 0 ? "Unknown" : e.GetString(0);
                     MainForm.Text = e[1] + " by " + owner + " (" + e[18] + "x" + e[19] + ") - EEditor " + this.ProductVersion;
                     SizeWidth = MapFrame.Width;
                     SizeHeight = MapFrame.Height;
@@ -598,7 +565,6 @@ namespace EEditor
                 s.Release();
                 DialogResult = System.Windows.Forms.DialogResult.Cancel;
                 Close();
-
             }
             else
             {
@@ -614,26 +580,23 @@ namespace EEditor
                 //if (e.Type != "b" && e.Type != "m" && e.Type != "hide" && e.Type != "show")Console.WriteLine(e.ToString());
             }
         }
+
         private void uid2name(string uid, string title, int width, int height)
         {
             worldOwner = "Anonymous";
             if (uid != null)
             {
                 PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, "guest", "guest", null,
-                    delegate (Client c)
-                    {
+                    (Client c) => {
                         c.BigDB.Load("PlayerObjects", uid,
-                            delegate (DatabaseObject dbo)
-                            {
+                            (DatabaseObject dbo) => {
                                 worldOwner = dbo.Contains("name") ? dbo.GetString("name") : "Anonymous";
                                 MainForm.Text = title + " by " + worldOwner + " (" + width + "x" + height + ") - EEditor " + this.ProductVersion;
                             },
-                            delegate (PlayerIOError error)
-                            {
+                            (PlayerIOError error) => {
                             });
                     },
-                       delegate (PlayerIOError error)
-                       {
+                       (PlayerIOError error) => {
                        });
             }
             else
@@ -645,7 +608,6 @@ namespace EEditor
         private void NewDialogForm_Load(object sender, EventArgs e)
         {
             listBox1.Items.RemoveAt(16);
-
         }
 
         private void NewDialogForm_FormClosing(object sender, FormClosingEventArgs e)

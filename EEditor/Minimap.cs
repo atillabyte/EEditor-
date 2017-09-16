@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EEditor
@@ -15,7 +11,7 @@ namespace EEditor
         public int BlockHeight { get; set; }
         public static Bitmap Bitmap { get; set; }
         public static uint[] Colors = new uint[3000];
-        public static bool[] ImageColor = new bool[Colors.Count()];
+        public static bool[] ImageColor = new bool[Colors.Length];
 
         static Minimap()
         {
@@ -56,11 +52,13 @@ namespace EEditor
             else { Bitmap.SetPixel(x, y, Color.FromArgb((int)color)); }
             Invalidate(new Rectangle(x, y, 1, 1));
         }
+
         public void SetColor(int x, int y, Color color)
         {
             Bitmap.SetPixel(x, y, color);
             Invalidate(new Rectangle(x, y, 1, 1));
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

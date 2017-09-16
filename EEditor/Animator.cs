@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using PlayerIOClient;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading.Tasks;
+
 namespace EEditor
 {
-    class Animator
+    internal class Animator
     {
         Connection conn;
 
@@ -53,15 +53,13 @@ namespace EEditor
             this.vertical = vertical;
             conn.OnMessage += OnMessage;
             Control.CheckForIllegalCrossThreadCalls = false;
-
         }
-
 
         public event EventHandler<StatusChangedArgs> StatusChanged;
 
         protected void OnStatusChanged(string msg, DateTime epoch, bool done = false, int totallines = 0, int countedlines = 0)
         {
-            if (StatusChanged != null) StatusChanged(this, new StatusChangedArgs(msg, epoch, done, totallines, countedlines));
+            StatusChanged?.Invoke(this, new StatusChangedArgs(msg, epoch, done, totallines, countedlines));
         }
 
         public void Shuffle(List<string[]> l)
@@ -75,6 +73,7 @@ namespace EEditor
                 l[j] = t;
             }
         }
+
         public void reverse(List<string[]> l)
         {
             l.Reverse();
@@ -82,7 +81,6 @@ namespace EEditor
 
         public void Run()
         {
-
             conn.Send("init");
             locker.WaitOne();
             owner = false;
@@ -141,8 +139,7 @@ namespace EEditor
                     y = Convert.ToInt32(cur[1]);
                     if (MainForm.OpenWorld && !MainForm.OpenWorldCode)
                     {
-                        if (y > 4) drawblocks = true;
-                        else drawblocks = false;
+                        drawblocks = y > 4;
                     }
                     else { drawblocks = true; }
                     if (drawblocks)
@@ -314,7 +311,6 @@ namespace EEditor
                                 {
                                     param = new object[] { at, x, y, type, cur[5], Convert.ToInt32(cur[4]) };
                                 }
-
                             }
                             else if (type == 374)
                             {
@@ -322,7 +318,6 @@ namespace EEditor
                                 {
                                     param = new object[] { at, x, y, type, cur[4] };
                                 }
-
                             }
                             else if (type == 77 || type == 83 || type == 1520)
                             {
@@ -330,7 +325,6 @@ namespace EEditor
                                 {
                                     param = new object[] { at, x, y, type, int.Parse(cur[4]) };
                                 }
-
                             }
                             else if (bdata.portals.Contains(type))
                             {
@@ -370,12 +364,10 @@ namespace EEditor
                                 {
                                     if (Max1000 == 1000 && Max1000 < Gtotal)
                                     {
-
                                         conn.Send("save");
                                         Max1000 = 0;
                                     }
                                 }
-
                             }
                             int progress = (int)Math.Round((double)(100 * Gcurrent) / Gtotal);
                             if (progress == 50) goto stopit;
@@ -399,25 +391,17 @@ namespace EEditor
                                 }
                             }
 
-
-
-
-
                             if (Gcurrent1 >= firstFrame.Count)
                             {
                                 break;
                             }
                             else
                             {
-
                                 queue.Enqueue(cur);
                                 //if (bdata.morphable.Contains(type) || bdata.rotate.Contains(type)) Gcurrent++;
                             }
-
                             //queue.Enqueue(cur);
                         }
-
-
                         else
                         {
                             if (Gcurrent1 >= firstFrame.Count)
@@ -438,7 +422,6 @@ namespace EEditor
                 }
             }
 
-
             //}
             //if (frames.Count > 1) goto restart;
             OnStatusChanged("Level upload complete!", DateTime.MinValue, true, firstFrame.Count, Gcurrent1);
@@ -452,18 +435,13 @@ namespace EEditor
                 }
             }
             blocks.Clear();
-
         }
 
         static async void sendParam(Connection con, object[] param)
         {
-            await Task.Run(() =>
-            {
-                con.Send("b", param);
-
-            }
-            );
+            await Task.Run(() => con.Send("b", param));
         }
+
         void OnMessage(object sender, PlayerIOClient.Message e)
         {
             if (e.Type == "b")
@@ -658,7 +636,7 @@ namespace EEditor
                 AnimateForm.saveRights = false;
                 AnimateForm.crewEdit = false;
                 AnimateForm.crewWorld = false;
-                remoteFrame = Frame.FromMessage(e, false);
+                remoteFrame = Frame.FromMessage(e);
                 conn.Send("init2");
                 OnStatusChanged("Connected to the world.", DateTime.MinValue, false, Gtotal, Gcurrent);
                 if (frames[0].Width <= remoteFrame.Width && frames[0].Height <= remoteFrame.Height)
@@ -675,7 +653,6 @@ namespace EEditor
                 }
                 if (e.GetBoolean(34))
                 {
-
                     AnimateForm.crewWorld = true;
                     if (e.GetBoolean(14))
                     {
@@ -708,7 +685,6 @@ namespace EEditor
                         return;
                     }
                 }
-
                 else if (e.GetString(0) != e.GetString(13))
                 {
                     owner = false;
@@ -774,7 +750,6 @@ namespace EEditor
                             }
                         }
                     }
-
                 }
                 else if (e.GetString(0) == e.GetString(13))
                 {
@@ -799,7 +774,6 @@ namespace EEditor
                     owner = true;
                     locker.Release();
                 }
-
             }
             else
             {
@@ -814,11 +788,10 @@ namespace EEditor
                         }
                         break;
                 }
-
-
             }
         }
     }
+
     public static class upl
     {
         public static object[] blockdata { get; set; }

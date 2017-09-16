@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using PlayerIOClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
+
 namespace EEditor
 {
     class bdata
@@ -281,7 +279,6 @@ namespace EEditor
                         default:
                             roted = 15;
                             break;
-
                     }
                     if (roted == 15) return null;
                     else
@@ -366,7 +363,6 @@ namespace EEditor
                             else if (fid == 380) { roted = 51; }
                             else if (fid == 438) roted = 161;
                             else if (fid == 439) roted = 165;
-
                             else { roted = 15; }
                             break;
                         case 2:
@@ -679,11 +675,12 @@ namespace EEditor
                 Bitmap bmp2 = MainForm.miscBMD.Clone(new Rectangle(rote * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
                 return bmp2;
             }
-            else 
+            else
             {
                 return null;
             }
         }
+
         public static Image SetImageOpacity(Image image, float opacity)
         {
             try
@@ -694,7 +691,6 @@ namespace EEditor
                 //create a graphics object from the image  
                 using (Graphics gfx = Graphics.FromImage(bmp))
                 {
-
                     //create a color matrix object  
                     ColorMatrix matrix = new ColorMatrix();
 
@@ -718,6 +714,7 @@ namespace EEditor
                 return null;
             }
         }
+
         public static bool IsLinux
         {
             get
@@ -727,5 +724,4 @@ namespace EEditor
             }
         }
     }
-
 }

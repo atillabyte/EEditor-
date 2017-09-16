@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
+
 namespace EEditor
 {
     class ToolCircle : Tool
@@ -37,7 +35,6 @@ namespace EEditor
                 {
                     if (selected)
                     {
-
                         Point cur = GetLocation(e);
                         if (Rect.Contains(cur))
                         {
@@ -53,7 +50,6 @@ namespace EEditor
                     }
                     else
                     {
-
                         P = GetLocation(e);
                         PlaceBorder(P);
                         select = true;
@@ -61,12 +57,11 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseMove(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-
-
                 //Rect(yStart, xStart, p.Y, p.X);
                 Point cur1 = GetLocation(e);
                 if (IsPaintable(cur1.X, cur1.Y))
@@ -90,6 +85,7 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -99,7 +95,6 @@ namespace EEditor
                 {
                     if (select)
                     {
-
                         Q = GetLocation(e);
                         if (P.X == Q.X && P.Y == Q.Y) { }
                         else
@@ -124,12 +119,14 @@ namespace EEditor
             g.DrawRectangle(borderPen, GetRectangleScaled(P, Q));
             editArea.Invalidate();
         }
+
         public Rectangle GetRectangleScaled(Point p, Point q)
         {
             Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
                     (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
             return r;
         }
+
         public void RemoveBorder(Graphics g = null)
         {
             if (Q != null)
@@ -143,13 +140,14 @@ namespace EEditor
                 g.Save();
             }
         }
+
         public Rectangle GetRectangle(Point p, Point q)
         {
-
             Rectangle r = new Rectangle(Math.Min(p.X, q.X), Math.Min(p.Y, q.Y),
                     Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1, Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1);
             return r;
         }
+
         protected void RemoveBorderRect()
         {
             Graphics g = Graphics.FromImage(editArea.Back);
@@ -162,6 +160,7 @@ namespace EEditor
                 }
             g.Save();
         }
+
         public void PlaceBorderRect()
         {
             Graphics g = Graphics.FromImage(editArea.Back);
@@ -215,12 +214,10 @@ namespace EEditor
 
             while (y0 - y1 < b)
             {  /* too early stop of flat ellipses a=1 */
-
                 paintPixel(x0 - 1, y0); /* -> finish tip of ellipse */
                 paintPixel(x1 + 1, y0++);
                 paintPixel(x0 - 1, y1);
                 paintPixel(x1 + 1, y1--);
-
             }
             editArea.Invalidate();
             if (incfg != null) ToolPen.undolist.Push(incfg);

@@ -15,6 +15,7 @@ namespace EEditor
             : base(editArea)
         {
         }
+
         public static Dictionary<int, int> rotation = new Dictionary<int, int>();
         public static Dictionary<int, int> id = new Dictionary<int, int>();
         public static Dictionary<int, int> target = new Dictionary<int, int>();
@@ -57,7 +58,6 @@ namespace EEditor
                         int loc8 = PenID >= 500 && PenID <= 999 ? 1 : 0;
                         if (mousedown)
                         {
-
                             loc9 = loc8;
                             if (bfid != 0)
                             {
@@ -74,7 +74,6 @@ namespace EEditor
                                 editArea.CurFrame.Background[y, x] = 0;
                             }
                             lockid = loc9;
-
                         }
                         else
                         {
@@ -84,17 +83,15 @@ namespace EEditor
                                 editArea.CurFrame.Foreground[y, x] = 0;
                             }
                             if (loc9 == 1) editArea.CurFrame.Background[y, x] = 0;
-
                         }
+
                         editArea.mouseDown = false;
                     }
                     else if (editArea.AltDown)
                     {
                         if (editArea.CurFrame.Foreground[y, x] != 0 || editArea.CurFrame.Background[y, x] != 0)
                         {
-
                             editArea.mouseDown = false;
-
                         }
                         else
                         {
@@ -118,7 +115,6 @@ namespace EEditor
                                 editArea.CurFrame.Background[y, x] = PenID;
                             }
                         }
-
                     }
                     else
                     {
@@ -168,7 +164,6 @@ namespace EEditor
                                     }
                                 }
                             }
-
                         }
                         else if (PenID >= 500 && PenID <= 999)
                         {
@@ -184,7 +179,6 @@ namespace EEditor
                                 }
                             }
                             editArea.CurFrame.Background[y, x] = PenID;
-
                         }
                     }
                 }
@@ -197,7 +191,6 @@ namespace EEditor
                         editArea.MainForm.setBrick(editArea.CurFrame.Foreground[y, x], false);
                     }
                     else editArea.MainForm.setBrick(editArea.CurFrame.Background[y, x], false);
-
                 }
                 else
                 {
@@ -257,7 +250,6 @@ namespace EEditor
                                     if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
                                     else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                                 }
-
                             }
                             else
                             {
@@ -309,7 +301,6 @@ namespace EEditor
                         {
                             if (button)
                             {
-
                                 using (NumberChanger co = new NumberChanger())
                                 {
                                     co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
@@ -321,7 +312,6 @@ namespace EEditor
                                         else { rotation.Add(bid, value); }
                                     }
                                     editArea.mouseDown = false;
-
                                 }
                             }
                             else
@@ -331,8 +321,6 @@ namespace EEditor
                                     editArea.CurFrame.BlockData[y, x] = rotation[bid];
                                 }
                             }
-
-
                         }
                         else if (bid == 461)
                         {
@@ -370,8 +358,8 @@ namespace EEditor
                                                 editArea.CurFrame.BlockData[y, x] = 0;
                                             }
                                         }
-                                        editArea.mouseDown = false;
 
+                                        editArea.mouseDown = false;
                                     }
                                 }
                                 else if (bid == 423 || bid == 1027 || bid == 1028)
@@ -410,7 +398,6 @@ namespace EEditor
                                     {
                                         editArea.CurFrame.BlockData[y, x] = 0;
                                     }
-
                                 }
                                 if (bid == 422 || bid == 421)
                                 {
@@ -448,7 +435,6 @@ namespace EEditor
                         }
                         else if (bid == 374 || bid == 385)
                         {
-
                             if (button)
                             {
                                 using (Text co = new Text())
@@ -469,10 +455,8 @@ namespace EEditor
                                             editArea.CurFrame.BlockData[y, x] = co.cm1;
                                         }
                                     }
-
                                 }
                                 editArea.mouseDown = false;
-
                             }
                             else
                             {
@@ -518,7 +502,6 @@ namespace EEditor
                                         }
                                     }
                                     editArea.mouseDown = false;
-
                                 }
                             }
                             else
@@ -557,11 +540,10 @@ namespace EEditor
                         mouseMove = false;
                         if (PenSize == 1)
                         {
-                            
                             if (Clipboard.ContainsData("EEBrush"))
                             {
                                 string[][,] data = (string[][,])Clipboard.GetData("EEBrush");
-                                if (data != null && data.Length == 6)
+                                if (data?.Length == 6)
                                 {
                                     for (int y = 0; y < data[0].GetLength(0); y++)
                                     {
@@ -606,6 +588,7 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -617,9 +600,11 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseMoveHover(MouseEventArgs e)
         {
         }
+
         public override void MouseMove(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -633,7 +618,6 @@ namespace EEditor
                         if (PenSize == 1)
                         {
                             PlaceBrick(p.X, p.Y, false, false, true);
-
                         }
                         else if (PenSize >= 2 && PenSize <= 10)
                         {
@@ -647,7 +631,6 @@ namespace EEditor
                         }
                     }
                 }
-
             }
             else if (e.Button == MouseButtons.Right)
             {
@@ -681,7 +664,6 @@ namespace EEditor
                     g.Save();
                     editArea.Invalidate(new Rectangle(p, new Size(16, 16)));
                 }
-
             }
         }
     }

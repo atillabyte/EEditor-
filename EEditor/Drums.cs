@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Media;
 using System.IO;
+
 namespace EEditor
 {
     public partial class Drums : Form
@@ -34,7 +29,7 @@ namespace EEditor
             pictureBox1.Image = bmp;
             createHitBoxes();
 
-            if (MainForm.soundsErrorShown == false)
+            if (!MainForm.soundsErrorShown)
             {
                 if (Directory.Exists(Directory.GetCurrentDirectory() + @"\sounds"))
                 {
@@ -46,15 +41,13 @@ namespace EEditor
                 }
             }
         }
+
         private void createHitBoxes()
         {
-
             for (int x = 0; x < 10; x++)
             {
-
                 switch (x)
                 {
-
                     case 0:
                         Graphics g = Graphics.FromImage(bmp);
                         Rectangle area = new Rectangle(x * 12 + 7, 2 * 12 + 15, 10, 10);
@@ -144,7 +137,7 @@ namespace EEditor
                             var file = Directory.GetCurrentDirectory() + "\\sounds\\drums" + derp + ".wav";
                             if (File.Exists(file))
                             {
-                                System.Media.SoundPlayer player = new System.Media.SoundPlayer(file);
+                                var player = new System.Media.SoundPlayer(file);
                                 player.Play();
                             }
                         }

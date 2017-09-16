@@ -15,13 +15,14 @@ namespace EEditor
         {
             InitializeComponent();
         }
+
         private Bitmap bmp = new Bitmap(3000,3000);
         private void Brushes_Load(object sender, EventArgs e)
         {
             if (Clipboard.ContainsData("EEBrush"))
             {
                 string[][,] data = (string[][,])Clipboard.GetData("EEBrush");
-                if (data != null && data.Length == 6)
+                if (data?.Length == 6)
                 {
                     for (int y = 0;y < data[0].GetLength(0);y++)
                     {
@@ -39,6 +40,5 @@ namespace EEditor
                 pictureBox1.Image = bmp;
             }
         }
-
     }
 }

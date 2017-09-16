@@ -68,8 +68,8 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\files\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="PlayerIOClient">
-      <HintPath>..\..\PlayerIOClient.dll</HintPath>
+    <Reference Include="PlayerIOClient, Version=3.5.0.0, Culture=neutral, PublicKeyToken=c7f7b730653f6a44, processorArchitecture=MSIL">
+      <HintPath>..\packages\PlayerIOClient-Signed.3.5.2\lib\PlayerIOClient.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

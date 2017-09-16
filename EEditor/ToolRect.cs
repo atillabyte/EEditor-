@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Drawing.Imaging;
+
 namespace EEditor
 {
     class ToolRect : Tool
@@ -21,8 +18,8 @@ namespace EEditor
         private int dx;
         private int dy;
         private Bitmap img1 = new Bitmap(3000, 3000);
-       
         public Rectangle Rect { get; set; }
+
         public ToolRect(EditArea editArea)
             : base(editArea)
         {
@@ -33,20 +30,16 @@ namespace EEditor
 
         private void rect2(Point start, Point end)
         {
-
             Graphics g = Graphics.FromImage(editArea.Back1);
             if (PenID >= 500 && PenID <= 999)
             {
-                
                     img1 = MainForm.backgroundBMD.Clone(new Rectangle(MainForm.backgroundBMI[PenID] * 16, 0, 16, 16), MainForm.backgroundBMD.PixelFormat);
-                
             }
             else if (PenID < 500 || PenID >= 1001)
             {
                 if (MainForm.miscBMI[PenID] != 0)
                 {
                         img1 = MainForm.miscBMD.Clone(new Rectangle(MainForm.miscBMI[PenID] * 16, 0, 16, 16), MainForm.miscBMD.PixelFormat);
-                    
                 }
                 else if (MainForm.decosBMI[PenID] != 0)
                 {
@@ -132,9 +125,9 @@ namespace EEditor
 
             //editArea.Invalidate();
         }
+
         private void Recte(Point start, Point end)
         {
-
             Graphics g = Graphics.FromImage(editArea.Back);
             if (end.X == start.X && end.Y > start.Y)
             {
@@ -222,8 +215,6 @@ namespace EEditor
                             {
                                 if (ToolPen.text.ContainsKey(PenID)) editArea.CurFrame.BlockData3[y, x] = ToolPen.text[PenID];
                                 else editArea.CurFrame.BlockData3[y, x] = "Unknown";
-
-
                             }
                             if (PenID >= 500 && PenID <= 999)
                             {
@@ -232,7 +223,6 @@ namespace EEditor
                             }
                             else if (PenID < 500 || PenID >= 1001)
                             {
-                                
                                 incfg += PenID + ":" + editArea.CurFrame.Foreground[y, x] + ":" + x + ":" + y + ":";
                                 editArea.CurFrame.Foreground[y, x] = PenID;
                             }
@@ -278,6 +268,7 @@ namespace EEditor
                 }
             }
         }
+
         public override void MouseUp(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -306,7 +297,6 @@ namespace EEditor
                         select = false;
                         selected = false;
                     }
-
                 }
             }
         }
@@ -315,8 +305,6 @@ namespace EEditor
         {
             if (e.Button == MouseButtons.Left)
             {
-
-
                 //Rect(yStart, xStart, p.Y, p.X);
                 Point cur1 = GetLocation(e);
                 if (IsPaintable(cur1.X, cur1.Y))
@@ -354,6 +342,7 @@ namespace EEditor
             //g.DrawImage(img1, GetRectangleScaled(P,Q));
             editArea.Invalidate();
         }
+
         public Rectangle GetRectangleScaled(Point p, Point q)
         {
             /*Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
@@ -363,6 +352,7 @@ namespace EEditor
             (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
             return r;
         }
+
         public void RemoveBorder(Graphics g = null)
         {
             if (Q != null)
@@ -377,17 +367,19 @@ namespace EEditor
                 for (int y = 0; y < r.Height; ++y) editArea.Draw(r.X, y + r.Y, g, MainForm.userdata.thisColor);
                 //for (int y = 0; y <= r.Height; ++y) g.DrawImage(editArea.GetBrickID(r.X + r.Width - 1, y + r.Y), (r.X + r.Width - 1) * 16, (y + r.Y) * 16);
                 for (int y = 0; y < r.Height; ++y) editArea.Draw(r.X + r.Width - 1, y + r.Y, g, MainForm.userdata.thisColor);
+
                 g.Save();
                 editArea.Invalidate();
             }
         }
+
         public Rectangle GetRectangle(Point p, Point q)
         {
-
             Rectangle r = new Rectangle(Math.Min(p.X, q.X), Math.Min(p.Y, q.Y),
                     Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1, Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1);
             return r;
         }
+
         protected void RemoveBorderRect()
         {
             Graphics g = Graphics.FromImage(editArea.Back);
@@ -400,6 +392,7 @@ namespace EEditor
                 }
             g.Save();
         }
+
         public void PlaceBorderRect()
         {
             Graphics g = Graphics.FromImage(editArea.Back);
@@ -420,9 +413,5 @@ namespace EEditor
             editArea.Invalidate();
         }
         #endregion
-
-
-
     }
-
 }

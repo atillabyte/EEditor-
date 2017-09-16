@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Drawing.Text;
 using System.Text.RegularExpressions;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Threading;
+
 namespace EEditor
 {
     public partial class EditArea : UserControl
@@ -60,23 +56,20 @@ namespace EEditor
 
             Bricks = new Bitmap[3000];
             BricksFade = new Bitmap[3000];
-            Tool = new ToolPen(this);
-            Tool.PenID = 9;
+            Tool = new ToolPen(this) { PenID = 9 };
             Frames = new List<Frame>();
 
             VerticalScroll.SmallChange = 8;
             HorizontalScroll.SmallChange = 8;
 
-            System.Windows.Forms.Timer scrollTimer = new System.Windows.Forms.Timer();
-            scrollTimer.Interval = 15;
-            scrollTimer.Tick += new EventHandler(scrollTimer_Tick);
+            Timer scrollTimer = new Timer() { Interval = 15 };
+            scrollTimer.Tick += scrollTimer_Tick;
             scrollTimer.Start();
             this.AllowDrop = true;
             this.DragEnter += EditArea_DragEnter;
             this.DragDrop += EditArea_DragDrop;
             //this.Focus();
             this.Visible = true;
-
         }
 
         private void EditArea_DragEnter(object sender, DragEventArgs e)
@@ -89,7 +82,7 @@ namespace EEditor
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (files.Length == 1)
             {
-                if (Regex.IsMatch(Path.GetExtension(files[0]).ToLower(), @"^.jpg$|^.png$|^.jpg$|^.jpeg$|^.gif$|^.bmp$"))
+                if (Regex.IsMatch(Path.GetExtension(files[0]).ToLower(), "^.jpg$|^.png$|^.jpg$|^.jpeg$|^.gif$|^.bmp$"))
                 {
                     MessageBox.Show("Sorry, image dragging is not implemented yet.\nPlease use the insert menu to add an image to world.", "Boohoo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 }
@@ -146,8 +139,8 @@ namespace EEditor
                 prevLocation = new Point(-1, -1);
             }
         }
-        private Point prevLocation = new Point(-1, -1);
 
+        private Point prevLocation = new Point(-1, -1);
 
         void DrawLine(Point P, Point Q)
         {
@@ -185,9 +178,7 @@ namespace EEditor
                 {
                     if (Tool.PenID != CurFrame.Background[ys[i], xs[i]])
                     {
-
                         incfg += Tool.PenID + ":" + CurFrame.Background[ys[i], xs[i]] + ":" + xs[i] + ":" + ys[i] + ":";
-
                     }
                     if (Tool.PenSize == 1) CurFrame.Background[ys[i], xs[i]] = Tool.PenID;
                     else if (Tool.PenSize >= 2 && Tool.PenSize <= 10)
@@ -226,9 +217,7 @@ namespace EEditor
                         }
                         if (Tool.PenID != CurFrame.Foreground[ys[i], xs[i]])
                         {
-
                             incfg += Tool.PenID + ":" + CurFrame.Foreground[ys[i], xs[i]] + ":" + xs[i] + ":" + ys[i] + ":";
-
                         }
 
                         if (Tool.PenSize == 1)
@@ -245,10 +234,8 @@ namespace EEditor
                                     {
                                         CurFrame.Foreground[ys[i] + yy, xs[i] + xx] = Tool.PenID;
                                     }
-
                                 }
                             }
-
                         }
                     }
                 }
@@ -264,9 +251,10 @@ namespace EEditor
                         }
                     }
                 }
-
             }
+
             g.Save();
+
             for (int i = 0; i < xs.Count; ++i)
             {
                 r.X = xs[i];
@@ -295,11 +283,13 @@ namespace EEditor
 
             return exists;
         }
+
         public void hideCursor(bool hide)
         {
             if (hide) Cursor.Hide();
             else Cursor.Show();
         }
+
         public void Init(int width, int height)
         {
             BlockHeight = height;
@@ -311,7 +301,6 @@ namespace EEditor
 
         public void Init(Frame frame, bool frme)
         {
-
             BlockHeight = frame.Height;
             BlockWidth = frame.Width;
             for (int i = 0; i < BlockHeight; ++i)
@@ -365,7 +354,6 @@ namespace EEditor
                     g.DrawImage(bmp2, x * 16, y * 16);
                     if (MainForm.unknown.Count > 0)
                     {
-
                         unknownBlock bl = new unknownBlock(bid, 1, coins, id, target, null);
                         if (!MainForm.unknown.Contains(bl))
                         {
@@ -374,9 +362,7 @@ namespace EEditor
                             {
                                 MainForm.userdata.newestBlocks.Add(bid.ToString());
                             }
-
                         }
-
                     }
                     else
                     {
@@ -386,9 +372,7 @@ namespace EEditor
                         {
                             MainForm.userdata.newestBlocks.Add(bid.ToString());
                         }
-
                     }
-
                 }
             }
             else if (bid >= 500 && bid <= 999 || bid == 0)
@@ -488,10 +472,8 @@ namespace EEditor
                                 if (!MainForm.userdata.newestBlocks.Contains(fid.ToString()))
                                 {
                                     MainForm.userdata.newestBlocks.Add(fid.ToString());
-
                                 }
                             }
-
                         }
                         else
                         {
@@ -504,7 +486,6 @@ namespace EEditor
                         }
                     }
                 }
-
             }
             else if (fid == 0)
             {
@@ -553,7 +534,6 @@ namespace EEditor
                 }*/
                 if (fid == 242 || fid == 381)
                 {
-
                     Bitmap bmp3 = bdata.getRotation(fid, coins);
                     if (bmp3 != null) g.DrawImage(bmp3, x * 16, y * 16);
                     //g.DrawString(id.ToString(), new Font("Courier", 6), Brushes.Black, new PointF(x * 16 + 4, y * 16 + 1));
@@ -566,9 +546,6 @@ namespace EEditor
                     else DrawText(idd.ToString(), Back, Brushes.Black, null, 8, "top", "center", x * 16, y * 16, false);
                     if (bfont.Families.Length == 1) DrawText(targget.ToString(), Back, Brushes.Red, bfont.Families[0], 8, "bottom", "center", x * 16, y * 16 - 1, false);
                     else DrawText(targget.ToString(), Back, Brushes.Red, null, 8, "bottom", "center", x * 16, y * 16, false);
-
-
-
                 }
                 else
                 {
@@ -618,7 +595,6 @@ namespace EEditor
             int target = CurFrame.BlockData2[y, x];
             string text = CurFrame.BlockData3[y, x];
             Draw(x, y, g, bid, fid, coins, id, target, text, color);
-
         }
         #endregion
 
@@ -660,17 +636,18 @@ namespace EEditor
                 if (CurFrame.Foreground[p.Y, p.X] == 374)
                 {
                     string text = null;
-                    if (CurFrame.BlockData3[p.Y, p.X].ToString() != null)
+                    if (CurFrame.BlockData3[p.Y, p.X] != null)
                     {
-                        if (CurFrame.BlockData3[p.Y, p.X].ToString().Length >= 20)
+                        if (CurFrame.BlockData3[p.Y, p.X].Length >= 20)
                         {
-                            text = CurFrame.BlockData3[p.Y, p.X].ToString().Substring(0, 20) + "....";
+                            text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 20) + "....";
                         }
                         else
                         {
-                            text = CurFrame.BlockData3[p.Y, p.X].ToString();
+                            text = CurFrame.BlockData3[p.Y, p.X];
                         }
-                        MainForm.txt.Text = CurFrame.BlockData3[p.Y, p.X].ToString();
+
+                        MainForm.txt.Text = CurFrame.BlockData3[p.Y, p.X];
                     }
                 }
                 else if (CurFrame.Foreground[p.Y, p.X] == 385)
@@ -678,13 +655,13 @@ namespace EEditor
                     try
                     {
                         string text = null;
-                        if (CurFrame.BlockData3[p.Y, p.X].ToString().Length >= 20)
+                        if (CurFrame.BlockData3[p.Y, p.X].Length >= 20)
                         {
-                            text = CurFrame.BlockData3[p.Y, p.X].ToString().Substring(0, 20) + "....";
+                            text = CurFrame.BlockData3[p.Y, p.X].Substring(0, 20) + "....";
                         }
                         else
                         {
-                            text = CurFrame.BlockData3[p.Y, p.X].ToString();
+                            text = CurFrame.BlockData3[p.Y, p.X];
                         }
                         MainForm.rot.Text = CurFrame.BlockData[p.Y, p.X].ToString();
                         MainForm.txt.Text = text;
@@ -705,13 +682,8 @@ namespace EEditor
                     MainForm.txt.Text = "";
                     MainForm.idtarget.Text = "0 > 0";
                 }
-
-
             }
-
         }
-
-
 
         private void EditArea_MouseUp(object sender, MouseEventArgs e)
         {
@@ -750,7 +722,6 @@ namespace EEditor
 
         public void SetMarkBlock(string[,] Area, string[,] Back, string[,] Coins, string[,] id, string[,] target, string[,] text, int xPos, int yPos)
         {
-
             try
             {
                 ToolMark tm = Tool as ToolMark;
@@ -783,7 +754,7 @@ namespace EEditor
             {
                 if (!MainForm.selectionTool) MainForm.SetMarkTool();
                 string[][,] data = (string[][,])Clipboard.GetData("EEData");
-                if (data != null && data.Length == 6)
+                if (data?.Length == 6)
                 {
                     Tool.CleanUp(false);
                     SetMarkBlock(data[0], data[1], data[2], data[3], data[4], data[5]);
@@ -907,6 +878,7 @@ namespace EEditor
         {
             if (File.Exists(Directory.GetCurrentDirectory() + @"\blocktext.ttf")) bfont.AddFontFile(Directory.GetCurrentDirectory() + @"\blocktext.ttf");
         }
+
         private void DrawText(string line, Bitmap bmp, System.Drawing.Brush brush1, FontFamily fonte, int size, string aligment0, string aligment1, int x, int y, bool admintext)
         {
             Graphics gge = Graphics.FromImage(bmp);
@@ -918,9 +890,8 @@ namespace EEditor
 
             if (aligment0 != null && aligment1 != null)
             {
-                using (System.Drawing.StringFormat sf = new System.Drawing.StringFormat())
+                using (StringFormat sf = new StringFormat())
                 {
-
                     if (aligment0 == "top") { sf.LineAlignment = StringAlignment.Near; }
                     if (aligment0 == "middle") { sf.LineAlignment = StringAlignment.Center; }
                     if (aligment0 == "bottom") { sf.LineAlignment = StringAlignment.Far; }
@@ -944,6 +915,5 @@ namespace EEditor
             //Draw(x, y, gge, Properties.Settings.Default.thiscolor);
             //Invalidate(new Rectangle(p, new Size(180, 39)));
         }
-
     }
 }

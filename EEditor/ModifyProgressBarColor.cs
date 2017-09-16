@@ -3,7 +3,8 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace EEditor
-{// http://stackoverflow.com/a/9753302/1175094
+{
+    // http://stackoverflow.com/a/9753302/1175094
     public static class ModifyProgressBarColor
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]

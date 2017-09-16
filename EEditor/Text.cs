@@ -1,22 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EEditor
 {
-
     public partial class Text : Form
     {
         public TextBox textbox { get { return textBox1; } set { textBox1 = value; } }
-        private int cm = 0;
-        private int id = 0;
-        public int cm1 { get { return cm; } set { cm = value; } }
-        public int id1 { get { return id; } set { id = value; } }
+        public int cm1 { get; set; } = 0;
+        public int id1 { get; set; } = 0;
+
         public Text()
         {
             InitializeComponent();
@@ -24,7 +17,7 @@ namespace EEditor
 
         private void Text_Load(object sender, EventArgs e)
         {
-            if (id == 385)
+            if (this.id1 == 385)
             {
                 this.Text = "Sign";
                 textBox1.Text = textbox.Text;
@@ -42,7 +35,7 @@ namespace EEditor
                 radioButton2.Image = Image5;
                 radioButton3.Image = Image6;
                 radioButton4.Image = Image7;
-                switch (cm)
+                switch (this.cm1)
                 {
                     case 0:
                         radioButton1.Checked = true;
@@ -81,7 +74,6 @@ namespace EEditor
                 usernamePictureBox.Visible = false;
                 newLinePictureBox.Visible = false;
                 this.Height = 130;
-
             }
         }
 
@@ -114,6 +106,7 @@ namespace EEditor
         {
             textBox1.AppendText("\\n");
         }
+
         private void Text_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
@@ -124,7 +117,7 @@ namespace EEditor
             RadioButton rb = sender as RadioButton;
             if (rb.Checked)
             {
-                cm = Convert.ToInt32(rb.Name.Substring(Convert.ToInt32(rb.Name.Length) - 1, 1)) - 1;
+                this.cm1 = Convert.ToInt32(rb.Name.Substring(Convert.ToInt32(rb.Name.Length) - 1, 1)) - 1;
             }
         }
     }

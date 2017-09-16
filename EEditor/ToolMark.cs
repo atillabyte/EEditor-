@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
+
 namespace EEditor
 {
     class ToolMark : Tool
@@ -18,7 +15,7 @@ namespace EEditor
         public string[,] Target1 { get; set; }
         public string[,] Text1 { get; set; }
         public Rectangle Rect { get; set; }
-        public enum Progress { Select, Selected };
+        public enum Progress { Select, Selected }
         public Progress progress;
 
         private Pen borderPen;
@@ -26,6 +23,7 @@ namespace EEditor
         private int dy;
         private Bitmap CutBitmap { get; set; }
         private Bitmap BackBitmap { get; set; }
+
         public ToolMark(EditArea editArea)
             : base(editArea)
         {
@@ -40,7 +38,6 @@ namespace EEditor
                 return;
                 if (progress == Progress.Selected)
                 {
-
                     Point cur = GetLocation(e);
                     if (Rect.Contains(cur))
                     {
@@ -54,7 +51,6 @@ namespace EEditor
                         Size size = new Size(16 * Rect.Width, 16 * Rect.Height);
                         CutBitmap = editArea.Back.Clone(new Rectangle(new Point(16 * Rect.X, 16 * Rect.Y), size), System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                         BackBitmap = new Bitmap(size.Width, size.Height);
-
                     }
                 }
 
@@ -66,6 +62,7 @@ namespace EEditor
                     PlaceBorder(P);
                 }
         }
+
         public override void MouseDown(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -80,7 +77,6 @@ namespace EEditor
                     }
                     else
                     {
-
                         RemoveBorder();
                         PlaceBlock();
                         editArea.MainForm.SetTransFormToolStrip(false);
@@ -153,7 +149,6 @@ namespace EEditor
                             Text1[y, x] = frame.BlockData3[yy, xx];
                             editArea.CurFrame.Foreground[yy, xx] = (xx == 0 || yy == 0 || xx == frame.Width - 1 || yy == frame.Height - 1) ? 9 : 0;
                             editArea.CurFrame.Background[yy, xx] = 0;
-
                         }
                     }
                     editArea.MainForm.SetTransFormToolStrip(true);
@@ -162,8 +157,6 @@ namespace EEditor
                 else if (progress == Progress.Selected)
                 {
                 }
-
-            
             }
         }
 
@@ -217,7 +210,6 @@ namespace EEditor
              h = Math.Max(0, h);
 
              return new Rectangle(x, y, w, h);*/
-
 
             Rectangle r = new Rectangle(Math.Min(p.X, q.X) * 16, Math.Min(p.Y, q.Y) * 16,
                     (Math.Max(p.X, q.X) - Math.Min(p.X, q.X) + 1) * 16 - 1, (Math.Max(p.Y, q.Y) - Math.Min(p.Y, q.Y) + 1) * 16 - 1);
@@ -290,7 +282,6 @@ namespace EEditor
         {
             if (e.Control && e.KeyCode == Keys.C && progress == Progress.Selected)
             {
-
                 Clipboard.SetData("EEData", new string[][,] { Front, Back, Coins, Id1, Target1, Text1 });
                 CleanUp(false);
             }
@@ -358,7 +349,6 @@ namespace EEditor
                 progress = Progress.Select;
                 editArea.MainForm.SetTransFormToolStrip(false);
                 editArea.Invalidate();
-
             }
             else if (e.KeyCode == Keys.Delete)
             {
@@ -387,6 +377,7 @@ namespace EEditor
                 editArea.Invalidate();
             }
         }
+
         public void ClearR()
         {
             if (Front != null)
@@ -422,6 +413,7 @@ namespace EEditor
                 g.Save();
             }
         }
+
         public void Clear()
         {
             if (Front != null)
@@ -463,7 +455,6 @@ namespace EEditor
                             Text1[y, x] = frame.BlockData3[yy, xx];
                             editArea.Draw(xx, yy, g, MainForm.userdata.thisColor);
                             //g.DrawImage(editArea.Bricks[frame.Map[yy, xx]], (x + Rect.X) * 16, (y + Rect.Y) * 16);
-                            
                         }
                     }
                 g.Save();

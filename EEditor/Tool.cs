@@ -54,7 +54,6 @@ namespace EEditor
             {
                 if (x == 0 || x == editArea.CurFrame.Width - 1 || y == 0 || y == editArea.CurFrame.Height - 1)
                 {
-
                     if (MainForm.OpenWorld)
                     {
                             if (MainForm.OpenWorldCode && MainForm.OpenWorld) return true;
@@ -73,7 +72,6 @@ namespace EEditor
                             if (MainForm.OpenWorldCode && MainForm.OpenWorld) return true;
                             else if (!MainForm.OpenWorldCode && MainForm.OpenWorld && y > 4) return true;
                             else return false;
-                        
                     }
                     else
                     {

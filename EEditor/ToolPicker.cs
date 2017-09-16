@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
+
 namespace EEditor
 {
     class ToolPicker : Tool
@@ -22,6 +21,7 @@ namespace EEditor
                 }
             }
         }
+
         private void Color2ID(Color color)
         {
             if (MainForm.userdata.ColorFG)
@@ -46,8 +46,8 @@ namespace EEditor
             }
             var bid = closestColor(color);
             editArea.MainForm.setBrick(bid,true);
-            
         }
+
         private int closestColor(Color col)
         {
             int black = 0;

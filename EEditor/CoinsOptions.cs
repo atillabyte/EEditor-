@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace EEditor
@@ -14,6 +8,7 @@ namespace EEditor
         public NumericUpDown NumericUpdown1 { get { return numericUpDown1; } set { numericUpDown1 = value; } }
         public NumericUpDown NumericUpdown2 { get { return numericUpDown2; } set { numericUpDown2 = value; } }
         public NumericUpDown NumericUpdown3 { get { return numericUpDown3; } set { numericUpDown3 = value; } }
+
         public CoinsOptions()
         {
             InitializeComponent();
@@ -21,7 +16,6 @@ namespace EEditor
 
         private void CoinsOptions_Load(object sender, EventArgs e)
         {
-
         }
 
         private void CoinsOptions_FormClosing(object sender, FormClosingEventArgs e)
@@ -31,7 +25,6 @@ namespace EEditor
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

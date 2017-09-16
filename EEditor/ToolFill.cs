@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
+
 namespace EEditor
 {
     class ToolFill : Tool
@@ -26,8 +25,7 @@ namespace EEditor
 
         private void Fill(int startx, int starty, bool sdown)
         {
-            ThreadPool.QueueUserWorkItem(delegate (object param0)
-            {
+            ThreadPool.QueueUserWorkItem((object param0) => {
                 filling = true;
                 stopfill = false;
                 string incfg = null;
@@ -40,45 +38,31 @@ namespace EEditor
                 int oldID1 = editArea.CurFrame.Background[starty, startx];
                 int oldID0 = editArea.CurFrame.Foreground[starty, startx];
                 int coins = pen == 43 ? 1 : 0;
-                if (pen == 242)
-                {
+
+                if (pen == 242) {
                     id = 0;
                     target = 0;
-
                 }
-                if (pen >= 500 && pen <= 999)
-                {
-                    if (oldID1 >= 500 && oldID1 <= 999)
-                    {
-                        if (oldID1 == pen)
-                        {
+                if (pen >= 500 && pen <= 999) {
+                    if (oldID1 >= 500 && oldID1 <= 999) {
+                        if (oldID1 == pen) {
+                            filling = false;
+                            return;
+                        }
+                    } else {
+                        if (oldID1 == pen) {
                             filling = false;
                             return;
                         }
                     }
-                    else
-                    {
-                        if (oldID1 == pen)
-                        {
+                } else {
+                    if (oldID1 >= 500 && oldID1 <= 999) {
+                        if (oldID1 == pen) {
                             filling = false;
                             return;
                         }
-                    }
-                }
-                else
-                {
-                    if (oldID1 >= 500 && oldID1 <= 999)
-                    {
-                        if (oldID1 == pen)
-                        {
-                            filling = false;
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        if (oldID0 == pen)
-                        {
+                    } else {
+                        if (oldID0 == pen) {
                             filling = false;
                             return;
                         }
@@ -92,144 +76,103 @@ namespace EEditor
                 queue.Enqueue(startx);
                 queue.Enqueue(starty);
                 Graphics g = Graphics.FromImage(editArea.Back);
-                if (pen >= 500 && pen <= 999)
-                {
+                if (pen >= 500 && pen <= 999) {
                     dataf = editArea.CurFrame.Background;
                 }
 
-                if (pen < 500 || pen >= 1001)
-                {
-                    if (oldID1 >= 500 && oldID1 <= 999 && pen == 0)
-                    {
+                if (pen < 500 || pen >= 1001) {
+                    if (oldID1 >= 500 && oldID1 <= 999 && pen == 0) {
                         dataf = editArea.CurFrame.Background;
-                    }
-                    else
-                    {
+                    } else {
                         dataf = editArea.CurFrame.Foreground;
                     }
                 }
                 datafg = editArea.CurFrame.Foreground;
                 var total = queue.Count;
-                while (queue.Count >= 2 && !stopfill)
-                {
+                while (queue.Count >= 2 && !stopfill) {
                     int x = queue.Dequeue();
                     int y = queue.Dequeue();
-                    if (editArea.IsBackground)
-                    {
 
-                        if (oldID1 >= 500 && oldID1 <= 999 && pen == 0)
-                        {
-                            if (dataf[y, x] == oldID1 && IsPaintable(x, y, pen, true))
-                            {
+                    if (editArea.IsBackground) {
+                        if (oldID1 >= 500 && oldID1 <= 999 && pen == 0) {
+                            if (dataf[y, x] == oldID1 && IsPaintable(x, y, pen, true)) {
                                 incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
-                                if (ToolPen.rotation.ContainsKey(pen))
-                                {
+                                if (ToolPen.rotation.ContainsKey(pen)) {
                                     editArea.CurFrame.BlockData[y, x] = ToolPen.rotation[pen];
                                 }
-                                if (editArea.InvokeRequired)
-                                {
-                                    editArea.Invoke((MethodInvoker)delegate
-                                    {
+                                if (editArea.InvokeRequired) {
+                                    editArea.Invoke((MethodInvoker)delegate {
                                         editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                     });
-                                }
-                                else
-                                {
+                                } else {
                                     editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                 }
                                 //g.DrawImage(editArea.Bricks[pen], x * 16, y * 16);
-                                for (int k = 0; k < 4; ++k)
-                                {
+                                for (int k = 0; k < 4; ++k) {
                                     int nx = x + dx[k];
                                     int ny = y + dy[k];
-                                    if (0 <= nx && nx < width && 0 <= ny && ny < height)
-                                    {
+                                    if (0 <= nx && nx < width && 0 <= ny && ny < height) {
                                         queue.Enqueue(nx);
                                         queue.Enqueue(ny);
                                     }
                                 }
                             }
-                        }
-                        else if (pen >= 500 && pen <= 999)
-                        {
-                            if (dataf[y, x] == oldID1 && datafg[y,x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false))
-                            {
+                        } else if (pen >= 500 && pen <= 999) {
+                            if (dataf[y, x] == oldID1 && datafg[y, x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false)) {
                                 incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
-                                if (editArea.InvokeRequired)
-                                {
-                                    editArea.Invoke((MethodInvoker)delegate
-                                    {
+                                if (editArea.InvokeRequired) {
+                                    editArea.Invoke((MethodInvoker)delegate {
                                         editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                     });
-                                }
-                                else
-                                {
+                                } else {
                                     editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                 }
                                 //g.DrawImage(editArea.Bricks[pen], x * 16, y * 16);
-                                for (int k = 0; k < 4; ++k)
-                                {
+                                for (int k = 0; k < 4; ++k) {
                                     int nx = x + dx[k];
                                     int ny = y + dy[k];
-                                    if (0 <= nx && nx < width && 0 <= ny && ny < height)
-                                    {
+                                    if (0 <= nx && nx < width && 0 <= ny && ny < height) {
                                         queue.Enqueue(nx);
                                         queue.Enqueue(ny);
                                     }
                                 }
                             }
-                        }
-                        else
-                        {
-                            if (dataf[y, x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false))
-                            {
+                        } else {
+                            if (dataf[y, x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false)) {
                                 incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
-                                if (pen == 242)
-                                {
+                                if (pen == 242) {
                                     if (ToolPen.rotation.ContainsKey(pen)) editArea.CurFrame.BlockData[y, x] = ToolPen.rotation[pen];
                                     else editArea.CurFrame.BlockData[y, x] = 0;
                                     if (ToolPen.id.ContainsKey(pen)) editArea.CurFrame.BlockData1[y, x] = ToolPen.id[pen];
                                     else editArea.CurFrame.BlockData1[y, x] = 0;
                                     if (ToolPen.target.ContainsKey(pen)) editArea.CurFrame.BlockData2[y, x] = ToolPen.target[pen];
                                     else editArea.CurFrame.BlockData2[y, x] = 0;
-                                }
-                                else if (pen == 374 || pen == 385)
-                                {
-                                    if (pen == 385)
-                                    {
+                                } else if (pen == 374 || pen == 385) {
+                                    if (pen == 385) {
                                         if (ToolPen.rotation.ContainsKey(pen)) editArea.CurFrame.BlockData[y, x] = ToolPen.rotation[pen];
                                         else editArea.CurFrame.BlockData[y, x] = 0;
                                     }
                                     if (ToolPen.text.ContainsKey(pen)) editArea.CurFrame.BlockData3[y, x] = ToolPen.text[pen];
                                     else editArea.CurFrame.BlockData3[y, x] = "Sign Text";
-
-                                }
-                                else
-                                {
+                                } else {
                                     if (ToolPen.rotation.ContainsKey(pen)) editArea.CurFrame.BlockData[y, x] = ToolPen.rotation[pen];
                                     else editArea.CurFrame.BlockData[y, x] = 0;
                                 }
-                                if (editArea.InvokeRequired)
-                                {
-                                    editArea.Invoke((MethodInvoker)delegate
-                                    {
+                                if (editArea.InvokeRequired) {
+                                    editArea.Invoke((MethodInvoker)delegate {
                                         editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                     });
-                                }
-                                else
-                                {
+                                } else {
                                     editArea.Draw(x, y, g, MainForm.userdata.thisColor);
                                 }
                                 //g.DrawImage(editArea.Bricks[pen], x * 16, y * 16);
-                                for (int k = 0; k < 4; ++k)
-                                {
+                                for (int k = 0; k < 4; ++k) {
                                     int nx = x + dx[k];
                                     int ny = y + dy[k];
-                                    if (0 <= nx && nx < width && 0 <= ny && ny < height)
-                                    {
+                                    if (0 <= nx && nx < width && 0 <= ny && ny < height) {
                                         queue.Enqueue(nx);
                                         queue.Enqueue(ny);
                                     }
@@ -266,13 +209,12 @@ namespace EEditor
                     Point p = GetLocation(e);
                     if (editArea.ShiftDown)
                     {
-                        thread = new Thread(delegate () { Fill(p.X, p.Y, true); });
+                        thread = new Thread(() => Fill(p.X, p.Y, true));
                         thread.Start();
                     }
                     else
                     {
-
-                        thread = new Thread(delegate () { Fill(p.X, p.Y, false); });
+                        thread = new Thread(() => Fill(p.X, p.Y, false));
                         thread.Start();
                     }
                 }

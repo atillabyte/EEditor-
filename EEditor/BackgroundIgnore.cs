@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+
 namespace EEditor
 {
     public partial class BackgroundIgnore : Form
@@ -22,6 +18,7 @@ namespace EEditor
         {
             loaddata();
         }
+
         private void loaddata()
         {
             Console.WriteLine(MainForm.userdata.IgnoreBlocks.Count);
@@ -57,28 +54,27 @@ namespace EEditor
                         }
                     }
                     imglist.Images.Add(img1);
-
                 }
                 listView1.LargeImageList = imglist;
             }
+
             if (MainForm.userdata.IgnoreBlocks.Count > 0)
             {
-                for (int i = 0; i < MainForm.userdata.IgnoreBlocks.Count(); i++)
+                for (int i = 0; i < MainForm.userdata.IgnoreBlocks.Count; i++)
                 {
-                    ListViewItem lvi = new ListViewItem();
-                    lvi.Text = "BlockID: " + MainForm.userdata.IgnoreBlocks[i];
-                    lvi.Name = MainForm.userdata.IgnoreBlocks[i].ToString();
-                    lvi.ImageIndex = (int)MainForm.userdata.IgnoreBlocks[i];
+                    ListViewItem lvi = new ListViewItem() {
+                        Text = "BlockID: " + MainForm.userdata.IgnoreBlocks[i],
+                        Name = MainForm.userdata.IgnoreBlocks[i].ToString(),
+                        ImageIndex = (int)MainForm.userdata.IgnoreBlocks[i]
+                    };
+
                     listView1.Items.Add(lvi);
                 }
             }
         }
+
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedIndices.Count > 0)
-            {
-                
-            }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)

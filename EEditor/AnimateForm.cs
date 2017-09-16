@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using PlayerIOClient;
-using System.Text.RegularExpressions;
+
 namespace EEditor
 {
     public partial class AnimateForm : Form
@@ -46,7 +41,6 @@ namespace EEditor
                 {
                     label1.Text = e.Text;
                     DateTime start = DateTime.Now;
-                    
                 }
                 if (e.EpochStart != DateTime.MinValue)
                 {
@@ -59,24 +53,24 @@ namespace EEditor
                 }
                 if (e.Complete)
                 {
-
-                    if (thread != null) thread.Abort();
-                    if (conn != null) conn.Disconnect();
+                    thread?.Abort();
+                    conn?.Disconnect();
                     button1.Text = "Start";
                     uploadProgressBar.Value = 0;
                 }
             }
         }
+
         private DateTime FromUnixTime(long unixTime)
         {
             var epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return epoch.AddSeconds(unixTime);
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (button1.Text == "Start")
             {
-
                 MainForm.userdata.level = levelTextBox.Text;
                 MainForm.userdata.levelPass = levelPassTextBox.Text;
                 if (!levelTextBox.Text.StartsWith("OW") && !MainForm.userdata.level.StartsWith("OW") && MainForm.accs[MainForm.selectedAcc].login == "guest" && MainForm.accs[MainForm.selectedAcc].password == "guest")
@@ -127,42 +121,26 @@ namespace EEditor
                             }
                             else if (MainForm.accs[MainForm.selectedAcc].loginMethod == 4)
                             {
-                                PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, delegate (Client cli)
-                                {
-
-
-                                    cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
-                                    {
-                                        con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
-                                        {
-                                            if (m.Type == "auth")
-                                            {
+                                PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, MainForm.accs[MainForm.selectedAcc].login, MainForm.accs[MainForm.selectedAcc].password, null, (Client cli) => {
+                                    cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, (Connection con) => {
+                                        con.OnMessage += (object sender1, PlayerIOClient.Message m) => {
+                                            if (m.Type == "auth") {
                                                 client = PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null);
                                                 s1.Release();
                                             }
                                         };
                                     },
-                                    delegate (PlayerIOError error)
-                                    {
-                                        MessageBox.Show(error.Message, "Error");
-                                    });
-                                }, delegate (PlayerIOError error)
-                                 {
-                                     MessageBox.Show(error.Message, "Error");
-                                 });
+                                    (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
+                                }, (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
                                 s1.WaitOne();
                             }
                             if (MainForm.userdata.level.StartsWith("OW"))
                             {
                                 client.Multiplayer.ListRooms("Everybodyedits" + client.BigDB.Load("config", "config")["version"], null, 0, 0,
-                                delegate (RoomInfo[] rinfo)
-                                {
-                                    foreach (var val in rinfo)
-                                    {
-                                        if (val.Id.StartsWith("OW"))
-                                        {
-                                            if (val.Id.Length == MainForm.userdata.level.Length)
-                                            {
+                                (RoomInfo[] rinfo) => {
+                                    foreach (var val in rinfo) {
+                                        if (val.Id.StartsWith("OW")) {
+                                            if (val.Id.Length == MainForm.userdata.level.Length) {
                                                 MainForm.userdata.level = val.Id;
                                                 levelTextBox.Text = val.Id;
                                                 conn = client.Multiplayer.CreateJoinRoom(MainForm.userdata.level, MainForm.userdata.level.StartsWith("BW") ? "Beta" : "Everybodyedits" + client.BigDB.Load("config", "config")["version"], true, null, null);
@@ -170,7 +148,7 @@ namespace EEditor
                                                 conn.OnDisconnect += Conn_OnDisconnect;
                                                 Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar
                                                 Animator.afHandle = this.Handle; //Make TaskbarProgress.cs work with this form's upload progress
-                                                anim.StatusChanged += new EventHandler<StatusChangedArgs>(UpdateStatus);
+                                                anim.StatusChanged += UpdateStatus;
                                                 thread = new Thread(new ThreadStart(anim.Run));
                                                 thread.Start();
                                                 break;
@@ -178,10 +156,7 @@ namespace EEditor
                                         }
                                     }
                                 },
-                                delegate (PlayerIOError error)
-                                {
-                                    Console.WriteLine(error.Message);
-                                });
+                                (PlayerIOError error) => Console.WriteLine(error.Message));
                             }
                             else
                             {
@@ -190,42 +165,36 @@ namespace EEditor
                                 conn.OnDisconnect += Conn_OnDisconnect;
                                 Animator.pb = uploadProgressBar; //Make Animator.cs work with this form's progressbar
                                 Animator.afHandle = this.Handle; //Make TaskbarProgress.cs work with this form's upload progress
-                                anim.StatusChanged += new EventHandler<StatusChangedArgs>(UpdateStatus);
+                                anim.StatusChanged += UpdateStatus;
                                 thread = new Thread(new ThreadStart(anim.Run));
                                 thread.Start();
                             }
-                            
                         }
                     }
                     catch (PlayerIOError err)
                     {
                         label1.Text = "Error: " + err.Message;
                         MessageBox.Show(err.Message);
-                        if (thread != null) thread.Abort();
-                        if (conn != null) conn.Disconnect();
+                        thread?.Abort();
+                        conn?.Disconnect();
                         button1.Text = "Start";
                     }
                 }
             }
             else
             {
-
-                if (MainForm.userdata.saveWorldCrew)
-                {
-                    if (saveRights)
-                    {
-                        conn.Send("save");
-                    }
+                if (MainForm.userdata.saveWorldCrew && saveRights) {
+                    conn.Send("save");
                 }
+
                 label1.Text = "Level upload stopped.";
                 button1.Text = "Start";
                 try
                 {
-                    if (thread != null) thread.Abort();
-                    if (conn != null) conn.Disconnect();
+                    thread?.Abort();
+                    conn?.Disconnect();
                 }
                 catch { }
-
             }
         }
 
@@ -269,7 +238,6 @@ namespace EEditor
             tp.SetToolTip(IgnoreDrawingCheckBox, "Ignore the blocks that someone is placing during uploading.");
         }
 
-
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             MainForm.userdata.uploadDelay = (int)numericUpDown2.Value;
@@ -279,8 +247,8 @@ namespace EEditor
         {
             MainForm.userdata.level = levelTextBox.Text;
             MainForm.userdata.levelPass = levelPassTextBox.Text;
-            if (conn != null) conn.Disconnect();
-            if (thread != null) thread.Abort();
+            conn?.Disconnect();
+            thread?.Abort();
         }
 
         private void levelTextBox_TextChanged(object sender, EventArgs e)
@@ -373,11 +341,12 @@ namespace EEditor
 
     public class StatusChangedArgs : EventArgs
     {
-        public string Text { get; private set; }
-        public bool Complete { get; private set; }
-        public DateTime EpochStart { get; private set; }
-        public int totalLines { get; private set; }
-        public int CountedLines { get; private set; }
+        public string Text { get; }
+        public bool Complete { get; }
+        public DateTime EpochStart { get; }
+        public int totalLines { get; }
+        public int CountedLines { get; }
+
         public StatusChangedArgs(string text,DateTime epochstart, bool complete,int totallines,int countedlines)
         {
             Text = text;

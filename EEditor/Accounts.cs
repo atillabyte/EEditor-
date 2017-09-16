@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using PlayerIOClient;
+
 namespace EEditor
 {
     public partial class Accounts : Form
@@ -167,22 +164,14 @@ namespace EEditor
                     
                     if (accEverybodyEditsTransfer.Checked)
                     {
-                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, delegate (Client cli)
-                         {
-
-
-                             cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
-                              {
-                                  con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
-                                  {
-                                      if (m.Type == "auth") PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } },null,successLogin,failLogin);
-                                  };
-                              },
-                             delegate (PlayerIOError error)
-                             {
-                                 MessageBox.Show(error.Message, "Error");
-                             });
-                         },
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, (Client cli) => {
+                            cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, (Connection con) => {
+                                con.OnMessage += (object sender1, PlayerIOClient.Message m) => {
+                                    if (m.Type == "auth") PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null, successLogin, failLogin);
+                                };
+                            },
+                            (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
+                        },
                         failLogin);
                         accountOption = 4;
                     }
@@ -222,21 +211,13 @@ namespace EEditor
                     }
                     if (accEverybodyEditsTransfer.Checked)
                     {
-                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, delegate (Client cli)
-                        {
-
-
-                            cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, delegate (Connection con)
-                            {
-                                con.OnMessage += delegate (object sender1, PlayerIOClient.Message m)
-                                {
+                        PlayerIO.QuickConnect.SimpleConnect(bdata.gameID, loginField1.Text, loginField2.Text, null, (Client cli) => {
+                            cli.Multiplayer.CreateJoinRoom("$service-room", "AuthRoom", true, null, new Dictionary<string, string>() { { "type", "Link" } }, (Connection con) => {
+                                con.OnMessage += (object sender1, PlayerIOClient.Message m) => {
                                     if (m.Type == "auth") PlayerIO.Authenticate("everybody-edits-su9rn58o40itdbnw69plyw", "linked", new Dictionary<string, string>() { { "userId", m.GetString(0) }, { "auth", m.GetString(1) } }, null, successLogin, failLogin);
                                 };
                             },
-                            delegate (PlayerIOError error)
-                            {
-                                MessageBox.Show(error.Message, "Error");
-                            });
+                            (PlayerIOError error) => MessageBox.Show(error.Message, "Error"));
                         },
                         failLogin);
                         accountOption = 4;
@@ -256,10 +237,9 @@ namespace EEditor
                         PlayerIO.Authenticate(bdata.gameID, "secure", new Dictionary<string, string> { { "userId", loginField1.Text }, { "authToken", loginField2.Text } }, null, successLogin1, failLogin);
                     }
                 }
-                else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("Your login details aren't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-
+            else { MessageBox.Show("Your login details aren't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void failLogin(PlayerIOError error)
@@ -269,112 +249,77 @@ namespace EEditor
 
         private void successLogin(Client client) //login for save
         {
-            client.BigDB.LoadMyPlayerObject(delegate (DatabaseObject dbo)
-            {
-                    client.PayVault.Refresh(delegate ()
-                    {
-                        List<JToken> pv = new List<JToken>();
-                        int totalpv = client.PayVault.Items.Length;
-                        int incr = 0;
-                        if (client.PayVault.Has("pro")) pv.Add("beta");
-                        if (client.PayVault.Items.Length > 0)
-                        {
-                            for (int a = 0; a < client.PayVault.Items.Length; a++)
-                            {
-                                incr += 1;
-                                var brick = client.PayVault.Items[a].ItemKey;
-                                if (brick.StartsWith("brick"))
-                                {
-                                    if (!pv.Contains(brick)) pv.Add(brick);
-                                }
-                                this.Invoke((MethodInvoker)delegate
-                                {
-                                    toolStripProgressBar1.Value = Convert.ToInt32((double)incr / totalpv * 100);
-                                });
+            client.BigDB.LoadMyPlayerObject((DatabaseObject dbo) => {
+                client.PayVault.Refresh(() => {
+                    List<JToken> pv = new List<JToken>();
+                    int totalpv = client.PayVault.Items.Length;
+                    int incr = 0;
+                    if (client.PayVault.Has("pro")) pv.Add("beta");
+                    if (client.PayVault.Items.Length > 0) {
+                        for (int a = 0; a < client.PayVault.Items.Length; a++) {
+                            incr += 1;
+                            var brick = client.PayVault.Items[a].ItemKey;
+                            if (brick.StartsWith("brick")) {
+                                if (!pv.Contains(brick)) pv.Add(brick);
                             }
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                MainForm.userdata.username = dbo["name"].ToString();
-                                if (!MainForm.accs.ContainsKey(dbo["name"].ToString()))
-                                {
-                                    MainForm.accs.Add(dbo["name"].ToString(), new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv });
-                                    accountListBox.Items.Remove("(new account)");
-                                    accountListBox.Items.Add(dbo["name"].ToString());
-                                }
-                                else if (MainForm.accs.ContainsKey(dbo["name"].ToString()))
-                                {
-                                    MainForm.accs[dbo["name"].ToString()] = new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv };
-                                }
-                                File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
-                                accountListBox.SelectedItem = dbo["name"].ToString();
+                            this.Invoke((MethodInvoker)delegate {
+                                toolStripProgressBar1.Value = Convert.ToInt32((double)incr / totalpv * 100);
                             });
                         }
-                        else
-                        {
-                            this.Invoke((MethodInvoker)delegate
-                            {
-                                MainForm.userdata.username = dbo["name"].ToString();
+                        this.Invoke((MethodInvoker)delegate {
+                            MainForm.userdata.username = dbo["name"].ToString();
+                            if (!MainForm.accs.ContainsKey(dbo["name"].ToString())) {
                                 MainForm.accs.Add(dbo["name"].ToString(), new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv });
                                 accountListBox.Items.Remove("(new account)");
                                 accountListBox.Items.Add(dbo["name"].ToString());
+                            } else if (MainForm.accs.ContainsKey(dbo["name"].ToString())) {
+                                MainForm.accs[dbo["name"].ToString()] = new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv };
+                            }
+                            File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
+                            accountListBox.SelectedItem = dbo["name"].ToString();
+                        });
+                    } else {
+                        this.Invoke((MethodInvoker)delegate {
+                            MainForm.userdata.username = dbo["name"].ToString();
+                            MainForm.accs.Add(dbo["name"].ToString(), new accounts() { login = loginField1.Text.ToLower(), password = loginField2.Text, loginMethod = accountOption, payvault = pv });
+                            accountListBox.Items.Remove("(new account)");
+                            accountListBox.Items.Add(dbo["name"].ToString());
 
-                                File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
-                                accountListBox.SelectedItem = dbo["name"].ToString();
-                                toolStripProgressBar1.Value = 100;
-                            });
-                        }
-
-                    },
-                    delegate (PlayerIOError error)
-                    {
-                        failLogin(error);
-                        //MessageBox.Show(error.Message, "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    });
-
-
-            }, delegate (PlayerIOError error)
-            {
-                failLogin(error);
-                //MessageBox.Show(error.Message, "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            });
+                            File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
+                            accountListBox.SelectedItem = dbo["name"].ToString();
+                            toolStripProgressBar1.Value = 100;
+                        });
+                    }
+                },
+                failLogin);
+            }, failLogin);
         }
+
         private void successLogin1(Client client) //login for reload
         {
             if (MainForm.accs.ContainsKey(lastSelected))
             {
-                client.PayVault.Refresh(delegate ()
-            {
-
-                List<JToken> pv = new List<JToken>();
-                int totalpv = client.PayVault.Items.Length;
-                int incr = 0;
-                if (client.PayVault.Has("pro")) pv.Add("beta");
-                for (int a = 0; a < client.PayVault.Items.Length; a++)
-                {
-                    incr += 1;
-                    var brick = client.PayVault.Items[a].ItemKey;
-                    if (brick.StartsWith("brick"))
-                    {
-                        if (!pv.Contains(brick)) pv.Add(brick);
+                client.PayVault.Refresh(() => {
+                    List<JToken> pv = new List<JToken>();
+                    int totalpv = client.PayVault.Items.Length;
+                    int incr = 0;
+                    if (client.PayVault.Has("pro")) pv.Add("beta");
+                    for (int a = 0; a < client.PayVault.Items.Length; a++) {
+                        incr += 1;
+                        var brick = client.PayVault.Items[a].ItemKey;
+                        if (brick.StartsWith("brick")) {
+                            if (!pv.Contains(brick)) pv.Add(brick);
+                        }
+                        this.Invoke((MethodInvoker)delegate {
+                            toolStripProgressBar1.Value = Convert.ToInt32((double)incr / totalpv * 100);
+                        });
                     }
-                    this.Invoke((MethodInvoker)delegate
-                    {
-                        toolStripProgressBar1.Value = Convert.ToInt32((double)incr / totalpv * 100);
+                    this.Invoke((MethodInvoker)delegate {
+                        MainForm.accs[lastSelected].payvault = pv;
+                        File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
                     });
-                }
-                this.Invoke((MethodInvoker)delegate
-                {
-
-                    MainForm.accs[lastSelected].payvault = pv;
-                    File.WriteAllText(Directory.GetCurrentDirectory() + accss, JsonConvert.SerializeObject(MainForm.accs, Formatting.Indented));
-                });
-
-            },
-            delegate (PlayerIOError error)
-            {
-                failLogin(error);
-                //MessageBox.Show(error.Message, "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            });
+                },
+            failLogin);
             }
         }
         #endregion
@@ -440,7 +385,6 @@ namespace EEditor
                     }
                     loginField1.Text = MainForm.accs[lastSelected].login;
                     loginField2.Text = MainForm.accs[lastSelected].password;
-
                 }
                 else
                 {
@@ -473,7 +417,6 @@ namespace EEditor
                     groupBox2.Enabled = true;
                 }
             }
-
         }
         #endregion
     }

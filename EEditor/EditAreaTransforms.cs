@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+
 namespace EEditor
 {
     partial class EditArea
@@ -22,6 +19,7 @@ namespace EEditor
                 string[,] Id = new string[width, height];
                 string[,] Target = new string[width, height];
                 string[,] Text2 = new string[width, height];
+
                 for (int x = 0; x < width; ++x)
                     for (int y = 0; y < height; ++y)
                     {
@@ -72,8 +70,8 @@ namespace EEditor
                             case 117:
                                 type1 = 116;
                                 break;
-                            
                         }
+
                         Area[ny, x] = Convert.ToString(type1);
                         Back[ny, x] = tool.Back[y, x];
                         Coins[ny, x] = tool.Coins[y, x];
@@ -129,6 +127,7 @@ namespace EEditor
                                 type1 = 114;
                                 break;
                         }
+
                         Area[y, nx] = Convert.ToString(type1);
                         Back[y, nx] = tool.Back[y, x];
                         Coins[y, nx] = tool.Coins[y, x];
@@ -143,8 +142,5 @@ namespace EEditor
                 Console.WriteLine(ex);
             }
         }
-
-
-
     }
 }
