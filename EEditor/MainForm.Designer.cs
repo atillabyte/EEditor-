@@ -651,7 +651,7 @@
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
             this.imageButton.ShortcutKeyDisplayString = "CTRL + I";
-            this.imageButton.Size = new System.Drawing.Size(179, 26);
+            this.imageButton.Size = new System.Drawing.Size(175, 22);
             this.imageButton.Text = "Image";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -660,7 +660,7 @@
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
             this.textButton.ShortcutKeyDisplayString = "CTRL + T";
-            this.textButton.Size = new System.Drawing.Size(179, 26);
+            this.textButton.Size = new System.Drawing.Size(175, 22);
             this.textButton.Text = "Text";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
@@ -668,7 +668,7 @@
             // 
             this.backgroundIgnoreToolStripMenuItem.Image = global::EEditor.Properties.Resources.eeditor_bgIgnore;
             this.backgroundIgnoreToolStripMenuItem.Name = "backgroundIgnoreToolStripMenuItem";
-            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.backgroundIgnoreToolStripMenuItem.Text = "Background Ignore";
             this.backgroundIgnoreToolStripMenuItem.Click += new System.EventHandler(this.backgroundIgnoreToolStripMenuItem_Click);
             // 

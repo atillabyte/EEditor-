@@ -345,8 +345,8 @@ namespace EEditor
                                 int tmpyy = yy[xxx] << 8 | yy[xxx + 1];
                                 if (layer == 0)
                                 {
+                                    object goal, signtype, text, rotation, id, target;
                                     frame.Foreground[tmpyy, tmpxx] = Convert.ToInt32(worldinfo["type"]);
-
                                     if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(goal);
                                     if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(signtype);
                                     if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy, tmpxx] = text.ToString();
@@ -389,6 +389,7 @@ namespace EEditor
                                 int tmpyy0 = yy1[xxxx];
                                 if (layer == 0)
                                 {
+                                    object goal, signtype, text, rotation, id, target;
                                     frame.Foreground[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["type"]);
                                     if (worldinfo.TryGetValue("goal", out goal)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["goal"]);
                                     if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["signtype"]);
@@ -728,6 +729,7 @@ namespace EEditor
                                 {
                                     if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001) {
                                         f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                        object goal, signtype, text, rotation, id, target;
                                         if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(goal);
                                         if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(signtype);
                                         if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = text.ToString();
@@ -751,6 +753,7 @@ namespace EEditor
                                 {
                                     if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
                                     {
+                                        object goal, signtype, text, rotation, id, target;
                                         f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
                                         if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
                                         if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
