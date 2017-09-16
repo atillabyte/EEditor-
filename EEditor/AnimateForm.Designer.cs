@@ -269,6 +269,7 @@
             0,
             0});
             this.BPSNumericUpDown.ValueChanged += new System.EventHandler(this.BPSNumericUpDown_ValueChanged);
+            this.BPSNumericUpDown.KeyUp += new System.Windows.Forms.KeyEventHandler(this.BPSNumericUpDown_KeyUp);
             // 
             // BPSLabel
             // 

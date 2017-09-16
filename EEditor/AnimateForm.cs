@@ -335,7 +335,12 @@ namespace EEditor
 
         private void BPSNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
+            MainForm.userdata.BPSblocks = Convert.ToInt32(BPSNumericUpDown.Value);
+        }
 
+        private void BPSNumericUpDown_KeyUp(object sender, KeyEventArgs e)
+        {
+            MainForm.userdata.BPSblocks = Convert.ToInt32(BPSNumericUpDown.Value);
         }
     }
 
