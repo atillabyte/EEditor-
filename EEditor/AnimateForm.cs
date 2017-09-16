@@ -75,7 +75,7 @@ namespace EEditor
                 MainForm.userdata.levelPass = levelPassTextBox.Text;
                 if (!levelTextBox.Text.StartsWith("OW") && !MainForm.userdata.level.StartsWith("OW") && MainForm.accs[MainForm.selectedAcc].login == "guest" && MainForm.accs[MainForm.selectedAcc].password == "guest")
                 {
-                    DialogResult dr = MessageBox.Show("You can't upload as a guest, please switch to another account.\nWould you like to go to account manager to add one?", "Guests can't upload", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    DialogResult dr = MessageBox.Show("You can't upload as a guest, please switch to another account.\nWould you like to go to the Account Manager to add one?", "Guests can't upload", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                     if (dr == DialogResult.Yes)
                     {
                         Form frm = new Accounts();

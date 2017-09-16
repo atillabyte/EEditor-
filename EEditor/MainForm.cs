@@ -2129,7 +2129,7 @@ namespace EEditor
                 if (frame != null) {
                     this.Text = Path.GetFileName(ofd.FileName) + " by " + "Unknown" + " (" + frame.Width + "x" + frame.Height + ") - EEditor " + this.ProductVersion;
                     editArea.Init(frame, false);
-                } else MessageBox.Show("The loaded file was made by an unknown EEAnimator version.", "Unknown version", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } else MessageBox.Show("The selected file was made by an unknown EEAnimator version.", "Unknown version", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex) {
                 MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -3310,7 +3310,7 @@ namespace EEditor
                     if (frame != null) {
                         this.Text = Path.GetFileName(ofd.FileName) + " by " + "Unknown" + " (" + frame.Width + "x" + frame.Height + ") - EEditor " + this.ProductVersion;
                         editArea.Init(frame, false);
-                    } else MessageBox.Show("The loaded file are broken.", "File are broken", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    } else MessageBox.Show("The selected JSON Database World is either corrupt or invalid.", "Invalid JSON Database World", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex) {

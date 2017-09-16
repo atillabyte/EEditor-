@@ -194,9 +194,9 @@ namespace EEditor
                         accountOption = 3;
                     }
                 }
-                else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                else { MessageBox.Show("Your login details aren't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Your login details isn't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            else { MessageBox.Show("Your login details aren't added", "Login error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void reloadPacks_Click(object sender, EventArgs e)

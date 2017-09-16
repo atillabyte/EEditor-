@@ -36,7 +36,7 @@ namespace EEditor
                 }
                 else
                 {
-                    MessageBox.Show("Couldn't find the folder Sounds. You can continue using the drums without them or redownload EEditor.", "No sounds", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("Couldn't find the folder 'sounds'. You can continue using the drums without them, otherwise try re-installing EEditor.", "No sounds", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     MainForm.soundsErrorShown = true;
                 }
             }
