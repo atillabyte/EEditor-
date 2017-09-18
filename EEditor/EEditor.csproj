@@ -71,9 +71,15 @@
     <Reference Include="PlayerIOClient, Version=3.5.0.0, Culture=neutral, PublicKeyToken=c7f7b730653f6a44, processorArchitecture=MSIL">
       <HintPath>..\packages\PlayerIOClient-Signed.3.5.2\lib\PlayerIOClient.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress, Version=0.17.1.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpCompress.0.17.1\lib\net45\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -143,6 +149,7 @@
     <Compile Include="EditAreaTransforms.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="FlexibleMessageBox.cs" />
     <Compile Include="fontadding.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,6 +270,12 @@
     <Compile Include="ToolRectFill.cs" />
     <Compile Include="ToolDummy.cs" />
     <Compile Include="ToolSpray.cs" />
+    <Compile Include="WorldArchiveMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorldArchiveMenu.Designer.cs">
+      <DependentUpon>WorldArchiveMenu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -342,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ToolpickerSettings.resx">
       <DependentUpon>ToolpickerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorldArchiveMenu.resx">
+      <DependentUpon>WorldArchiveMenu.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="bin\Debug\blocktext.ttf" />

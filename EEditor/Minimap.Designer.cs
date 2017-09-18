@@ -32,12 +32,16 @@
             // 
             // Minimap
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Minimap";
-            this.Size = new System.Drawing.Size(36, 30);
+            this.Size = new System.Drawing.Size(27, 24);
             this.Load += new System.EventHandler(this.Minimap_Load);
+            this.Click += new System.EventHandler(this.Minimap_Click);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseClick);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Minimap_MouseUp);
             this.ResumeLayout(false);
 
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace EEditor
@@ -12,6 +11,7 @@ namespace EEditor
         public static Bitmap Bitmap { get; set; }
         public static uint[] Colors = new uint[3000];
         public static bool[] ImageColor = new bool[Colors.Length];
+        private bool mouseDown { get; set; } = false;
 
         static Minimap()
         {
@@ -68,6 +68,32 @@ namespace EEditor
         private void Minimap_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Minimap_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Minimap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown) {
+                MainForm.editArea.AutoScrollPosition = new Point((e.X * 16) - 768, (e.Y * 16) - 256);
+            }
+        }
+
+        private void Minimap_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+        }
+
+        private void Minimap_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void Minimap_MouseClick(object sender, MouseEventArgs e)
+        {
+            MainForm.editArea.AutoScrollPosition = new Point((e.X * 16) - 768, (e.Y * 16) - 256);
         }
     }
 }

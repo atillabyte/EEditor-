@@ -671,10 +671,10 @@ namespace EEditor
             return corrects;
         }
 
-        public static Frame LoadADatabase(string file)
+        public static Frame LoadJSONDatabaseWorld(string input, bool isFilePath=true)
         {
             int width = 0, height = 0;
-            var world = JObject.Parse(File.ReadAllText(file));
+            var world = JObject.Parse(isFilePath ? File.ReadAllText(input) : input);
 
             width = world.TryGetValue("width", out var w) ? (int)world.GetValue("width") : 200;
             height = world.TryGetValue("height", out var h) ? (int)world.GetValue("height") : 200;
@@ -727,18 +727,22 @@ namespace EEditor
                             {
                                 if (y1[j] < height && x1[j] < width)
                                 {
-                                    if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001) {
-                                        f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
-                                        object goal, signtype, text, rotation, id, target;
-                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(goal);
-                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(signtype);
-                                        if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = text.ToString();
-                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(rotation);
-                                        if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(id);
-                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(target);
-                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[y1[j], x1[j]] = target.ToString();
-                                    } else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) {
-                                        f.Background[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                    try {
+                                        if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001) {
+                                            f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                            object goal, signtype, text, rotation, id, target;
+                                            if (obj.TryGetValue("goal", out goal)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(goal);
+                                            if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(signtype);
+                                            if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = text.ToString();
+                                            if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(rotation);
+                                            if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(id);
+                                            if (obj.TryGetValue("target", out target) && !(target is string)) f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(target);
+                                            if (obj.TryGetValue("target", out target) && (target is string)) f.BlockData3[y1[j], x1[j]] = target.ToString();
+                                        } else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) {
+                                            f.Background[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
+                                        }
+                                    } catch (Exception ex) {
+                                        Console.WriteLine(ex.ToString());
                                     }
                                 }
                             }
@@ -748,24 +752,27 @@ namespace EEditor
                                 int yy = (y[k] << 8) | y[k + 1];
                                 int xx = (x[k] << 8) | x[k + 1];
 
-                                //if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
                                 if (yy < height && xx < width)
                                 {
-                                    if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
-                                    {
-                                        object goal, signtype, text, rotation, id, target;
-                                        f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
-                                        if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
-                                        if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
-                                        if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = text.ToString();
-                                        if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
-                                        if (obj.TryGetValue("id", out id)) f.BlockData1[yy, xx] = Convert.ToInt32(obj["id"]);
-                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[yy, xx] = Convert.ToInt32(target);
-                                        if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[yy, xx] = target.ToString();
-                                    }
-                                    else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999)
-                                    {
-                                        f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
+                                    try {
+                                        if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
+                                        {
+                                            object goal, signtype, text, rotation, id, target;
+                                            f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
+                                            if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
+                                            if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
+                                            if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = text.ToString();
+                                            if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
+                                            if (obj.TryGetValue("id", out id)) f.BlockData1[yy, xx] = Convert.ToInt32(obj["id"]);
+                                            if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[yy, xx] = Convert.ToInt32(target);
+                                            if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[yy, xx] = target.ToString();
+                                        }
+                                        else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999)
+                                        {
+                                            f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
+                                        }
+                                    } catch (Exception ex) {
+                                        Console.WriteLine(ex.ToString());
                                     }
                                 }
                             }

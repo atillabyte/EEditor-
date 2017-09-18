@@ -73,6 +73,7 @@ namespace EEditor
         private string searched = null;
         public static bool resethotkeys = false;
         private Minimap minimap;
+        private WorldArchiveMenu worldArchiveMenu;
 
         public MainForm()
         {
@@ -247,6 +248,8 @@ namespace EEditor
             minimap.BringToFront();
 
             userdata.lastSelectedBlockbar = 0;
+
+            this.worldArchiveMenu = new WorldArchiveMenu(this);
 
             //Should be set to current acc index actually
 
@@ -3290,32 +3293,65 @@ namespace EEditor
             bgi.Show();
         }
 
-        private void roomDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void localToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetDummy();
             try {
                 MainForm.editArea.Back = null;
                 MainForm.editArea.Back1 = null;
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Title = "Select a level to load from";
-                ofd.DefaultExt = "json";
-                ofd.Filter = "JSON Database World (*.json)|*.json";
-                ofd.FilterIndex = 1;
-                ofd.AddExtension = true;
-                ofd.RestoreDirectory = true;
-                ofd.CheckFileExists = true;
+                OpenFileDialog ofd = new OpenFileDialog() {
+                    Title = "Select a level to load from",
+                    DefaultExt = "json",
+                    Filter = "JSON Database World(s)|*.json;*.tar.gz|All files (*.*)|*.*", //"JSON Database World (*.json)|(*.tar.gz)|*.*",
+                    FilterIndex = 1,
+                    AddExtension = true,
+                    RestoreDirectory = true,
+                    CheckFileExists = true
+                };
+
                 if (ofd.ShowDialog() == DialogResult.OK) {
                     string path = ofd.FileName;
-                    Frame frame = Frame.LoadADatabase(path);
-                    if (frame != null) {
-                        this.Text = Path.GetFileName(ofd.FileName) + " by " + "Unknown" + " (" + frame.Width + "x" + frame.Height + ") - EEditor " + this.ProductVersion;
-                        editArea.Init(frame, false);
-                    } else MessageBox.Show("The selected JSON Database World is either corrupt or invalid.", "Invalid JSON Database World", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    if (path.EndsWith(".tar.gz")) {
+                        var menu = Application.OpenForms.Cast<Form>().FirstOrDefault(form => form.Name == "WorldArchiveMenu");
+
+                        if (menu != null) {
+                            menu.BringToFront();
+                            return;
+                        }
+
+                        worldArchiveMenu = new WorldArchiveMenu(this);
+                        worldArchiveMenu.LoadArchiveFromFile(path);
+                        worldArchiveMenu.Show();
+                    } else {
+                        Frame frame = Frame.LoadJSONDatabaseWorld(path);
+                        if (frame != null) {
+                            this.Text = Path.GetFileName(ofd.FileName) + " by " + "Unknown" + " (" + frame.Width + "x" + frame.Height + ") - EEditor " + this.ProductVersion;
+                            editArea.Init(frame, false);
+                        } else MessageBox.Show("The selected JSON Database World is either corrupt or invalid.", "Invalid JSON Database World", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex) {
                 MessageBox.Show("An error has occured: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void remoteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var menu = Application.OpenForms.Cast<Form>().FirstOrDefault(form => form.Name == "WorldArchiveMenu");
+
+            if (menu != null) {
+                menu.BringToFront();
+                return;
+            }
+
+            worldArchiveMenu = new WorldArchiveMenu(this);
+
+            if (MainForm.userdata.username != "guest")
+                worldArchiveMenu.LoadArchiveFromAPI(MainForm.userdata.username);
+
+            worldArchiveMenu.Show();
         }
     }
 
