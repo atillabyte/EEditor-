@@ -480,9 +480,9 @@ namespace EEditor
                 if (botid != (int)e.GetInt(5) && MainForm.userdata.ignoreplacing)
                 {
                     frames[0].Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
-                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    frames[0].BlockData[e.GetInt(1), e.GetInt(0)] = (int)e.GetInt(3);
                     remoteFrame.Foreground[e.GetInt(1), e.GetInt(0)] = e.GetInt(2);
-                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = e.GetInt(3);
+                    remoteFrame.BlockData[e.GetInt(1), e.GetInt(0)] = (int)e.GetInt(3);
                     ++Gcurrent1;
                     restart = true;
                 }
@@ -490,7 +490,7 @@ namespace EEditor
                 {
                     int x = e.GetInt(0), y = e.GetInt(1);
                     remoteFrame.Foreground[y, x] = e.GetInt(2);
-                    remoteFrame.BlockData[y, x] = e.GetInt(3);
+                    remoteFrame.BlockData[y, x] = (int)e.GetInt(3);
                     ++Gcurrent;
                     ++Gcurrent1;
                     int value = Gcurrent1;

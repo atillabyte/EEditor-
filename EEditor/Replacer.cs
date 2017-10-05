@@ -627,13 +627,13 @@ namespace EEditor
                                                 if (SignRadioButton.Checked || WorldPortalRadioButton.Checked)
                                                 {
                                                     MainForm.editArea.Frames[0].BlockData3[yy, xx] = ReplaceTextBox.Text;
-                                                    MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
+                                                    MainForm.editArea.Frames[0].BlockData[yy, xx] = Convert.ToInt32(replaceRotate.Value);
                                                 }
                                             }
                                             if (NormalRadioButton.Checked)
                                             {
-                                                MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)replaceRotate.Value;
-                                                ToolPen.rotation[(int)numericUpDown2.Value] = (int)replaceRotate.Value;
+                                                MainForm.editArea.Frames[0].BlockData[yy, xx] = Convert.ToInt32(replaceRotate.Value);
+                                                ToolPen.rotation[(int)numericUpDown2.Value] = Convert.ToInt32(replaceRotate.Value);
                                             }
                                         }
                                     }
@@ -796,7 +796,7 @@ namespace EEditor
                                 if (bdata.getRotation(MainForm.editArea.Frames[0].Foreground[yy, xx], MainForm.editArea.Frames[0].BlockData[yy, xx]) != null)
                                 {
 
-                                    MainForm.editArea.Frames[0].BlockData[yy, xx] = (int)numericUpDown2.Value;
+                                    MainForm.editArea.Frames[0].BlockData[yy, xx] = Convert.ToInt32(numericUpDown2.Value);
                                 }
                                 //incfg += (int)rp.NU2.Value + ":" + editArea.CurFrame.Background[yy, xx] + ":" + xx + ":" + yy + ":";
                                 totalReplaced += 1;
@@ -956,11 +956,11 @@ namespace EEditor
 
                 if (MainForm.decosBMI[bid] != 0)
                 {
-                    img1 = bdata.getRotation(bid, (int)findRotate.Value);
+                    img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
                 }
                 else if (MainForm.miscBMI[bid] != 0)
                 {
-                    img1 = bdata.getRotation(bid, (int)findRotate.Value);
+                    img1 = bdata.getRotation(bid, Convert.ToInt32(findRotate.Value));
                 }
                 if (img1 != null) RotationPictureBox1.Image = img1;
                 else RotationPictureBox1.Image = Properties.Resources.cross;
@@ -1044,11 +1044,11 @@ namespace EEditor
 
                 if (MainForm.decosBMI[bid] != 0)
                 {
-                    img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
+                    img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
                 }
                 else if (MainForm.miscBMI[bid] != 0)
                 {
-                    img1 = bdata.getRotation(bid, (int)replaceRotate.Value);
+                    img1 = bdata.getRotation(bid, Convert.ToInt32(replaceRotate.Value));
                 }
                 if (img1 != null) RotationPictureBox2.Image = img1;
                 else RotationPictureBox2.Image = Properties.Resources.cross;

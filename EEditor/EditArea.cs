@@ -354,7 +354,7 @@ namespace EEditor
                     g.DrawImage(bmp2, x * 16, y * 16);
                     if (MainForm.unknown.Count > 0)
                     {
-                        unknownBlock bl = new unknownBlock(bid, 1, coins, id, target, null);
+                        unknownBlock bl = new unknownBlock(bid, 1, (int)coins, id, target, null);
                         if (!MainForm.unknown.Contains(bl))
                         {
                             MainForm.unknown.Add(bl);
@@ -366,7 +366,7 @@ namespace EEditor
                     }
                     else
                     {
-                        unknownBlock bl = new unknownBlock(bid, 1, coins, id, target, null);
+                        unknownBlock bl = new unknownBlock(bid, 1, (int)coins, id, target, null);
                         MainForm.unknown.Add(bl);
                         if (!MainForm.userdata.newestBlocks.Contains(bid.ToString()))
                         {
@@ -465,7 +465,7 @@ namespace EEditor
                         g.DrawImage(bmp2, x * 16, y * 16);
                         if (MainForm.unknown.Count > 0)
                         {
-                            unknownBlock bl = new unknownBlock(fid, 0, coins, id, target, null);
+                            unknownBlock bl = new unknownBlock(fid, 0, (int)coins, id, target, null);
                             if (!MainForm.unknown.Contains(bl))
                             {
                                 MainForm.unknown.Add(bl);
@@ -477,7 +477,7 @@ namespace EEditor
                         }
                         else
                         {
-                            unknownBlock bl = new unknownBlock(fid, 0, coins, id, target, null);
+                            unknownBlock bl = new unknownBlock(fid, 0, (int)coins, id, target, null);
                             MainForm.unknown.Add(bl);
                             if (!MainForm.userdata.newestBlocks.Contains(fid.ToString()))
                             {

@@ -306,7 +306,7 @@ namespace EEditor
                                     co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
                                     if (co.ShowDialog() == DialogResult.OK)
                                     {
-                                        var value = (int)co.NumberChangerNumeric.Value == -1 ? 1000 : (int)co.NumberChangerNumeric.Value;
+                                        var value = Convert.ToInt32(co.NumberChangerNumeric.Value) == -1 ? 1000 : Convert.ToInt32(co.NumberChangerNumeric.Value);
                                         editArea.CurFrame.BlockData[y, x] = value;
                                         if (rotation.ContainsKey(bid)) { rotation[bid] = value; }
                                         else { rotation.Add(bid, value); }
@@ -343,9 +343,9 @@ namespace EEditor
                                         co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
                                         if (co.ShowDialog() == DialogResult.OK)
                                         {
-                                            editArea.CurFrame.BlockData[y, x] = (int)co.NumberChangerNumeric.Value;
-                                            if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumberChangerNumeric.Value; }
-                                            else { rotation.Add(bid, (int)co.NumberChangerNumeric.Value); }
+                                            editArea.CurFrame.BlockData[y, x] = Convert.ToInt32(co.NumberChangerNumeric.Value);
+                                            if (rotation.ContainsKey(bid)) { rotation[bid] = Convert.ToInt32(co.NumberChangerNumeric.Value); }
+                                            else { rotation.Add(bid, Convert.ToInt32(co.NumberChangerNumeric.Value)); }
                                         }
                                         else
                                         {
@@ -366,7 +366,7 @@ namespace EEditor
                                 {
                                     using (TeamColorChanger co = new TeamColorChanger())
                                     {
-                                        co.SetColorId = editArea.CurFrame.BlockData[y, x];
+                                        co.SetColorId = Convert.ToInt32(editArea.CurFrame.BlockData[y, x]);
                                         //co.NumberChangerNumeric.Value = editArea.CurFrame.BlockData[y, x];
                                         if (co.ShowDialog() == DialogResult.OK)
                                         {
@@ -441,7 +441,7 @@ namespace EEditor
                                 {
                                     co.textbox.Text = editArea.CurFrame.BlockData3[y, x];
                                     co.id1 = bid;
-                                    if (bid == 385) co.cm1 = editArea.CurFrame.BlockData[y, x];
+                                    if (bid == 385) co.cm1 = Convert.ToInt32(editArea.CurFrame.BlockData[y, x]);
                                     if (co.ShowDialog() == DialogResult.OK)
                                     {
                                         if (text.ContainsKey(bid)) { text[bid] = co.textbox.Text; }
@@ -482,13 +482,13 @@ namespace EEditor
                                     {
                                         if (co.NumericUpdown1.Value >= 0 && co.NumericUpdown1.Value <= 3)
                                         {
-                                            if (rotation.ContainsKey(bid)) { rotation[bid] = (int)co.NumericUpdown1.Value; }
-                                            else { rotation.Add(bid, (int)co.NumericUpdown1.Value); }
+                                            if (rotation.ContainsKey(bid)) { rotation[bid] = Convert.ToInt32(co.NumericUpdown1.Value); }
+                                            else { rotation.Add(bid, Convert.ToInt32(co.NumericUpdown1.Value)); }
                                             if (id.ContainsKey(bid)) { id[bid] = (int)co.NumericUpdown2.Value; }
                                             else { id.Add(bid, (int)co.NumericUpdown2.Value); }
                                             if (target.ContainsKey(bid)) { target[bid] = (int)co.NumericUpdown3.Value; }
                                             else { target.Add(bid, (int)co.NumericUpdown3.Value); }
-                                            editArea.CurFrame.BlockData[y, x] = (int)co.NumericUpdown1.Value;
+                                            editArea.CurFrame.BlockData[y, x] = Convert.ToInt32(co.NumericUpdown1.Value);
                                             editArea.CurFrame.BlockData1[y, x] = (int)co.NumericUpdown2.Value;
                                             editArea.CurFrame.BlockData2[y, x] = (int)co.NumericUpdown3.Value;
                                         }

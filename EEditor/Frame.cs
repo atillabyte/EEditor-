@@ -735,7 +735,15 @@ namespace EEditor
                                             if (obj.TryGetValue("signtype", out signtype)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(signtype);
                                             if (obj.TryGetValue("text", out text)) f.BlockData3[y1[j], x1[j]] = text.ToString();
                                             if (obj.TryGetValue("rotation", out rotation)) f.BlockData[y1[j], x1[j]] = Convert.ToInt32(rotation);
-                                            if (obj.TryGetValue("id", out id)) f.BlockData1[y1[j], x1[j]] = Convert.ToInt32(id);
+                                            if (obj.TryGetValue("id", out id)) {
+                                                if (bdata.sound.Contains(Convert.ToInt32(obj["type"]))) {
+                                                    f.BlockData[y1[j], x1[j]] = (int)Convert.ToUInt32(id);
+                                                }
+                                                else
+                                                {
+                                                    f.BlockData[y1[j], x1[j]] = Convert.ToInt32(id);
+                                                }
+                                            }
                                             if (obj.TryGetValue("target", out target) && !(target is string)) f.BlockData2[y1[j], x1[j]] = Convert.ToInt32(target);
                                             if (obj.TryGetValue("target", out target) && (target is string)) f.BlockData3[y1[j], x1[j]] = target.ToString();
                                         } else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) {
@@ -763,7 +771,17 @@ namespace EEditor
                                             if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
                                             if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = text.ToString();
                                             if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
-                                            if (obj.TryGetValue("id", out id)) f.BlockData1[yy, xx] = Convert.ToInt32(obj["id"]);
+                                                if (obj.TryGetValue("id", out id))
+                                                {
+                                                    if (bdata.sound.Contains(Convert.ToInt32(obj["type"])))
+                                                    {
+                                                        f.BlockData[yy, xx] = (int)Convert.ToUInt32(id);
+                                                    }
+                                                    else
+                                                    {
+                                                        f.BlockData[yy, xx] = Convert.ToInt32(id);
+                                                    }
+                                                }
                                             if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[yy, xx] = Convert.ToInt32(target);
                                             if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[yy, xx] = target.ToString();
                                         }
@@ -941,11 +959,11 @@ namespace EEditor
                         f.Background[y, x] = reader.ReadInt16();
                         if (bdata.goal.Contains(t) || bdata.rotate.Contains(t) || bdata.morphable.Contains(t) && t != 385 && t != 374)
                         {
-                            f.BlockData[y, x] = reader.ReadInt16();
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
                         }
                         if (t == 385)
                         {
-                            f.BlockData[y, x] = reader.ReadInt16();
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
                             f.BlockData3[y, x] = reader.ReadString();
                         }
                         if (t == 374)
@@ -954,7 +972,7 @@ namespace EEditor
                         }
                         if (bdata.portals.Contains(t))
                         {
-                            f.BlockData[y, x] = reader.ReadInt32();
+                            f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt32());
                             f.BlockData1[y, x] = reader.ReadInt32();
                             f.BlockData2[y, x] = reader.ReadInt32();
                         }
@@ -1014,7 +1032,7 @@ namespace EEditor
                             f.Background[y, x] = 0;
                             if (bdata.goal.Contains(t) || bdata.rotate.Contains(t) || bdata.morphable.Contains(t))
                             {
-                                f.BlockData[y, x] = reader.ReadInt16();
+                                f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
                             }
                             else if (bdata.portals.Contains(t))
                             {
@@ -1022,7 +1040,7 @@ namespace EEditor
                                 var a = r >> 16;
                                 var b = ((r >> 8) & 0xFF);
                                 var c = (r & 0xFF);
-                                f.BlockData[y, x] = a;
+                                f.BlockData[y, x] = Convert.ToInt32(a);
                                 f.BlockData1[y, x] = b;
                                 f.BlockData2[y, x] = c;
                             }
@@ -1034,7 +1052,7 @@ namespace EEditor
                             f.Background[y, x] = reader.ReadInt16();
                             if (bdata.goal.Contains(t) || bdata.rotate.Contains(t) || bdata.morphable.Contains(t))
                             {
-                                f.BlockData[y, x] = reader.ReadInt16();
+                                f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
                             }
                             else if (bdata.portals.Contains(t))
                             {
@@ -1042,7 +1060,7 @@ namespace EEditor
                                 var a = r >> 16;
                                 var b = ((r >> 8) & 0xFF);
                                 var c = (r & 0xFF);
-                                f.BlockData[y, x] = a;
+                                f.BlockData[y, x] = Convert.ToInt32(a);
                                 f.BlockData1[y, x] = b;
                                 f.BlockData2[y, x] = c;
                             }
@@ -1054,7 +1072,7 @@ namespace EEditor
                             f.Background[y, x] = reader.ReadInt16();
                             if (bdata.goal.Contains(t) || bdata.rotate.Contains(t) || bdata.morphable.Contains(t))
                             {
-                                f.BlockData[y, x] = reader.ReadInt16();
+                                f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt16());
                             }
                             else if (t == 374)
                             {
@@ -1067,7 +1085,7 @@ namespace EEditor
                             }
                             else if (bdata.portals.Contains(t))
                             {
-                                f.BlockData[y, x] = reader.ReadInt32();
+                                f.BlockData[y, x] = Convert.ToInt32(reader.ReadInt32());
                                 f.BlockData1[y, x] = reader.ReadInt32();
                                 f.BlockData2[y, x] = reader.ReadInt32();
                             }
