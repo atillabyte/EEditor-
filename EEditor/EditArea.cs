@@ -36,6 +36,7 @@ namespace EEditor
         public bool mouseDown { set { IsMouseDown = value; } }
         public string incfg = null;
         protected int curFrame;
+        
         PrivateFontCollection bfont = new PrivateFontCollection();
 
         protected bool IsMouseDown = false;
@@ -82,9 +83,11 @@ namespace EEditor
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             if (files.Length == 1)
             {
-                if (Regex.IsMatch(Path.GetExtension(files[0]).ToLower(), "^.jpg$|^.png$|^.jpg$|^.jpeg$|^.gif$|^.bmp$"))
+                if (Regex.IsMatch(Path.GetExtension(files[0]).ToLower(), "^.jpg$|^.png$|^.ico$|^.jpeg$|^.gif$|^.bmp$"))
                 {
-                    MessageBox.Show("Sorry, image dragging is not implemented yet.\nPlease use the insert menu to add an image to world.", "Boohoo", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    InsertImageForm.path2file = files[0];
+                    InsertImageForm open = new InsertImageForm();
+                    open.ShowDialog();
                 }
             }
         }

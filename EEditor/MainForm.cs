@@ -296,6 +296,8 @@ namespace EEditor
  { 721, 214 }, { 722, 215 },{ 723, 216 },{ 724, 217 },{ 725, 218 }, { 726, 220 }, { 727, 221 },
  { 728, 222 },{ 729, 223 },{ 730, 224 },{ 731, 225 },{ 732, 226 },{ 733, 227 },{ 734, 228 },
  { 735, 229 },{ 736, 230 },{ 737, 231 },{ 738, 232 },{ 739, 233 },{ 740, 234 },{ 741, 235 },{ 742, 236 },
+ { 743, 237 },{ 744, 238 },{ 745, 239 },{ 746, 240 },{ 747, 241 },{ 748, 242 },{ 749, 243 },{ 750, 244 },
+ { 751, 245 },{ 752, 246 },{ 753, 247 },{ 754, 248 },{ 755, 249 },{ 756, 250 }
             };
             for (int i = 0; i < bgInit.Length / 2; i++) {
                 bgs[bgInit[i, 1]] = bgInit[i, 0]; //Add imageid and blockid (bgs[imageID] blockID)
@@ -343,7 +345,7 @@ namespace EEditor
                 { 487, 213 }, { 488, 214 },{ 489, 215 },{ 490, 216 },{ 491, 217 }, { 1501, 220 },
                 { 484, 212 }, { 485, 211 }, { 486, 210 }, { 1503,221  }, { 1504,222  }, { 1505,223  },
                 { 1508,224 }, { 1509, 225 }, { 1511, 226 }, { 1512, 227 }, { 1513, 228 }, { 1514, 229 }, { 1515, 230 },
-                { 1516, 231 }
+                { 1516, 231 }, { 1521, 232 }, { 1522, 233 }
             };
             for (int i = 0; i < decorInit.Length / 2; i++) {
                 decos[decorInit[i, 1]] = decorInit[i, 0]; //Add imageid and blockid (decos[imageID] blockID)
@@ -422,7 +424,8 @@ namespace EEditor
                 { 472, 252 }, { 1081, 253 }, { 1082, 254}, { 1083, 255}, { 1084, 256}, { 1085, 257}, { 1086, 258}, { 1087, 259},
                 { 1088, 260 }, { 1089, 261 }, { 1090, 262 }, { 1091, 263 }, { 1093, 264 }, { 1096, 265 }, { 1097, 266 }, { 1098, 267 }, { 1099, 268 }, { 1100, 269 },
                 { 1101, 270 },{ 1102, 271 },{ 1103, 272 },{ 1104, 273 },{ 1105, 274 },{ 1106, 275 },{ 1107, 276 },{ 1108, 277 },{ 1109, 278 },{ 1110, 279 },
-                { 1111, 280 },{ 1112, 281 },{ 1113, 282 },{ 1114, 283 },{ 1115, 284 }, { 1518, 285 }, { 1520, 286 }
+                { 1111, 280 },{ 1112, 281 },{ 1113, 282 },{ 1114, 283 },{ 1115, 284 }, { 1518, 285 }, { 1520, 286 },
+                { 1126, 287 },{ 1127, 288 },{ 1130, 289 },{ 1128, 291 },  { 1129, 290 },{ 1130, 292 }
             };
             for (int i = 0; i < blockInit.Length / 2; i++) {
                 blocks[blockInit[i, 1]] = blockInit[i, 0]; //Add imageid and blockid (blocks[imageID] blockID)
@@ -803,8 +806,8 @@ namespace EEditor
             if (ihavethese.Contains("brickcowboy") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 99, 100, 101, 102, 103, 104 }, null, false, "Wild West", 0, 2, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 99, 100, 101, 102, 103, 104 }, null, false, "Wild West", 0, 2, false); }
             if (ihavethese.Contains("brickplastic") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 105, 106, 107, 108, 109, 110, 111, 112 }, new uint[] { 0x93EB10, 0xD53725, 0xDFCF19, 0x72C5EB, 0x2B43CF, 0xDA28D8, 0x2DAC10, 0xE5821F }, false, "Plastic", 0, 1, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 105, 106, 107, 108, 109, 110, 111, 112 }, new uint[] { 0x93EB10, 0xD53725, 0xDFCF19, 0x72C5EB, 0x2B43CF, 0xDA28D8, 0x2DAC10, 0xE5821F }, false, "Plastic", 0, 1, false); }
             if (ihavethese.Contains("bricksand") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 114, 115, 116, 117, 118, 119 }, new uint[] { 0xE0D5B1, 0xA29D88, 0xE4D98D, 0xD8B65A, 0xAF9468, 0x795A35 }, false, "Sand", 0, 1, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 114, 115, 116, 117, 118, 119 }, new uint[] { 0xE0D5B1, 0xA29D88, 0xE4D98D, 0xD8B65A, 0xAF9468, 0x795A35 }, false, "Sand", 0, 1, false); }
-            AddToolStrip(foregroundBMD, 0, new int[] { 120 }, new uint[] { 0xF6FCFF }, false, "Cloud", 0, 1, true);
-            if (ihavethese.Contains("brickindustrial") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 121, 122, 123, 124, 125, 126, 127, 128, 129, 130 }, new uint[] { 0x7E7E7E, 0x595B5D, 0, 0, 0, 0x7B7A7A, 0x6D6C6C, 0x595858, 0x5E5D5D, 0x6D6C6C }, false, "Industrial", 0, 1, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 121, 122, 123, 124, 125, 126, 127, 128, 129, 130 }, new uint[] { 0x7E7E7E, 0x595B5D, 0, 0, 0, 0x7B7A7A, 0x6D6C6C, 0x595858, 0x5E5D5D, 0x6D6C6C }, false, "Industrial", 0, 1, false); }
+            AddToolStrip(foregroundBMD, 0, new int[] { 120,287 }, new uint[] { 0xF6FCFF, 0x7A7A7B }, false, "Cloud", 0, 1, true);
+            if (ihavethese.Contains("brickindustrial") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 121, 122, 123, 124, 125,  126, 288, 127, 128, 129, 130 }, new uint[] { 0x7E7E7E, 0x595B5D, 0, 0, 0, 0x7B7A7A, 0x807F7F, 0x6D6C6C, 0x595858, 0x5E5D5D, 0x6D6C6C }, false, "Industrial", 0, 1, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 121, 122, 123, 124, 125, 126, 127, 128, 129, 130 }, new uint[] { 0x7E7E7E, 0x595B5D, 0, 0, 0, 0x7B7A7A, 0x6D6C6C, 0x595858, 0x5E5D5D, 0x6D6C6C }, false, "Industrial", 0, 1, false); }
             if (ihavethese.Contains("brickmedieval") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 132, 133, 134, 136, 137 }, new uint[] { 0, 0x545F68, 0x4D565E, 0, 0 }, false, "Medieval", 0, 1, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 132, 133, 134, 136, 137 }, new uint[] { 0, 0x545F68, 0x4D565E, 0, 0 }, false, "Medieval", 0, 1, false); }
             AddToolStrip(foregroundBMD, 0, new int[] { 140, 141, 142, 143, 144, 145 }, new uint[] { 0xCC730C, 0xDE7A0D, 0xCF740D, 0xD57402, 0xEB7D02, 0xD57402 }, false, "Pipes", 0, 1, true);
             AddToolStrip(foregroundBMD, 0, new int[] { 146, 147, 148, 149, 150, 214 }, new uint[] { 0xD7D6DD, 0x639AFB, 0x58D30A, 0xE2456D, 0xFFAB44, 0x7F7F7F }, false, "Outer Space", 0, 1, true);
@@ -843,7 +846,7 @@ namespace EEditor
             if (ihavethese.Contains("bricksummer2016") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 255, 256, 257, 258, 259 }, new uint[] { 0xB59358, 0x9A6093, 0xC5A228, 0x56A56E, 0 }, false, "Summer 2016", 0, 2, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 255, 256, 257, 258, 259 }, new uint[] { 0xB59358, 0x9A6093, 0xC5A228, 0x56A56E, 0 }, false, "Summer 2016", 0, 2, false); }
 
             if (ihavethese.Contains("brickmine") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 264 }, new uint[] { 0x9B5A3F }, false, "Mine", 0, 2, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 264 }, new uint[] { 0x9B5A3F }, false, "Mine", 0, 2, false); }
-            AddToolStrip(foregroundBMD, 0, new int[] { 265, 266, 267, 268, 269 }, new uint[] { 0xC79B68, 0x797979, 0xC9B190, 0xAA4937, 0xA94836 }, false, "Construction", 0, 2, true);
+            AddToolStrip(foregroundBMD, 0, new int[] { 265, 266, 267, 268, 291, 289, 290, 292, 269 }, new uint[] { 0xC79B68, 0x797979, 0xC9B190, 0xAB4A38, 0xAC4B38, 0xAA4937, 0xAC4B38, 0xAA4937, 0xAA4937 }, false, "Construction", 0, 2, true);
             if (ihavethese.Contains("brickchristmas2016") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 270, 271, 272, 273, 274 }, new uint[] { 0x6E2B0B, 0x443C0B, 0x7D4E49, 0x253461, 0x86410D }, false, "Christmas 2016", 0, 2, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 270, 271, 272, 273, 274 }, new uint[] { 0x6E2B0B, 0x443C0B, 0x7D4E49, 0x253461, 0x86410D }, false, "Christmas 2016", 0, 2, false); }
 
             if (ihavethese.Contains("bricktiles") || debug) { AddToolStrip(foregroundBMD, 0, new int[] { 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 }, new uint[] { 0xB3B09B, 0x959386, 0x716F60, 0xAD7373, 0xA97C67, 0xA59069, 0x7E9575, 0x7EA194, 0x7C8B9D, 0x857A99 }, false, "Tiles", 0, 2, true); } else { AddToolStrip(foregroundBMD, 0, new int[] { 275, 276, 277, 278, 279, 280, 281, 282, 283, 284 }, new uint[] { 0xB3B09B, 0x959386, 0x716F60, 0xAD7373, 0xA97C67, 0xA59069, 0x7E9575, 0x7EA194, 0x7C8B9D, 0x857A99 }, false, "Tiles", 0, 2, false); }
@@ -881,7 +884,7 @@ namespace EEditor
             AddToolStrip(decosBMD, 2, new int[] { 45, 46, 47, 48, 49, 50, 51, 52, 53 }, null, false, "Windows", 2, 0, true);
             if (ihavethese.Contains("brickpirate") || debug) { AddToolStrip(decosBMD, 2, new int[] { 54, 55, 188, 189 }, null, false, "Pirate", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 54, 55, 188, 189 }, null, false, "Pirate", 2, 0, false); }
             if (ihavethese.Contains("brickninja") || debug) { AddToolStrip(decosBMD, 2, new int[] { 59, 60, 61, 62, 63, 64, 65, 66, 67 }, null, false, "Dojo", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 59, 60, 61, 62, 63, 64, 65, 66, 67 }, null, false, "Dojo", 2, 0, false); }
-            if (ihavethese.Contains("brickcowboy") || debug) { AddToolStrip(decosBMD, 2, new int[] { 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 }, null, false, "Wild West", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 }, null, false, "Wild West", 2, 0, false); }
+            if (ihavethese.Contains("brickcowboy") || debug) { AddToolStrip(decosBMD, 2, new int[] { 68, 69, 232, 233, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 }, null, false, "Wild West", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 68, 69, 232, 233, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82 }, null, false, "Wild West", 2, 0, false); }
             AddToolStrip(miscBMD, 1, new int[] { 1 }, null, false, "Water", 2, 0, true);
             if (ihavethese.Contains("bricksand") || debug) { AddToolStrip(decosBMD, 2, new int[] { 83, 84, 85, 86, 87, 88 }, null, false, "Sand", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 83, 84, 85, 86, 87, 88 }, null, false, "Sand", 2, 0, false); }
             if (ihavethese.Contains("bricksummer2012") || debug) { AddToolStrip(decosBMD, 2, new int[] { 89, 90, 91, 92 }, null, false, "Summer 2012", 2, 0, true); } else { AddToolStrip(decosBMD, 2, new int[] { 89, 90, 91, 92 }, null, false, "Summer 2012", 2, 0, false); }
@@ -1057,6 +1060,7 @@ namespace EEditor
 
             //Backgrounds
             AddToolStrip(backgroundBMD, 3, new int[] { 209, 0, 1, 2, 3, 4, 5, 6, 138, 139 }, new uint[] { 0x707070, 0x343434, 0x1A2955, 0x4A1751, 0x551A2A, 0x465217, 0x1E5218, 0x174F53, 0x6F370B, 0x050505 }, false, "Basic", 3, 0, true);
+            if (ihavethese.Contains("beta") || debug) { AddToolStrip(backgroundBMD, 3, new int[] { 237,238,239,240,241,242, 243, 244, 245, 246 }, new uint[] { 0x3F3F3F, 0x292928, 0x181818, 0x491912, 0x472510, 0x45320D, 0x0F461B, 0x0E4245, 0x13254B, 0x461247 }, false, "Beta", 3, 0, true); } else { AddToolStrip(backgroundBMD, 3, new int[] { 237, 238, 239, 240, 241, 242, 243, 244, 245, 246 }, new uint[] { 0x3F3F3F, 0x292928, 0x181818, 0x491912, 0x472510, 0x45320D, 0x0F461B, 0x0E4245, 0x13254B, 0x461247 }, false, "Beta", 3, 0, false); }
             AddToolStrip(backgroundBMD, 3, new int[] { 210, 8, 9, 10, 11, 12, 140, 141, 142, 7 }, new uint[] { 0x5B5B5B, 0x113726, 0x251136, 0x214108, 0x371214, 0x372E12, 0x282828, 0x051132, 0x0F0F0F, 0x441D04 }, false, "Brick", 3, 0, true);
             AddToolStrip(backgroundBMD, 3, new int[] { 212, 13, 14, 15, 16, 17, 18, 19, 143, 144 }, new uint[] { 0x6B6B6B, 0x3C3C3C, 0x1F365F, 0x552860, 0x5E0E23, 0x525A1D, 0x25591E, 0x236764, 0x834A1A, 0x191919 }, false, "Checker", 3, 0, true);
             AddToolStrip(backgroundBMD, 3, new int[] { 213, 20, 21, 22, 23, 24, 25, 26, 145, 146 }, new uint[] { 0x636363, 0x353535, 0x1C325D, 0x4C1853, 4283501598, 0x485318, 0x1D5318, 0x1C5D5B, 0x7A4111, 0x121212 }, false, "Dark", 3, 0, true);
@@ -1099,7 +1103,7 @@ namespace EEditor
             if (ihavethese.Contains("bricktextile") || debug) { AddToolStrip(backgroundBMD, 3, new int[] { 214, 215, 216, 217, 218 }, new uint[] { 0x87A884, 0x7D92A7, 0xB395AC, 0xA29E72, 0xA47E7E }, false, "Textile", 3, 2, true); } else { AddToolStrip(backgroundBMD, 3, new int[] { 214, 215, 216, 217, 218 }, new uint[] { 0x87A884, 0x7D92A7, 0xB395AC, 0xA29E72, 0xA47E7E }, false, "Textile", 3, 2, false); }
 
             if (ihavethese.Contains("brickhalloween2016") || debug) { AddToolStrip(backgroundBMD, 3, new int[] { 220, 221 }, new uint[] { 0x201E1A, 0x2E1A37 }, false, "Halloween 2016", 3, 2, true); } else { AddToolStrip(backgroundBMD, 3, new int[] { 220, 221 }, new uint[] { 0x201E1A, 0x2E1A37 }, false, "Halloween 2016", 3, 2, false); }
-            AddToolStrip(backgroundBMD, 3, new int[] { 222, 223, 224, 225, 226 }, new uint[] { 0x8A5E2B, 0x515151, 0x7C6241, 0x852310, 0x852210 }, false, "Construction", 3, 2, true);
+            AddToolStrip(backgroundBMD, 3, new int[] { 222, 223, 224, 225, 226, 247, 248, 249, 250 }, new uint[] { 0x8A5E2B, 0x515151, 0x7C6241, 0x852310, 0x852210, 0x852310, 0x852310, 0x852311, 0x852311 }, false, "Construction", 3, 2, true);
 
             if (ihavethese.Contains("bricktiles") || debug) { AddToolStrip(backgroundBMD, 3, new int[] { 227, 228, 229, 230, 231, 232, 233, 234, 235, 236 }, new uint[] { 0x646049, 0x575448, 0x4B493A, 0x783E3E, 0x734530, 0x634E27, 0x455C3C, 0x3E6054, 0x445365, 0x534766 }, false, "Tiles", 3, 2, true); } else { AddToolStrip(backgroundBMD, 3, new int[] { 227, 228, 229, 230, 231, 232, 233, 234, 235, 236 }, new uint[] { 0x646049, 0x575448, 0x4B493A, 0x783E3E, 0x734530, 0x634E27, 0x455C3C, 0x3E6054, 0x445365, 0x534766 }, false, "Tiles", 3, 2, false); }
 

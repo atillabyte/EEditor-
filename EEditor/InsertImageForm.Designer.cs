@@ -36,16 +36,17 @@
             this.ActionBlockscheckBox = new System.Windows.Forms.CheckBox();
             this.MorphablecheckBox = new System.Windows.Forms.CheckBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.GeneratorButton = new System.Windows.Forms.Button();
             this.CreateImagegroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // loadImageButton
             // 
+            this.loadImageButton.Image = global::EEditor.Properties.Resources.open;
             this.loadImageButton.Location = new System.Drawing.Point(12, 159);
             this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(134, 27);
+            this.loadImageButton.Size = new System.Drawing.Size(28, 27);
             this.loadImageButton.TabIndex = 1;
-            this.loadImageButton.Text = "Select image file";
             this.loadImageButton.UseVisualStyleBackColor = true;
             this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
@@ -92,7 +93,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 72);
+            this.label1.Location = new System.Drawing.Point(0, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 13);
             this.label1.TabIndex = 11;
@@ -127,11 +128,22 @@
             this.progressBar1.Size = new System.Drawing.Size(134, 23);
             this.progressBar1.TabIndex = 8;
             // 
+            // GeneratorButton
+            // 
+            this.GeneratorButton.Location = new System.Drawing.Point(71, 161);
+            this.GeneratorButton.Name = "GeneratorButton";
+            this.GeneratorButton.Size = new System.Drawing.Size(75, 23);
+            this.GeneratorButton.TabIndex = 9;
+            this.GeneratorButton.Text = "Generate";
+            this.GeneratorButton.UseVisualStyleBackColor = true;
+            this.GeneratorButton.Click += new System.EventHandler(this.GeneratorButton_Click);
+            // 
             // InsertImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(164, 226);
+            this.ClientSize = new System.Drawing.Size(160, 226);
+            this.Controls.Add(this.GeneratorButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.CreateImagegroupBox);
             this.Controls.Add(this.loadImageButton);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.CheckBox ActionBlockscheckBox;
         private System.Windows.Forms.CheckBox MorphablecheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button GeneratorButton;
     }
 }

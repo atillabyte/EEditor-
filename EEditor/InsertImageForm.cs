@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.IO;
 namespace EEditor
 {
     public partial class InsertImageForm : Form
@@ -26,6 +26,7 @@ namespace EEditor
         public static List<int> Background = new List<int>();
         public static List<int> SpecialMorph = new List<int>();
         public static List<int> SpecialAction = new List<int>();
+        public static string path2file = null;
 
         public InsertImageForm()
         {
@@ -48,7 +49,7 @@ namespace EEditor
                 }
         }
 
-        private void loadImageButton_Click(object sender, EventArgs e)
+        public void loadImageButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog imageFileDialog = new OpenFileDialog() {
                 Filter = "Images |*.jpg;*.jpeg;*.png;*.gif;*.bmp;*.ico",
@@ -56,12 +57,9 @@ namespace EEditor
             };
             if (imageFileDialog.ShowDialog() == DialogResult.OK)
             {
-                Bitmap originalImage = new Bitmap(Bitmap.FromFile(imageFileDialog.FileName));
-                thread = new Thread(() => Transform(originalImage));
-                thread.Start();
-
+                path2file = imageFileDialog.FileName;
                 //pictureBox1.Image = image;
-                this.Invalidate();
+                //this.Invalidate();
             }
         }
 
@@ -114,33 +112,37 @@ namespace EEditor
             int a = 0;
             double d = Distance(c, Color.FromArgb((int)Minimap.Colors[0]));
             if (checkBoxBackground.Checked)
+            {
                 foreach (int i in Background)
                 {
                     if (Minimap.ImageColor[i])
                     {
-                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                            if (dist < d)
-                            {
-                                d = dist;
-                                j = i;
-                            }
+                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                        if (dist < d)
+                        {
+                            d = dist;
+                            j = i;
+                        }
                     }
                     if (exit) break;
                 }
+            }
             if (checkBoxBlocks.Checked)
+            {
                 foreach (int i in Blocks)
                 {
                     if (Minimap.ImageColor[i])
                     {
-                            double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
-                            if (dist < d)
-                            {
-                                d = dist;
-                                j = i;
-                            }
+                        double dist = Distance(c, Color.FromArgb((int)Minimap.Colors[i]));
+                        if (dist < d)
+                        {
+                            d = dist;
+                            j = i;
+                        }
                     }
                     if (exit) break;
                 }
+            }
             if (MorphablecheckBox.Checked)
             {
                 foreach (int i in SpecialMorph)
@@ -218,6 +220,15 @@ namespace EEditor
                             if (exit) break;
                         }
                         if (exit) break;
+                        incr += 1;
+                        if (progressBar1.InvokeRequired)
+                        {
+                            progressBar1.Invoke((MethodInvoker)delegate
+                            {
+                                double progress = ((double)incr / width) * 100;
+                                progressBar1.Value = (int)progress;
+                            });
+                        }
                     }
                 }
                 else
@@ -254,9 +265,10 @@ namespace EEditor
                     incr += 1;
                     if (progressBar1.InvokeRequired)
                     {
-                        MainForm.editArea.Invoke((MethodInvoker)delegate
+                        progressBar1.Invoke((MethodInvoker)delegate
                         {
-                            progressBar1.Value = (x / width) * 100;
+                            double progress = ((double)incr / width) * 100;
+                            progressBar1.Value = (int)progress;
                         });
                     }
                 }
@@ -326,6 +338,21 @@ namespace EEditor
         private void InsertImageForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             exit = true;
+        }
+
+        private void GeneratorButton_Click(object sender, EventArgs e)
+        {
+            if (path2file != null && File.Exists(path2file))
+            {
+                Bitmap originalImage = new Bitmap(Bitmap.FromFile(path2file));
+                thread = new Thread(() => Transform(originalImage));
+                thread.Start();
+                path2file = null;
+            }
+            else
+            {
+                FlexibleMessageBox.Show("The picture doesn't exist or isn't loaded.");
+            }
         }
     }
 }

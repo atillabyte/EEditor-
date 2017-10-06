@@ -380,10 +380,11 @@
     <None Include="FodyWeavers.xml" />
     <Content Include="Helmet_512.ico" />
     <Content Include="output.ico" />
-    <None Include="Resources\BLOCKS_deco.png" />
-    <None Include="Resources\BLOCKS_back.png" />
     <None Include="Resources\ag_icon.png" />
     <None Include="Resources\add.png" />
+    <None Include="Resources\BLOCKS_front.png" />
+    <None Include="Resources\BLOCKS_back.png" />
+    <None Include="Resources\BLOCKS_deco.png" />
     <Content Include="Resources\copy.png" />
     <None Include="Resources\eeditor_bgIgnore.png" />
     <None Include="Resources\eeditor_bgIgnore.ico" />
@@ -422,7 +423,6 @@
     <None Include="Resources\bullets.png" />
     <None Include="Resources\piano.png" />
     <None Include="Resources\drum.png" />
-    <None Include="Resources\BLOCKS_front.png" />
     <None Include="Resources\eeditor_block.png" />
     <None Include="Resources\eeditor_decor.png" />
     <None Include="Resources\eeditor_action.png" />
