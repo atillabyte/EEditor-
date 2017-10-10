@@ -462,9 +462,35 @@ namespace EEditor
             {
                 if (MainForm.decosBMI[fid] == 0 && MainForm.foregroundBMI[fid] == 0 && fid != 0 && MainForm.miscBMI[fid] == 0)
                 {
-                    if (fid < 500 || fid >= 1001)
+                    if (fid < 500 || fid >= 1001 && fid < 2500)
                     {
                         Bitmap bmp2 = unknowBricks.Clone(new Rectangle(7 * 16, 0, 16, 16), unknowBricks.PixelFormat);
+                        g.DrawImage(bmp2, x * 16, y * 16);
+                        if (MainForm.unknown.Count > 0)
+                        {
+                            unknownBlock bl = new unknownBlock(fid, 0, (int)coins, id, target, null);
+                            if (!MainForm.unknown.Contains(bl))
+                            {
+                                MainForm.unknown.Add(bl);
+                                if (!MainForm.userdata.newestBlocks.Contains(fid.ToString()))
+                                {
+                                    MainForm.userdata.newestBlocks.Add(fid.ToString());
+                                }
+                            }
+                        }
+                        else
+                        {
+                            unknownBlock bl = new unknownBlock(fid, 0, (int)coins, id, target, null);
+                            MainForm.unknown.Add(bl);
+                            if (!MainForm.userdata.newestBlocks.Contains(fid.ToString()))
+                            {
+                                MainForm.userdata.newestBlocks.Add(fid.ToString());
+                            }
+                        }
+                    }
+                    else if (fid >= 2500)
+                    {
+                        Bitmap bmp2 = unknowBricks.Clone(new Rectangle(8 * 16, 0, 16, 16), unknowBricks.PixelFormat);
                         g.DrawImage(bmp2, x * 16, y * 16);
                         if (MainForm.unknown.Count > 0)
                         {

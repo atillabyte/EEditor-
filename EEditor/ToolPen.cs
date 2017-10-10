@@ -237,6 +237,26 @@ namespace EEditor
                                 else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
                             }
                         }
+                        else if (bdata.increase11.Contains(bid))
+                        {
+                            if (!mouseMove)
+                            {
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 10) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                            }
+                        }
                         else if (bdata.increase2.Contains(bid))
                         {
                             if (!mouseMove)
