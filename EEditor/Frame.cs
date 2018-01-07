@@ -691,7 +691,7 @@ namespace EEditor
             return corrects;
         }
 
-        public static Frame LoadJSONDatabaseWorld(string input, bool isFilePath=true)
+        public static Frame LoadJSONDatabaseWorld(string input, bool isFilePath = true)
         {
             int width = 0, height = 0;
             var world = JObject.Parse(isFilePath ? File.ReadAllText(input) : input);
@@ -699,23 +699,19 @@ namespace EEditor
             width = world.TryGetValue("width", out var w) ? (int)world.GetValue("width") : 200;
             height = world.TryGetValue("height", out var h) ? (int)world.GetValue("height") : 200;
 
-            if (world.TryGetValue("worlddata", out var wd))
-            {
-                Frame f = new Frame(width, height);
-                var array = world["worlddata"].Values().AsJEnumerable();
+            if (world.TryGetValue("worlddata", out var wd)) {
+                var f = new Frame(width, height);
+                var array = wd.Values().AsJEnumerable();
                 var temp = new DatabaseArray();
 
-                foreach (var block in array)
-                {
+                foreach (var block in array) {
                     var dbo = new DatabaseObject();
 
-                    foreach (var token in block)
-                    {
+                    foreach (var token in block) {
                         var property = (JProperty)token;
                         var value = property.Value;
 
-                        switch (value.Type)
-                        {
+                        switch (value.Type) {
                             case JTokenType.Integer:
                                 dbo.Set(property.Name, (uint)value);
                                 break;
@@ -732,21 +728,15 @@ namespace EEditor
                     }
                     temp.Add(dbo);
                 }
-                if (temp == null || temp.Count == 0) { f = null; }
-                else
-                {
-                    for (int i = 0; i < temp.Count; i++)
-                    {
-                        if (temp.Contains(i) && temp.GetObject(i).Count != 0)
-                        {
+                if (temp == null || temp.Count == 0) { f = null; } else {
+                    for (int i = 0; i < temp.Count; i++) {
+                        if (temp.Contains(i) && temp.GetObject(i).Count != 0) {
                             var obj = temp.GetObject(i);
                             byte[] x = TryGetBytes(obj, "x", new byte[0]), y = TryGetBytes(obj, "y", new byte[0]);
                             byte[] x1 = TryGetBytes(obj, "x1", new byte[0]), y1 = TryGetBytes(obj, "y1", new byte[0]);
 
-                            for (int j = 0; j < x1.Length; j++)
-                            {
-                                if (y1[j] < height && x1[j] < width)
-                                {
+                            for (int j = 0; j < x1.Length; j++) {
+                                if (y1[j] < height && x1[j] < width) {
                                     try {
                                         if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001) {
                                             f.Foreground[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
@@ -758,9 +748,7 @@ namespace EEditor
                                             if (obj.TryGetValue("id", out id)) {
                                                 if (bdata.sound.Contains(Convert.ToInt32(obj["type"]))) {
                                                     f.BlockData[y1[j], x1[j]] = (int)Convert.ToUInt32(id);
-                                                }
-                                                else
-                                                {
+                                                } else {
                                                     f.BlockData[y1[j], x1[j]] = Convert.ToInt32(id);
                                                 }
                                             }
@@ -769,47 +757,40 @@ namespace EEditor
                                         } else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) {
                                             f.Background[y1[j], x1[j]] = Convert.ToInt32(obj["type"]);
                                         }
-                                    } catch (Exception ex) {
+                                    }
+                                    catch (Exception ex) {
                                         Console.WriteLine(ex.ToString());
                                     }
                                 }
                             }
 
-                            for (int k = 0; k < x.Length; k += 2)
-                            {
+                            for (int k = 0; k < x.Length; k += 2) {
                                 int yy = (y[k] << 8) | y[k + 1];
                                 int xx = (x[k] << 8) | x[k + 1];
 
-                                if (yy < height && xx < width)
-                                {
+                                if (yy < height && xx < width) {
                                     try {
-                                        if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001)
-                                        {
+                                        if (Convert.ToInt32(obj["type"]) < 500 || Convert.ToInt32(obj["type"]) >= 1001) {
                                             object goal, signtype, text, rotation, id, target;
                                             f.Foreground[yy, xx] = Convert.ToInt32(obj["type"]);
                                             if (obj.TryGetValue("goal", out goal)) f.BlockData[yy, xx] = Convert.ToInt32(obj["goal"]);
                                             if (obj.TryGetValue("signtype", out signtype)) f.BlockData[yy, xx] = Convert.ToInt32(obj["signtype"]);
                                             if (obj.TryGetValue("text", out text)) f.BlockData3[yy, xx] = text.ToString();
                                             if (obj.TryGetValue("rotation", out rotation)) f.BlockData[yy, xx] = Convert.ToInt32(obj["rotation"]);
-                                                if (obj.TryGetValue("id", out id))
-                                                {
-                                                    if (bdata.sound.Contains(Convert.ToInt32(obj["type"])))
-                                                    {
-                                                        f.BlockData[yy, xx] = (int)Convert.ToUInt32(id);
-                                                    }
-                                                    else
-                                                    {
-                                                        f.BlockData[yy, xx] = Convert.ToInt32(id);
-                                                    }
+                                            if (obj.TryGetValue("id", out id)) {
+                                                if (bdata.sound.Contains(Convert.ToInt32(obj["type"]))) {
+                                                    f.BlockData[yy, xx] = (int)Convert.ToUInt32(id);
+                                                } else {
+                                                    f.BlockData[yy, xx] = Convert.ToInt32(id);
                                                 }
+                                            }
                                             if (obj.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") f.BlockData2[yy, xx] = Convert.ToInt32(target);
                                             if (obj.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") f.BlockData3[yy, xx] = target.ToString();
-                                        }
-                                        else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999)
-                                        {
+                                        } else if (Convert.ToInt32(obj["type"]) >= 500 && Convert.ToInt32(obj["type"]) <= 999) {
                                             f.Background[yy, xx] = Convert.ToInt32(obj["type"]);
                                         }
-                                    } catch (Exception ex) {
+                                    }
+                                    catch (Exception ex) {
                                         Console.WriteLine(ex.ToString());
                                     }
                                 }
@@ -819,66 +800,27 @@ namespace EEditor
                 }
                 return f;
             }
-            else
-            {
-                return null;
-            }
-            /*foreach (var value in temp)
-            {
-                Byte[] val1 = Convert.FromBase64String(temp["x"].ToString());
-                Byte[] val2 = Convert.FromBase64String(dbo["y"].ToString());
-                for (int xxx = 0; xxx < val1.Length; xxx += 2)
-                {
-                    int tmpxx = val1[xxx] << 8 | val1[xxx + 1];
-                    int tmpyy = val2[xxx] << 8 | val2[xxx + 1];
-                    f.Foreground[tmpyy, tmpxx] = 9;
-                }
-            }
-            foreach (var property in output)
-            {
-                if (property.Key == "width")
-                {
-                    width = (int)property.Value;
-                    w = true;
-                }
-                if (property.Key == "height")
-                {
-                    height = (int)property.Value;
-                    h = true;
-                }
-                if (h && w)
-                {
-                    area = new string[height, width];
-                    back = new string[height, width];
-                    coins = new string[height, width];
-                    id = new string[height, width];
-                    target = new string[height, width];
-                    text1 = new string[height, width];
-                }
-                if (property.Key == "worlddata")
-                {
-                    JToken[] jsonarr = property.Value.ToArray<JToken>();
-                    for (int i = 0; i < jsonarr.Length; i++)
-                    {
-                        JToken[] jsonarr1 = jsonarr[i].ToArray<JToken>();
+            else if (world.TryGetValue("world", out var wd2)) {
+                var f = new Frame(width, height);
+                try {
+                    var xwd = Convert.FromBase64String(wd2.Value<string>());
 
-                        foreach (var value in jsonarr1)
-                        {
-                            //if (i == 0) {
-                            Byte[] val1 = Convert.FromBase64String(value["x"].ToString());
-                            Byte[] val2 = Convert.FromBase64String(value["y"].ToString());
-                            for (int xxx = 0; xxx < val1.Length; xxx += 2)
-                            {
-                                int tmpxx = val1[xxx] << 8 | val1[xxx + 1];
-                                int tmpyy = val2[xxx] << 8 | val2[xxx + 1];
-                                Console.WriteLine(tmpxx + " " + tmpyy);
+                    for (var y = 0U; y < height; y++) {
+                        for (var x = 0U; x < width; x++) {
+                            try {
+                                f.Foreground[x, y] = xwd[y * width + x];
                             }
-                            //}
+                            catch (Exception ex) {
+                                Console.WriteLine(ex.ToString());
+                            }
                         }
                     }
+                    return f;
                 }
-            }*/
+                catch { return null; }
+            }
 
+            return null;
         }
 
         public static byte[] TryGetBytes(DatabaseObject input, string key, byte[] defaultValue)
