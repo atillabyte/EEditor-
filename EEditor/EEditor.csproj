@@ -382,9 +382,9 @@
     <Content Include="output.ico" />
     <None Include="Resources\ag_icon.png" />
     <None Include="Resources\add.png" />
-    <None Include="Resources\BLOCKS_front.png" />
-    <None Include="Resources\BLOCKS_back.png" />
     <None Include="Resources\BLOCKS_deco.png" />
+    <None Include="Resources\BLOCKS_back.png" />
+    <None Include="Resources\BLOCKS_front.png" />
     <None Include="Resources\bullets.png" />
     <Content Include="Resources\copy.png" />
     <None Include="Resources\eeditor_bgIgnore.png" />

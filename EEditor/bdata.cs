@@ -18,7 +18,7 @@ namespace EEditor
             329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 456, 457, 458, 447, 448, 449, 450, 451, 452,
             464, 465, 1075, 1076, 1077, 1078, 471, 475, 476, 477, 481, 482, 483, 497, 492, 493, 494, 499, 1500,
             1502,1507, 1506,1101,1102,1103,1104,1105,1517,1116,1117,1118,1119,1120,1121,1122,1123,1124,1125,1135,
-            1134,1538,1536,1537,1538 };
+            1134,1538,1536,1537,1538,1140,1141 };
         public static int[] portals = { 242, 381 };
 
         public static int[] sound = { 77, 83, 1520 };
@@ -27,7 +27,7 @@ namespace EEditor
             1001, 1002, 1003, 1004, 361, 375, 376, 377, 378, 379, 380, 438, 439, 275,
             329, 273, 328, 327, 338, 339, 340, 1041, 1042, 1043, 447, 448, 449, 450, 451, 452, 1052, 1053, 1054, 1055,
             1056, 1075, 1076, 1077, 1078, 1092, 492, 493, 494, 499, 1502, 1116, 1117, 1118, 1119, 1120, 1121, 1122, 1123,
-            1124, 1125, 1537};
+            1124, 1125, 1537,1140,1141};
         public static int[] increase2 = { 276, 277, 279, 280, 471, 475, 476, 477, 483, 1500, 1134 };
         public static int[] increase1 = { 417, 418, 419, 420, 453, 456, 457, 458, 1135, 1536 };
         public static int[] increase4 = { 1507, 1506, 464, 465 };
@@ -83,13 +83,15 @@ namespace EEditor
                     Bitmap bmp2 = MainForm.foregroundBMD.Clone(new Rectangle(MainForm.foregroundBMI[fid] * 16, 0, 16, 16), MainForm.foregroundBMD.PixelFormat);
                     return bmp2;
                 }
-                else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || fid == 339 || fid == 340 || fid == 1041 || fid == 1042 || fid == 1043 || fid == 456 || fid == 457 || fid == 458 || fid == 447 || fid == 448 || fid == 449 || fid == 450 || fid == 451 || fid == 452 || fid >= 1075 && fid <= 1078 || fid == 471 || fid == 475 || fid == 476 || fid == 477 || fid == 497 || fid == 492 || fid == 493 || fid == 494 || fid == 499 || fid == 1500 || fid == 1502 || fid == 1506 || fid == 1507 || fid == 1517 || fid >= 1116 && fid <= 1125 || fid == 1135 || fid == 1134 || fid == 1538 || fid == 1536 || fid == 1537)
+                else if (fid == 276 || fid == 277 || fid == 279 || fid == 280 || fid == 338 || fid == 339 || fid == 340 || fid == 1041 || fid == 1042 || fid == 1043 || fid == 456 || fid == 457 || fid == 458 || fid == 447 || fid == 448 || fid == 449 || fid == 450 || fid == 451 || fid == 452 || fid >= 1075 && fid <= 1078 || fid == 471 || fid == 475 || fid == 476 || fid == 477 || fid == 497 || fid == 492 || fid == 493 || fid == 494 || fid == 499 || fid == 1500 || fid == 1502 || fid == 1506 || fid == 1507 || fid == 1517 || fid >= 1116 && fid <= 1125 || fid == 1135 || fid == 1134 || fid == 1538 || fid == 1536 || fid == 1537 || fid == 1140 || fid == 1141)
                 {
                     int roted = 15;
                     bool empty = false;
                     switch (coins)
                     {
                         case 0:
+                            if (fid == 1141) roted = 429;
+                            if (fid == 1140) roted = 425;
                             if (fid == 1538) roted = 414;
                             if (fid == 1537) roted = 410;
                             if (fid == 1536) roted = 408;
@@ -144,6 +146,8 @@ namespace EEditor
                             if (fid == 1125) roted = 397;
                             break;
                         case 1:
+                            if (fid == 1141) roted = 430;
+                            if (fid == 1140) roted = 426;
                             if (fid == 1538) roted = 415;
                             if (fid == 1537) roted = 411;
                             if (fid == 1536) roted = 409;
@@ -198,6 +202,8 @@ namespace EEditor
                             if (fid == 1125) roted = 398;
                             break;
                         case 2:
+                            if (fid == 1141) roted = 431;
+                            if (fid == 1140) roted = 427;
                             if (fid == 1538) roted = 416;
                             if (fid == 1537) roted = 412;
                             if (fid == 1134) roted = 407;
@@ -246,6 +252,8 @@ namespace EEditor
                             if (fid == 1125) roted = 399;
                             break;
                         case 3:
+                            if (fid == 1141) roted = 432;
+                            if (fid == 1140) roted = 428;
                             if (fid == 1538) roted = 417;
                             if (fid == 1537) roted = 413;
                             if (fid == 338) roted = 139;

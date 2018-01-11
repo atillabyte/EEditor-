@@ -351,9 +351,17 @@ namespace EEditor
             //Graphics g = Graphics.FromImage(Back);
             if (Bricks[bid] == null || bid == -1)
             {
-                if (bid >= 500 && bid <= 999)
+                if (bid >= 500 && bid <= 999 || bid >= 2507 && bid <= 2513)
                 {
-                    Bitmap bmp2 = unknowBricks.Clone(new Rectangle(5 * 16, 0, 16, 16), unknowBricks.PixelFormat);
+                    Bitmap bmp2 = new Bitmap(16, 16);
+                    if (bid >= 500 && bid <= 999 && bid < 2500)
+                    {
+                        bmp2 = unknowBricks.Clone(new Rectangle(5 * 16, 0, 16, 16), unknowBricks.PixelFormat);
+                    }
+                    else if (bid >= 2507 && bid <= 2513)
+                    {
+                        bmp2 = unknowBricks.Clone(new Rectangle(6 * 16 + 1, 0, 16, 16), unknowBricks.PixelFormat);
+                    }
                     g.DrawImage(bmp2, x * 16, y * 16);
                     if (MainForm.unknown.Count > 0)
                     {

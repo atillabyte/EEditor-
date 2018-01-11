@@ -64,6 +64,7 @@ namespace EEditor
 
             try {
                 using (var archive = new MemoryStream(new WebClient() { Proxy = null }.DownloadData(requestUri))) {
+                    Console.WriteLine("yes");
                     var (keys, json_worlds) = Helpers.ExtractArchive(archive);
                     var worlds = keys.Select((key, index) => new JWorld(key, json_worlds[index]));
 
