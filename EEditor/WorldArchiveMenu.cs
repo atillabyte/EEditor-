@@ -13,7 +13,7 @@ namespace EEditor
 {
     public partial class WorldArchiveMenu : Form
     {
-        private const string worldArchiveUri = "http://worlds.atil.la:8080/";
+        private const string worldArchiveUri = "http://vps.eejesse.net:8080/";
         private List<JWorld> worlds { get; set; }
         private string loadedUsername { get; set; } = "";
 
