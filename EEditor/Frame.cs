@@ -351,7 +351,17 @@ namespace EEditor
                                     if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(signtype);
                                     if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy, tmpxx] = text.ToString();
                                     if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(rotation);
-                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy, tmpxx] = Convert.ToInt32(id);
+                                    if (worldinfo.TryGetValue("id", out id))
+                                    {
+                                        if (bdata.sound.Contains(Convert.ToInt32(worldinfo["type"])))
+                                        {
+                                            frame.BlockData[tmpyy, tmpxx] = (int)Convert.ToUInt32(id);
+                                        }
+                                        else
+                                        {
+                                            frame.BlockData[tmpyy, tmpxx] = Convert.ToInt32(id);
+                                        }
+                                    }
                                     if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") frame.BlockData2[tmpyy, tmpxx] = Convert.ToInt32(target);
                                     if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") frame.BlockData3[tmpyy, tmpxx] = target.ToString();
                                     /*else if (bid == 1000)
@@ -395,7 +405,17 @@ namespace EEditor
                                     if (worldinfo.TryGetValue("signtype", out signtype)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["signtype"]);
                                     if (worldinfo.TryGetValue("text", out text)) frame.BlockData3[tmpyy0, tmpxx0] = worldinfo["text"].ToString();
                                     if (worldinfo.TryGetValue("rotation", out rotation)) frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["rotation"]);
-                                    if (worldinfo.TryGetValue("id", out id)) frame.BlockData1[tmpyy0, tmpxx0] = Convert.ToInt32(worldinfo["id"]);
+                                    if (worldinfo.TryGetValue("id", out id))
+                                    {
+                                        if (bdata.sound.Contains(Convert.ToInt32(worldinfo["type"])))
+                                        {
+                                            frame.BlockData[tmpyy0, tmpxx0] = (int)Convert.ToUInt32(id);
+                                        }
+                                        else
+                                        {
+                                            frame.BlockData[tmpyy0, tmpxx0] = Convert.ToInt32(id);
+                                        }
+                                    }
                                     if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() != "System.String") frame.BlockData2[tmpyy0, tmpxx0] = Convert.ToInt32(target);
                                     if (worldinfo.TryGetValue("target", out target) && target.GetType().ToString() == "System.String") frame.BlockData3[tmpyy0, tmpxx0] = target.ToString();
                                     /*else if (bid == 1000)

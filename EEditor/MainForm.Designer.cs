@@ -366,7 +366,7 @@
             this.fileToolStrip.Location = new System.Drawing.Point(0, 0);
             this.fileToolStrip.Name = "fileToolStrip";
             this.fileToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.fileToolStrip.Size = new System.Drawing.Size(127, 27);
+            this.fileToolStrip.Size = new System.Drawing.Size(96, 27);
             this.fileToolStrip.TabIndex = 7;
             // 
             // newWorldButton
@@ -464,14 +464,14 @@
             // localToolStripMenuItem
             // 
             this.localToolStripMenuItem.Name = "localToolStripMenuItem";
-            this.localToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.localToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.localToolStripMenuItem.Text = "Local";
             this.localToolStripMenuItem.Click += new System.EventHandler(this.localToolStripMenuItem_Click);
             // 
             // remoteToolStripMenuItem
             // 
             this.remoteToolStripMenuItem.Name = "remoteToolStripMenuItem";
-            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.remoteToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.remoteToolStripMenuItem.Text = "Remote";
             this.remoteToolStripMenuItem.Click += new System.EventHandler(this.remoteToolStripMenuItem_Click);
             // 
@@ -530,10 +530,10 @@
             this.insertDropButton,
             this.toolStripSeparator8,
             this.replaceButton});
-            this.toolToolStrip.Location = new System.Drawing.Point(127, 0);
+            this.toolToolStrip.Location = new System.Drawing.Point(96, 0);
             this.toolToolStrip.Name = "toolToolStrip";
             this.toolToolStrip.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.toolToolStrip.Size = new System.Drawing.Size(204, 27);
+            this.toolToolStrip.Size = new System.Drawing.Size(235, 27);
             this.toolToolStrip.TabIndex = 3;
             // 
             // penButton
@@ -610,7 +610,7 @@
             this.rectangleButton.Image = global::EEditor.Properties.Resources.rectangle;
             this.rectangleButton.Name = "rectangleButton";
             this.rectangleButton.ShortcutKeyDisplayString = ",";
-            this.rectangleButton.Size = new System.Drawing.Size(206, 22);
+            this.rectangleButton.Size = new System.Drawing.Size(210, 26);
             this.rectangleButton.Text = "Rectangle";
             this.rectangleButton.Click += new System.EventHandler(this.rectangleButton_Click);
             // 
@@ -619,7 +619,7 @@
             this.filledRectangleButton.Image = global::EEditor.Properties.Resources.rectanglefill;
             this.filledRectangleButton.Name = "filledRectangleButton";
             this.filledRectangleButton.ShortcutKeyDisplayString = "CTRL + ,";
-            this.filledRectangleButton.Size = new System.Drawing.Size(206, 22);
+            this.filledRectangleButton.Size = new System.Drawing.Size(210, 26);
             this.filledRectangleButton.Text = "Filled rectangle";
             this.filledRectangleButton.Click += new System.EventHandler(this.filledRectangleButton_Click);
             // 
@@ -628,7 +628,7 @@
             this.circleButton.Image = global::EEditor.Properties.Resources.circle;
             this.circleButton.Name = "circleButton";
             this.circleButton.ShortcutKeyDisplayString = ".";
-            this.circleButton.Size = new System.Drawing.Size(206, 22);
+            this.circleButton.Size = new System.Drawing.Size(210, 26);
             this.circleButton.Text = "Circle";
             this.circleButton.Click += new System.EventHandler(this.circleButton_Click);
             // 
@@ -637,7 +637,7 @@
             this.filledCircleButton.Image = global::EEditor.Properties.Resources.circlefill;
             this.filledCircleButton.Name = "filledCircleButton";
             this.filledCircleButton.ShortcutKeyDisplayString = "CTRL + .";
-            this.filledCircleButton.Size = new System.Drawing.Size(206, 22);
+            this.filledCircleButton.Size = new System.Drawing.Size(210, 26);
             this.filledCircleButton.Text = "Filled circle";
             this.filledCircleButton.Visible = false;
             // 
@@ -646,7 +646,7 @@
             this.lineButton.Image = global::EEditor.Properties.Resources.line;
             this.lineButton.Name = "lineButton";
             this.lineButton.ShortcutKeyDisplayString = "-";
-            this.lineButton.Size = new System.Drawing.Size(206, 22);
+            this.lineButton.Size = new System.Drawing.Size(210, 26);
             this.lineButton.Text = "Line";
             this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
             // 
@@ -669,7 +669,7 @@
             this.imageButton.Image = global::EEditor.Properties.Resources.image;
             this.imageButton.Name = "imageButton";
             this.imageButton.ShortcutKeyDisplayString = "CTRL + I";
-            this.imageButton.Size = new System.Drawing.Size(175, 22);
+            this.imageButton.Size = new System.Drawing.Size(179, 26);
             this.imageButton.Text = "Image";
             this.imageButton.Click += new System.EventHandler(this.imageButton_Click);
             // 
@@ -678,7 +678,7 @@
             this.textButton.Image = global::EEditor.Properties.Resources.text;
             this.textButton.Name = "textButton";
             this.textButton.ShortcutKeyDisplayString = "CTRL + T";
-            this.textButton.Size = new System.Drawing.Size(175, 22);
+            this.textButton.Size = new System.Drawing.Size(179, 26);
             this.textButton.Text = "Text";
             this.textButton.Click += new System.EventHandler(this.textButton_Click);
             // 
@@ -686,7 +686,7 @@
             // 
             this.backgroundIgnoreToolStripMenuItem.Image = global::EEditor.Properties.Resources.eeditor_bgIgnore;
             this.backgroundIgnoreToolStripMenuItem.Name = "backgroundIgnoreToolStripMenuItem";
-            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.backgroundIgnoreToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.backgroundIgnoreToolStripMenuItem.Text = "Background Ignore";
             this.backgroundIgnoreToolStripMenuItem.Click += new System.EventHandler(this.backgroundIgnoreToolStripMenuItem_Click);
             // 

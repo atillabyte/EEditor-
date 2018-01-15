@@ -120,6 +120,10 @@ namespace EEditor
                     {
                         if (PenID < 500 || PenID >= 1001)
                         {
+                            if (!rotation.ContainsKey(PenID) && bdata.increase1.Contains(PenID) || bdata.increase2.Contains(PenID) || bdata.increase3.Contains(PenID) || bdata.increase4.Contains(PenID) || bdata.increase5.Contains(PenID) || bdata.increase11.Contains(PenID))
+                            {
+                                if (!rotation.ContainsKey(PenID)) rotation[PenID] = 1;
+                            }
                             if (PenID != editArea.CurFrame.Foreground[y, x])
                             {
                                 if (mouseMove || useincfg)
@@ -223,8 +227,30 @@ namespace EEditor
                             {
                                 if (button)
                                 {
+                                    
                                     editArea.CurFrame.BlockData[y, x] += 1;
                                     if (editArea.CurFrame.BlockData[y, x] > 3) editArea.CurFrame.BlockData[y, x] = 0;
+                                    editArea.CurFrame.BlockData1[y, x] = 0;
+                                    editArea.CurFrame.BlockData2[y, x] = 0;
+                                    if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                    else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                                    
+                                }
+                            }
+                            else
+                            {
+                                if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }
+                                else { rotation.Add(bid, editArea.CurFrame.BlockData[y, x]); }
+                            }
+                        }
+                        else if (bdata.increase11.Contains(bid))
+                        {
+                            if (!mouseMove)
+                            {
+                                if (button)
+                                {
+                                    editArea.CurFrame.BlockData[y, x] += 1;
+                                    if (editArea.CurFrame.BlockData[y, x] > 10) editArea.CurFrame.BlockData[y, x] = 0;
                                     editArea.CurFrame.BlockData1[y, x] = 0;
                                     editArea.CurFrame.BlockData2[y, x] = 0;
                                     if (rotation.ContainsKey(bid)) { rotation[bid] = editArea.CurFrame.BlockData[y, x]; }

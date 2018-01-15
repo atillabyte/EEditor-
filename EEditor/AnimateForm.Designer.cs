@@ -167,7 +167,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(116, 36);
+            this.label2.Location = new System.Drawing.Point(128, 36);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
@@ -176,7 +176,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(157, 34);
+            this.numericUpDown2.Location = new System.Drawing.Point(169, 34);
             this.numericUpDown2.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             99999,
@@ -189,7 +189,7 @@
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(60, 20);
+            this.numericUpDown2.Size = new System.Drawing.Size(78, 20);
             this.numericUpDown2.TabIndex = 22;
             this.numericUpDown2.Value = new decimal(new int[] {
             10,
@@ -261,7 +261,7 @@
             0,
             0});
             this.BPSNumericUpDown.Name = "BPSNumericUpDown";
-            this.BPSNumericUpDown.Size = new System.Drawing.Size(60, 20);
+            this.BPSNumericUpDown.Size = new System.Drawing.Size(78, 20);
             this.BPSNumericUpDown.TabIndex = 24;
             this.BPSNumericUpDown.Value = new decimal(new int[] {
             10,

@@ -95,7 +95,7 @@ namespace EEditor
 
                     if (editArea.IsBackground) {
                         if (oldID1 >= 500 && oldID1 <= 999 && pen == 0) {
-                            if (dataf[y, x] == oldID1 && IsPaintable(x, y, pen, true)) {
+                            if (dataf[y, x] == oldID1) {
                                 incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
                                 if (ToolPen.rotation.ContainsKey(pen)) {
@@ -119,8 +119,9 @@ namespace EEditor
                                 }
                             }
                         } else if (pen >= 500 && pen <= 999) {
-                            if (dataf[y, x] == oldID1 && datafg[y, x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false)) {
-                                incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
+                            //if (dataf[y, x] == oldID1 && datafg[y, x] == oldID0 && !MainForm.userdata.IgnoreBlocks.Contains(oldID0)) {
+                            if (dataf[y, x] == oldID1 && !MainForm.userdata.IgnoreBlocks.Contains(datafg[y,x]) && datafg[y,x] == oldID0) {
+                            incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
                                 if (editArea.InvokeRequired) {
                                     editArea.Invoke((MethodInvoker)delegate {
@@ -140,7 +141,7 @@ namespace EEditor
                                 }
                             }
                         } else {
-                            if (dataf[y, x] == oldID0 && IsPaintable(x, y, pen, true) && IsPaintable(x, y, pen, false)) {
+                            if (dataf[y, x] == oldID0) {
                                 incfg += pen + ":" + dataf[y, x] + ":" + x + ":" + y + ":";
                                 dataf[y, x] = pen;
                                 if (pen == 242) {
